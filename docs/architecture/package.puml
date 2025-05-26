@@ -1,0 +1,58 @@
+@startuml package
+' Set style for better readability
+skinparam packageStyle rectangle
+!theme mono
+skinparam linetype ortho
+
+' Main App Package
+package "Semiotic Framework Tool" {
+    package "View Components" {
+        class App
+        class Page
+        class Initializer
+        class FileDownloader
+        class QuestionComponent
+        class ClassificationComponent
+    }
+
+    package "Services" {
+        class XmlParserService
+        class FileIOService
+    }
+
+    package "Models" {
+        class Tag
+        class Question
+        class XmlStructure
+    }
+
+    package "Utils" {
+        class XmlHelper
+    }
+
+    ' Relationships
+    
+
+    App --> Page
+    App --> Initializer
+    App --> FileDownloader
+
+    Page --> QuestionComponent
+
+    QuestionComponent --> ClassificationComponent : has
+
+    Tag --> ClassificationComponent
+
+    Question --> Tag : has
+    Question --> QuestionComponent
+
+    Initializer --> FileIOService : uses
+    FileDownloader --> FileIOService : uses
+    FileIOService --> XmlParserService : delegates
+    XmlParserService --> XmlHelper : uses
+    XmlParserService --> XmlStructure : maps to
+    XmlStructure --> Question : contains
+    XmlStructure --> Tag : contains
+}
+
+@enduml
