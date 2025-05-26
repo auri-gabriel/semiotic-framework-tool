@@ -1,11 +1,15 @@
 @startuml package
 ' Set style for better readability
-skinparam packageStyle rectangle
 !theme mono
 skinparam linetype ortho
+hide empty members
+skinparam dpi 150
+skinparam shadowing false
+top to bottom direction
 
 ' Main App Package
 package "Semiotic Framework Tool" {
+    
     package "View Layer" {
         class App
         class Page
@@ -15,18 +19,18 @@ package "Semiotic Framework Tool" {
         class QuestionComponent
         class LevelComponent
     }
-
+    
     package "Business Layer" {
         class QuestionManager
         class ResponseManager
         class LevelController
     }
-
+    
     package "Data Layer" {
         class XmlReader
         class XmlWriter
     }
-
+    
     package "Models" {
         class Tag
         class Question
@@ -34,31 +38,37 @@ package "Semiotic Framework Tool" {
         class XmlStructure
     }
 
-    ' Relationships
+    ' View Layer Relationships
     App --> Initializer
-    
     Initializer --> Page : shows
     Initializer --> BottomToolbar : shows
-
     BottomToolbar --> FileDownloader
-
-    Page --> LevelComponent : has
-    LevelComponent --> QuestionComponent : has
-
-    Tag --> LevelComponent : sends data
-
-    Question --> Tag : has
-    Question --> QuestionComponent : sends data
-    Response --> QuestionComponent : sends data
-
-    Initializer --> XmlReader : uses
+    Page --> LevelComponent : contains
+    LevelComponent --> QuestionComponent : contains
+    
+    ' View to Business Layer
+    LevelComponent --> LevelController : uses
+    QuestionComponent --> QuestionManager : uses
+    QuestionComponent --> ResponseManager : uses
+    
+    ' Business to Data Layer
+    LevelController --> XmlReader : uses
+    QuestionManager --> XmlReader : uses
+    ResponseManager --> XmlWriter : uses
+    
+    ' Data Layer Initialization
+    Initializer --> XmlReader : initializes
     FileDownloader --> XmlWriter : uses
+    
+    ' Data Layer to Models
     XmlReader --> XmlStructure : reads
+    XmlReader --> Tag : creates
+    XmlReader --> Question : creates
+    XmlWriter --> Response : persists
     XmlWriter --> XmlStructure : writes
-
-    'XmlStructure --> Question : contains
-    'XmlStructure --> Tag : contains
-    'XmlStructure --> Response : contains
+    
+    ' Model Relationships
+    Question --> Tag : belongs to
+    Response --> Question : answers
 }
-
 @enduml
