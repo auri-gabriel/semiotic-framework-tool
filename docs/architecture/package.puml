@@ -6,53 +6,59 @@ skinparam linetype ortho
 
 ' Main App Package
 package "Semiotic Framework Tool" {
-    package "View Components" {
+    package "View Layer" {
         class App
         class Page
         class Initializer
         class FileDownloader
+        class BottomToolbar
         class QuestionComponent
-        class ClassificationComponent
+        class LevelComponent
     }
 
-    package "Services" {
-        class XmlParserService
-        class FileIOService
+    package "Business Layer" {
+        class QuestionManager
+        class ResponseManager
+        class LevelController
+    }
+
+    package "Data Layer" {
+        class XmlReader
+        class XmlWriter
     }
 
     package "Models" {
         class Tag
         class Question
+        class Response
         class XmlStructure
     }
 
-    package "Utils" {
-        class XmlHelper
-    }
-
     ' Relationships
-    
-
-    App --> Page
     App --> Initializer
-    App --> FileDownloader
+    
+    Initializer --> Page : shows
+    Initializer --> BottomToolbar : shows
 
-    Page --> QuestionComponent
+    BottomToolbar --> FileDownloader
 
-    QuestionComponent --> ClassificationComponent : has
+    Page --> LevelComponent : has
+    LevelComponent --> QuestionComponent : has
 
-    Tag --> ClassificationComponent
+    Tag --> LevelComponent : sends data
 
     Question --> Tag : has
-    Question --> QuestionComponent
+    Question --> QuestionComponent : sends data
+    Response --> QuestionComponent : sends data
 
-    Initializer --> FileIOService : uses
-    FileDownloader --> FileIOService : uses
-    FileIOService --> XmlParserService : delegates
-    XmlParserService --> XmlHelper : uses
-    XmlParserService --> XmlStructure : maps to
-    XmlStructure --> Question : contains
-    XmlStructure --> Tag : contains
+    Initializer --> XmlReader : uses
+    FileDownloader --> XmlWriter : uses
+    XmlReader --> XmlStructure : reads
+    XmlWriter --> XmlStructure : writes
+
+    'XmlStructure --> Question : contains
+    'XmlStructure --> Tag : contains
+    'XmlStructure --> Response : contains
 }
 
 @enduml
