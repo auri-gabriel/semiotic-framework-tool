@@ -1,30 +1,31 @@
-export async function readQuestionsAndLevels() {
-  const questionsRes = await fetch('/src/assets/definitions/questions.xml');
-  const levelsRes = await fetch('/src/assets/definitions/levels.xml');
-  const questionsText = await questionsRes.text();
-  const levelsText = await levelsRes.text();
-
+export async function readQuestions() {
+  const res = await fetch('/src/assets/definitions/questions.xml');
+  const text = await res.text();
   const parser = new window.DOMParser();
-  const questionsDoc = parser.parseFromString(questionsText, 'application/xml');
-  const levelsDoc = parser.parseFromString(levelsText, 'application/xml');
+  const doc = parser.parseFromString(text, 'application/xml');
+  const questionNodes = doc.querySelectorAll('question');
+  const questions = [];
+  questionNodes.forEach((q) => {
+    questions.push({
+      level: q.getAttribute('level'),
+      text: q.querySelector('text')?.textContent,
+    });
+  });
+  return questions;
+}
 
-  const levelNodes = levelsDoc.querySelectorAll('level');
-  const levelsMap = {};
+export async function readLevels() {
+  const res = await fetch('/src/assets/definitions/levels.xml');
+  const text = await res.text();
+  const parser = new window.DOMParser();
+  const doc = parser.parseFromString(text, 'application/xml');
+  const levelNodes = doc.querySelectorAll('level');
+  const levels = {};
   levelNodes.forEach((level) => {
     const id = level.getAttribute('id');
     let name = level.querySelector('name[lang="en"]')?.textContent;
     if (!name) name = level.querySelector('name')?.textContent;
-    levelsMap[id] = name;
+    levels[id] = name;
   });
-
-  const questionNodes = questionsDoc.querySelectorAll('question');
-  const grouped = {};
-  questionNodes.forEach((q) => {
-    const level = q.getAttribute('level');
-    const text = q.querySelector('text')?.textContent;
-    if (!grouped[level]) grouped[level] = [];
-    grouped[level].push(text);
-  });
-
-  return { levels: levelsMap, groupedQuestions: grouped };
+  return levels;
 }
