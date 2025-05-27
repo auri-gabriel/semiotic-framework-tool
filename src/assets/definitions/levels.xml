@@ -21,8 +21,9 @@
             <name>pragmatic</name>
             <description>The practical use or application, like processes or workflows.</description>
         </level>
-        <level id="social">
-            <name>social</name>
+        <level id="social_world">
+            <name lang="pt_BR">Mundo Social</name>
+            <name lang="en">Social World</name>
             <description>The social interactions and collaboration, such as teams or communication.</description>
         </level>
     </semioticLevels>
