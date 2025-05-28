@@ -1,3 +1,6 @@
+import { Question } from '../model/Question';
+import { Level } from '../model/Level'; // Add this import
+
 export async function readQuestions() {
   const res = await fetch('/src/assets/definitions/questions.xml');
   const text = await res.text();
@@ -6,10 +9,10 @@ export async function readQuestions() {
   const questionNodes = doc.querySelectorAll('question');
   const questions = [];
   questionNodes.forEach((q) => {
-    questions.push({
-      level: q.getAttribute('level'),
-      text: q.querySelector('text')?.textContent,
-    });
+    let level = q.getAttribute('level');
+    let text = q.querySelector('text')?.textContent;
+    let question = new Question(text, level, []);
+    questions.push(question);
   });
   return questions;
 }
@@ -25,7 +28,13 @@ export async function readLevels() {
     const id = level.getAttribute('id');
     let name = level.querySelector('name[lang="en"]')?.textContent;
     if (!name) name = level.querySelector('name')?.textContent;
-    levels[id] = name;
+    levels[id] = new Level(id, name); // Use Level model
   });
   return levels;
+}
+
+export async function readQuestionsAndLevels() {
+  let levels = await readLevels();
+  let questions = await readQuestions();
+  return { levels, questions };
 }
