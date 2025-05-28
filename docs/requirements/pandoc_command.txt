@@ -1,0 +1,1 @@
+ pandoc srs.md --toc --template eisvogel -o srs.docx
