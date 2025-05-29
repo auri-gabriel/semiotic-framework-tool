@@ -143,6 +143,14 @@ Engenharia de Software, com conhecimento básico de informática.
 - **Portabilidade:** Compatível com navegadores modernos (Chrome, Firefox, Edge).
 - **Manutenibilidade:** Estrutura de código modular e componentizada.
 
+### 5.5 Requisitos Não Funcionais
+
+| Código | Requisito Não Funcional                                                                                        | Prioridade |
+|--------|----------------------------------------------------------------------------------------------------------------|------------|
+| RNF01  | O sistema deve garantir a integridade dos dados durante importação, exportação e armazenamento local.          | Alta       |
+| RNF02  | Os dados do usuário não devem ser transmitidos para servidores externos; todo processamento ocorre localmente. | Alta       |
+| RNF03  | O sistema deve funcionar em diferentes sistemas operacionais via navegador moderno.                            | Alta       |
+
 ## 6. Outros Requisitos Não Funcionais
 
 ### 6.1 Conformidade Legal e Regulatória
@@ -157,7 +165,7 @@ Engenharia de Software, com conhecimento básico de informática.
 
 A seguir, apresenta-se o diagrama de casos de uso da Ferramenta de Framework Semiótico ES, ilustrando as principais interações do usuário com o sistema:
 
-![Diagrama de Casos de Uso](../../out/docs/requirements/use_cases/use_cases.png)
+![Diagrama de Casos de Uso](../../out/docs/requirements/use_cases/use_cases.png){ width=100% }
 
 ## Apêndices
 
