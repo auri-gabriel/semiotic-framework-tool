@@ -2,8 +2,8 @@
 ' Set style for better readability
 !theme mono
 skinparam linetype ortho
-hide empty members
 skinparam dpi 150
+hide empty members
 skinparam shadowing false
 top to bottom direction
 

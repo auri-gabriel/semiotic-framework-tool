@@ -1,0 +1,28 @@
+@startuml use_cases
+!theme mono
+skinparam dpi 150
+left to right direction
+
+actor Usuário
+
+rectangle "Ferramenta de Framework Semiótico ES" {
+    (Visualizar Perguntas) as visualizar
+    (Responder Pergunta) as responder
+    (Visualizar Níveis) as niveis
+    (Baixar Arquivo) as baixar
+    (Carregar Arquivo XML) as carregar
+    (Salvar Respostas) as salvar
+}
+
+Usuário --> visualizar
+Usuário --> responder
+Usuário --> niveis
+Usuário --> baixar
+Usuário --> carregar
+Usuário --> salvar
+
+visualizar --> niveis : <<include>>
+responder --> visualizar : <<include>>
+salvar --> responder : <<include>>
+
+@enduml
