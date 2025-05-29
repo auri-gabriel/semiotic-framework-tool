@@ -6,8 +6,6 @@ keywords: [Requisitos de Software, Engenharia de Software, ERS, Escada Semiótic
 titlepage: true
 ---
 
-# Especificação de Requisitos de Software (ERS)
-
 ## 1. Introdução
 
 ### 1.1 Propósito
