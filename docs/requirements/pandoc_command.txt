@@ -1,2 +1,2 @@
- pandoc srs.md --toc --template eisvogel -o srs.pdf
+pandoc srs.md --toc --template eisvogel -o srs.pdf
 pandoc srs.md --toc --reference-doc=template.odt -o srs.odt
