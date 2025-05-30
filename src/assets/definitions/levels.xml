@@ -1,30 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions>
-    <semioticLevels>
-        <level id="material">
-            <name>material</name>
-            <description>The physical or tangible aspects, like tools or hardware.</description>
-        </level>
-        <level id="empirical">
-            <name>empirical</name>
-            <description>Observable aspects, like test results or data collection.</description>
-        </level>
-        <level id="syntactic">
-            <name>syntactic</name>
-            <description>The structure or organization, such as source code or documents.</description>
-        </level>
-        <level id="semantic">
-            <name>semantic</name>
-            <description>The meaning and purpose, like requirements or functions.</description>
-        </level>
-        <level id="pragmatic">
-            <name>pragmatic</name>
-            <description>The practical use or application, like processes or workflows.</description>
-        </level>
-        <level id="social_world">
-            <name lang="pt_BR">Mundo Social</name>
-            <name lang="en">Social World</name>
-            <description>The social interactions and collaboration, such as teams or communication.</description>
-        </level>
-    </semioticLevels>
+    <!-- Semiotic Levels -->
+    <level id="material">
+        <name>material</name>
+        <description>The physical or tangible aspects, like tools or hardware.</description>
+    </level>
+    <level id="empirical">
+        <name>empirical</name>
+        <description>Observable aspects, like test results or data collection.</description>
+    </level>
+    <level id="syntactic">
+        <name>syntactic</name>
+        <description>The structure or organization, such as source code or documents.</description>
+    </level>
+    <level id="semantic">
+        <name>semantic</name>
+        <description>The meaning and purpose, like requirements or functions.</description>
+    </level>
+    <level id="pragmatic">
+        <name>pragmatic</name>
+        <description>The practical use or application, like processes or workflows.</description>
+    </level>
+    <level id="social_world">
+        <name lang="pt_BR">Mundo Social</name>
+        <name lang="en">Social World</name>
+        <description>The social interactions and collaboration, such as teams or communication.</description>
+    </level>
 </definitions>
