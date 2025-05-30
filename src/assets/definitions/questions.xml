@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<questions>
-    <question id="q01" >
-        <tag id="social_world"/>
-        <text lang="pt_BR">Quais as expectativas das partes interessadas?</text>
-    </question>
-</questions>
+<Questions-Definitions>
+    <Question id="q01">
+        <Tag id="social_world" />
+        <Text lang="pt_BR">Quais as expectativas das partes interessadas?</Text>
+    </Question>
+</Questions-Definitions>

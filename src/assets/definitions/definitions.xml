@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Tag-Definitions>
+    <!-- Semiotic Levels -->
+    <Tag id="material">
+        <Name>material</Name>
+        <Description>The physical or tangible aspects, like tools or hardware.</Description>
+    </Tag>
+    <Tag id="empirical">
+        <Name>empirical</Name>
+        <Description>Observable aspects, like test results or data collection.</Description>
+    </Tag>
+    <Tag id="syntactic">
+        <Name>syntactic</Name>
+        <Description>The structure or organization, such as source code or documents.</Description>
+    </Tag>
+    <Tag id="semantic">
+        <Name>semantic</Name>
+        <Description>The meaning and purpose, like requirements or functions.</Description>
+    </Tag>
+    <Tag id="pragmatic">
+        <Name>pragmatic</Name>
+        <Description>The practical use or application, like processes or workflows.</Description>
+    </Tag>
+    <Tag id="social_world">
+        <Name lang="pt_BR">Mundo Social</Name>
+        <Name lang="en">Social World</Name>
+        <Description>The social interactions and collaboration, such as teams or communication.</Description>
+    </Tag>
+</Tag-Definitions>
