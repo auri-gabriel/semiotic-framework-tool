@@ -1,54 +1,54 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Definitions>
-    <Tag-Definitions>
+<definitions>
+    <tag-definitions>
         <!-- Semiotic Levels -->
-        <Tag id="material">
-            <Name lang="en">Material</Name>
-            <Name lang="pt_BR">Material</Name>
-            <Description lang="en">The physical or tangible aspects, like tools or hardware.</Description>
-            <Description lang="pt_BR">Os aspectos físicos ou tangíveis, como ferramentas ou
-                hardware.</Description>
-        </Tag>
-        <Tag id="empirical">
-            <Name lang="en">Empirical</Name>
-            <Name lang="pt_BR">Empírico</Name>
-            <Description lang="en">Observable aspects, like test results or data collection.</Description>
-            <Description lang="pt_BR">Aspectos observáveis, como resultados de testes ou coleta de
-                dados.</Description>
-        </Tag>
-        <Tag id="syntactic">
-            <Name lang="en">Syntactic</Name>
-            <Name lang="pt_BR">Sintático</Name>
-            <Description lang="en">The structure or organization, such as source code or documents.</Description>
-            <Description lang="pt_BR">A estrutura ou organização, como código-fonte ou documentos.</Description>
-        </Tag>
-        <Tag id="semantic">
-            <Name lang="en">Semantic</Name>
-            <Name lang="pt_BR">Semântico</Name>
-            <Description lang="en">The meaning and purpose, like requirements or functions.</Description>
-            <Description lang="pt_BR">O significado e propósito, como requisitos ou funções.</Description>
-        </Tag>
-        <Tag id="pragmatic">
-            <Name lang="en">Pragmatic</Name>
-            <Name lang="pt_BR">Pragmático</Name>
-            <Description lang="en">The practical use or application, like processes or workflows.</Description>
-            <Description lang="pt_BR">O uso prático ou aplicação, como processos ou fluxos de
-                trabalho.</Description>
-        </Tag>
-        <Tag id="social_world">
-            <Name lang="pt_BR">Mundo Social</Name>
-            <Name lang="en">Social World</Name>
-            <Description lang="en">The social interactions and collaboration, such as teams or
-                communication.</Description>
-            <Description lang="pt_BR">As interações sociais e colaboração, como equipes ou
-                comunicação.</Description>
-        </Tag>
-    </Tag-Definitions>
-    <Questions-Definitions>
-        <Question id="q01">
-            <Tag id="social_world" />
-            <Text lang="pt_BR">Quais as expectativas das partes interessadas?</Text>
-            <Text lang="en">What are the stakeholders' expectations?</Text>
-        </Question>
-    </Questions-Definitions>
-</Definitions>
+        <tag id="material">
+            <name lang="en">Material</name>
+            <name lang="pt_BR">Material</name>
+            <description lang="en">The physical or tangible aspects, like tools or hardware.</description>
+            <description lang="pt_BR">Os aspectos físicos ou tangíveis, como ferramentas ou
+                hardware.</description>
+        </tag>
+        <tag id="empirical">
+            <name lang="en">Empirical</name>
+            <name lang="pt_BR">Empírico</name>
+            <description lang="en">Observable aspects, like test results or data collection.</description>
+            <description lang="pt_BR">Aspectos observáveis, como resultados de testes ou coleta de
+                dados.</description>
+        </tag>
+        <tag id="syntactic">
+            <name lang="en">Syntactic</name>
+            <name lang="pt_BR">Sintático</name>
+            <description lang="en">The structure or organization, such as source code or documents.</description>
+            <description lang="pt_BR">A estrutura ou organização, como código-fonte ou documentos.</description>
+        </tag>
+        <tag id="semantic">
+            <name lang="en">Semantic</name>
+            <name lang="pt_BR">Semântico</name>
+            <description lang="en">The meaning and purpose, like requirements or functions.</description>
+            <description lang="pt_BR">O significado e propósito, como requisitos ou funções.</description>
+        </tag>
+        <tag id="pragmatic">
+            <name lang="en">Pragmatic</name>
+            <name lang="pt_BR">Pragmático</name>
+            <description lang="en">The practical use or application, like processes or workflows.</description>
+            <description lang="pt_BR">O uso prático ou aplicação, como processos ou fluxos de
+                trabalho.</description>
+        </tag>
+        <tag id="social_world">
+            <name lang="pt_BR">Mundo Social</name>
+            <name lang="en">Social World</name>
+            <description lang="en">The social interactions and collaboration, such as teams or
+                communication.</description>
+            <description lang="pt_BR">As interações sociais e colaboração, como equipes ou
+                comunicação.</description>
+        </tag>
+    </tag-definitions>
+    <questions-definitions>
+        <question id="q01">
+            <tag id="social_world" />
+            <text lang="pt_BR">Quais as expectativas das partes interessadas?</text>
+            <text lang="en">What are the stakeholders' expectations?</text>
+        </question>
+    </questions-definitions>
+</definitions>
