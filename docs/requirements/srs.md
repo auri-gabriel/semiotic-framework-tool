@@ -118,16 +118,14 @@ Engenharia de Software, com conhecimento básico de informática.
 
 | Código | Requisito Funcional                                                                       | Prioridade |
 |--------|-------------------------------------------------------------------------------------------|------------|
-| RF01   | O sistema deve permitir a criação de perguntas.                                           | Alta       |
-| RF02   | O sistema deve permitir a criação de classificações.                                      | Alta       |
-| RF03   | O sistema deve permitir a reposta e visualização de perguntas.                            | Alta       |
-| RF04   | O sistema deve importar elementos a partir de arquivos XML válidos.                       | Alta       |
-| RF05   | O sistema deve exportar os elementos atuais para um arquivo XML.                          | Alta       |
-| RF06   | O sistema deve exportar um relatório em PDF com as informações dos elementos.             | Alta       |
-| RF07   | O sistema deve exportar um checklist de conformidade em PDF.                              | Média      |
-| RF08   | O sistema deve renderizar visualmente os elementos na Escada Semiótica.                   | Média      |
-| RF09   | O sistema deve renderizar visualmente os elementos nas Camadas de Engenharia de Software. | Média      |
-| RF10   | O sistema deve exibir os elementos também em uma tabela simples.                          | Média      |
+| RF01   | O sistema deve permitir a reposta e visualização de perguntas.                            | Alta       |
+| RF02   | O sistema deve importar elementos a partir de arquivos XML válidos.                       | Alta       |
+| RF03   | O sistema deve exportar os elementos atuais para um arquivo XML.                          | Alta       |
+| RF04   | O sistema deve exportar um relatório em PDF com as informações dos elementos.             | Alta       |
+| RF05   | O sistema deve exportar um checklist de conformidade em PDF.                              | Média      |
+| RF06   | O sistema deve renderizar visualmente os elementos na Escada Semiótica.                   | Média      |
+| RF07   | O sistema deve renderizar visualmente os elementos nas Camadas de Engenharia de Software. | Média      |
+| RF08   | O sistema deve exibir os elementos também em uma tabela simples.                          | Média      |
 
 ### 5.2 Requisitos de Desempenho
 

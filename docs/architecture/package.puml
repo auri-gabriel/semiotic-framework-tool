@@ -29,13 +29,14 @@ package "Semiotic Framework Tool" {
     package "Data Layer" {
         class XmlReader
         class XmlWriter
+        class FrameworkDefinitionsXML
+        class FrameworkResponseXML
     }
     
     package "Models" {
         class Tag
         class Question
         class Response
-        class XmlStructure
     }
 
     ' View Layer Relationships
@@ -61,11 +62,15 @@ package "Semiotic Framework Tool" {
     FileDownloader --> XmlWriter : uses
     
     ' Data Layer to Models
-    XmlReader --> XmlStructure : reads
+    XmlReader --> FrameworkDefinitionsXML : reads
+    XmlReader --> FrameworkResponseXML : reads
     XmlReader --> Tag : creates
     XmlReader --> Question : creates
-    XmlWriter --> Response : persists
-    XmlWriter --> XmlStructure : writes
+
+    XmlWriter --> FrameworkResponseXML : writes
+    
+    XmlWriter --> Response : saves
+
     
     ' Model Relationships
     Question --> Tag : belongs to
