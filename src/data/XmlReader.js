@@ -1,5 +1,5 @@
 import { Question } from '../model/Question';
-import { Level } from '../model/Level'; // Add this import
+import { Level } from '../model/Level';
 
 export async function readQuestions() {
   const res = await fetch('/src/assets/definitions/questions.xml');
@@ -28,7 +28,7 @@ export async function readLevels() {
     const id = level.getAttribute('id');
     let name = level.querySelector('name[lang="en"]')?.textContent;
     if (!name) name = level.querySelector('name')?.textContent;
-    levels[id] = new Level(id, name); // Use Level model
+    levels[id] = new Level(id, name);
   });
   return levels;
 }
