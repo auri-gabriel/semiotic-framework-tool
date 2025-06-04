@@ -6,23 +6,17 @@ left to right direction
 actor Usuário
 
 rectangle "Ferramenta de Framework Semiótico ES" {
-    (Visualizar Perguntas) as visualizar
-    (Responder Pergunta) as responder
-    (Visualizar Níveis) as niveis
-    (Baixar Arquivo) as baixar
-    (Carregar Arquivo XML) as carregar
-    (Salvar Respostas) as salvar
+    (RF01 - Visualizar Perguntas) as visualizar
+    (RF02 - Responder Pergunta) as responder
+    (RF03 - Visualizar Perguntas Agrupadas) as agrupar
+    (RF04 - Carregar Arquivos XML) as carregar
+    (RF05 - Baixar Arquivo XML com respostas) as salvar
 }
 
 Usuário --> visualizar
 Usuário --> responder
-Usuário --> niveis
-Usuário --> baixar
+Usuário --> agrupar
 Usuário --> carregar
 Usuário --> salvar
-
-visualizar --> niveis : <<include>>
-responder --> visualizar : <<include>>
-salvar --> responder : <<include>>
 
 @enduml
