@@ -2,9 +2,9 @@
 <definitions>
     <tag-definitions>
         <!-- Semiotic Levels -->
-        <tag id="material">
-            <name lang="en">Material</name>
-            <name lang="pt_BR">Material</name>
+        <tag id="physical">
+            <name lang="en">Physical</name>
+            <name lang="pt_BR">Física</name>
             <description lang="en">The physical or tangible aspects, like tools or hardware.</description>
             <description lang="pt_BR">Os aspectos físicos ou tangíveis, como ferramentas ou
                 hardware.</description>
@@ -172,12 +172,12 @@
 
     <!-- Física / Material -->
     <question id="q24">
-        <tag id="material" />
+        <tag id="physical" />
         <text lang="pt_BR">Qual a infraestrutura necessária para desenvolvê-lo?</text>
         <text lang="en">What infrastructure is needed to develop it?</text>
     </question>
     <question id="q25">
-        <tag id="material" />
+        <tag id="physical" />
         <text lang="pt_BR">Qual a infraestrutura necessária para mantê-lo em operação?</text>
         <text lang="en">What infrastructure is needed to keep it operational?</text>
     </question>
