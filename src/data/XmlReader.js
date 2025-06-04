@@ -1,16 +1,17 @@
 import { Question } from '../model/Question';
-import { Level } from '../model/Level';
+import { Tag } from '../model/Level';
 
 export async function readQuestions() {
-  const res = await fetch('/src/assets/definitions/questions.xml');
+  const res = await fetch('/src/assets/definitions/definitions.xml');
   const text = await res.text();
   const parser = new window.DOMParser();
   const doc = parser.parseFromString(text, 'application/xml');
-  const questionNodes = doc.querySelectorAll('question');
+  const questionDefinitions = doc.querySelector('questions-definitions');
+  const questionNodes = questionDefinitions.querySelectorAll('question');
   const questions = [];
   questionNodes.forEach((q) => {
-    let level = q.getAttribute('level');
-    let text = q.querySelector('text')?.textContent;
+    let level = q.querySelector('tag').getAttribute('id');
+    let text = q.querySelector('text[lang="pt_BR"]')?.textContent;
     let question = new Question(text, level, []);
     questions.push(question);
   });
@@ -18,19 +19,22 @@ export async function readQuestions() {
 }
 
 export async function readLevels() {
-  const res = await fetch('/src/assets/definitions/levels.xml');
+  const res = await fetch('/src/assets/definitions/definitions.xml');
   const text = await res.text();
   const parser = new window.DOMParser();
   const doc = parser.parseFromString(text, 'application/xml');
-  const levelNodes = doc.querySelectorAll('level');
-  const levels = {};
-  levelNodes.forEach((level) => {
-    const id = level.getAttribute('id');
-    let name = level.querySelector('name[lang="en"]')?.textContent;
-    if (!name) name = level.querySelector('name')?.textContent;
-    levels[id] = new Level(id, name);
+  const tagDefinitions = doc.querySelector('tag-definitions');
+  const tagNodes = tagDefinitions.querySelectorAll('tag');
+  const tags = {};
+  tagNodes.forEach((tag) => {
+    const id = tag.getAttribute('id');
+    let name = tag.querySelector('name[lang="pt_BR"]')?.textContent;
+    if (!name) { 
+      name = tag.querySelector('name')?.textContent; 
+    }
+    tags[id] = new Tag(id, name);
   });
-  return levels;
+  return tags;
 }
 
 export async function readQuestionsAndLevels() {
