@@ -31,7 +31,10 @@ function App() {
                     <h2>{levels[levelId]?.name || levelId}</h2>
                     <ul>
                         {questions.map(q => (
-                            <li key={q.text}>{q.text}</li>
+                            <div>
+                                <li key={q.text}>{q.text}</li>
+                                <textarea />
+                            </div>
                         ))}
                     </ul>
                 </div>
