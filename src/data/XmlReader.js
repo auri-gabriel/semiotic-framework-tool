@@ -1,11 +1,11 @@
 import { Question } from '../model/Question';
 import { Tag } from '../model/Level';
 
-function readElement (elementDefinitions, elementName) {
+function readElements (elementDefinitions, elementName) {
   const elementNodes = elementDefinitions.querySelectorAll(elementName);
   const elements = [];
-  elementNodes.forEach((q) => {
-    let tagsNodes = q.querySelector('tag');
+  elementNodes.forEach((elementNode) => {
+    let tagsNodes = elementNode.querySelectorAll('tag');
     let tags = [];
 
     tagsNodes.forEach((tag) => {
@@ -17,11 +17,11 @@ function readElement (elementDefinitions, elementName) {
     });
 
 
-    let textNodes = q.querySelector('text');
-    let text = [];
+    let textNodes = elementNode.querySelectorAll('text');
+    let texts = [];
 
     textNodes.forEach((text) => {
-      text.push(
+      texts.push(
         {
           language: text.getAttribute('lang'),
           text: text.textContent,
@@ -29,7 +29,7 @@ function readElement (elementDefinitions, elementName) {
       );
     });
 
-    let nameNodes = q.querySelector('name');
+    let nameNodes = elementNode.querySelectorAll('name');
     let names = [];
 
     nameNodes.forEach((name) => {
@@ -41,7 +41,7 @@ function readElement (elementDefinitions, elementName) {
       );
     });
 
-    let descriptionNodes = q.querySelector('description');
+    let descriptionNodes = elementNode.querySelectorAll('description');
     let descriptions = [];
 
     descriptionNodes.forEach((description) => {
@@ -54,7 +54,9 @@ function readElement (elementDefinitions, elementName) {
     });
 
     elements.push({
-      text: text,
+      names: names,
+      descriptions: descriptions,
+      texts: texts,
       tags: tags,
     });
   });
@@ -67,15 +69,19 @@ export async function readQuestions() {
   const parser = new window.DOMParser();
   const doc = parser.parseFromString(text, 'application/xml');
   const questionDefinitions = doc.querySelector('questions-definitions');
-  const questionNodes = questionDefinitions.querySelectorAll('question');
-  const questions = [];
-  questionNodes.forEach((q) => {
-    let level = q.querySelector('tag').getAttribute('id');
-    let text = q.querySelector('text[lang="pt_BR"]')?.textContent;
-    let question = new Question(text, level, []);
-    questions.push(question);
+  let questions = readElements(questionDefinitions, 'question');
+
+  if (!questions || questions.length === 0) {
+    throw new Error('No questions found in the XML file.');
+  }
+
+
+  return questions.map((question) => {
+    return new Question(
+      question.texts[0].text,
+      question.tags
+    );
   });
-  return questions;
 }
 
 export async function readLevels() {

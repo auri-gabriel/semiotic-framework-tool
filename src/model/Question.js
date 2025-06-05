@@ -1,11 +1,9 @@
 export class Question {
   constructor(
-    text,
-    level,
+    texts,
     tags
   ) {
-    this.text = text;
-    this.level = level;
+    this.texts = texts;
     this.tags = tags;
   }
 }

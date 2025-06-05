@@ -32,7 +32,7 @@ function App() {
                     <ul>
                         {questions.map(q => (
                             <div>
-                                <li key={q.text}>{q.text}</li>
+                                <li key={q.texts}>{q.texts}</li>
                                 <textarea />
                             </div>
                         ))}
