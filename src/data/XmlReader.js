@@ -18,39 +18,24 @@ function readElements (elementDefinitions, elementName) {
 
 
     let textNodes = elementNode.querySelectorAll('text');
-    let texts = [];
+    let texts = {};
 
     textNodes.forEach((text) => {
-      texts.push(
-        {
-          language: text.getAttribute('lang'),
-          text: text.textContent,
-        }
-      );
+      texts[text.getAttribute('lang')] = text.textContent;
     });
 
     let nameNodes = elementNode.querySelectorAll('name');
-    let names = [];
+    let names = {};
 
     nameNodes.forEach((name) => {
-      names.push(
-        {
-          language: name.getAttribute('lang'),
-          name: name.nameContent,
-        }
-      );
+      names[name.getAttribute('lang')] = name.textContent;
     });
 
     let descriptionNodes = elementNode.querySelectorAll('description');
-    let descriptions = [];
+    let descriptions = {};
 
     descriptionNodes.forEach((description) => {
-      descriptions.push(
-        {
-          language: description.getAttribute('lang'),
-          description: description.descriptionContent,
-        }
-      );
+      descriptions[description.getAttribute('lang')] = description.textContent;
     });
 
     elements.push({
@@ -78,7 +63,7 @@ export async function readQuestions() {
 
   return questions.map((question) => {
     return new Question(
-      question.texts[0].text,
+      question.texts,
       question.tags
     );
   });

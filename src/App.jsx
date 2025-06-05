@@ -10,13 +10,7 @@ function App() {
         async function fetchData() {
             const {levels, questions} = await readQuestionsAndLevels()
             setLevels(levels)
-            // Group questions by level
-            const grouped = {}
-            questions.forEach(q => {
-                if (!grouped[q.level]) grouped[q.level] = []
-                grouped[q.level].push(q)
-            })
-            setQuestionsByLevel(grouped)
+            setQuestionsByLevel(questions)
             setLoading(false)
         }
         fetchData()
@@ -26,19 +20,7 @@ function App() {
 
     return (
         <div>
-            {Object.entries(questionsByLevel).map(([levelId, questions]) => (
-                <div key={levelId}>
-                    <h2>{levels[levelId]?.name || levelId}</h2>
-                    <ul>
-                        {questions.map(q => (
-                            <div>
-                                <li key={q.texts}>{q.texts}</li>
-                                <textarea />
-                            </div>
-                        ))}
-                    </ul>
-                </div>
-            ))}
+            questionsByLevel: {JSON.stringify(questionsByLevel)}
         </div>
     )
 }
