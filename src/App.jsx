@@ -1,16 +1,20 @@
 import {useEffect, useState} from 'react'
-import {readQuestionsAndLevels} from './data/XmlReader'
+import {readQuestions, readTags} from './data/XmlReader'
 
 function App() {
-    const [questionsByLevel, setQuestionsByLevel] = useState({})
-    const [levels, setLevels] = useState({})
+    const [questions, setQuestions] = useState({})
+    const [tags, setTags] = useState({})
     const [loading, setLoading] = useState(true)
 
     useEffect(() => {
         async function fetchData() {
-            const {levels, questions} = await readQuestionsAndLevels()
-            setLevels(levels)
-            setQuestionsByLevel(questions)
+            const questions = await readQuestions();
+            setQuestions(questions)
+
+            const tags = await readTags();
+
+            setTags(tags);
+
             setLoading(false)
         }
         fetchData()
@@ -20,7 +24,12 @@ function App() {
 
     return (
         <div>
-            questionsByLevel: {JSON.stringify(questionsByLevel)}
+            <pre>
+            questions: {JSON.stringify(questions)}
+            </pre>
+            <pre>
+            tags: {JSON.stringify(tags)}
+            </pre>
         </div>
     )
 }

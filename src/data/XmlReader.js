@@ -69,27 +69,18 @@ export async function readQuestions() {
   });
 }
 
-export async function readLevels() {
+export async function readTags() {
   const res = await fetch('/src/assets/definitions/definitions.xml');
   const text = await res.text();
   const parser = new window.DOMParser();
   const doc = parser.parseFromString(text, 'application/xml');
   const tagDefinitions = doc.querySelector('tag-definitions');
-  const tagNodes = tagDefinitions.querySelectorAll('tag');
-  const tags = {};
-  tagNodes.forEach((tag) => {
-    const id = tag.getAttribute('id');
-    let name = tag.querySelector('name[lang="pt_BR"]')?.textContent;
-    if (!name) { 
-      name = tag.querySelector('name')?.textContent; 
-    }
-    tags[id] = new Tag(id, name);
-  });
+  const tags = readElements(tagDefinitions, 'tag');
   return tags;
 }
 
-export async function readQuestionsAndLevels() {
-  let levels = await readLevels();
+export async function readQuestionsAndTags() {
+  let tags = await readTags();
   let questions = await readQuestions();
-  return { levels, questions };
+  return {tags , questions };
 }
