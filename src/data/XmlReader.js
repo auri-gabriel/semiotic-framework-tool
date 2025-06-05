@@ -1,6 +1,66 @@
 import { Question } from '../model/Question';
 import { Tag } from '../model/Level';
 
+function readElement (elementDefinitions, elementName) {
+  const elementNodes = elementDefinitions.querySelectorAll(elementName);
+  const elements = [];
+  elementNodes.forEach((q) => {
+    let tagsNodes = q.querySelector('tag');
+    let tags = [];
+
+    tagsNodes.forEach((tag) => {
+      tags.push(
+        {
+          id: tag.getAttribute('id'),
+        }
+      )
+    });
+
+
+    let textNodes = q.querySelector('text');
+    let text = [];
+
+    textNodes.forEach((text) => {
+      text.push(
+        {
+          language: text.getAttribute('lang'),
+          text: text.textContent,
+        }
+      );
+    });
+
+    let nameNodes = q.querySelector('name');
+    let names = [];
+
+    nameNodes.forEach((name) => {
+      names.push(
+        {
+          language: name.getAttribute('lang'),
+          name: name.nameContent,
+        }
+      );
+    });
+
+    let descriptionNodes = q.querySelector('description');
+    let descriptions = [];
+
+    descriptionNodes.forEach((description) => {
+      descriptions.push(
+        {
+          language: description.getAttribute('lang'),
+          description: description.descriptionContent,
+        }
+      );
+    });
+
+    elements.push({
+      text: text,
+      tags: tags,
+    });
+  });
+  return elements;
+}
+
 export async function readQuestions() {
   const res = await fetch('/src/assets/definitions/definitions.xml');
   const text = await res.text();
