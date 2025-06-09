@@ -19,7 +19,7 @@ rectangle "Ferramenta de Framework Semiótico ES" {
 Usuário --> visualizar
 Usuário --> responder
 Usuário --> agrupar
-Usuário --> carregar
+Usuário --> importar
 Usuário --> salvar
 Usuário --> camadas
 Usuário --> checklist
