@@ -9,8 +9,11 @@ rectangle "Ferramenta de Framework Semiótico ES" {
     (RF01 - Visualizar Perguntas) as visualizar
     (RF02 - Responder Pergunta) as responder
     (RF03 - Visualizar Perguntas Agrupadas) as agrupar
-    (RF04 - Carregar Arquivos XML) as carregar
-    (RF05 - Baixar Arquivo XML com respostas) as salvar
+    (RF04 - Importar Arquivos XML) as importar
+    (RF05 - Exportar Arquivo XML com respostas) as salvar
+    (RF06 - Exportar documento com elementos dispostos nas Camadas da Engenharia de Software) as camadas
+    (RF07 - Exportar documento com checklist) as checklist
+    (RF08 - Exportar documento com elementos dispostos na Escada Semiótica) as escada
 }
 
 Usuário --> visualizar
@@ -18,5 +21,8 @@ Usuário --> responder
 Usuário --> agrupar
 Usuário --> carregar
 Usuário --> salvar
+Usuário --> camadas
+Usuário --> checklist
+Usuário --> escada
 
 @enduml
