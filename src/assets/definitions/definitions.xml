@@ -12,26 +12,32 @@
         </tag>
         <!-- Semiotic Levels -->
         <tag id="physical" type="semiotic-steps">
+            <tag id="it-platform" />
             <name lang="en">Physical</name>
             <name lang="pt_BR">Física</name>
         </tag>
         <tag id="empirical" type="semiotic-steps">
+            <tag id="it-platform" />
             <name lang="en">Empirical</name>
             <name lang="pt_BR">Empírico</name>
         </tag>
         <tag id="syntactic" type="semiotic-steps">
+            <tag id="it-platform" />
             <name lang="en">Syntactic</name>
             <name lang="pt_BR">Sintático</name>
         </tag>
         <tag id="semantic" type="semiotic-steps">
+            <tag id="human" />
             <name lang="en">Semantic</name>
             <name lang="pt_BR">Semântico</name>
         </tag>
         <tag id="pragmatic" type="semiotic-steps">
+            <tag id="human" />
             <name lang="en">Pragmatic</name>
             <name lang="pt_BR">Pragmático</name>
         </tag>
         <tag id="social_world" type="semiotic-steps">
+            <tag id="human" />
             <name lang="pt_BR">Mundo Social</name>
             <name lang="en">Social World</name>
         </tag>

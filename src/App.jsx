@@ -1,10 +1,11 @@
 import {useEffect, useState} from 'react'
-import {readQuestions, readTags} from './data/XmlReader'
+import {getQuestionsGroupedBySemiotics, readQuestions, readTags} from './data/XmlReader'
 
 function App() {
-    const [questions, setQuestions] = useState({})
-    const [tags, setTags] = useState({})
-    const [loading, setLoading] = useState(true)
+    const [questions, setQuestions] = useState({});
+    const [tags, setTags] = useState({});
+    const [loading, setLoading] = useState(true);
+    const [semioticLadderGrouping, setSemioticLadderGrouping] = useState({});
 
     useEffect(() => {
         async function fetchData() {
@@ -15,7 +16,10 @@ function App() {
 
             setTags(tags);
 
+            const semioticLadderGroupingData = await getQuestionsGroupedBySemiotics();
+
             setLoading(false)
+            setSemioticLadderGrouping(semioticLadderGroupingData);
         }
         fetchData()
     }, [])
@@ -24,11 +28,14 @@ function App() {
 
     return (
         <div>
+            {/* <pre> */}
+            {/* questions: {JSON.stringify(questions, null, 2)} */}
+            {/* </pre> */}
+            {/* <pre> */}
+            {/* tags: {JSON.stringify(tags, null, 2)} */}
+            {/* </pre> */}
             <pre>
-            questions: {JSON.stringify(questions, null, 2)}
-            </pre>
-            <pre>
-            tags: {JSON.stringify(tags, null, 2)}
+                {JSON.stringify(semioticLadderGrouping, null, 2)}
             </pre>
         </div>
     )

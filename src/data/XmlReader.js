@@ -9,13 +9,10 @@ function readElements(elementDefinitions, elementName) {
     let tags = [];
 
     tagsNodes.forEach((tag) => {
-      tags.push(
-        {
-          id: tag.getAttribute('id'),
-        }
-      )
+      tags.push({
+        id: tag.getAttribute('id'),
+      });
     });
-
 
     let textNodes = elementNode.querySelectorAll('text');
     let texts = {};
@@ -43,7 +40,8 @@ function readElements(elementDefinitions, elementName) {
     if (elementId) element['id'] = elementId;
     if (elementType) element['type'] = elementType;
     if (Object.keys(names).length !== 0) element['names'] = names;
-    if (Object.keys(descriptions).length !== 0) element['descriptions'] = descriptions;
+    if (Object.keys(descriptions).length !== 0)
+      element['descriptions'] = descriptions;
     if (Object.keys(texts).length !== 0) element['texts'] = texts;
     if (tags.length !== 0) element['tags'] = tags;
 
@@ -64,7 +62,6 @@ export async function readQuestions() {
     throw new Error('No questions found in the XML file.');
   }
 
-
   return questions;
 }
 
@@ -78,8 +75,51 @@ export async function readTags() {
   return tags;
 }
 
-export async function readQuestionsAndTags() {
-  let tags = await readTags();
-  let questions = await readQuestions();
-  return {tags, questions};
+export async function getQuestionsGroupedBySemiotics() {
+  const tags = await readTags();
+  const questions = await readQuestions();
+
+  const semioticGroups = tags.filter((tag) => tag.type === "semiotic-group");
+  const semioticSteps = tags.filter((tag) => tag.type === "semiotic-steps");
+
+  const groupMap = {};
+
+  // Initialize the top-level structure for each semiotic group
+  semioticGroups.forEach((group) => {
+    groupMap[group.id] = {
+      tag: group,
+      steps: {},
+    };
+  });
+
+  // For each semiotic step, determine which group it belongs to and initialize its entry
+  semioticSteps.forEach((step) => {
+    const parentGroupTag = step.tags?.[0]?.id;
+    if (groupMap[parentGroupTag]) {
+      groupMap[parentGroupTag].steps[step.id] = {
+        tag: step,
+        questions: [],
+      };
+    }
+  });
+
+  // Assign each question to the correct step within the correct group
+  questions.forEach((q) => {
+    q.tags?.forEach((tagRef) => {
+      const step = semioticSteps.find((s) => s.id === tagRef.id);
+      if (step) {
+        const parentGroupTag = step.tags?.[0]?.id;
+        if (
+          parentGroupTag &&
+          groupMap[parentGroupTag] &&
+          groupMap[parentGroupTag].steps[step.id]
+        ) {
+          groupMap[parentGroupTag].steps[step.id].questions.push(q);
+        }
+      }
+    });
+  });
+
+  return groupMap;
 }
+
