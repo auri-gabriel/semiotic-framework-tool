@@ -40,10 +40,10 @@ function readElements (elementDefinitions, elementName) {
 
     let element = {};
 
-    if (names) element['names'] = names;
-    if (descriptions) element['descriptions'] = descriptions;
-    if (texts) element['texts'] = texts;
-    if (tags) element['tags'] = tags;
+    if (Object.keys(names).length !== 0) element['names'] = names;
+    if (Object.keys(descriptions).length !== 0) element['descriptions'] = descriptions;
+    if (Object.keys(texts).length !== 0) element['texts'] = texts;
+    if (tags.length !== 0) element['tags'] = tags;
 
     elements.push(element);
   });

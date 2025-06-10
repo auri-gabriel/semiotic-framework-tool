@@ -25,10 +25,10 @@ function App() {
     return (
         <div>
             <pre>
-            questions: {JSON.stringify(questions)}
+            questions: {JSON.stringify(questions, null, 2)}
             </pre>
             <pre>
-            tags: {JSON.stringify(tags)}
+            tags: {JSON.stringify(tags, null, 2)}
             </pre>
         </div>
     )
