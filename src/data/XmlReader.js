@@ -1,10 +1,10 @@
-import { Question } from '../model/Question';
-import { Tag } from '../model/Level';
-
-function readElements (elementDefinitions, elementName) {
+function readElements(elementDefinitions, elementName) {
   const elementNodes = elementDefinitions.querySelectorAll(elementName);
   const elements = [];
   elementNodes.forEach((elementNode) => {
+    let elementId = elementNode.getAttribute('id');
+    let elementType = elementNode.getAttribute('type');
+
     let tagsNodes = elementNode.querySelectorAll('tag');
     let tags = [];
 
@@ -40,6 +40,8 @@ function readElements (elementDefinitions, elementName) {
 
     let element = {};
 
+    if (elementId) element['id'] = elementId;
+    if (elementType) element['type'] = elementType;
     if (Object.keys(names).length !== 0) element['names'] = names;
     if (Object.keys(descriptions).length !== 0) element['descriptions'] = descriptions;
     if (Object.keys(texts).length !== 0) element['texts'] = texts;
@@ -63,12 +65,7 @@ export async function readQuestions() {
   }
 
 
-  return questions.map((question) => {
-    return new Question(
-      question.texts,
-      question.tags
-    );
-  });
+  return questions;
 }
 
 export async function readTags() {
@@ -84,5 +81,5 @@ export async function readTags() {
 export async function readQuestionsAndTags() {
   let tags = await readTags();
   let questions = await readQuestions();
-  return {tags , questions };
+  return {tags, questions};
 }
