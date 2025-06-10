@@ -1,47 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <definitions>
     <tag-definitions>
+        <!-- Semiotic Groups -->
+        <tag id="human" type="semiotic-group">
+            <name lang="en">Human information functions</name>
+            <name lang="pt_BR">Funções humanas da informação</name>
+        </tag>
+        <tag id="human" type="semiotic-group">
+            <name lang="en">IT Platform</name>
+            <name lang="pt_BR">Plataforma de TI</name>
+        </tag>
         <!-- Semiotic Levels -->
-        <tag id="physical">
+        <tag id="physical" type="semiotic-steps">
             <name lang="en">Physical</name>
             <name lang="pt_BR">Física</name>
-            <description lang="en">The physical or tangible aspects, like tools or hardware.</description>
-            <description lang="pt_BR">Os aspectos físicos ou tangíveis, como ferramentas ou
-                hardware.</description>
         </tag>
-        <tag id="empirical">
+        <tag id="empirical" type="semiotic-steps">
             <name lang="en">Empirical</name>
             <name lang="pt_BR">Empírico</name>
-            <description lang="en">Observable aspects, like test results or data collection.</description>
-            <description lang="pt_BR">Aspectos observáveis, como resultados de testes ou coleta de
-                dados.</description>
         </tag>
-        <tag id="syntactic">
+        <tag id="syntactic" type="semiotic-steps">
             <name lang="en">Syntactic</name>
             <name lang="pt_BR">Sintático</name>
-            <description lang="en">The structure or organization, such as source code or documents.</description>
-            <description lang="pt_BR">A estrutura ou organização, como código-fonte ou documentos.</description>
         </tag>
-        <tag id="semantic">
+        <tag id="semantic" type="semiotic-steps">
             <name lang="en">Semantic</name>
             <name lang="pt_BR">Semântico</name>
-            <description lang="en">The meaning and purpose, like requirements or functions.</description>
-            <description lang="pt_BR">O significado e propósito, como requisitos ou funções.</description>
         </tag>
-        <tag id="pragmatic">
+        <tag id="pragmatic" type="semiotic-steps">
             <name lang="en">Pragmatic</name>
             <name lang="pt_BR">Pragmático</name>
-            <description lang="en">The practical use or application, like processes or workflows.</description>
-            <description lang="pt_BR">O uso prático ou aplicação, como processos ou fluxos de
-                trabalho.</description>
         </tag>
-        <tag id="social_world">
+        <tag id="social_world" type="semiotic-steps">
             <name lang="pt_BR">Mundo Social</name>
             <name lang="en">Social World</name>
-            <description lang="en">The social interactions and collaboration, such as teams or
-                communication.</description>
-            <description lang="pt_BR">As interações sociais e colaboração, como equipes ou
-                comunicação.</description>
         </tag>
     </tag-definitions>
 <questions-definitions>
