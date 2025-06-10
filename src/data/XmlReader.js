@@ -38,12 +38,14 @@ function readElements (elementDefinitions, elementName) {
       descriptions[description.getAttribute('lang')] = description.textContent;
     });
 
-    elements.push({
-      names: names,
-      descriptions: descriptions,
-      texts: texts,
-      tags: tags,
-    });
+    let element = {};
+
+    if (names) element['names'] = names;
+    if (descriptions) element['descriptions'] = descriptions;
+    if (texts) element['texts'] = texts;
+    if (tags) element['tags'] = tags;
+
+    elements.push(element);
   });
   return elements;
 }
