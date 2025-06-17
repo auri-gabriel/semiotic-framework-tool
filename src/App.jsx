@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import {getQuestionsGroupedBySemiotics, readQuestions, readTags} from './data/XmlReader'
+import { getQuestionsGroupedBySemiotics } from './data/SemioticViewData';
 
 function App() {
     const [loading, setLoading] = useState(true);
