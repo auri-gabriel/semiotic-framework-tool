@@ -1,28 +1,31 @@
 @startuml use_cases
-!theme mono
 skinparam dpi 150
 left to right direction
-
 actor Usuário
+skinparam linetype ortho
 
 rectangle "Ferramenta de Framework Semiótico ES" {
     (Visualizar Perguntas) as visualizar
     (Responder Pergunta) as responder
-    (Visualizar Níveis) as niveis
-    (Baixar Arquivo) as baixar
-    (Carregar Arquivo XML) as carregar
-    (Salvar Respostas) as salvar
+    (Exportar Arquivo com respostas) as salvar
+    (Importar Arquivos com respostas) as importar
+    (Exportar documento) as exportar
+    (Exportar documento com elementos dispostos nas Camadas da Engenharia de Software) as camadas
+    (Exportar documento com checklist) as checklist
+    (Exportar documento com elementos dispostos na Escada Semiótica) as escada
 }
 
 Usuário --> visualizar
 Usuário --> responder
-Usuário --> niveis
-Usuário --> baixar
-Usuário --> carregar
+Usuário --> importar
 Usuário --> salvar
+Usuário --> camadas
+Usuário --> checklist
+Usuário --> escada
 
-visualizar --> niveis : <<include>>
-responder --> visualizar : <<include>>
-salvar --> responder : <<include>>
+exportar <.. checklist : <<extend>>
+exportar <.. camadas : <<extend>>
+exportar <.. escada : <<extend>>
+
 
 @enduml
