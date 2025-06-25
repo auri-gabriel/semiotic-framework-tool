@@ -1,12 +1,12 @@
-import { readTags } from "./XmlReader";
-import { readQuestions } from "./XmlReader";
+import { readTags } from '../data/XmlReader';
+import { readQuestions } from '../data/XmlReader';
 
 export async function getQuestionsGroupedBySemiotics() {
   const tags = await readTags();
   const questions = await readQuestions();
 
-  const semioticGroups = tags.filter((tag) => tag.type === "semiotic-group");
-  const semioticSteps = tags.filter((tag) => tag.type === "semiotic-steps");
+  const semioticGroups = tags.filter((tag) => tag.type === 'semiotic-group');
+  const semioticSteps = tags.filter((tag) => tag.type === 'semiotic-steps');
 
   const groupMap = {};
 

@@ -1,29 +1,27 @@
-import {useEffect, useState} from 'react'
-import { getQuestionsGroupedBySemiotics } from './data/SemioticViewData';
+import { useEffect, useState } from 'react';
+import { getQuestionsGroupedBySemiotics } from './business/SemioticLadderManager';
 
 function App() {
-    const [loading, setLoading] = useState(true);
-    const [semioticLadderGrouping, setSemioticLadderGrouping] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [semioticLadderGrouping, setSemioticLadderGrouping] = useState({});
 
-    useEffect(() => {
-        async function fetchData() {
-            const semioticLadderGroupingData = await getQuestionsGroupedBySemiotics();
+  useEffect(() => {
+    async function fetchData() {
+      const semioticLadderGroupingData = await getQuestionsGroupedBySemiotics();
 
-            setLoading(false)
-            setSemioticLadderGrouping(semioticLadderGroupingData);
-        }
-        fetchData()
-    }, [])
+      setLoading(false);
+      setSemioticLadderGrouping(semioticLadderGroupingData);
+    }
+    fetchData();
+  }, []);
 
-    if (loading) return <div>Loading...</div>
+  if (loading) return <div>Loading...</div>;
 
-    return (
-        <div>
-            <pre>
-                {JSON.stringify(semioticLadderGrouping, null, 2)}
-            </pre>
-        </div>
-    )
+  return (
+    <div>
+      <pre>{JSON.stringify(semioticLadderGrouping, null, 2)}</pre>
+    </div>
+  );
 }
 
-export default App
+export default App;
