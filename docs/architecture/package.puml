@@ -6,6 +6,7 @@ skinparam dpi 150
 hide empty members
 skinparam shadowing false
 top to bottom direction
+hide circle
 
 ' Main App Package
 package "Semiotic Framework Tool" {
@@ -17,26 +18,19 @@ package "Semiotic Framework Tool" {
         class FileDownloader
         class BottomToolbar
         class QuestionComponent
-        class LevelComponent
+        class TagComponent
     }
     
     package "Business Layer" {
-        class QuestionManager
-        class ResponseManager
-        class LevelController
+        class SemioticLadderManager
+        class AnswersManager
     }
     
     package "Data Layer" {
         class XmlReader
         class XmlWriter
         class FrameworkDefinitionsXML
-        class FrameworkResponseXML
-    }
-    
-    package "Models" {
-        class Tag
-        class Question
-        class Response
+        class FrameworkAnswersXML
     }
 
     ' View Layer Relationships
@@ -44,18 +38,17 @@ package "Semiotic Framework Tool" {
     Initializer --> Page : shows
     Initializer --> BottomToolbar : shows
     BottomToolbar --> FileDownloader
-    Page --> LevelComponent : contains
-    LevelComponent --> QuestionComponent : contains
+    Page --> TagComponent : contains
+    TagComponent --> QuestionComponent : contains
     
     ' View to Business Layer
-    LevelComponent --> LevelController : uses
-    QuestionComponent --> QuestionManager : uses
-    QuestionComponent --> ResponseManager : uses
+    TagComponent --> SemioticLadderManager : uses
+    QuestionComponent --> SemioticLadderManager : uses
+    QuestionComponent --> AnswersManager : uses
     
     ' Business to Data Layer
-    LevelController --> XmlReader : uses
-    QuestionManager --> XmlReader : uses
-    ResponseManager --> XmlWriter : uses
+    SemioticLadderManager --> XmlReader : uses
+    AnswersManager --> XmlWriter : uses
     
     ' Data Layer Initialization
     Initializer --> XmlReader : initializes
@@ -63,17 +56,8 @@ package "Semiotic Framework Tool" {
     
     ' Data Layer to Models
     XmlReader --> FrameworkDefinitionsXML : reads
-    XmlReader --> FrameworkResponseXML : reads
-    XmlReader --> Tag : creates
-    XmlReader --> Question : creates
+    XmlReader --> FrameworkAnswersXML : reads
 
-    XmlWriter --> FrameworkResponseXML : writes
-    
-    XmlWriter --> Response : saves
-
-    
-    ' Model Relationships
-    Question --> Tag : belongs to
-    Response --> Question : answers
+    XmlWriter --> FrameworkAnswersXML : writes
 }
 @enduml
