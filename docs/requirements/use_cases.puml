@@ -1,19 +1,27 @@
 @startuml use_cases
 skinparam dpi 150
 left to right direction
-actor Usuário
 skinparam linetype ortho
 
+actor Usuário
+actor Sistema
+
 rectangle "Ferramenta de Framework Semiótico ES" {
-    (Visualizar Perguntas) as visualizar
-    (Responder Pergunta) as responder
-    (Exportar Arquivo com respostas) as salvar
-    (Importar Arquivos com respostas) as importar
-    (Exportar documento) as exportar
+    (UC01 - Visualizar Perguntas) as visualizar
+    (UC02 - Responder Pergunta) as responder
+    (UC03 - Importar Framework) as importar_framework
+    (UC04 - Exportar respostas) as salvar
+    (UC05 - Importar respostas) as importar
+    (UC06 - Exportar documento) as exportar
+    (UC07 - Automaticamente persistir dados de forma temporária) as temp_db
+
     (Exportar documento com elementos dispostos nas Camadas da Engenharia de Software) as camadas
     (Exportar documento com checklist) as checklist
     (Exportar documento com elementos dispostos na Escada Semiótica) as escada
 }
+
+ importar_framework <-- Sistema
+ temp_db <-- Sistema
 
 Usuário --> visualizar
 Usuário --> responder
