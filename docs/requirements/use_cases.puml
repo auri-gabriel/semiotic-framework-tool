@@ -4,24 +4,18 @@ left to right direction
 skinparam linetype ortho
 
 actor Usuário
-actor Sistema
 
 rectangle "Ferramenta de Framework Semiótico ES" {
     (UC01 - Visualizar Perguntas) as visualizar
     (UC02 - Responder Pergunta) as responder
-    (UC03 - Importar Framework) as importar_framework
-    (UC04 - Exportar respostas) as salvar
-    (UC05 - Importar respostas) as importar
-    (UC06 - Exportar documento) as exportar
-    (UC07 - Automaticamente persistir dados de forma temporária) as temp_db
+    (UC03 - Exportar respostas) as salvar
+    (UC04 - Importar respostas) as importar
+    (UC05 - Exportar documento) as exportar
 
     (Exportar documento com elementos dispostos nas Camadas da Engenharia de Software) as camadas
     (Exportar documento com checklist) as checklist
     (Exportar documento com elementos dispostos na Escada Semiótica) as escada
 }
-
- importar_framework <-- Sistema
- temp_db <-- Sistema
 
 Usuário --> visualizar
 Usuário --> responder
