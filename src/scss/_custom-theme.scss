@@ -1,0 +1,74 @@
+@use "sass:color";
+// === BASE COLORS ===
+$primary: #21409a; // #be1e2d; #21409a; #ffde17; #F45746;
+$secondary: #2e2e2e; // Dark neutral gray
+$success: #27ae60;
+$info: #3498db;
+$warning: #f39c12;
+$danger: #e74c3c;
+$light: #f4f4f4;
+$dark: #111111;
+
+// Custom grayscale — more contrast, cooler tones
+$gray-100: #f0f0f0;
+$gray-200: #dcdcdc;
+$gray-300: #c0c0c0;
+$gray-400: #a0a0a0;
+$gray-500: #7f7f7f;
+$gray-600: #5a5a5a;
+$gray-700: #3a3a3a;
+$gray-800: #2a2a2a;
+$gray-900: #1a1a1a;
+
+// Body
+$body-bg: #eaeaea;
+$body-color: #111111;
+
+// === TYPOGRAPHY ===
+$font-family-sans-serif: 'Inter', Helvetica, Arial, sans-serif;
+$font-size-base: 1rem;
+$line-height-base: 1.5;
+$font-weight-base: 400;
+$headings-font-weight: 700;
+$headings-color: $dark;
+
+// === EDGES ===
+$border-radius: 0;
+$border-radius-lg: 0;
+$border-radius-sm: 0;
+$btn-border-radius: 0;
+$input-border-radius: 0;
+$form-check-input-border-radius: 0;
+
+// === BUTTONS ===
+$btn-font-weight: 600;
+$btn-padding-y: 0.5rem;
+$btn-padding-x: 1.25rem;
+$btn-focus-box-shadow: none;
+$btn-border-width: 2px;
+
+// === FORMS ===
+$form-control-bg: #ffffff;
+$form-control-border-color: $gray-600;
+$form-control-color: $dark;
+$form-control-border-width: 2px;
+$form-control-focus-border-color: $primary;
+$form-control-focus-box-shadow: none;
+$form-select-border-color: $gray-600;
+$form-select-focus-border-color: $primary;
+$form-check-input-border: 2px solid $gray-600;
+$form-check-input-focus-border: $primary;
+
+// === INPUTS ===
+$input-btn-focus-box-shadow: none;
+
+// === LINKS ===
+$link-color: $primary;
+$link-hover-color: color.mix(black ,$primary, 10%);
+$link-decoration: underline;
+
+// === CARDS ===
+$card-border-radius: 0;
+$card-box-shadow: none;
+
+$enable-dark-mode: true;
