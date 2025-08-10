@@ -51,7 +51,6 @@ function Accordion({ grouping }) {
                   id={`collapse-${groupKey}-${stepKey}`}
                   className='accordion-collapse collapse'
                   aria-labelledby={`heading-${groupKey}-${stepKey}`}
-                  data-bs-parent={`#accordion-${groupKey}`}
                 >
                   <div className='accordion-body'>
                     <div
@@ -79,7 +78,6 @@ function Accordion({ grouping }) {
                             id={`collapse-${groupKey}-${stepKey}-q${q.id}`}
                             className='accordion-collapse collapse'
                             aria-labelledby={`heading-${groupKey}-${stepKey}-q${q.id}`}
-                            data-bs-parent={`#accordion-${groupKey}-${stepKey}-questions`}
                           >
                             <div className='accordion-body'>
                               <strong>EN:</strong> {q.texts.en}
