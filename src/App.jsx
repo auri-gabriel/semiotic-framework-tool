@@ -11,7 +11,11 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [semioticLadderGrouping, setSemioticLadderGrouping] = useState({});
   const [language, setLanguage] = useState('en');
-  const [answers, setAnswers] = useState({});
+  const [answers, setAnswers] = useState(() => {
+    // Load from localStorage on first render
+    const saved = localStorage.getItem('answers');
+    return saved ? JSON.parse(saved) : {};
+  });
 
   useEffect(() => {
     async function fetchData() {
@@ -21,6 +25,11 @@ function App() {
     }
     fetchData();
   }, []);
+
+  // Save answers to localStorage whenever they change
+  useEffect(() => {
+    localStorage.setItem('answers', JSON.stringify(answers));
+  }, [answers]);
 
   const handleAnswerChange = (questionId, value) => {
     setAnswers((prev) => ({
