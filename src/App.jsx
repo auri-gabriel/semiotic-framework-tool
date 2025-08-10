@@ -1,9 +1,16 @@
 import { useEffect, useState } from 'react';
 import { getQuestionsGroupedBySemiotics } from './business/SemioticLadderManager';
 
+const LANGUAGES = [
+  { code: 'en', label: 'English' },
+  { code: 'pt_BR', label: 'Português (Brasil)' },
+];
+
 function App() {
   const [loading, setLoading] = useState(true);
   const [semioticLadderGrouping, setSemioticLadderGrouping] = useState({});
+  const [language, setLanguage] = useState('en');
+  const [answers, setAnswers] = useState({});
 
   useEffect(() => {
     async function fetchData() {
@@ -14,23 +21,52 @@ function App() {
     fetchData();
   }, []);
 
+  const handleAnswerChange = (questionId, value) => {
+    setAnswers((prev) => ({
+      ...prev,
+      [questionId]: value,
+    }));
+  };
+
   if (loading) return <div>Loading...</div>;
 
   return (
     <div className='container py-4 px-3 mx-auto'>
-      <Accordion grouping={semioticLadderGrouping} />
+      <div className='mb-4'>
+        <label htmlFor='lang-select' className='form-label me-2'>
+          Language:
+        </label>
+        <select
+          id='lang-select'
+          className='form-select d-inline-block w-auto'
+          value={language}
+          onChange={(e) => setLanguage(e.target.value)}
+        >
+          {LANGUAGES.map((lang) => (
+            <option key={lang.code} value={lang.code}>
+              {lang.label}
+            </option>
+          ))}
+        </select>
+      </div>
+      <Accordion
+        grouping={semioticLadderGrouping}
+        language={language}
+        answers={answers}
+        onAnswerChange={handleAnswerChange}
+      />
     </div>
   );
 }
 
-function Accordion({ grouping }) {
+function Accordion({ grouping, language, answers, onAnswerChange }) {
   return (
     <div className='accordion' id='semioticAccordion'>
       {Object.entries(grouping).map(([groupKey, group]) => (
         <div key={groupKey} className='mb-4'>
-          <h2>{group.tag.names.en}</h2>
+          <h2>{group.tag.names[language]}</h2>
           <div className='accordion' id={`accordion-${groupKey}`}>
-            {Object.entries(group.steps).map(([stepKey, step], idx) => (
+            {Object.entries(group.steps).map(([stepKey, step]) => (
               <div className='accordion-item' key={stepKey}>
                 <h2
                   className='accordion-header'
@@ -44,7 +80,7 @@ function Accordion({ grouping }) {
                     aria-expanded='false'
                     aria-controls={`collapse-${groupKey}-${stepKey}`}
                   >
-                    {step.tag.names.en}
+                    {step.tag.names[language]}
                   </button>
                 </h2>
                 <div
@@ -57,7 +93,7 @@ function Accordion({ grouping }) {
                       className='accordion'
                       id={`accordion-${groupKey}-${stepKey}-questions`}
                     >
-                      {step.questions.map((q, qIdx) => (
+                      {step.questions.map((q) => (
                         <div className='accordion-item' key={q.id}>
                           <h2
                             className='accordion-header'
@@ -71,7 +107,7 @@ function Accordion({ grouping }) {
                               aria-expanded='false'
                               aria-controls={`collapse-${groupKey}-${stepKey}-q${q.id}`}
                             >
-                              {q.texts.en}
+                              {q.texts[language]}
                             </button>
                           </h2>
                           <div
@@ -80,9 +116,23 @@ function Accordion({ grouping }) {
                             aria-labelledby={`heading-${groupKey}-${stepKey}-q${q.id}`}
                           >
                             <div className='accordion-body'>
-                              <strong>EN:</strong> {q.texts.en}
-                              <br />
-                              <strong>PT-BR:</strong> {q.texts.pt_BR}
+                              <label
+                                htmlFor={`answer-${q.id}`}
+                                className='form-label'
+                              >
+                                {language === 'en'
+                                  ? 'Your answer:'
+                                  : 'Sua resposta:'}
+                              </label>
+                              <input
+                                id={`answer-${q.id}`}
+                                className='form-control'
+                                type='text'
+                                value={answers[q.id] || ''}
+                                onChange={(e) =>
+                                  onAnswerChange(q.id, e.target.value)
+                                }
+                              />
                             </div>
                           </div>
                         </div>
