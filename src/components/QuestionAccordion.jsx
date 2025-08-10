@@ -1,3 +1,6 @@
+import { CKEditor } from '@ckeditor/ckeditor5-react';
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+
 function QuestionAccordion({
   groupKey,
   stepKey,
@@ -32,13 +35,13 @@ function QuestionAccordion({
           <label htmlFor={`answer-${question.id}`} className='form-label'>
             {language === 'en' ? 'Your answer:' : 'Sua resposta:'}
           </label>
-          <textarea
-            id={`answer-${question.id}`}
-            className='form-control'
-            value={answer}
-            onChange={(e) => onAnswerChange(question.id, e.target.value)}
-            rows={6}
-            style={{ resize: 'vertical' }}
+          <CKEditor
+            editor={ClassicEditor}
+            data={answer}
+            onChange={(_, editor) => {
+              const data = editor.getData();
+              onAnswerChange(question.id, data);
+            }}
           />
         </div>
       </div>
