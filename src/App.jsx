@@ -1,6 +1,12 @@
 import { useEffect, useState } from 'react';
 import { getQuestionsGroupedBySemiotics } from './business/SemioticLadderManager';
 import SemioticAccordion from './components/SemioticAccordion';
+import BottomToolbar from './components/BottomToolbar';
+import {
+  exportAnswersAsJSON,
+  exportAnswersAsCSV,
+  exportAnswersAsXML,
+} from './data/ExportManager';
 
 const LANGUAGES = [
   { code: 'en', label: 'English' },
@@ -38,6 +44,43 @@ function App() {
     }));
   };
 
+  // Export handlers
+  const handleExport = (format) => {
+    let exportObj;
+    if (format === 'json') {
+      exportObj = exportAnswersAsJSON(answers);
+    } else if (format === 'csv') {
+      exportObj = exportAnswersAsCSV(answers);
+    } else if (format === 'xml') {
+      exportObj = exportAnswersAsXML(answers);
+    }
+    if (exportObj) {
+      const blob = new Blob([exportObj.data], { type: exportObj.mimeType });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = exportObj.fileName;
+      a.click();
+      URL.revokeObjectURL(url);
+    }
+  };
+
+  // Import XML handler
+  const handleImportXML = (xmlString) => {
+    try {
+      const parser = new DOMParser();
+      const xml = parser.parseFromString(xmlString, 'application/xml');
+      const answerNodes = xml.getElementsByTagName('answer');
+      const imported = {};
+      for (let node of answerNodes) {
+        imported[node.getAttribute('id')] = node.textContent;
+      }
+      setAnswers(imported);
+    } catch (e) {
+      alert('Failed to import XML.');
+    }
+  };
+
   if (loading) return <div>Loading...</div>;
 
   return (
@@ -64,6 +107,11 @@ function App() {
         language={language}
         answers={answers}
         onAnswerChange={handleAnswerChange}
+      />
+      <BottomToolbar
+        answers={answers}
+        onImportXML={handleImportXML}
+        onExport={handleExport}
       />
     </div>
   );
