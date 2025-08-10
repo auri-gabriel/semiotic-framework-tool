@@ -32,12 +32,13 @@ function QuestionAccordion({
           <label htmlFor={`answer-${question.id}`} className='form-label'>
             {language === 'en' ? 'Your answer:' : 'Sua resposta:'}
           </label>
-          <input
+          <textarea
             id={`answer-${question.id}`}
             className='form-control'
-            type='text'
             value={answer}
             onChange={(e) => onAnswerChange(question.id, e.target.value)}
+            rows={6}
+            style={{ resize: 'vertical' }}
           />
         </div>
       </div>
