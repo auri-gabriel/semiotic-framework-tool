@@ -30,3 +30,14 @@ export function exportAnswersAsXML(answers) {
     fileName: 'answers.xml',
   };
 }
+
+export function importAnswersFromXML(xmlString) {
+  const parser = new DOMParser();
+  const xml = parser.parseFromString(xmlString, 'application/xml');
+  const answerNodes = xml.getElementsByTagName('answer');
+  const imported = {};
+  for (let node of answerNodes) {
+    imported[node.getAttribute('id')] = node.textContent;
+  }
+  return imported;
+}

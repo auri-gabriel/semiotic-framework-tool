@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { getQuestionsGroupedBySemiotics } from './business/SemioticLadderManager';
 import SemioticAccordion from './components/SemioticAccordion';
 import BottomToolbar from './components/BottomToolbar';
-import { exportAnswersAsXML } from './data/ExportManager';
+import { exportAnswersAsXML, importAnswersFromXML } from './data/ImpexManager';
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -117,13 +117,7 @@ function App() {
 
   const handleImportXML = (xmlString) => {
     try {
-      const parser = new DOMParser();
-      const xml = parser.parseFromString(xmlString, 'application/xml');
-      const answerNodes = xml.getElementsByTagName('answer');
-      const imported = {};
-      for (let node of answerNodes) {
-        imported[node.getAttribute('id')] = node.textContent;
-      }
+      const imported = importAnswersFromXML(xmlString);
       setAnswers(imported);
     } catch (e) {
       alert('Failed to import XML.');
