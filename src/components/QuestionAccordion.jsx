@@ -1,6 +1,11 @@
 import { CKEditor } from '@ckeditor/ckeditor5-react';
 import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
+const answerLabel = {
+  en: 'Your answer:',
+  pt_BR: 'Sua resposta:',
+};
+
 function QuestionAccordion({
   groupKey,
   stepKey,
@@ -33,7 +38,7 @@ function QuestionAccordion({
       >
         <div className='accordion-body'>
           <label htmlFor={`answer-${question.id}`} className='form-label'>
-            {language === 'en' ? 'Your answer:' : 'Sua resposta:'}
+            {answerLabel[language]}
           </label>
           <CKEditor
             editor={ClassicEditor}

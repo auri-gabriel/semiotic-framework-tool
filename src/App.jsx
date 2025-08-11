@@ -17,60 +17,6 @@ const LANGUAGES = [
   { code: 'pt_BR', label: 'Português (Brasil)' },
 ];
 
-// Centralized translations for UI
-const translations = {
-  en: {
-    loading: 'Loading...',
-    iniciar: 'Start',
-    framework: 'The Framework',
-    aboutUs: 'About us',
-    works: 'Works',
-    export: 'Export',
-    import: 'Import',
-    exportXML: 'Export XML',
-    importXML: 'Import XML',
-    language: 'Language',
-    copyright: '© 2025 GEInfoEdu. All Rights Reserved.',
-    group: {
-      framework: 'The Framework',
-      iniciar: 'Start',
-      aboutUs: 'About us',
-      works: 'Works',
-    },
-    aboutUsText: 'This project is part of the GEInfoEdu Research Group',
-    students: 'Students involved in the project:',
-    hero: {
-      title: 'The Framework',
-      text: "In the development of software for the educational domain, a number of aspects must be taken into account, related to human information functions and the Information Technology (IT) Platform. Based on Ronald Stamper's Semiotic Framework, this framework adopts the Participatory Design approach, integrating Software Engineering in the development of software solutions for the Educational Domain.",
-    },
-  },
-  pt_BR: {
-    loading: 'Carregando...',
-    iniciar: 'Iniciar',
-    framework: 'O Framework',
-    aboutUs: 'Sobre nós',
-    works: 'Trabalhos',
-    export: 'Exportar',
-    import: 'Importar',
-    exportXML: 'Exportar XML',
-    importXML: 'Importar XML',
-    language: 'Idioma',
-    copyright: '© 2025 GEInfoEdu. Todos os direitos reservados.',
-    group: {
-      framework: 'O Framework',
-      iniciar: 'Iniciar',
-      aboutUs: 'Sobre nós',
-      works: 'Trabalhos',
-    },
-    aboutUsText: 'Este projeto é parte do Grupo de Pesquisa GEInfoEdu',
-    students: 'Estudantes envolvidos no projeto:',
-    hero: {
-      title: 'O Framework',
-      text: 'No desenvolvimento de software para o domínio educacional, uma série de aspectos deve ser levada em conta, relacionadas às funções humanas da informação e à Plataforma de Tecnologia da Informação (TI). Baseado no Framework Semiótico de Ronald Stamper, este framework adota a abordagem do Design Participativo integrando a Engenharia de Software no desenvolvimento de soluções em software para o Domínio Educacional.',
-    },
-  },
-};
-
 function App() {
   const [loading, setLoading] = useState(true);
   const [semioticLadderGrouping, setSemioticLadderGrouping] = useState({});
@@ -125,7 +71,10 @@ function App() {
     }
   };
 
-  if (loading) return <div>{translations[language].loading}</div>;
+  if (loading) {
+    const loadingText = language === 'pt_BR' ? 'Carregando...' : 'Loading...';
+    return <div>{loadingText}</div>;
+  }
 
   return (
     <div>
@@ -133,9 +82,8 @@ function App() {
         language={language}
         setLanguage={setLanguage}
         LANGUAGES={LANGUAGES}
-        translations={translations}
       />
-      <Hero language={language} translations={translations} />
+      <Hero language={language} />
       <IniciarSection
         semioticLadderGrouping={semioticLadderGrouping}
         language={language}
@@ -143,11 +91,10 @@ function App() {
         onAnswerChange={handleAnswerChange}
         onImportXML={handleImportXML}
         onExport={handleExport}
-        translations={translations}
       />
-      <AboutUs language={language} translations={translations} />
-      <Works language={language} translations={translations} />
-      <Footer language={language} translations={translations} />
+      <AboutUs language={language} />
+      <Works language={language} />
+      <Footer language={language} />
     </div>
   );
 }

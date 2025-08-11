@@ -1,13 +1,21 @@
 import React, { useRef } from 'react';
 
-function BottomToolbar({
-  answers,
-  onImportXML,
-  onExport,
-  language,
-  translations,
-}) {
+const toolbarTexts = {
+  en: {
+    export: 'Export',
+    exportXML: 'Export XML',
+    importXML: 'Import XML',
+  },
+  pt_BR: {
+    export: 'Exportar',
+    exportXML: 'Exportar XML',
+    importXML: 'Importar XML',
+  },
+};
+
+function BottomToolbar({ answers, onImportXML, onExport, language }) {
   const fileInputRef = useRef();
+  const t = toolbarTexts[language];
 
   const handleImportClick = () => {
     fileInputRef.current.click();
@@ -44,12 +52,12 @@ function BottomToolbar({
             aria-expanded='false'
           >
             <i className='bi bi-download me-2'></i>
-            {translations[language].export}
+            {t.export}
           </button>
           <ul className='dropdown-menu'>
             <li>
               <button className='dropdown-item' onClick={() => onExport('xml')}>
-                {translations[language].exportXML}
+                {t.exportXML}
               </button>
             </li>
           </ul>
@@ -68,7 +76,7 @@ function BottomToolbar({
           onClick={handleImportClick}
         >
           <i className='bi bi-upload me-2'></i>
-          {translations[language].importXML}
+          {t.importXML}
         </button>
       </div>
     </div>

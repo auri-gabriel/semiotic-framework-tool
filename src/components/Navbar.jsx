@@ -1,7 +1,29 @@
 import { useState } from 'react';
 
-const Navbar = ({ language, setLanguage, LANGUAGES, translations }) => {
+const navbarTexts = {
+  en: {
+    group: {
+      framework: 'The Framework',
+      iniciar: 'Start',
+      aboutUs: 'About us',
+      works: 'Works',
+    },
+    language: 'Language',
+  },
+  pt_BR: {
+    group: {
+      framework: 'O Framework',
+      iniciar: 'Iniciar',
+      aboutUs: 'Sobre nós',
+      works: 'Trabalhos',
+    },
+    language: 'Idioma',
+  },
+};
+
+const Navbar = ({ language, setLanguage, LANGUAGES }) => {
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const t = navbarTexts[language];
 
   return (
     <nav className='navbar navbar-expand-lg navbar-light bg-light border-bottom'>
@@ -28,27 +50,27 @@ const Navbar = ({ language, setLanguage, LANGUAGES, translations }) => {
           <ul className='navbar-nav ms-auto mb-2 mb-lg-0'>
             <li className='nav-item'>
               <a className='nav-link' href='#framework'>
-                {translations[language].group.framework}
+                {t.group.framework}
               </a>
             </li>
             <li className='nav-item'>
               <a className='nav-link' href='#iniciar'>
-                {translations[language].group.iniciar}
+                {t.group.iniciar}
               </a>
             </li>
             <li className='nav-item'>
               <a className='nav-link' href='#sobre-nos'>
-                {translations[language].group.aboutUs}
+                {t.group.aboutUs}
               </a>
             </li>
             <li className='nav-item'>
               <a className='nav-link' href='#works'>
-                {translations[language].group.works}
+                {t.group.works}
               </a>
             </li>
             <li className='nav-item d-flex align-items-center ms-3'>
               <label htmlFor='lang-select' className='form-label me-2 mb-0'>
-                {translations[language].language}:
+                {t.language}:
               </label>
               <select
                 id='lang-select'

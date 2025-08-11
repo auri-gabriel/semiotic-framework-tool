@@ -1,3 +1,12 @@
+const worksTexts = {
+  en: {
+    works: 'Works',
+  },
+  pt_BR: {
+    works: 'Trabalhos',
+  },
+};
+
 const works = [
   {
     title:
@@ -21,10 +30,10 @@ const works = [
   },
 ];
 
-const Works = ({ language, translations }) => (
+const Works = ({ language }) => (
   <section className='py-5 border-top' id='works'>
     <div className='container'>
-      <h2 className='mb-4'>{translations[language].works}</h2>
+      <h2 className='mb-4'>{worksTexts[language].works}</h2>
       <div className='row'>
         {works.map((work, idx) => (
           <div className='col-md-4 mb-3' key={idx}>
