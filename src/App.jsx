@@ -8,6 +8,12 @@ import {
   exportAnswersAsXML,
 } from './data/ExportManager';
 
+import Navbar from './components/Navbar';
+import Hero from './components/Hero';
+import AboutUs from './components/AboutUs';
+import Works from './components/Works';
+import Footer from './components/Footer';
+
 const LANGUAGES = [
   { code: 'en', label: 'English' },
   { code: 'pt_BR', label: 'Português (Brasil)' },
@@ -18,7 +24,6 @@ function App() {
   const [semioticLadderGrouping, setSemioticLadderGrouping] = useState({});
   const [language, setLanguage] = useState('en');
   const [answers, setAnswers] = useState(() => {
-    // Load from localStorage on first render
     const saved = localStorage.getItem('answers');
     return saved ? JSON.parse(saved) : {};
   });
@@ -32,7 +37,6 @@ function App() {
     fetchData();
   }, []);
 
-  // Save answers to localStorage whenever they change
   useEffect(() => {
     localStorage.setItem('answers', JSON.stringify(answers));
   }, [answers]);
@@ -44,7 +48,6 @@ function App() {
     }));
   };
 
-  // Export handlers
   const handleExport = (format) => {
     let exportObj;
     if (format === 'json') {
@@ -65,7 +68,6 @@ function App() {
     }
   };
 
-  // Import XML handler
   const handleImportXML = (xmlString) => {
     try {
       const parser = new DOMParser();
@@ -84,35 +86,44 @@ function App() {
   if (loading) return <div>Loading...</div>;
 
   return (
-    <div className='container py-4 px-3 mx-auto'>
-      <div className='mb-4'>
-        <label htmlFor='lang-select' className='form-label me-2'>
-          Language:
-        </label>
-        <select
-          id='lang-select'
-          className='form-select d-inline-block w-auto'
-          value={language}
-          onChange={(e) => setLanguage(e.target.value)}
-        >
-          {LANGUAGES.map((lang) => (
-            <option key={lang.code} value={lang.code}>
-              {lang.label}
-            </option>
-          ))}
-        </select>
+    <div>
+      <Navbar />
+      <Hero />
+
+      <div className='container py-4 px-3 mx-auto' id='iniciar'>
+        <div className='mb-4'>
+          <label htmlFor='lang-select' className='form-label me-2'>
+            Language:
+          </label>
+          <select
+            id='lang-select'
+            className='form-select d-inline-block w-auto'
+            value={language}
+            onChange={(e) => setLanguage(e.target.value)}
+          >
+            {LANGUAGES.map((lang) => (
+              <option key={lang.code} value={lang.code}>
+                {lang.label}
+              </option>
+            ))}
+          </select>
+        </div>
+        <SemioticAccordion
+          grouping={semioticLadderGrouping}
+          language={language}
+          answers={answers}
+          onAnswerChange={handleAnswerChange}
+        />
+        <BottomToolbar
+          answers={answers}
+          onImportXML={handleImportXML}
+          onExport={handleExport}
+        />
       </div>
-      <SemioticAccordion
-        grouping={semioticLadderGrouping}
-        language={language}
-        answers={answers}
-        onAnswerChange={handleAnswerChange}
-      />
-      <BottomToolbar
-        answers={answers}
-        onImportXML={handleImportXML}
-        onExport={handleExport}
-      />
+
+      <AboutUs />
+      <Works />
+      <Footer />
     </div>
   );
 }
