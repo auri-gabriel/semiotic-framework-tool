@@ -10,6 +10,7 @@ import Hero from './components/Hero';
 import AboutUs from './components/AboutUs';
 import Works from './components/Works';
 import Footer from './components/Footer';
+import IniciarSection from './components/IniciarSection';
 
 const LANGUAGES = [
   { code: 'en', label: 'English' },
@@ -135,23 +136,15 @@ function App() {
         translations={translations}
       />
       <Hero language={language} translations={translations} />
-      <section className='py-5 border-top' id='iniciar'>
-        <div className='container'>
-          <SemioticAccordion
-            grouping={semioticLadderGrouping}
-            language={language}
-            answers={answers}
-            onAnswerChange={handleAnswerChange}
-          />
-          <BottomToolbar
-            answers={answers}
-            onImportXML={handleImportXML}
-            onExport={handleExport}
-            language={language}
-            translations={translations}
-          />
-        </div>
-      </section>
+      <IniciarSection
+        semioticLadderGrouping={semioticLadderGrouping}
+        language={language}
+        answers={answers}
+        onAnswerChange={handleAnswerChange}
+        onImportXML={handleImportXML}
+        onExport={handleExport}
+        translations={translations}
+      />
       <AboutUs language={language} translations={translations} />
       <Works language={language} translations={translations} />
       <Footer language={language} translations={translations} />
