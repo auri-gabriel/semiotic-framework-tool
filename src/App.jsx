@@ -19,6 +19,54 @@ const LANGUAGES = [
   { code: 'pt_BR', label: 'Português (Brasil)' },
 ];
 
+// Centralized translations for UI
+const translations = {
+  en: {
+    loading: 'Loading...',
+    iniciar: 'Start',
+    framework: 'The Framework',
+    aboutUs: 'About us',
+    works: 'Works',
+    exportJSON: 'Export JSON',
+    exportCSV: 'Export CSV',
+    exportXML: 'Export XML',
+    importXML: 'Import XML',
+    language: 'Language',
+    copyright: '© 2025 GEInfoEdu. All Rights Reserved.',
+    group: {
+      framework: 'The Framework',
+      iniciar: 'Start',
+      aboutUs: 'About us',
+      works: 'Works',
+    },
+    aboutUsText: 'This project is part of the GEInfoEdu Research Group',
+    students: 'Students involved in the project:',
+    // ...add more as needed...
+  },
+  pt_BR: {
+    loading: 'Carregando...',
+    iniciar: 'Iniciar',
+    framework: 'O Framework',
+    aboutUs: 'Sobre nós',
+    works: 'Trabalhos',
+    exportJSON: 'Exportar JSON',
+    exportCSV: 'Exportar CSV',
+    exportXML: 'Exportar XML',
+    importXML: 'Importar XML',
+    language: 'Idioma',
+    copyright: '© 2025 GEInfoEdu. Todos os direitos reservados.',
+    group: {
+      framework: 'O Framework',
+      iniciar: 'Iniciar',
+      aboutUs: 'Sobre nós',
+      works: 'Trabalhos',
+    },
+    aboutUsText: 'Este projeto é parte do Grupo de Pesquisa GEInfoEdu',
+    students: 'Estudantes envolvidos no projeto:',
+    // ...add more as needed...
+  },
+};
+
 function App() {
   const [loading, setLoading] = useState(true);
   const [semioticLadderGrouping, setSemioticLadderGrouping] = useState({});
@@ -83,31 +131,18 @@ function App() {
     }
   };
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return <div>{translations[language].loading}</div>;
 
   return (
     <div>
-      <Navbar />
-      <Hero />
-
+      <Navbar
+        language={language}
+        setLanguage={setLanguage}
+        LANGUAGES={LANGUAGES}
+        translations={translations}
+      />
+      <Hero language={language} translations={translations} />
       <div className='container py-4 px-3 mx-auto' id='iniciar'>
-        <div className='mb-4'>
-          <label htmlFor='lang-select' className='form-label me-2'>
-            Language:
-          </label>
-          <select
-            id='lang-select'
-            className='form-select d-inline-block w-auto'
-            value={language}
-            onChange={(e) => setLanguage(e.target.value)}
-          >
-            {LANGUAGES.map((lang) => (
-              <option key={lang.code} value={lang.code}>
-                {lang.label}
-              </option>
-            ))}
-          </select>
-        </div>
         <SemioticAccordion
           grouping={semioticLadderGrouping}
           language={language}
@@ -118,12 +153,13 @@ function App() {
           answers={answers}
           onImportXML={handleImportXML}
           onExport={handleExport}
+          language={language}
+          translations={translations}
         />
       </div>
-
-      <AboutUs />
-      <Works />
-      <Footer />
+      <AboutUs language={language} translations={translations} />
+      <Works language={language} translations={translations} />
+      <Footer language={language} translations={translations} />
     </div>
   );
 }

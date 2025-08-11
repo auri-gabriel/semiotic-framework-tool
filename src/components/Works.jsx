@@ -21,10 +21,10 @@ const works = [
   },
 ];
 
-const Works = () => (
-  <section className='py-5 border-top'>
+const Works = ({ language, translations }) => (
+  <section className='py-5 border-top' id='works'>
     <div className='container'>
-      <h2 className='mb-4'>Trabalhos</h2>
+      <h2 className='mb-4'>{translations[language].works}</h2>
       <div className='row'>
         {works.map((work, idx) => (
           <div className='col-md-4 mb-3' key={idx}>

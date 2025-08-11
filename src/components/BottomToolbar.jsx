@@ -1,6 +1,12 @@
 import React, { useRef } from 'react';
 
-function BottomToolbar({ answers, onImportXML, onExport }) {
+function BottomToolbar({
+  answers,
+  onImportXML,
+  onExport,
+  language,
+  translations,
+}) {
   const fileInputRef = useRef();
 
   const handleImportClick = () => {
@@ -29,19 +35,19 @@ function BottomToolbar({ answers, onImportXML, onExport }) {
           className='btn btn-primary me-2'
           onClick={() => onExport('json')}
         >
-          Export JSON
+          {translations[language].exportJSON}
         </button>
         <button
           className='btn btn-primary me-2'
           onClick={() => onExport('csv')}
         >
-          Export CSV
+          {translations[language].exportCSV}
         </button>
         <button
           className='btn btn-primary me-2'
           onClick={() => onExport('xml')}
         >
-          Export XML
+          {translations[language].exportXML}
         </button>
       </div>
       <div>
@@ -53,7 +59,7 @@ function BottomToolbar({ answers, onImportXML, onExport }) {
           onChange={handleFileChange}
         />
         <button className='btn btn-outline-light' onClick={handleImportClick}>
-          Import XML
+          {translations[language].importXML}
         </button>
       </div>
     </div>
