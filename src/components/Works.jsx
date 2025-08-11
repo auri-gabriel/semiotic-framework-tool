@@ -46,7 +46,7 @@ const Works = ({ language }) => (
               rel='noopener noreferrer'
               className='text-decoration-none text-dark'
             >
-              <div className='card h-100 bg-light'>
+              <div className='card h-100 bg-light work-card'>
                 <div className='card-body d-flex flex-column justify-content-between'>
                   <div>
                     <h5 className='card-title'>{work.title}</h5>
@@ -67,9 +67,16 @@ const Works = ({ language }) => (
       </div>
     </div>
     <style jsx>{`
+      .work-card {
+        transition: border-color 0.3s ease;
+      }
+      a:hover .work-card {
+        border-bottom-color: black;
+        border-bottom-width: 2px;
+      }
       .arrow-container i {
         display: inline-block;
-        font-size: 1.5rem; /* bigger arrow */
+        font-size: 2rem; /* bigger arrow */
         transition: transform 0.2s ease;
       }
       a:hover .arrow-container i {
