@@ -13,55 +13,84 @@
         <!-- Semiotic Levels -->
         <tag id="physical" type="semiotic-steps">
             <tag id="it-platform" />
-            <name lang="en">Physical</name>
             <name lang="pt_BR">Física</name>
-            <text lang="pt_BR">sinais, traços, distinções físicas, hardware, densidade de
-                componentes, velocidade, economia, …</text>
-            <text lang="en">sinais, traços, distinções físicas, hardware, densidade de componentes,
-                velocidade, economia, …</text>
+            <name lang="en">Physical</name>
+            <text lang="pt_BR">
+                Sinais, traços, distinções físicas, hardware, densidade de componentes,
+                velocidade, economia, entre outros.
+            </text>
+            <text lang="en">
+                Signals, traces, physical distinctions, hardware, component density,
+                speed, efficiency, and more.
+            </text>
         </tag>
+
         <tag id="empirical" type="semiotic-steps">
             <tag id="it-platform" />
-            <name lang="en">Empirical</name>
             <name lang="pt_BR">Empírico</name>
-            <text lang="pt_BR">padrão, variedade, ruído, entropia, capacidade do canal, redundância,
-                eficiência, códigos</text>
-            <text lang="en">padrão, variedade, ruído, entropia, capacidade do canal, redundância,
-                eficiência, códigos</text>
+            <name lang="en">Empirical</name>
+            <text lang="pt_BR">
+                Padrões, variedade, ruído, entropia, capacidade do canal, redundância,
+                eficiência, códigos.
+            </text>
+            <text lang="en">
+                Patterns, variety, noise, entropy, channel capacity, redundancy,
+                efficiency, codes.
+            </text>
         </tag>
+
         <tag id="syntactic" type="semiotic-steps">
             <tag id="it-platform" />
-            <name lang="en">Syntactic</name>
             <name lang="pt_BR">Sintático</name>
-            <text lang="pt_BR">estrutura formal, linguagem, lógica, dado, dedução de registros,
-                software, arquivos, …</text>
-            <text lang="en">estrutura formal, linguagem, lógica, dado, dedução de registros,
-                software, arquivos, …</text>
+            <name lang="en">Syntactic</name>
+            <text lang="pt_BR">
+                Estrutura formal, linguagem, lógica, dados, dedução de registros,
+                software, arquivos, entre outros.
+            </text>
+            <text lang="en">
+                Formal structure, language, logic, data, record deduction,
+                software, files, and more.
+            </text>
         </tag>
+
         <tag id="semantic" type="semiotic-steps">
             <tag id="human" />
-            <name lang="en">Semantic</name>
             <name lang="pt_BR">Semântico</name>
-            <text lang="pt_BR">significados, proposições, validade, verdade, significação,
-                denotações, …</text>
-            <text lang="en">significados, proposições, validade, verdade, significação, denotações,
-                …</text>
+            <name lang="en">Semantic</name>
+            <text lang="pt_BR">
+                Significados, proposições, validade, verdade, significação,
+                denotações, entre outros.
+            </text>
+            <text lang="en">
+                Meanings, propositions, validity, truth, significance,
+                denotations, and more.
+            </text>
         </tag>
+
         <tag id="pragmatic" type="semiotic-steps">
             <tag id="human" />
-            <name lang="en">Pragmatic</name>
             <name lang="pt_BR">Pragmático</name>
-            <text lang="pt_BR">intenções, comunicações, conversações, negociações, …</text>
-            <text lang="en">intenções, comunicações, conversações, negociações, …</text>
+            <name lang="en">Pragmatic</name>
+            <text lang="pt_BR">
+                Intenções, comunicações, conversações, negociações, entre outros.
+            </text>
+            <text lang="en">
+                Intentions, communications, conversations, negotiations, and more.
+            </text>
         </tag>
+
         <tag id="social_world" type="semiotic-steps">
             <tag id="human" />
             <name lang="pt_BR">Mundo Social</name>
             <name lang="en">Social World</name>
-            <text lang="pt_BR">crenças, expectativas, funções, compromissos, contratos, leis,
-                cultura, …</text>
-            <text lang="en">crenças, expectativas, funções, compromissos, contratos, leis, cultura,
-                …</text>
+            <text lang="pt_BR">
+                Crenças, expectativas, funções, compromissos, contratos, leis,
+                cultura, entre outros.
+            </text>
+            <text lang="en">
+                Beliefs, expectations, roles, commitments, contracts, laws,
+                culture, and more.
+            </text>
         </tag>
     </tag-definitions>
     <questions-definitions>
