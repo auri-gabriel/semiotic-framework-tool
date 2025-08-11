@@ -48,19 +48,6 @@ function BottomToolbar({
           </button>
           <ul className='dropdown-menu'>
             <li>
-              <button
-                className='dropdown-item'
-                onClick={() => onExport('json')}
-              >
-                {translations[language].exportJSON}
-              </button>
-            </li>
-            <li>
-              <button className='dropdown-item' onClick={() => onExport('csv')}>
-                {translations[language].exportCSV}
-              </button>
-            </li>
-            <li>
               <button className='dropdown-item' onClick={() => onExport('xml')}>
                 {translations[language].exportXML}
               </button>
@@ -87,5 +74,4 @@ function BottomToolbar({
     </div>
   );
 }
-
 export default BottomToolbar;

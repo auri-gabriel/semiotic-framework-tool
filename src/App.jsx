@@ -3,11 +3,7 @@ import { useEffect, useState } from 'react';
 import { getQuestionsGroupedBySemiotics } from './business/SemioticLadderManager';
 import SemioticAccordion from './components/SemioticAccordion';
 import BottomToolbar from './components/BottomToolbar';
-import {
-  exportAnswersAsJSON,
-  exportAnswersAsCSV,
-  exportAnswersAsXML,
-} from './data/ExportManager';
+import { exportAnswersAsXML } from './data/ExportManager';
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -30,8 +26,6 @@ const translations = {
     works: 'Works',
     export: 'Export',
     import: 'Import',
-    exportJSON: 'Export JSON',
-    exportCSV: 'Export CSV',
     exportXML: 'Export XML',
     importXML: 'Import XML',
     language: 'Language',
@@ -57,8 +51,6 @@ const translations = {
     works: 'Trabalhos',
     export: 'Exportar',
     import: 'Importar',
-    exportJSON: 'Exportar JSON',
-    exportCSV: 'Exportar CSV',
     exportXML: 'Exportar XML',
     importXML: 'Importar XML',
     language: 'Idioma',
@@ -109,11 +101,7 @@ function App() {
 
   const handleExport = (format) => {
     let exportObj;
-    if (format === 'json') {
-      exportObj = exportAnswersAsJSON(answers);
-    } else if (format === 'csv') {
-      exportObj = exportAnswersAsCSV(answers);
-    } else if (format === 'xml') {
+    if (format === 'xml') {
       exportObj = exportAnswersAsXML(answers);
     }
     if (exportObj) {
@@ -176,5 +164,4 @@ function App() {
     </div>
   );
 }
-
 export default App;
