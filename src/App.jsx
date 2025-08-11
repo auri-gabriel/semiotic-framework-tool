@@ -1,3 +1,4 @@
+import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useEffect, useState } from 'react';
 import { getQuestionsGroupedBySemiotics } from './business/SemioticLadderManager';
 import SemioticAccordion from './components/SemioticAccordion';
@@ -27,6 +28,8 @@ const translations = {
     framework: 'The Framework',
     aboutUs: 'About us',
     works: 'Works',
+    export: 'Export',
+    import: 'Import',
     exportJSON: 'Export JSON',
     exportCSV: 'Export CSV',
     exportXML: 'Export XML',
@@ -52,6 +55,8 @@ const translations = {
     framework: 'O Framework',
     aboutUs: 'Sobre nós',
     works: 'Trabalhos',
+    export: 'Exportar',
+    import: 'Importar',
     exportJSON: 'Exportar JSON',
     exportCSV: 'Exportar CSV',
     exportXML: 'Exportar XML',

@@ -31,24 +31,37 @@ function BottomToolbar({
       style={{ zIndex: 1050 }}
     >
       <div>
-        <button
-          className='btn btn-primary me-2'
-          onClick={() => onExport('json')}
-        >
-          {translations[language].exportJSON}
-        </button>
-        <button
-          className='btn btn-primary me-2'
-          onClick={() => onExport('csv')}
-        >
-          {translations[language].exportCSV}
-        </button>
-        <button
-          className='btn btn-primary me-2'
-          onClick={() => onExport('xml')}
-        >
-          {translations[language].exportXML}
-        </button>
+        <div className='btn-group'>
+          <button
+            className='btn btn-primary dropdown-toggle d-flex align-items-center'
+            type='button'
+            data-bs-toggle='dropdown'
+            aria-expanded='false'
+          >
+            <i className='bi bi-download me-2'></i>
+            {translations[language].export}
+          </button>
+          <ul className='dropdown-menu'>
+            <li>
+              <button
+                className='dropdown-item'
+                onClick={() => onExport('json')}
+              >
+                {translations[language].exportJSON}
+              </button>
+            </li>
+            <li>
+              <button className='dropdown-item' onClick={() => onExport('csv')}>
+                {translations[language].exportCSV}
+              </button>
+            </li>
+            <li>
+              <button className='dropdown-item' onClick={() => onExport('xml')}>
+                {translations[language].exportXML}
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
       <div>
         <input
@@ -58,7 +71,11 @@ function BottomToolbar({
           style={{ display: 'none' }}
           onChange={handleFileChange}
         />
-        <button className='btn btn-outline-light' onClick={handleImportClick}>
+        <button
+          className='btn btn-outline-light d-flex align-items-center'
+          onClick={handleImportClick}
+        >
+          <i className='bi bi-upload me-2'></i>
           {translations[language].importXML}
         </button>
       </div>
