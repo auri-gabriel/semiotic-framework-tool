@@ -27,8 +27,13 @@ function BottomToolbar({
 
   return (
     <div
-      className='fixed-bottom bg-dark border-top py-2 px-3 d-flex justify-content-between align-items-center shadow-sm container'
-      style={{ zIndex: 1050 }}
+      className='bg-dark border-top py-2 px-3 d-flex justify-content-between align-items-center shadow-sm container'
+      style={{
+        position: 'sticky',
+        bottom: 0,
+        zIndex: 1050,
+        marginBottom: '1.5rem',
+      }}
     >
       <div>
         <div className='btn-group'>
