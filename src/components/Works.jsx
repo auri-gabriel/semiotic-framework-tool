@@ -46,7 +46,7 @@ const Works = ({ language }) => (
               rel='noopener noreferrer'
               className='text-decoration-none text-dark'
             >
-              <div className='card h-100 bg-light card-hover'>
+              <div className='card h-100 bg-light'>
                 <div className='card-body d-flex flex-column justify-content-between'>
                   <div>
                     <h5 className='card-title'>{work.title}</h5>
@@ -67,17 +67,12 @@ const Works = ({ language }) => (
       </div>
     </div>
     <style jsx>{`
-      .card-hover {
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
-      }
-      .card-hover:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
-      }
       .arrow-container i {
+        display: inline-block;
+        font-size: 1.5rem; /* bigger arrow */
         transition: transform 0.2s ease;
       }
-      .card-hover:hover .arrow-container i {
+      a:hover .arrow-container i {
         transform: translateX(4px);
       }
     `}</style>
