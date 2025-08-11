@@ -13,6 +13,7 @@ const works = [
       'Uma Revisão Sistematizada sobre Design Participativo Integrado à Engenharia de Software em Domínio Educacional',
     event: 'Simpósio Brasileiro de Informática na Educação (SBIE)',
     date: '2024-11-04',
+    url: 'https://example.com/work1',
   },
   {
     title:
@@ -20,6 +21,7 @@ const works = [
     event:
       'Anais do 15º Salão Internacional de Ensino, Pesquisa e Extensão da UNIPAMPA: Pesquisa e Inovação',
     date: '2023-12-18',
+    url: 'https://example.com/work2',
   },
   {
     title:
@@ -27,6 +29,7 @@ const works = [
     event:
       'Anais do 15º Salão Internacional de Ensino, Pesquisa e Extensão da UNIPAMPA: Pesquisa e Inovação',
     date: '2023-12-18',
+    url: 'https://example.com/work3',
   },
 ];
 
@@ -37,20 +40,47 @@ const Works = ({ language }) => (
       <div className='row'>
         {works.map((work, idx) => (
           <div className='col-md-4 mb-3' key={idx}>
-            <div className='card h-100 bg-light'>
-              <div className='card-body'>
-                <h5 className='card-title'>{work.title}</h5>
-                <p className='card-text'>
-                  {work.event}
-                  <br />
-                  {work.date}
-                </p>
+            <a
+              href={work.url}
+              target='_blank'
+              rel='noopener noreferrer'
+              className='text-decoration-none text-dark'
+            >
+              <div className='card h-100 bg-light card-hover'>
+                <div className='card-body d-flex flex-column justify-content-between'>
+                  <div>
+                    <h5 className='card-title'>{work.title}</h5>
+                    <p className='card-text'>
+                      {work.event}
+                      <br />
+                      {work.date}
+                    </p>
+                  </div>
+                  <div className='mt-3 text-end arrow-container'>
+                    <i className='bi bi-arrow-right'></i>
+                  </div>
+                </div>
               </div>
-            </div>
+            </a>
           </div>
         ))}
       </div>
     </div>
+    <style jsx>{`
+      .card-hover {
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .card-hover:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+      }
+      .arrow-container i {
+        transition: transform 0.2s ease;
+      }
+      .card-hover:hover .arrow-container i {
+        transform: translateX(4px);
+      }
+    `}</style>
   </section>
 );
 
