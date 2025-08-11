@@ -15,169 +15,205 @@
             <tag id="it-platform" />
             <name lang="en">Physical</name>
             <name lang="pt_BR">Física</name>
+            <text lang="pt_BR">sinais, traços, distinções físicas, hardware, densidade de
+                componentes, velocidade, economia, …</text>
+            <text lang="en">sinais, traços, distinções físicas, hardware, densidade de componentes,
+                velocidade, economia, …</text>
         </tag>
         <tag id="empirical" type="semiotic-steps">
             <tag id="it-platform" />
             <name lang="en">Empirical</name>
             <name lang="pt_BR">Empírico</name>
+            <text lang="pt_BR">padrão, variedade, ruído, entropia, capacidade do canal, redundância,
+                eficiência, códigos</text>
+            <text lang="en">padrão, variedade, ruído, entropia, capacidade do canal, redundância,
+                eficiência, códigos</text>
         </tag>
         <tag id="syntactic" type="semiotic-steps">
             <tag id="it-platform" />
             <name lang="en">Syntactic</name>
             <name lang="pt_BR">Sintático</name>
+            <text lang="pt_BR">estrutura formal, linguagem, lógica, dado, dedução de registros,
+                software, arquivos, …</text>
+            <text lang="en">estrutura formal, linguagem, lógica, dado, dedução de registros,
+                software, arquivos, …</text>
         </tag>
         <tag id="semantic" type="semiotic-steps">
             <tag id="human" />
             <name lang="en">Semantic</name>
             <name lang="pt_BR">Semântico</name>
+            <text lang="pt_BR">significados, proposições, validade, verdade, significação,
+                denotações, …</text>
+            <text lang="en">significados, proposições, validade, verdade, significação, denotações,
+                …</text>
         </tag>
         <tag id="pragmatic" type="semiotic-steps">
             <tag id="human" />
             <name lang="en">Pragmatic</name>
             <name lang="pt_BR">Pragmático</name>
+            <text lang="pt_BR">intenções, comunicações, conversações, negociações, …</text>
+            <text lang="en">intenções, comunicações, conversações, negociações, …</text>
         </tag>
         <tag id="social_world" type="semiotic-steps">
             <tag id="human" />
             <name lang="pt_BR">Mundo Social</name>
             <name lang="en">Social World</name>
+            <text lang="pt_BR">crenças, expectativas, funções, compromissos, contratos, leis,
+                cultura, …</text>
+            <text lang="en">crenças, expectativas, funções, compromissos, contratos, leis, cultura,
+                …</text>
         </tag>
     </tag-definitions>
-<questions-definitions>
-    <!-- Mundo Social -->
-    <question id="q01">
-        <tag id="social_world" />
-        <text lang="pt_BR">Quais as expectativas das partes interessadas?</text>
-        <text lang="en">What are the stakeholders' expectations?</text>
-    </question>
-    <question id="q02">
-        <tag id="social_world" />
-        <text lang="pt_BR">Que aspectos culturais podem ou devem ser considerados?</text>
-        <text lang="en">What cultural aspects can or should be considered?</text>
-    </question>
-    <question id="q03">
-        <tag id="social_world" />
-        <text lang="pt_BR">Há normas, regulamentos ou documentos de referência do domínio educacional que devem ser considerados?</text>
-        <text lang="en">Are there standards, regulations or reference documents from the educational domain that should be considered?</text>
-    </question>
-    <question id="q04">
-        <tag id="social_world" />
-        <text lang="pt_BR">Quais os aspectos éticos envolvidos?</text>
-        <text lang="en">What are the ethical aspects involved?</text>
-    </question>
-    <question id="q05">
-        <tag id="social_world" />
-        <text lang="pt_BR">Que aspectos legais devem ser observados?</text>
-        <text lang="en">What legal aspects should be considered?</text>
-    </question>
-    <question id="q06">
-        <tag id="social_world" />
-        <text lang="pt_BR">Que compromissos devem ser estabelecidos?</text>
-        <text lang="en">What commitments should be established?</text>
-    </question>
+    <questions-definitions>
+        <!-- Mundo Social -->
+        <question id="q01">
+            <tag id="social_world" />
+            <text lang="pt_BR">Quais as expectativas das partes interessadas?</text>
+            <text lang="en">What are the stakeholders' expectations?</text>
+        </question>
+        <question id="q02">
+            <tag id="social_world" />
+            <text lang="pt_BR">Que aspectos culturais podem ou devem ser considerados?</text>
+            <text lang="en">What cultural aspects can or should be considered?</text>
+        </question>
+        <question id="q03">
+            <tag id="social_world" />
+            <text lang="pt_BR">Há normas, regulamentos ou documentos de referência do domínio
+                educacional que devem ser considerados?</text>
+            <text lang="en">Are there standards, regulations or reference documents from the
+                educational domain that should be considered?</text>
+        </question>
+        <question id="q04">
+            <tag id="social_world" />
+            <text lang="pt_BR">Quais os aspectos éticos envolvidos?</text>
+            <text lang="en">What are the ethical aspects involved?</text>
+        </question>
+        <question id="q05">
+            <tag id="social_world" />
+            <text lang="pt_BR">Que aspectos legais devem ser observados?</text>
+            <text lang="en">What legal aspects should be considered?</text>
+        </question>
+        <question id="q06">
+            <tag id="social_world" />
+            <text lang="pt_BR">Que compromissos devem ser estabelecidos?</text>
+            <text lang="en">What commitments should be established?</text>
+        </question>
 
-    <!-- Pragmática -->
-    <question id="q07">
-        <tag id="pragmatic" />
-        <text lang="pt_BR">Quais as intenções das diferentes partes interessadas no software?</text>
-        <text lang="en">What are the intentions of the different stakeholders regarding the software?</text>
-    </question>
-    <question id="q08">
-        <tag id="pragmatic" />
-        <text lang="pt_BR">De que modo a qualidade deve ser abordada no desenvolvimento do software?</text>
-        <text lang="en">How should quality be addressed in software development?</text>
-    </question>
-    <question id="q09">
-        <tag id="pragmatic" />
-        <text lang="pt_BR">Qual o propósito do software no domínio educacional? Quando for o caso, qual a intencionalidade pedagógica subjacente?</text>
-        <text lang="en">What is the purpose of the software in the educational domain? When applicable, what is the underlying pedagogical intentionality?</text>
-    </question>
-    <question id="q10">
-        <tag id="pragmatic" />
-        <text lang="pt_BR">Qual o papel do Design Participativo no desenvolvimento do software?</text>
-        <text lang="en">What is the role of Participatory Design in the software development?</text>
-    </question>
+        <!-- Pragmática -->
+        <question id="q07">
+            <tag id="pragmatic" />
+            <text lang="pt_BR">Quais as intenções das diferentes partes interessadas no software?</text>
+            <text lang="en">What are the intentions of the different stakeholders regarding the
+                software?</text>
+        </question>
+        <question id="q08">
+            <tag id="pragmatic" />
+            <text lang="pt_BR">De que modo a qualidade deve ser abordada no desenvolvimento do
+                software?</text>
+            <text lang="en">How should quality be addressed in software development?</text>
+        </question>
+        <question id="q09">
+            <tag id="pragmatic" />
+            <text lang="pt_BR">Qual o propósito do software no domínio educacional? Quando for o
+                caso, qual a intencionalidade pedagógica subjacente?</text>
+            <text lang="en">What is the purpose of the software in the educational domain? When
+                applicable, what is the underlying pedagogical intentionality?</text>
+        </question>
+        <question id="q10">
+            <tag id="pragmatic" />
+            <text lang="pt_BR">Qual o papel do Design Participativo no desenvolvimento do software?</text>
+            <text lang="en">What is the role of Participatory Design in the software development?</text>
+        </question>
 
-    <!-- Semântica -->
-    <question id="q11">
-        <tag id="semantic" />
-        <text lang="pt_BR">Qual a compreensão sobre como as atividades e tarefas apoiadas pelo software devem ser desenvolvidas?</text>
-        <text lang="en">What is the understanding of how the activities and tasks supported by the software should be carried out?</text>
-    </question>
-    <question id="q12">
-        <tag id="semantic" />
-        <text lang="pt_BR">Qual o vocabulário a ser adotado?</text>
-        <text lang="en">What vocabulary should be adopted?</text>
-    </question>
-    <question id="q13">
-        <tag id="semantic" />
-        <text lang="pt_BR">Quais as características de qualidade a serem observadas?</text>
-        <text lang="en">What quality characteristics should be considered?</text>
-    </question>
+        <!-- Semântica -->
+        <question id="q11">
+            <tag id="semantic" />
+            <text lang="pt_BR">Qual a compreensão sobre como as atividades e tarefas apoiadas pelo
+                software devem ser desenvolvidas?</text>
+            <text lang="en">What is the understanding of how the activities and tasks supported by
+                the software should be carried out?</text>
+        </question>
+        <question id="q12">
+            <tag id="semantic" />
+            <text lang="pt_BR">Qual o vocabulário a ser adotado?</text>
+            <text lang="en">What vocabulary should be adopted?</text>
+        </question>
+        <question id="q13">
+            <tag id="semantic" />
+            <text lang="pt_BR">Quais as características de qualidade a serem observadas?</text>
+            <text lang="en">What quality characteristics should be considered?</text>
+        </question>
 
-    <!-- Sintática -->
-    <question id="q14">
-        <tag id="syntactic" />
-        <text lang="pt_BR">Quais padrões seguir?</text>
-        <text lang="en">What standards should be followed?</text>
-    </question>
-    <question id="q15">
-        <tag id="syntactic" />
-        <text lang="pt_BR">Quais abordagens serão adotadas?</text>
-        <text lang="en">What approaches will be adopted?</text>
-    </question>
-    <question id="q16">
-        <tag id="syntactic" />
-        <text lang="pt_BR">Quais frameworks serão adotados?</text>
-        <text lang="en">What frameworks will be adopted?</text>
-    </question>
-    <question id="q17">
-        <tag id="syntactic" />
-        <text lang="pt_BR">Quais processos, métodos e ferramentas de Engenharia de Software serão adotados?</text>
-        <text lang="en">Which software engineering processes, methods, and tools will be adopted?</text>
-    </question>
-    <question id="q18">
-        <tag id="syntactic" />
-        <text lang="pt_BR">Quais processos, métodos e ferramentas de Design Participativo serão adotados?</text>
-        <text lang="en">Which participatory design processes, methods, and tools will be adopted?</text>
-    </question>
-    <question id="q19">
-        <tag id="syntactic" />
-        <text lang="pt_BR">Quais linguagens serão adotadas?</text>
-        <text lang="en">Which programming languages will be adopted?</text>
-    </question>
-    <question id="q20">
-        <tag id="syntactic" />
-        <text lang="pt_BR">Quais softwares serão adotados?</text>
-        <text lang="en">Which software tools will be adopted?</text>
-    </question>
-    <question id="q21">
-        <tag id="syntactic" />
-        <text lang="pt_BR">Qual a língua principal? Há outras línguas que precisam ser consideradas?</text>
-        <text lang="en">What is the main language? Are there other languages that need to be considered?</text>
-    </question>
+        <!-- Sintática -->
+        <question id="q14">
+            <tag id="syntactic" />
+            <text lang="pt_BR">Quais padrões seguir?</text>
+            <text lang="en">What standards should be followed?</text>
+        </question>
+        <question id="q15">
+            <tag id="syntactic" />
+            <text lang="pt_BR">Quais abordagens serão adotadas?</text>
+            <text lang="en">What approaches will be adopted?</text>
+        </question>
+        <question id="q16">
+            <tag id="syntactic" />
+            <text lang="pt_BR">Quais frameworks serão adotados?</text>
+            <text lang="en">What frameworks will be adopted?</text>
+        </question>
+        <question id="q17">
+            <tag id="syntactic" />
+            <text lang="pt_BR">Quais processos, métodos e ferramentas de Engenharia de Software
+                serão adotados?</text>
+            <text lang="en">Which software engineering processes, methods, and tools will be
+                adopted?</text>
+        </question>
+        <question id="q18">
+            <tag id="syntactic" />
+            <text lang="pt_BR">Quais processos, métodos e ferramentas de Design Participativo serão
+                adotados?</text>
+            <text lang="en">Which participatory design processes, methods, and tools will be
+                adopted?</text>
+        </question>
+        <question id="q19">
+            <tag id="syntactic" />
+            <text lang="pt_BR">Quais linguagens serão adotadas?</text>
+            <text lang="en">Which programming languages will be adopted?</text>
+        </question>
+        <question id="q20">
+            <tag id="syntactic" />
+            <text lang="pt_BR">Quais softwares serão adotados?</text>
+            <text lang="en">Which software tools will be adopted?</text>
+        </question>
+        <question id="q21">
+            <tag id="syntactic" />
+            <text lang="pt_BR">Qual a língua principal? Há outras línguas que precisam ser
+                consideradas?</text>
+            <text lang="en">What is the main language? Are there other languages that need to be
+                considered?</text>
+        </question>
 
-    <!-- Empírica -->
-    <question id="q22">
-        <tag id="empirical" />
-        <text lang="pt_BR">Qual o tempo disponível?</text>
-        <text lang="en">What is the available time?</text>
-    </question>
-    <question id="q23">
-        <tag id="empirical" />
-        <text lang="pt_BR">Quais os custos envolvidos?</text>
-        <text lang="en">What are the costs involved?</text>
-    </question>
+        <!-- Empírica -->
+        <question id="q22">
+            <tag id="empirical" />
+            <text lang="pt_BR">Qual o tempo disponível?</text>
+            <text lang="en">What is the available time?</text>
+        </question>
+        <question id="q23">
+            <tag id="empirical" />
+            <text lang="pt_BR">Quais os custos envolvidos?</text>
+            <text lang="en">What are the costs involved?</text>
+        </question>
 
-    <!-- Física / Material -->
-    <question id="q24">
-        <tag id="physical" />
-        <text lang="pt_BR">Qual a infraestrutura necessária para desenvolvê-lo?</text>
-        <text lang="en">What infrastructure is needed to develop it?</text>
-    </question>
-    <question id="q25">
-        <tag id="physical" />
-        <text lang="pt_BR">Qual a infraestrutura necessária para mantê-lo em operação?</text>
-        <text lang="en">What infrastructure is needed to keep it operational?</text>
-    </question>
-</questions-definitions>
+        <!-- Física / Material -->
+        <question id="q24">
+            <tag id="physical" />
+            <text lang="pt_BR">Qual a infraestrutura necessária para desenvolvê-lo?</text>
+            <text lang="en">What infrastructure is needed to develop it?</text>
+        </question>
+        <question id="q25">
+            <tag id="physical" />
+            <text lang="pt_BR">Qual a infraestrutura necessária para mantê-lo em operação?</text>
+            <text lang="en">What infrastructure is needed to keep it operational?</text>
+        </question>
+    </questions-definitions>
 </definitions>

@@ -1,5 +1,14 @@
 import QuestionAccordion from './QuestionAccordion';
 
+const semioticStepTexts = {
+  en: {
+    info: 'Info',
+  },
+  pt_BR: {
+    info: 'Informações',
+  },
+};
+
 function SemioticStepAccordion({
   groupKey,
   stepKey,
@@ -28,6 +37,31 @@ function SemioticStepAccordion({
         aria-labelledby={`heading-${groupKey}-${stepKey}`}
       >
         <div className='accordion-body bg-white'>
+          <button
+            type='button'
+            className='btn btn-secondary mb-3'
+            data-bs-toggle='collapse'
+            data-bs-target={`#collapse-${groupKey}-${stepKey}-info`}
+          >
+            <i class='bi bi-info-circle-fill me-2'></i>
+            {semioticStepTexts[language].info}
+          </button>
+
+          <div
+            className='collapse alert alert-light alert-dismissible fade'
+            id={`collapse-${groupKey}-${stepKey}-info`}
+            role='alert'
+          >
+            {step.tag?.texts?.[language]}
+            <button
+              type='button'
+              className='btn-close'
+              data-bs-toggle='collapse'
+              data-bs-target={`#collapse-${groupKey}-${stepKey}-info`}
+              aria-label='Close'
+            ></button>
+          </div>
+
           <div
             className='accordion'
             id={`accordion-${groupKey}-${stepKey}-questions`}
