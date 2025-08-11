@@ -2,16 +2,16 @@
 <definitions>
     <tag-definitions>
         <!-- Semiotic Groups -->
-        <tag id="human" type="semiotic-group">
+        <tag id="human" type="semiotic-group" order="1">
             <name lang="en">Human information functions</name>
             <name lang="pt_BR">Funções humanas da informação</name>
         </tag>
-        <tag id="it-platform" type="semiotic-group">
+        <tag id="it-platform" type="semiotic-group" order="2">
             <name lang="en">IT Platform</name>
             <name lang="pt_BR">Plataforma de TI</name>
         </tag>
         <!-- Semiotic Levels -->
-        <tag id="physical" type="semiotic-steps">
+        <tag id="physical" type="semiotic-steps" order="6">
             <tag id="it-platform" />
             <name lang="pt_BR">Física</name>
             <name lang="en">Physical</name>
@@ -25,7 +25,7 @@
             </text>
         </tag>
 
-        <tag id="empirical" type="semiotic-steps">
+        <tag id="empirical" type="semiotic-steps" order="5">
             <tag id="it-platform" />
             <name lang="pt_BR">Empírico</name>
             <name lang="en">Empirical</name>
@@ -39,7 +39,7 @@
             </text>
         </tag>
 
-        <tag id="syntactic" type="semiotic-steps">
+        <tag id="syntactic" type="semiotic-steps" order="4">
             <tag id="it-platform" />
             <name lang="pt_BR">Sintático</name>
             <name lang="en">Syntactic</name>
@@ -53,7 +53,7 @@
             </text>
         </tag>
 
-        <tag id="semantic" type="semiotic-steps">
+        <tag id="semantic" type="semiotic-steps" order="3">
             <tag id="human" />
             <name lang="pt_BR">Semântico</name>
             <name lang="en">Semantic</name>
@@ -67,7 +67,7 @@
             </text>
         </tag>
 
-        <tag id="pragmatic" type="semiotic-steps">
+        <tag id="pragmatic" type="semiotic-steps" order="2">
             <tag id="human" />
             <name lang="pt_BR">Pragmático</name>
             <name lang="en">Pragmatic</name>
@@ -79,7 +79,7 @@
             </text>
         </tag>
 
-        <tag id="social_world" type="semiotic-steps">
+        <tag id="social_world" type="semiotic-steps" order="1">
             <tag id="human" />
             <name lang="pt_BR">Mundo Social</name>
             <name lang="en">Social World</name>

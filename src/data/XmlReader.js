@@ -5,14 +5,18 @@ function readElements(elementDefinitions, elementName) {
     );
     return [];
   }
+
   const elementNodes = elementDefinitions.querySelectorAll(elementName);
   const elements = [];
+
   if (elementNodes.length === 0) {
     console.warn(`[XmlReader] No '${elementName}' elements found.`);
   }
+
   elementNodes.forEach((elementNode, idx) => {
     let elementId = elementNode.getAttribute('id');
     let elementType = elementNode.getAttribute('type');
+    let elementOrder = elementNode.getAttribute('order'); // <-- NEW
 
     if (!elementId) {
       console.warn(
@@ -22,7 +26,6 @@ function readElements(elementDefinitions, elementName) {
 
     let tagsNodes = elementNode.querySelectorAll('tag');
     let tags = [];
-
     tagsNodes.forEach((tag, tagIdx) => {
       const tagId = tag.getAttribute('id');
       if (!tagId) {
@@ -30,14 +33,11 @@ function readElements(elementDefinitions, elementName) {
           `[XmlReader] <tag> in '${elementName}' id='${elementId}' at tag index ${tagIdx} missing 'id' attribute.`
         );
       }
-      tags.push({
-        id: tagId,
-      });
+      tags.push({ id: tagId });
     });
 
     let textNodes = elementNode.querySelectorAll('text');
     let texts = {};
-
     textNodes.forEach((text, textIdx) => {
       const lang = text.getAttribute('lang');
       if (!lang) {
@@ -50,7 +50,6 @@ function readElements(elementDefinitions, elementName) {
 
     let nameNodes = elementNode.querySelectorAll('name');
     let names = {};
-
     nameNodes.forEach((name, nameIdx) => {
       const lang = name.getAttribute('lang');
       if (!lang) {
@@ -63,7 +62,6 @@ function readElements(elementDefinitions, elementName) {
 
     let descriptionNodes = elementNode.querySelectorAll('description');
     let descriptions = {};
-
     descriptionNodes.forEach((description, descIdx) => {
       const lang = description.getAttribute('lang');
       if (!lang) {
@@ -75,9 +73,13 @@ function readElements(elementDefinitions, elementName) {
     });
 
     let element = {};
-
     if (elementId) element['id'] = elementId;
     if (elementType) element['type'] = elementType;
+    if (elementOrder) {
+      element['order'] = Number(elementOrder);
+    } else {
+      element['order'] = idx + 1; // fallback to XML document order
+    }
     if (Object.keys(names).length !== 0) element['names'] = names;
     if (Object.keys(descriptions).length !== 0)
       element['descriptions'] = descriptions;
@@ -86,7 +88,9 @@ function readElements(elementDefinitions, elementName) {
 
     elements.push(element);
   });
-  return elements;
+
+  // Sort by 'order'
+  return elements.sort((a, b) => a.order - b.order);
 }
 
 export async function readQuestions() {
@@ -98,9 +102,11 @@ export async function readQuestions() {
       );
       throw new Error('Failed to fetch definitions.xml');
     }
+
     const text = await res.text();
     const parser = new window.DOMParser();
     const doc = parser.parseFromString(text, 'application/xml');
+
     if (doc.querySelector('parsererror')) {
       console.error(
         '[XmlReader] XML parsing error:',
@@ -108,6 +114,7 @@ export async function readQuestions() {
       );
       throw new Error('XML parsing error');
     }
+
     const questionDefinitions = doc.querySelector('questions-definitions');
     if (!questionDefinitions) {
       console.error(
@@ -117,8 +124,8 @@ export async function readQuestions() {
         'No <questions-definitions> section found in the XML file.'
       );
     }
-    let questions = readElements(questionDefinitions, 'question');
 
+    let questions = readElements(questionDefinitions, 'question');
     if (!questions || questions.length === 0) {
       console.error('[XmlReader] No questions found in the XML file.');
       throw new Error('No questions found in the XML file.');
@@ -140,9 +147,11 @@ export async function readTags() {
       );
       throw new Error('Failed to fetch definitions.xml');
     }
+
     const text = await res.text();
     const parser = new window.DOMParser();
     const doc = parser.parseFromString(text, 'application/xml');
+
     if (doc.querySelector('parsererror')) {
       console.error(
         '[XmlReader] XML parsing error:',
@@ -150,15 +159,18 @@ export async function readTags() {
       );
       throw new Error('XML parsing error');
     }
+
     const tagDefinitions = doc.querySelector('tag-definitions');
     if (!tagDefinitions) {
       console.error('[XmlReader] <tag-definitions> section missing in XML.');
       throw new Error('No <tag-definitions> section found in the XML file.');
     }
+
     const tags = readElements(tagDefinitions, 'tag');
     if (!tags || tags.length === 0) {
       console.warn('[XmlReader] No tags found in the XML file.');
     }
+
     return tags;
   } catch (err) {
     console.error('[XmlReader] Error reading tags:', err);
