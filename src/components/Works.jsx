@@ -28,7 +28,7 @@ const Works = ({ language, translations }) => (
       <div className='row'>
         {works.map((work, idx) => (
           <div className='col-md-4 mb-3' key={idx}>
-            <div className='card h-100'>
+            <div className='card h-100 bg-light'>
               <div className='card-body'>
                 <h5 className='card-title'>{work.title}</h5>
                 <p className='card-text'>
