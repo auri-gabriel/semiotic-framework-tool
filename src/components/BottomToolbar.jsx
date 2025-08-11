@@ -4,16 +4,31 @@ const toolbarTexts = {
   en: {
     export: 'Export',
     exportXML: 'Export XML',
-    importXML: 'Import',
+    exportLadder: 'Export Semiotic Ladder',
+    exportLadderAnswered: 'Only answered questions',
+    importXML: 'Import XML',
+    exportPDF: 'as PDF',
+    exportDOCX: 'as DOCX',
   },
   pt_BR: {
     export: 'Exportar',
     exportXML: 'Exportar XML',
-    importXML: 'Importar',
+    exportLadder: 'Exportar Escada Semiótica',
+    exportLadderAnswered: 'Apenas perguntas respondidas',
+    importXML: 'Importar XML',
+    exportPDF: 'em PDF',
+    exportDOCX: 'em DOCX',
   },
 };
 
-function BottomToolbar({ answers, onImportXML, onExport, language }) {
+function BottomToolbar({
+  answers,
+  onImportXML,
+  onExport,
+  language,
+  exportOnlyAnswered,
+  setExportOnlyAnswered,
+}) {
   const fileInputRef = useRef();
   const t = toolbarTexts[language];
 

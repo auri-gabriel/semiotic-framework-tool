@@ -1,7 +1,13 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useEffect, useState } from 'react';
 import { getQuestionsGroupedBySemiotics } from './business/SemioticLadderManager';
-import { exportAnswersAsXML, importAnswersFromXML } from './data/ImpexManager';
+import SemioticAccordion from './components/SemioticAccordion';
+import BottomToolbar from './components/BottomToolbar';
+import {
+  exportAnswersAsXML,
+  importAnswersFromXML,
+  exportSemioticLadderDoc,
+} from './data/ImpexManager';
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -26,6 +32,7 @@ function App() {
     const saved = localStorage.getItem('answers');
     return saved ? JSON.parse(saved) : {};
   });
+  const [exportOnlyAnswered, setExportOnlyAnswered] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('language', language);
@@ -51,19 +58,28 @@ function App() {
     }));
   };
 
-  const handleExport = (format) => {
+  const handleExport = async (format, options = {}) => {
     let exportObj;
     if (format === 'xml') {
       exportObj = exportAnswersAsXML(answers);
+      if (exportObj) {
+        const blob = new Blob([exportObj.data], { type: exportObj.mimeType });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = exportObj.fileName;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
     }
-    if (exportObj) {
-      const blob = new Blob([exportObj.data], { type: exportObj.mimeType });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = exportObj.fileName;
-      a.click();
-      URL.revokeObjectURL(url);
+    if (format === 'semiotic-ladder') {
+      await exportSemioticLadderDoc({
+        grouping: semioticLadderGrouping,
+        answers,
+        onlyAnswered: options.onlyAnswered,
+        language,
+        format: options.format,
+      });
     }
   };
 
@@ -103,6 +119,8 @@ function App() {
         onAnswerChange={handleAnswerChange}
         onImportXML={handleImportXML}
         onExport={handleExport}
+        exportOnlyAnswered={exportOnlyAnswered}
+        setExportOnlyAnswered={setExportOnlyAnswered}
       />
       <AboutUs language={language} />
       <Works language={language} />

@@ -22,6 +22,8 @@ export default function StartSection({
   onImportXML,
   onExport,
   translations,
+  exportOnlyAnswered,
+  setExportOnlyAnswered,
 }) {
   const text = sectionTexts[language];
 
