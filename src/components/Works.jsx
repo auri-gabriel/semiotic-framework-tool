@@ -13,7 +13,7 @@ const works = [
       'Uma Revisão Sistematizada sobre Design Participativo Integrado à Engenharia de Software em Domínio Educacional',
     event: 'Simpósio Brasileiro de Informática na Educação (SBIE)',
     date: '2024-11-04',
-    url: 'https://example.com/work1',
+    url: 'https://sol.sbc.org.br/index.php/sbie/article/view/31249',
   },
   {
     title:
@@ -21,7 +21,7 @@ const works = [
     event:
       'Anais do 15º Salão Internacional de Ensino, Pesquisa e Extensão da UNIPAMPA: Pesquisa e Inovação',
     date: '2023-12-18',
-    url: 'https://example.com/work2',
+    url: 'https://periodicos.unipampa.edu.br/index.php/SIEPE/article/view/117233',
   },
   {
     title:
@@ -29,7 +29,7 @@ const works = [
     event:
       'Anais do 15º Salão Internacional de Ensino, Pesquisa e Extensão da UNIPAMPA: Pesquisa e Inovação',
     date: '2023-12-18',
-    url: 'https://example.com/work3',
+    url: 'https://periodicos.unipampa.edu.br/index.php/SIEPE/article/view/117234',
   },
 ];
 
@@ -57,7 +57,7 @@ const Works = ({ language }) => (
                     </p>
                   </div>
                   <div className='mt-3 text-end arrow-container'>
-                    <i className='bi bi-arrow-right'></i>
+                    → {/* simple right arrow character */}
                   </div>
                 </div>
               </div>
@@ -74,12 +74,12 @@ const Works = ({ language }) => (
         border-bottom-color: black;
         border-bottom-width: 2px;
       }
-      .arrow-container i {
+      .arrow-container {
         display: inline-block;
-        font-size: 2rem; /* bigger arrow */
+        font-size: 2rem;
         transition: transform 0.2s ease;
       }
-      a:hover .arrow-container i {
+      a:hover .arrow-container {
         transform: translateX(4px);
       }
     `}</style>
