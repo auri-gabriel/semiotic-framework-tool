@@ -1,5 +1,6 @@
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import React, { useEffect, useRef } from 'react';
+import pell from 'pell';
+import 'pell/dist/pell.min.css';
 
 const answerLabel = {
   en: 'Your answer:',
@@ -14,6 +15,56 @@ function QuestionAccordion({
   answer,
   onAnswerChange,
 }) {
+  const editorRef = useRef(null);
+  const pellInstance = useRef(null);
+
+  useEffect(() => {
+    // Only initialize once
+    if (!editorRef.current || pellInstance.current) return;
+
+    pellInstance.current = pell.init({
+      element: editorRef.current,
+      onChange: (html) => {
+        onAnswerChange(question.id, html);
+      },
+      defaultParagraphSeparator: 'p',
+      styleWithCSS: false,
+      actions: [
+        'bold',
+        'italic',
+        'underline',
+        'strikethrough',
+        'heading1',
+        'heading2',
+        'paragraph',
+        'quote',
+        'olist',
+        'ulist',
+        'link',
+        'image',
+      ],
+    });
+
+    // Set initial value
+    pellInstance.current.content.innerHTML = answer || '';
+
+    return () => {
+      pellInstance.current = null;
+      if (editorRef.current) editorRef.current.innerHTML = '';
+    };
+  }, [question.id, onAnswerChange]);
+
+  // Update content when "answer" changes externally
+  useEffect(() => {
+    if (
+      pellInstance.current &&
+      pellInstance.current.content &&
+      pellInstance.current.content.innerHTML !== answer
+    ) {
+      pellInstance.current.content.innerHTML = answer || '';
+    }
+  }, [answer]);
+
   return (
     <div className='accordion-item'>
       <h2
@@ -40,12 +91,13 @@ function QuestionAccordion({
           <label htmlFor={`answer-${question.id}`} className='form-label'>
             {answerLabel[language]}
           </label>
-          <CKEditor
-            editor={ClassicEditor}
-            data={answer}
-            onChange={(_, editor) => {
-              const data = editor.getData();
-              onAnswerChange(question.id, data);
+          <div
+            id={`answer-${question.id}`}
+            ref={editorRef}
+            style={{
+              border: '1px solid #ccc',
+              borderRadius: '4px',
+              minHeight: 100,
             }}
           />
         </div>
