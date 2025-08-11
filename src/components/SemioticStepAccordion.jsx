@@ -43,7 +43,7 @@ function SemioticStepAccordion({
             data-bs-toggle='collapse'
             data-bs-target={`#collapse-${groupKey}-${stepKey}-info`}
           >
-            <i class='bi bi-info-circle-fill me-2'></i>
+            <i className='bi bi-info-circle-fill me-2'></i>
             {semioticStepTexts[language].info}
           </button>
 
