@@ -4,7 +4,7 @@ const navbarTexts = {
   en: {
     group: {
       framework: 'The Framework',
-      iniciar: 'Start',
+      start: 'Start',
       aboutUs: 'About us',
       works: 'Works',
     },
@@ -13,7 +13,7 @@ const navbarTexts = {
   pt_BR: {
     group: {
       framework: 'O Framework',
-      iniciar: 'Iniciar',
+      start: 'Iniciar',
       aboutUs: 'Sobre nós',
       works: 'Trabalhos',
     },
@@ -54,8 +54,8 @@ const Navbar = ({ language, setLanguage, LANGUAGES }) => {
               </a>
             </li>
             <li className='nav-item'>
-              <a className='nav-link' href='#iniciar'>
-                {t.group.iniciar}
+              <a className='nav-link' href='#start'>
+                {t.group.start}
               </a>
             </li>
             <li className='nav-item'>

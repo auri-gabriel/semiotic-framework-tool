@@ -25,7 +25,7 @@ const Hero = ({ language }) => {
     >
       <div className='container'>
         <div className='row'>
-          <div className='col-12 col-md-6'>
+          <div className='my-5 col-12 col-md-6'>
             <div
               className='card bg-black text-white p-4 shadow m-0'
               style={{
