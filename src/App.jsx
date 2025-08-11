@@ -153,21 +153,23 @@ function App() {
         translations={translations}
       />
       <Hero language={language} translations={translations} />
-      <div className='container py-4 px-3 mx-auto' id='iniciar'>
-        <SemioticAccordion
-          grouping={semioticLadderGrouping}
-          language={language}
-          answers={answers}
-          onAnswerChange={handleAnswerChange}
-        />
-        <BottomToolbar
-          answers={answers}
-          onImportXML={handleImportXML}
-          onExport={handleExport}
-          language={language}
-          translations={translations}
-        />
-      </div>
+      <section className='py-5 border-top' id='iniciar'>
+        <div className='container'>
+          <SemioticAccordion
+            grouping={semioticLadderGrouping}
+            language={language}
+            answers={answers}
+            onAnswerChange={handleAnswerChange}
+          />
+          <BottomToolbar
+            answers={answers}
+            onImportXML={handleImportXML}
+            onExport={handleExport}
+            language={language}
+            translations={translations}
+          />
+        </div>
+      </section>
       <AboutUs language={language} translations={translations} />
       <Works language={language} translations={translations} />
       <Footer language={language} translations={translations} />
