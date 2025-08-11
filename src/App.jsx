@@ -8,7 +8,7 @@ import Hero from './components/Hero';
 import AboutUs from './components/AboutUs';
 import Works from './components/Works';
 import Footer from './components/Footer';
-import IniciarSection from './components/IniciarSection';
+import StartSection from './components/StartSection';
 
 const LANGUAGES = [
   { code: 'en', label: 'English' },
@@ -96,7 +96,7 @@ function App() {
         LANGUAGES={LANGUAGES}
       />
       <Hero language={language} />
-      <IniciarSection
+      <StartSection
         semioticLadderGrouping={semioticLadderGrouping}
         language={language}
         answers={answers}

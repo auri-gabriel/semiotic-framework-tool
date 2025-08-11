@@ -14,7 +14,7 @@ const sectionTexts = {
   },
 };
 
-export default function IniciarSection({
+export default function StartSection({
   semioticLadderGrouping,
   language,
   answers,
@@ -26,7 +26,7 @@ export default function IniciarSection({
   const text = sectionTexts[language];
 
   return (
-    <section className='py-5 border-top' id='iniciar'>
+    <section className='py-5 border-top' id='start'>
       <div className='container'>
         <h2 className='mb-3'>{text.title}</h2>
         <p className='mb-4' style={{ whiteSpace: 'pre-line' }}>
