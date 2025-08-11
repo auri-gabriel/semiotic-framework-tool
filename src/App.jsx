@@ -18,11 +18,18 @@ const LANGUAGES = [
 function App() {
   const [loading, setLoading] = useState(true);
   const [semioticLadderGrouping, setSemioticLadderGrouping] = useState({});
-  const [language, setLanguage] = useState('en');
+  const [language, setLanguage] = useState(() => {
+    const savedLang = localStorage.getItem('language');
+    return savedLang || 'en';
+  });
   const [answers, setAnswers] = useState(() => {
     const saved = localStorage.getItem('answers');
     return saved ? JSON.parse(saved) : {};
   });
+
+  useEffect(() => {
+    localStorage.setItem('language', language);
+  }, [language]);
 
   useEffect(() => {
     async function fetchData() {
