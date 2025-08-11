@@ -12,7 +12,7 @@ function SemioticStepAccordion({
     <div className='accordion-item'>
       <h2 className='accordion-header' id={`heading-${groupKey}-${stepKey}`}>
         <button
-          className='accordion-button collapsed'
+          className='accordion-button collapsed bg-white'
           type='button'
           data-bs-toggle='collapse'
           data-bs-target={`#collapse-${groupKey}-${stepKey}`}
@@ -27,7 +27,7 @@ function SemioticStepAccordion({
         className='accordion-collapse collapse'
         aria-labelledby={`heading-${groupKey}-${stepKey}`}
       >
-        <div className='accordion-body'>
+        <div className='accordion-body bg-white'>
           <div
             className='accordion'
             id={`accordion-${groupKey}-${stepKey}-questions`}
