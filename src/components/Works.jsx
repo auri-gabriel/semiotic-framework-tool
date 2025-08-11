@@ -52,10 +52,11 @@ const Works = ({ language }) => (
                     <h5 className='card-title fw-semibold lh-sm mb-3'>
                       {work.title}
                     </h5>
-                    <p className='card-text text-muted small mb-1'>
+                    <p className='card-text text-muted small mb-2'>
                       {work.event}
                     </p>
                     <p className='card-text text-secondary fst-italic small'>
+                      <i className='bi bi-calendar me-2'></i>
                       {new Date(work.date).toLocaleDateString(
                         language === 'pt_BR' ? 'pt-BR' : 'en-US',
                         {
