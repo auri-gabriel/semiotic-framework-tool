@@ -40,7 +40,6 @@ function BottomToolbar({ answers, onImportXML, onExport, language }) {
         position: 'sticky',
         bottom: 0,
         zIndex: 1050,
-        overflowX: 'auto',
         WebkitOverflowScrolling: 'touch',
         whiteSpace: 'nowrap',
       }}
