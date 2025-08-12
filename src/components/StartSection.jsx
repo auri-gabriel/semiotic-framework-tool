@@ -26,8 +26,8 @@ export default function StartSection({
   const text = sectionTexts[language];
 
   return (
-    <section className='py-5 border-top' id='start'>
-      <div className='container'>
+    <section className='pt-5 border-top' id='start'>
+      <div className='container mb-5'>
         <h2 className='mb-3'>{text.title}</h2>
         <p className='mb-4' style={{ whiteSpace: 'pre-line' }}>
           {text.intro}
@@ -38,14 +38,14 @@ export default function StartSection({
           answers={answers}
           onAnswerChange={onAnswerChange}
         />
-        <BottomToolbar
-          answers={answers}
-          onImportXML={onImportXML}
-          onExport={onExport}
-          language={language}
-          translations={translations}
-        />
       </div>
+      <BottomToolbar
+        answers={answers}
+        onImportXML={onImportXML}
+        onExport={onExport}
+        language={language}
+        translations={translations}
+      />
     </section>
   );
 }
