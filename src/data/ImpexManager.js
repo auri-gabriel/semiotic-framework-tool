@@ -50,152 +50,255 @@ export async function exportSemioticLadderDoc({
   format = 'pdf',
 }) {
   if (format === 'pdf') {
-    const jsPDFModule = await import('jspdf');
-    // Vite/ESM: use .default
-    const jsPDF = jsPDFModule.default;
-    const doc = new jsPDF();
-
-    // PDF configuration
-    const pageWidth = doc.internal.pageSize.getWidth();
-    const pageHeight = doc.internal.pageSize.getHeight();
-    const margin = 15;
-    const maxWidth = pageWidth - margin * 2;
-
     const title = language === 'pt_BR' ? 'Escada Semiótica' : 'Semiotic Ladder';
 
-    // Helper function to add text with word wrapping
-    function addWrappedText(text, x, y, maxWidth, fontSize = 12) {
-      doc.setFontSize(fontSize);
-      const lines = doc.splitTextToSize(text, maxWidth);
-      doc.text(lines, x, y);
-      return y + lines.length * (fontSize * 0.35); // Return new Y position
-    }
-
-    // Helper function to check if we need a new page
-    function checkPageBreak(currentY, neededHeight = 15) {
-      if (currentY + neededHeight > pageHeight - margin) {
-        doc.addPage();
-        return margin + 10; // Reset Y position with top margin
-      }
-      return currentY;
-    }
-
-    // Add title
-    let y = margin + 10;
-    doc.setFontSize(20);
-    doc.setFont(undefined, 'bold');
-    doc.text(title, margin, y);
-    doc.setFont(undefined, 'normal');
-    y += 15;
-
-    // Add a line under the title
-    doc.setLineWidth(0.5);
-    doc.line(margin, y, pageWidth - margin, y);
-    y += 10;
-
-    // Process groups
-    Object.entries(grouping).forEach(([groupId, groupProps]) => {
-      y = checkPageBreak(y, 25);
-
-      // Group title
-      doc.setFontSize(16);
-      doc.setFont(undefined, 'bold');
-      y = addWrappedText(
-        groupProps.tag.names[language],
-        margin,
-        y,
-        maxWidth,
-        16
-      );
-      doc.setFont(undefined, 'normal');
-      y += 5;
-
-      // Process steps within group
-      Object.entries(groupProps.steps).forEach(([stepId, stepProps]) => {
-        y = checkPageBreak(y, 20);
-
-        // Step title
-        doc.setFontSize(14);
-        doc.setFont(undefined, 'bold');
-        y = addWrappedText(
-          stepProps.tag.names[language],
-          margin + 5,
-          y,
-          maxWidth - 5,
-          14
-        );
-        doc.setFont(undefined, 'normal');
-        y += 3;
-
-        // Process questions within step
-        stepProps.questions.forEach((q) => {
-          const answer = answers[q.id];
-          if (!onlyAnswered || answer) {
-            y = checkPageBreak(y, 25);
-
-            // Question text
-            doc.setFontSize(12);
-            doc.setFont(undefined, 'bold');
-            const questionText = q.texts[language] || q.texts.en;
-            y = addWrappedText(
-              `${questionText}`,
-              margin + 10,
-              y,
-              maxWidth - 10,
-              12
-            );
-            doc.setFont(undefined, 'normal');
-            y += 2;
-
-            // Answer text
-            doc.setFontSize(11);
-            const answerText = answer
-              ? answer
-              : language === 'pt_BR'
-              ? '(sem resposta)'
-              : '(no answer)';
-            y = addWrappedText(
-              `${answerText}`,
-              margin + 15,
-              y,
-              maxWidth - 15,
-              11
-            );
-            y += 8;
-          }
-        });
-
-        y += 3; // Space between steps
-      });
-
-      y += 5; // Space between groups
-
-      // Add separator line between groups (except for last group)
-      const groupKeys = Object.keys(grouping);
-      const isLastGroup = groupId === groupKeys[groupKeys.length - 1];
-      if (!isLastGroup) {
-        y = checkPageBreak(y, 5);
-        doc.setLineWidth(0.2);
-        doc.line(margin + 5, y, pageWidth - margin - 5, y);
-        y += 8;
-      }
+    // Generate HTML content
+    const htmlContent = generateHTML({
+      grouping,
+      answers,
+      onlyAnswered,
+      language,
+      title,
     });
-
-    // Add footer with page numbers if multiple pages
-    const totalPages = doc.getNumberOfPages();
-    if (totalPages > 1) {
-      for (let i = 1; i <= totalPages; i++) {
-        doc.setPage(i);
-        doc.setFontSize(9);
-        doc.text(
-          `Page ${i} of ${totalPages}`,
-          pageWidth - margin - 20,
-          pageHeight - 10
-        );
-      }
-    }
-
-    // Use save() which triggers download synchronously
-    doc.save(`${title}.pdf`);
+    printHTML(htmlContent, title);
   }
+}
+
+function generateHTML({ grouping, answers, onlyAnswered, language, title }) {
+  const styles = `
+    <style>
+      @page {
+        size: A4;
+        margin: 20mm;
+      }
+      
+      @media print {
+        body { 
+          -webkit-print-color-adjust: exact;
+          print-color-adjust: exact;
+        }
+        .page-break {
+          page-break-before: always;
+        }
+        .avoid-break {
+          page-break-inside: avoid;
+        }
+      }
+      
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 100%;
+        margin: 0;
+        padding: 0;
+      }
+      
+      .document-container {
+        max-width: 100%;
+        margin: 0 auto;
+        background: white;
+      }
+      
+      .header {
+        text-align: center;
+        margin-bottom: 30px;
+        padding-bottom: 15px;
+        border-bottom: 2px solid #2c3e50;
+      }
+      
+      .document-title {
+        font-size: 24px;
+        font-weight: bold;
+        color: #2c3e50;
+        margin: 0;
+      }
+      
+      .group {
+        margin-bottom: 25px;
+        page-break-inside: avoid;
+      }
+      
+      .group:not(:last-child) {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 20px;
+      }
+      
+      .group-title {
+        font-size: 18px;
+        font-weight: bold;
+        color: #34495e;
+        margin-bottom: 15px;
+        background: #f8f9fa;
+        padding: 10px;
+        border-left: 4px solid #3498db;
+      }
+      
+      .step {
+        margin-bottom: 20px;
+        margin-left: 15px;
+      }
+      
+      .step-title {
+        font-size: 16px;
+        font-weight: bold;
+        color: #2c3e50;
+        margin-bottom: 10px;
+        padding: 8px;
+        background: #ecf0f1;
+        border-left: 3px solid #95a5a6;
+      }
+      
+      .question {
+        margin-bottom: 15px;
+        margin-left: 20px;
+        page-break-inside: avoid;
+      }
+      
+      .question-text {
+        font-size: 14px;
+        font-weight: 600;
+        color: #2c3e50;
+        margin-bottom: 5px;
+        line-height: 1.4;
+      }
+      
+      .answer-text {
+        font-size: 13px;
+        color: #555;
+        background: #f9f9f9;
+        padding: 10px;
+        border-radius: 4px;
+        border-left: 3px solid #3498db;
+        margin-left: 10px;
+        white-space: pre-wrap;
+        word-wrap: break-word;
+      }
+      
+      .no-answer {
+        font-style: italic;
+        color: #7f8c8d;
+        background: #fafafa;
+        border-left-color: #bdc3c7;
+      }
+      
+      .footer {
+        margin-top: 40px;
+        text-align: center;
+        font-size: 12px;
+        color: #7f8c8d;
+        border-top: 1px solid #ddd;
+        padding-top: 10px;
+      }
+      
+      /* Better print spacing */
+      @media print {
+        .group { margin-bottom: 15px; }
+        .step { margin-bottom: 12px; }
+        .question { margin-bottom: 10px; }
+      }
+    </style>
+  `;
+
+  const groups = Object.entries(grouping)
+    .map(([groupId, groupProps]) => {
+      const steps = Object.entries(groupProps.steps)
+        .map(([stepId, stepProps]) => {
+          const questions = stepProps.questions
+            .filter((q) => !onlyAnswered || answers[q.id])
+            .map((q) => {
+              const answer = answers[q.id];
+              const questionText = q.texts[language] || q.texts.en;
+              const answerText = answer
+                ? answer
+                : language === 'pt_BR'
+                ? '(sem resposta)'
+                : '(no answer)';
+
+              return `
+            <div class="question">
+              <div class="question-text">${escapeHtml(questionText)}</div>
+              <div class="answer-text ${!answer ? 'no-answer' : ''}">
+                ${answerText}
+              </div>
+            </div>
+          `;
+            })
+            .join('');
+
+          if (!questions) return '';
+
+          return `
+        <div class="step">
+          <div class="step-title">${escapeHtml(
+            stepProps.tag.names[language]
+          )}</div>
+          ${questions}
+        </div>
+      `;
+        })
+        .join('');
+
+      if (!steps) return '';
+
+      return `
+      <div class="group avoid-break">
+        <div class="group-title">${escapeHtml(
+          groupProps.tag.names[language]
+        )}</div>
+        ${steps}
+      </div>
+    `;
+    })
+    .join('');
+
+  return `
+    <!DOCTYPE html>
+    <html lang="${language === 'pt_BR' ? 'pt-BR' : 'en'}">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>${escapeHtml(title)}</title>
+      ${styles}
+    </head>
+    <body>
+      <div class="document-container">
+        <div class="header">
+          <h1 class="document-title">${escapeHtml(title)}</h1>
+        </div>
+        
+        <div class="content">
+          ${groups}
+        </div>
+        
+        <div class="footer">
+          <p>Generated on ${new Date().toLocaleDateString(
+            language === 'pt_BR' ? 'pt-BR' : 'en-US'
+          )}</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+}
+
+function escapeHtml(text) {
+  const div = document.createElement('div');
+  div.textContent = text;
+  return div.innerHTML;
+}
+
+// Method 1: Native browser print
+function printHTML(htmlContent, filename) {
+  const printWindow = window.open('', '_blank');
+  printWindow.document.write(htmlContent);
+  printWindow.document.close();
+
+  // Wait for content to load, then print
+  printWindow.onload = function () {
+    setTimeout(() => {
+      printWindow.print();
+      // Note: Browser will handle the PDF generation when user chooses "Save as PDF"
+    }, 100);
+  };
 }
