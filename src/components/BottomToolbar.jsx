@@ -4,12 +4,12 @@ const toolbarTexts = {
   en: {
     export: 'Export',
     exportXML: 'Export XML',
-    importXML: 'Import XML',
+    importXML: 'Import',
   },
   pt_BR: {
     export: 'Exportar',
     exportXML: 'Exportar XML',
-    importXML: 'Importar XML',
+    importXML: 'Importar',
   },
 };
 
@@ -39,7 +39,7 @@ function BottomToolbar({ answers, onImportXML, onExport, language }) {
       style={{
         position: 'sticky',
         bottom: 0,
-        zIndex: 1050,
+        zIndex: 999,
         WebkitOverflowScrolling: 'touch',
         whiteSpace: 'nowrap',
       }}

@@ -26,7 +26,12 @@ const Navbar = ({ language, setLanguage, LANGUAGES }) => {
   const t = navbarTexts[language];
 
   return (
-    <nav className='navbar navbar-expand-lg navbar-light bg-light border-bottom'>
+    <nav
+      className='navbar navbar-expand-lg navbar-light bg-light border-bottom sticky-top'
+      style={{
+        zIndex: 1000,
+      }}
+    >
       <div className='container'>
         <a className='navbar-brand' href='#'>
           <span role='img' aria-label='tool'>
