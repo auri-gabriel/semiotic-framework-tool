@@ -120,6 +120,51 @@ function BottomToolbar({
                     {t.exportXML}
                   </button>
                 </li>
+                <li>
+                  <div className='dropdown-item'>
+                    <div className='form-check'>
+                      <input
+                        className='form-check-input'
+                        type='checkbox'
+                        id='exportOnlyAnswered'
+                        checked={exportOnlyAnswered}
+                        onChange={(e) =>
+                          setExportOnlyAnswered(e.target.checked)
+                        }
+                      />
+                      <label
+                        className='form-check-label'
+                        htmlFor='exportOnlyAnswered'
+                      >
+                        {t.exportLadderAnswered}
+                      </label>
+                    </div>
+                    <div className='mt-2 d-flex gap-2'>
+                      <button
+                        className='btn btn-outline-secondary btn-sm'
+                        onClick={() =>
+                          onExport('semiotic-ladder', {
+                            onlyAnswered: exportOnlyAnswered,
+                            format: 'pdf',
+                          })
+                        }
+                      >
+                        {t.exportLadder} {t.exportPDF}
+                      </button>
+                      <button
+                        className='btn btn-outline-secondary btn-sm'
+                        onClick={() =>
+                          onExport('semiotic-ladder', {
+                            onlyAnswered: exportOnlyAnswered,
+                            format: 'docx',
+                          })
+                        }
+                      >
+                        {t.exportLadder} {t.exportDOCX}
+                      </button>
+                    </div>
+                  </div>
+                </li>
               </ul>
             </div>
           </div>
