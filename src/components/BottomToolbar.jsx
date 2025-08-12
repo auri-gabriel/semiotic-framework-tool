@@ -122,6 +122,19 @@ function BottomToolbar({
                 </li>
                 <li>
                   <div className='dropdown-item'>
+                    <div className='mt-2 d-flex gap-2'>
+                      <button
+                        className='btn btn-outline-secondary btn-sm'
+                        onClick={() =>
+                          onExport('semiotic-ladder', {
+                            onlyAnswered: exportOnlyAnswered,
+                            format: 'pdf',
+                          })
+                        }
+                      >
+                        {t.exportLadder} {t.exportPDF}
+                      </button>
+                    </div>
                     <div className='form-check'>
                       <input
                         className='form-check-input'
@@ -138,30 +151,6 @@ function BottomToolbar({
                       >
                         {t.exportLadderAnswered}
                       </label>
-                    </div>
-                    <div className='mt-2 d-flex gap-2'>
-                      <button
-                        className='btn btn-outline-secondary btn-sm'
-                        onClick={() =>
-                          onExport('semiotic-ladder', {
-                            onlyAnswered: exportOnlyAnswered,
-                            format: 'pdf',
-                          })
-                        }
-                      >
-                        {t.exportLadder} {t.exportPDF}
-                      </button>
-                      <button
-                        className='btn btn-outline-secondary btn-sm'
-                        onClick={() =>
-                          onExport('semiotic-ladder', {
-                            onlyAnswered: exportOnlyAnswered,
-                            format: 'docx',
-                          })
-                        }
-                      >
-                        {t.exportLadder} {t.exportDOCX}
-                      </button>
                     </div>
                   </div>
                 </li>
