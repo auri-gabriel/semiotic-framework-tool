@@ -27,18 +27,18 @@ const AboutUs = ({ language }) => {
         <ul>
           <li>
             {language === 'pt_BR'
-              ? 'Profa. Dra. Aline Vieira de Melo (Docente no Campus Alegrete)'
-              : 'Prof. Dr. Aline Vieira de Melo (Professor at Alegrete Campus)'}
+              ? 'Profa. Dra. Aline Vieira de Mello (Docente no Campus Alegrete)'
+              : 'Prof. Dr. Aline Vieira de Mello (Professor at Alegrete Campus)'}
           </li>
           <li>
             {language === 'pt_BR'
-              ? 'Profa. Dra. Amanda Patickine Melo (Docente no Campus Alegrete) – líder do grupo de pesquisa'
-              : 'Prof. Dr. Amanda Patickine Melo (Professor at Alegrete Campus) – research group leader'}
+              ? 'Profa. Dra. Amanda Meincke Melo (Docente no Campus Alegrete) – líder do grupo de pesquisa'
+              : 'Prof. Dr. Amanda Meincke Melo (Professor at Alegrete Campus) – research group leader'}
           </li>
           <li>
             {language === 'pt_BR'
-              ? 'Prof. Dr. Jean Felipe Patickovski Cherian (Docente no Campus Alegrete)'
-              : 'Prof. Dr. Jean Felipe Patickovski Cherian (Professor at Alegrete Campus)'}
+              ? 'Prof. Dr. Jean Felipe Patikowski Cheiran (Docente no Campus Alegrete)'
+              : 'Prof. Dr. Jean Felipe Patikowski Cheiran (Professor at Alegrete Campus)'}
           </li>
         </ul>
         <p>
@@ -47,13 +47,13 @@ const AboutUs = ({ language }) => {
         <ul>
           <li>
             {language === 'pt_BR'
-              ? 'Auri Gabriel Carlos de Melo (Acadêmico do Curso de Engenharia de Software)'
-              : 'Auri Gabriel Carlos de Melo (Software Engineering student)'}
+              ? 'Auri Gabriel Castro de Melo (Acadêmico do Curso de Engenharia de Software)'
+              : 'Auri Gabriel Castro de Melo (Software Engineering student)'}
           </li>
           <li>
             {language === 'pt_BR'
-              ? 'Renilson Pereira Torres (Acadêmico do Curso de Ciência da Computação, bolsista PIBIC-AF 2024)'
-              : 'Renilson Pereira Torres (Computer Science student, PIBIC-AF 2024 fellow)'}
+              ? 'Renilson Pereira Torres (Acadêmico do Curso de Ciência da Computação, bolsista PIBIC-Af 2024)'
+              : 'Renilson Pereira Torres (Computer Science student, PIBIC-Af 2024 fellow)'}
           </li>
           <li>
             {language === 'pt_BR'
