@@ -46,6 +46,7 @@ function BottomToolbar({ answers, onImportXML, onExport, language }) {
     >
       <div className='container'>
         <div className='d-flex gap-3 align-items-center'>
+          {/* Import Button */}
           <div>
             <input
               type='file'
@@ -54,18 +55,40 @@ function BottomToolbar({ answers, onImportXML, onExport, language }) {
               style={{ display: 'none' }}
               onChange={handleFileChange}
             />
+            {/* Mobile (small) button */}
             <button
-              className='btn btn-outline-light d-flex align-items-center'
+              className='btn btn-outline-light btn-sm d-sm-none d-inline-flex align-items-center'
+              onClick={handleImportClick}
+            >
+              <i className='bi bi-upload me-2'></i>
+              {t.importXML}
+            </button>
+            {/* Desktop (normal) button */}
+            <button
+              className='btn btn-outline-light d-none d-sm-inline-flex align-items-center'
               onClick={handleImportClick}
             >
               <i className='bi bi-upload me-2'></i>
               {t.importXML}
             </button>
           </div>
+
+          {/* Export Button with Dropdown */}
           <div>
             <div className='btn-group dropup'>
+              {/* Mobile (small) button */}
               <button
-                className='btn btn-primary dropdown-toggle d-flex align-items-center'
+                className='btn btn-primary btn-sm dropdown-toggle d-sm-none d-inline-flex align-items-center'
+                type='button'
+                data-bs-toggle='dropdown'
+                aria-expanded='false'
+              >
+                <i className='bi bi-download me-2'></i>
+                {t.export}
+              </button>
+              {/* Desktop (normal) button */}
+              <button
+                className='btn btn-primary dropdown-toggle d-none d-sm-inline-flex align-items-center'
                 type='button'
                 data-bs-toggle='dropdown'
                 aria-expanded='false'
@@ -90,4 +113,5 @@ function BottomToolbar({ answers, onImportXML, onExport, language }) {
     </div>
   );
 }
+
 export default BottomToolbar;
