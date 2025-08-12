@@ -55,48 +55,145 @@ export async function exportSemioticLadderDoc({
     const jsPDF = jsPDFModule.default;
     const doc = new jsPDF();
 
+    // PDF configuration
+    const pageWidth = doc.internal.pageSize.getWidth();
+    const pageHeight = doc.internal.pageSize.getHeight();
+    const margin = 15;
+    const maxWidth = pageWidth - margin * 2;
+
     const title = language === 'pt_BR' ? 'Escada Semiótica' : 'Semiotic Ladder';
-    doc.setFontSize(18);
-    doc.text(title, 10, 15);
 
-    let y = 25;
+    // Helper function to add text with word wrapping
+    function addWrappedText(text, x, y, maxWidth, fontSize = 12) {
+      doc.setFontSize(fontSize);
+      const lines = doc.splitTextToSize(text, maxWidth);
+      doc.text(lines, x, y);
+      return y + lines.length * (fontSize * 0.35); // Return new Y position
+    }
+
+    // Helper function to check if we need a new page
+    function checkPageBreak(currentY, neededHeight = 15) {
+      if (currentY + neededHeight > pageHeight - margin) {
+        doc.addPage();
+        return margin + 10; // Reset Y position with top margin
+      }
+      return currentY;
+    }
+
+    // Add title
+    let y = margin + 10;
+    doc.setFontSize(20);
+    doc.setFont(undefined, 'bold');
+    doc.text(title, margin, y);
+    doc.setFont(undefined, 'normal');
+    y += 15;
+
+    // Add a line under the title
+    doc.setLineWidth(0.5);
+    doc.line(margin, y, pageWidth - margin, y);
+    y += 10;
+
+    // Process groups
     Object.entries(grouping).forEach(([groupId, groupProps]) => {
-      doc.setFontSize(14);
-      doc.text(groupProps.tag.names[language], 10, y);
-      y += 8;
+      y = checkPageBreak(y, 25);
 
+      // Group title
+      doc.setFontSize(16);
+      doc.setFont(undefined, 'bold');
+      y = addWrappedText(
+        groupProps.tag.names[language],
+        margin,
+        y,
+        maxWidth,
+        16
+      );
+      doc.setFont(undefined, 'normal');
+      y += 5;
+
+      // Process steps within group
       Object.entries(groupProps.steps).forEach(([stepId, stepProps]) => {
-        doc.text(stepProps.tag.names[language], 10, y);
+        y = checkPageBreak(y, 20);
 
+        // Step title
+        doc.setFontSize(14);
+        doc.setFont(undefined, 'bold');
+        y = addWrappedText(
+          stepProps.tag.names[language],
+          margin + 5,
+          y,
+          maxWidth - 5,
+          14
+        );
+        doc.setFont(undefined, 'normal');
+        y += 3;
+
+        // Process questions within step
         stepProps.questions.forEach((q) => {
           const answer = answers[q.id];
           if (!onlyAnswered || answer) {
+            y = checkPageBreak(y, 25);
+
+            // Question text
             doc.setFontSize(12);
-            doc.text(`${q.texts[language] || q.texts.en}`, 12, y);
-            y += 6;
+            doc.setFont(undefined, 'bold');
+            const questionText = q.texts[language] || q.texts.en;
+            y = addWrappedText(
+              `Q: ${questionText}`,
+              margin + 10,
+              y,
+              maxWidth - 10,
+              12
+            );
+            doc.setFont(undefined, 'normal');
+            y += 2;
+
+            // Answer text
             doc.setFontSize(11);
-            doc.text(
-              `A: ${
-                answer
-                  ? answer
-                  : language === 'pt_BR'
-                  ? '(sem resposta)'
-                  : '(no answer)'
-              }`,
-              14,
-              y
+            const answerText = answer
+              ? answer
+              : language === 'pt_BR'
+              ? '(sem resposta)'
+              : '(no answer)';
+            y = addWrappedText(
+              `A: ${answerText}`,
+              margin + 15,
+              y,
+              maxWidth - 15,
+              11
             );
             y += 8;
           }
         });
+
+        y += 3; // Space between steps
       });
 
-      y += 4;
-      if (y > 270) {
-        doc.addPage();
-        y = 15;
+      y += 5; // Space between groups
+
+      // Add separator line between groups (except for last group)
+      const groupKeys = Object.keys(grouping);
+      const isLastGroup = groupId === groupKeys[groupKeys.length - 1];
+      if (!isLastGroup) {
+        y = checkPageBreak(y, 5);
+        doc.setLineWidth(0.2);
+        doc.line(margin + 5, y, pageWidth - margin - 5, y);
+        y += 8;
       }
     });
+
+    // Add footer with page numbers if multiple pages
+    const totalPages = doc.getNumberOfPages();
+    if (totalPages > 1) {
+      for (let i = 1; i <= totalPages; i++) {
+        doc.setPage(i);
+        doc.setFontSize(9);
+        doc.text(
+          `Page ${i} of ${totalPages}`,
+          pageWidth - margin - 20,
+          pageHeight - 10
+        );
+      }
+    }
 
     // Use save() which triggers download synchronously
     doc.save(`${title}.pdf`);
