@@ -53,22 +53,22 @@ const Navbar = ({ language, setLanguage, LANGUAGES }) => {
           id='navbarSupportedContent'
         >
           <ul className='navbar-nav ms-auto mb-2 mb-lg-0'>
-            <li className='nav-item'>
+            <li className='nav-item d-flex align-items-center'>
               <a className='nav-link' href='#framework'>
                 {t.group.framework}
               </a>
             </li>
-            <li className='nav-item'>
+            <li className='nav-item d-flex align-items-center'>
               <a className='nav-link' href='#start'>
                 {t.group.start}
               </a>
             </li>
-            <li className='nav-item'>
+            <li className='nav-item d-flex align-items-center'>
               <a className='nav-link' href='#sobre-nos'>
                 {t.group.aboutUs}
               </a>
             </li>
-            <li className='nav-item'>
+            <li className='nav-item d-flex align-items-center'>
               <a className='nav-link' href='#works'>
                 {t.group.works}
               </a>
