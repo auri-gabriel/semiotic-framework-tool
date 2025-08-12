@@ -35,7 +35,7 @@ function BottomToolbar({ answers, onImportXML, onExport, language }) {
 
   return (
     <div
-      className='bg-dark border-top py-2 px-3 d-flex justify-content-between align-items-center shadow-sm container'
+      className='bg-dark py-2 px-3 d-flex gap-3 align-items-center shadow-sm'
       style={{
         position: 'sticky',
         bottom: 0,
@@ -43,6 +43,22 @@ function BottomToolbar({ answers, onImportXML, onExport, language }) {
         marginBottom: '1.5rem',
       }}
     >
+      <div>
+        <input
+          type='file'
+          accept='.xml'
+          ref={fileInputRef}
+          style={{ display: 'none' }}
+          onChange={handleFileChange}
+        />
+        <button
+          className='btn btn-outline-light d-flex align-items-center'
+          onClick={handleImportClick}
+        >
+          <i className='bi bi-upload me-2'></i>
+          {t.importXML}
+        </button>
+      </div>
       <div>
         <div className='btn-group'>
           <button
@@ -62,22 +78,6 @@ function BottomToolbar({ answers, onImportXML, onExport, language }) {
             </li>
           </ul>
         </div>
-      </div>
-      <div>
-        <input
-          type='file'
-          accept='.xml'
-          ref={fileInputRef}
-          style={{ display: 'none' }}
-          onChange={handleFileChange}
-        />
-        <button
-          className='btn btn-outline-light d-flex align-items-center'
-          onClick={handleImportClick}
-        >
-          <i className='bi bi-upload me-2'></i>
-          {t.importXML}
-        </button>
       </div>
     </div>
   );
