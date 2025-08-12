@@ -138,7 +138,7 @@ export async function exportSemioticLadderDoc({
             doc.setFont(undefined, 'bold');
             const questionText = q.texts[language] || q.texts.en;
             y = addWrappedText(
-              `Q: ${questionText}`,
+              `${questionText}`,
               margin + 10,
               y,
               maxWidth - 10,
@@ -155,7 +155,7 @@ export async function exportSemioticLadderDoc({
               ? '(sem resposta)'
               : '(no answer)';
             y = addWrappedText(
-              `A: ${answerText}`,
+              `${answerText}`,
               margin + 15,
               y,
               maxWidth - 15,
