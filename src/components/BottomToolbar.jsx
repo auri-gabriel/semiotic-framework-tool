@@ -63,7 +63,7 @@ function BottomToolbar({ answers, onImportXML, onExport, language }) {
             </button>
           </div>
           <div>
-            <div className='btn-group'>
+            <div className='btn-group dropup'>
               <button
                 className='btn btn-primary dropdown-toggle d-flex align-items-center'
                 type='button'
