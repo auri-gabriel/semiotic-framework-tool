@@ -41,8 +41,7 @@ const AboutUs = ({ language }) => {
         <img
           src='/logo-geinfoedu.png'
           alt='GEInfoEdu'
-          style={{ maxWidth: 200 }}
-          className='mb-3'
+          className='mb-3 img-fluid'
         />
         <ul>
           {t.professors.map((prof, idx) => (
