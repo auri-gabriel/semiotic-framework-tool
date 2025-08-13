@@ -40,7 +40,13 @@ const AboutUs = () => {
   return (
     <section id='sobre-nos' className='bg-light py-5 border-top'>
       <div className='container'>
-        <h2 className='mb-4'>{t.aboutUs}</h2>
+        <div className='d-flex align-items-center mb-4'>
+          <div
+            className='bg-primary'
+            style={{ width: '4px', height: '48px' }}
+          ></div>
+          <h2 className='ms-3 mb-0 fw-bold text-dark'>{t.aboutUs}</h2>
+        </div>
         <p>{t.aboutUsText}</p>
         <img
           src='/logo-geinfoedu.png'

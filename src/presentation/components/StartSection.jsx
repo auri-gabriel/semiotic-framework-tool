@@ -35,7 +35,13 @@ export default function StartSection() {
   return (
     <section className='pt-5 border-top' id='start'>
       <div className='container mb-5'>
-        <h2 className='mb-3'>{text.title}</h2>
+        <div className='d-flex align-items-center mb-4'>
+          <div
+            className='bg-primary'
+            style={{ width: '4px', height: '48px' }}
+          ></div>
+          <h2 className='ms-3 mb-0 fw-bold text-dark'>{text.title}</h2>
+        </div>
         <p className='mb-4' style={{ whiteSpace: 'pre-line' }}>
           {text.intro}
         </p>
