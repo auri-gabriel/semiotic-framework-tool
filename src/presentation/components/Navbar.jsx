@@ -3,6 +3,8 @@ import { useLanguage } from '../hooks/useLanguage';
 
 const navbarTexts = {
   en: {
+    brand: 'Educational Semioparticipatory Framework',
+    brandAcronym: 'ESF',
     group: {
       framework: 'The Framework',
       start: 'Start',
@@ -12,6 +14,8 @@ const navbarTexts = {
     language: 'Language',
   },
   pt_BR: {
+    brand: 'Framework Semioparticipativo Educacional',
+    brandAcronym: 'FSE',
     group: {
       framework: 'O Framework',
       start: 'Iniciar',
@@ -35,10 +39,22 @@ const Navbar = () => {
       }}
     >
       <div className='container'>
-        <a className='navbar-brand' href='#'>
-          <span role='img' aria-label='tool'>
-            🛠️
+        <a
+          className='navbar-brand d-flex align-items-center fw-bold text-decoration-none text-white'
+          href='#'
+          title={t.brand}
+        >
+          <span
+            className='me-3 p-2 bg-primary text-white d-flex align-items-center justify-content-center'
+            style={{
+              height: '32px',
+              fontSize: '1rem',
+              fontWeight: 'bold',
+            }}
+          >
+            {t.brandAcronym}
           </span>
+          <span className='d-none d-md-inline text-dark'>{t.brand}</span>
         </a>
         <button
           className='navbar-toggler'
