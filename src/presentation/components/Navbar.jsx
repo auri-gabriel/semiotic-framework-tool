@@ -32,7 +32,7 @@ const Navbar = () => {
   const { language, setLanguage, LANGUAGES } = useLanguage();
   const t = navbarTexts[language];
 
-  const currentLanguage = LANGUAGES.find(lang => lang.code === language);
+  const currentLanguage = LANGUAGES.find((lang) => lang.code === language);
 
   const handleLanguageChange = (newLanguage) => {
     setLanguage(newLanguage);
@@ -112,14 +112,14 @@ const Navbar = () => {
               </a>
             </li>
             <li className='nav-item d-flex align-items-center ms-3'>
-              <span className='form-label me-2 mb-0'>
-                {t.language}:
-              </span>
+              <span className='form-label me-2 mb-0'>{t.language}:</span>
               <div className='dropdown'>
                 <button
                   className='btn btn-outline-secondary dropdown-toggle d-flex align-items-center'
                   type='button'
-                  onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+                  onClick={() =>
+                    setIsLanguageDropdownOpen(!isLanguageDropdownOpen)
+                  }
                   aria-expanded={isLanguageDropdownOpen}
                   style={{ minWidth: '140px' }}
                 >
@@ -130,14 +130,18 @@ const Navbar = () => {
                     {currentLanguage?.label.split(' ')[0]}
                   </span>
                 </button>
-                <ul 
-                  className={`dropdown-menu${isLanguageDropdownOpen ? ' show' : ''}`}
+                <ul
+                  className={`dropdown-menu${
+                    isLanguageDropdownOpen ? ' show' : ''
+                  }`}
                   style={{ minWidth: '160px' }}
                 >
                   {LANGUAGES.map((lang) => (
                     <li key={lang.code}>
                       <button
-                        className={`dropdown-item d-flex align-items-center${lang.code === language ? ' active' : ''}`}
+                        className={`dropdown-item d-flex align-items-center${
+                          lang.code === language ? ' active' : ''
+                        }`}
                         type='button'
                         onClick={() => handleLanguageChange(lang.code)}
                       >

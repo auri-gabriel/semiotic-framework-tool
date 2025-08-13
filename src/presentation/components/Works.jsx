@@ -58,6 +58,7 @@ const Works = () => {
                         {work.title}
                       </h5>
                       <p className='card-text text-muted small mb-2'>
+                        <i className='bi bi-building me-2'></i>
                         {work.event}
                       </p>
                       <p className='card-text text-secondary fst-italic small'>
