@@ -48,8 +48,11 @@ export async function exportSemioticLadderDoc({
   onlyAnswered,
   language,
   format = 'pdf',
+  onExportStart,
+  onExportEnd,
 }) {
   if (format === 'pdf') {
+    if (onExportStart) onExportStart();
     const title = language === 'pt_BR' ? 'Escada Semiótica' : 'Semiotic Ladder';
 
     // Generate HTML content
@@ -60,7 +63,8 @@ export async function exportSemioticLadderDoc({
       language,
       title,
     });
-    printWithHtml2Pdf(htmlContent, title);
+    await printWithHtml2Pdf(htmlContent, title);
+    if (onExportEnd) onExportEnd();
   }
 }
 
