@@ -121,6 +121,9 @@ function BottomToolbar({
                   </button>
                 </li>
                 <li>
+                  <hr class='dropdown-divider' />
+                </li>
+                <li>
                   <div className='dropdown-item'>
                     <div className='mt-2 d-flex gap-2'>
                       <button
