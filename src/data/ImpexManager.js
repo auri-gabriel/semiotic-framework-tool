@@ -60,7 +60,7 @@ export async function exportSemioticLadderDoc({
       language,
       title,
     });
-    printHTML(htmlContent, title);
+    printWithHtml2Pdf(htmlContent, title);
   }
 }
 
@@ -301,4 +301,63 @@ function printHTML(htmlContent, filename) {
       // Note: Browser will handle the PDF generation when user chooses "Save as PDF"
     }, 100);
   };
+}
+
+async function printWithHtml2Pdf(htmlContent, filename) {
+  const html2pdf = (await import('html2pdf.js')).default;
+
+  const tempDiv = document.createElement('div');
+  tempDiv.style.position = 'absolute';
+  tempDiv.style.top = '-9999px';
+  tempDiv.style.left = '-9999px';
+  tempDiv.style.backgroundColor = 'white';
+  tempDiv.style.width = '794px'; // optional, for A4 layout
+
+  const parser = new DOMParser();
+  const doc = parser.parseFromString(htmlContent, 'text/html');
+
+  // Grab all style tags
+  let styleContent = '';
+  doc.head
+    .querySelectorAll('style')
+    .forEach((s) => (styleContent += s.innerHTML));
+
+  tempDiv.innerHTML = `
+    <style>${styleContent}</style>
+    <div class="document-container">
+      ${doc.body.innerHTML}
+    </div>
+  `;
+
+  document.body.appendChild(tempDiv);
+
+  await new Promise((res) => setTimeout(res, 200));
+
+  const opt = {
+    margin: [10, 10, 10, 10],
+    filename: `${filename}.pdf`,
+    image: { type: 'jpeg', quality: 1 },
+    html2canvas: {
+      scale: 2,
+      useCORS: true,
+      letterRendering: true,
+      backgroundColor: '#ffffff',
+    },
+    jsPDF: {
+      unit: 'mm',
+      format: 'a4',
+      orientation: 'portrait',
+      compress: true,
+    },
+    pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
+  };
+
+  try {
+    await html2pdf()
+      .set(opt)
+      .from(tempDiv.querySelector('.document-container'))
+      .save();
+  } finally {
+    document.body.removeChild(tempDiv);
+  }
 }
