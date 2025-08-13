@@ -14,6 +14,7 @@ function QuestionAccordion({
   answer,
   onAnswerChange,
 }) {
+  const placeholder = question.placeholders?.[language] || '';
   return (
     <div className='accordion-item'>
       <h2
@@ -43,6 +44,9 @@ function QuestionAccordion({
           <CKEditor
             editor={ClassicEditor}
             data={answer}
+            config={{
+              placeholder: placeholder,
+            }}
             onChange={(_, editor) => {
               const data = editor.getData();
               onAnswerChange(question.id, data);

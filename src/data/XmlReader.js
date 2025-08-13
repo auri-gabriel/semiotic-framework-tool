@@ -72,6 +72,18 @@ function readElements(elementDefinitions, elementName) {
       descriptions[lang] = description.textContent;
     });
 
+    let placeholderNodes = elementNode.querySelectorAll('placeholder');
+    let placeholders = {};
+    placeholderNodes.forEach((placeholder, phIdx) => {
+      const lang = placeholder.getAttribute('lang');
+      if (!lang) {
+        console.warn(
+          `[XmlReader] <placeholder> in '${elementName}' id='${elementId}' at placeholder index ${phIdx} missing 'lang' attribute.`
+        );
+      }
+      placeholders[lang] = placeholder.textContent;
+    });
+
     let element = {};
     if (elementId) element['id'] = elementId;
     if (elementType) element['type'] = elementType;
@@ -85,6 +97,8 @@ function readElements(elementDefinitions, elementName) {
       element['descriptions'] = descriptions;
     if (Object.keys(texts).length !== 0) element['texts'] = texts;
     if (tags.length !== 0) element['tags'] = tags;
+    if (Object.keys(placeholders).length !== 0)
+      element['placeholders'] = placeholders;
 
     elements.push(element);
   });
