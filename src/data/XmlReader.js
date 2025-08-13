@@ -28,12 +28,21 @@ function readElements(elementDefinitions, elementName) {
     let tags = [];
     tagsNodes.forEach((tag, tagIdx) => {
       const tagId = tag.getAttribute('id');
+      // Find the tag definition to get its type
+      const tagDef = elementDefinitions.ownerDocument.querySelector(
+        `tag-definitions > tag[id="${tagId}"]`
+      );
+      const tagType = tagDef ? tagDef.getAttribute('type') : null;
+
       if (!tagId) {
         console.warn(
           `[XmlReader] <tag> in '${elementName}' id='${elementId}' at tag index ${tagIdx} missing 'id' attribute.`
         );
       }
-      tags.push({ id: tagId });
+      tags.push({
+        id: tagId,
+        type: tagType, // Include the tag type
+      });
     });
 
     let textNodes = elementNode.querySelectorAll('text');
@@ -140,10 +149,25 @@ export async function readQuestions() {
     }
 
     let questions = readElements(questionDefinitions, 'question');
-    if (!questions || questions.length === 0) {
-      console.error('[XmlReader] No questions found in the XML file.');
-      throw new Error('No questions found in the XML file.');
-    }
+
+    // Enhance questions with tag information
+    questions = questions.map((question) => {
+      // Convert tags array to include both semiotic and engineering tags
+      const enhancedTags = question.tags.map((tag) => tag.id);
+      const semioticTags = question.tags
+        .filter((tag) => tag.type === 'semiotic-steps')
+        .map((tag) => tag.id);
+      const engineeringTags = question.tags
+        .filter((tag) => tag.type === 'engineering-layer')
+        .map((tag) => tag.id);
+
+      return {
+        ...question,
+        tags: enhancedTags,
+        semioticTags: semioticTags,
+        engineeringTags: engineeringTags,
+      };
+    });
 
     return questions;
   } catch (err) {

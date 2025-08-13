@@ -391,3 +391,306 @@ async function printWithHtml2Pdf(htmlContent, filename) {
     document.body.removeChild(tempDiv);
   }
 }
+
+export async function exportEngineeringLayers({
+  questions,
+  answers,
+  onlyAnswered,
+  language,
+  format = 'pdf',
+  onExportStart,
+  onExportEnd,
+}) {
+  if (format === 'pdf') {
+    if (onExportStart) onExportStart();
+    const title =
+      language === 'pt_BR'
+        ? 'Camadas de Engenharia de Software'
+        : 'Software Engineering Layers';
+
+    // Parse the definitions XML to get engineering layer tags and their names
+    const parser = new DOMParser();
+    const definitions = parser.parseFromString(
+      definitionsXML,
+      'application/xml'
+    );
+    const engineeringTags = {};
+
+    // Get all engineering layer tags and their names
+    definitions
+      .querySelectorAll('tag[type="engineering-layer"]')
+      .forEach((tag) => {
+        const id = tag.getAttribute('id');
+        const order = parseInt(tag.getAttribute('order'));
+        const names = {};
+        tag.querySelectorAll('name').forEach((name) => {
+          names[name.getAttribute('lang')] = name.textContent.trim();
+        });
+        engineeringTags[id] = { id, order, names };
+      });
+
+    // Group questions by engineering layer using the new engineeringTags property
+    const layers = questions.reduce((acc, q) => {
+      // Use the engineeringTags property we added in XmlReader
+      q.engineeringTags.forEach((tagId) => {
+        if (!acc[tagId]) {
+          acc[tagId] = {
+            tag: engineeringTags[tagId],
+            questions: [],
+          };
+        }
+        acc[tagId].questions.push(q);
+      });
+      return acc;
+    }, {});
+
+    // Generate HTML content
+    const htmlContent = generateEngineeringLayersHTML({
+      layers,
+      answers,
+      onlyAnswered,
+      language,
+      title,
+    });
+
+    await printWithHtml2Pdf(htmlContent, title);
+    if (onExportEnd) onExportEnd();
+  }
+}
+
+function generateEngineeringLayersHTML({
+  layers,
+  answers,
+  onlyAnswered,
+  language,
+  title,
+}) {
+  // Reuse existing styles from generateHTML
+  const styles = `
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+@page {
+  size: A4;
+  margin: 20mm;
+}
+
+@media print {
+  body {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  .page-break {
+    page-break-before: always;
+  }
+  .avoid-break {
+    page-break-inside: avoid;
+  }
+}
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, sans-serif;
+  line-height: 1.5;
+  color: #1a1a1a;
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.document-container {
+  max-width: 100%;
+  margin: 0 auto;
+  background: white;
+}
+
+.header {
+  text-align: left;
+  margin-bottom: 32px;
+  padding-bottom: 16px;
+  border-bottom: 2px solid #000000;
+}
+
+.document-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000000;
+  margin: 0;
+  letter-spacing: -0.02em;
+  line-height: 1.2;
+}
+
+.group {
+  margin-bottom: 32px;
+  page-break-inside: avoid;
+}
+
+.group:not(:last-child) {
+  border-bottom: 1px solid #e5e5e5;
+  padding-bottom: 24px;
+}
+
+.group-title {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 20px;
+  background: #f8f8f8;
+  padding: 16px;
+  border: none;
+  border-left: 4px solid #000000;
+  letter-spacing: -0.01em;
+}
+
+.step {
+  margin-bottom: 24px;
+  margin-left: 16px;
+}
+
+.step-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  padding: 12px;
+  background: #ffffff;
+  border: 1px solid #d1d1d1;
+  border-left: 3px solid #666666;
+}
+
+.question {
+  margin-bottom: 16px;
+  margin-left: 24px;
+  page-break-inside: avoid;
+}
+
+.question-text {
+  font-size: 14px;
+  font-weight: 500;
+  color: #1a1a1a;
+  margin-bottom: 8px;
+  line-height: 1.4;
+  letter-spacing: -0.005em;
+}
+
+.answer-text {
+  font-size: 13px;
+  color: #4a4a4a;
+  background: #ffffff;
+  padding: 12px;
+  border: 1px solid #e0e0e0;
+  border-left: 3px solid #666666;
+  margin-left: 12px;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.no-answer {
+  font-style: italic;
+  color: #8a8a8a;
+  background: #fafafa;
+  border-left-color: #cccccc;
+}
+
+.footer {
+  margin-top: 48px;
+  text-align: left;
+  font-size: 11px;
+  color: #8a8a8a;
+  border-top: 1px solid #e5e5e5;
+  padding-top: 16px;
+  font-weight: 400;
+}
+
+/* Better print spacing */
+@media print {
+  .group { 
+    margin-bottom: 20px; 
+  }
+  .step { 
+    margin-bottom: 16px; 
+  }
+  .question { 
+    margin-bottom: 12px; 
+  }
+  .group-title {
+    background: #f8f8f8 !important;
+  }
+  .answer-text {
+    background: #ffffff !important;
+    border-color: #e0e0e0 !important;
+  }
+}
+</style>
+`;
+
+  const layersContent = Object.entries(layers)
+    .sort(([, a], [, b]) => a.tag.order - b.tag.order)
+    .map(([layerId, layer]) => {
+      const questions = layer.questions
+        .filter((q) => !onlyAnswered || answers[q.id])
+        .map((q) => {
+          const answer = answers[q.id];
+          const questionText = q.texts[language] || q.texts.en;
+          const answerText = answer
+            ? answer
+            : language === 'pt_BR'
+            ? '(sem resposta)'
+            : '(no answer)';
+
+          return `
+            <div class="question">
+              <div class="question-text">${escapeHtml(questionText)}</div>
+              <div class="answer-text ${!answer ? 'no-answer' : ''}">
+                ${answerText}
+              </div>
+            </div>
+          `;
+        })
+        .join('');
+
+      if (!questions) return '';
+
+      return `
+        <div class="group avoid-break">
+          <div class="group-title">${escapeHtml(
+            layer.tag.names[language]
+          )}</div>
+          ${questions}
+        </div>
+      `;
+    })
+    .join('');
+
+  return `
+    <!DOCTYPE html>
+    <html lang="${language === 'pt_BR' ? 'pt-BR' : 'en'}">
+    <head>
+      <meta charset="UTF-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>${escapeHtml(title)}</title>
+      ${styles}
+    </head>
+    <body>
+      <div class="document-container">
+        <div class="header">
+          <h1 class="document-title">${escapeHtml(title)}</h1>
+        </div>
+        
+        <div class="content">
+          ${layersContent}
+        </div>
+        
+        <div class="footer">
+          <p>Generated on ${new Date().toLocaleDateString(
+            language === 'pt_BR' ? 'pt-BR' : 'en-US'
+          )}</p>
+        </div>
+      </div>
+    </body>
+    </html>
+  `;
+}

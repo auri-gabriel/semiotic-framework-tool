@@ -7,6 +7,7 @@ import {
   exportAnswersAsXML,
   importAnswersFromXML,
   exportSemioticLadderDoc,
+  exportEngineeringLayers,
 } from './data/ImpexManager';
 
 import Navbar from './components/Navbar';
@@ -33,6 +34,7 @@ function App() {
     return saved ? JSON.parse(saved) : {};
   });
   const [exportOnlyAnswered, setExportOnlyAnswered] = useState(false);
+  const [exportEngOnlyAnswered, setExportEngOnlyAnswered] = useState(false);
   const [exporting, setExporting] = useState(false);
 
   useEffect(() => {
@@ -85,6 +87,24 @@ function App() {
         onExportEnd: () => setExporting(false),
       });
       setExporting(false);
+    }
+    if (format === 'engineering-layers') {
+      setExporting(true);
+      try {
+        await exportEngineeringLayers({
+          questions: Object.values(semioticLadderGrouping)
+            .flatMap((group) => Object.values(group.steps))
+            .flatMap((step) => step.questions),
+          answers,
+          onlyAnswered: options.onlyAnswered,
+          language,
+          format: options.format,
+          onExportStart: () => setExporting(true),
+          onExportEnd: () => setExporting(false),
+        });
+      } finally {
+        setExporting(false);
+      }
     }
   };
 
@@ -149,6 +169,8 @@ function App() {
           onExport={handleExport}
           exportOnlyAnswered={exportOnlyAnswered}
           setExportOnlyAnswered={setExportOnlyAnswered}
+          exportEngOnlyAnswered={exportEngOnlyAnswered}
+          setExportEngOnlyAnswered={setExportEngOnlyAnswered}
         />
         <AboutUs language={language} />
         <Works language={language} />

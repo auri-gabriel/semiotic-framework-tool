@@ -9,6 +9,7 @@ const toolbarTexts = {
     importXML: 'Import XML',
     exportPDF: 'as PDF',
     exportDOCX: 'as DOCX',
+    exportEngLayers: 'Export Engineering Layers',
   },
   pt_BR: {
     export: 'Exportar',
@@ -18,6 +19,7 @@ const toolbarTexts = {
     importXML: 'Importar XML',
     exportPDF: 'em PDF',
     exportDOCX: 'em DOCX',
+    exportEngLayers: 'Exportar Camadas de Engenharia',
   },
 };
 
@@ -28,6 +30,8 @@ function BottomToolbar({
   language,
   exportOnlyAnswered,
   setExportOnlyAnswered,
+  exportEngOnlyAnswered,
+  setExportEngOnlyAnswered,
 }) {
   const fileInputRef = useRef();
   const t = toolbarTexts[language];
@@ -121,7 +125,7 @@ function BottomToolbar({
                   </button>
                 </li>
                 <li>
-                  <hr class='dropdown-divider' />
+                  <hr className='dropdown-divider' />
                 </li>
                 <li>
                   <div className=''>
@@ -152,6 +156,45 @@ function BottomToolbar({
                         <label
                           className='form-check-label'
                           htmlFor='exportOnlyAnswered'
+                        >
+                          {t.exportLadderAnswered}
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <hr className='dropdown-divider' />
+                </li>
+                <li>
+                  <div className=''>
+                    <div className='my-2 d-flex gap-2'>
+                      <button
+                        className='dropdown-item'
+                        onClick={() =>
+                          onExport('engineering-layers', {
+                            onlyAnswered: exportEngOnlyAnswered,
+                            format: 'pdf',
+                          })
+                        }
+                      >
+                        {t.exportEngLayers} {t.exportPDF}
+                      </button>
+                    </div>
+                    <div className='px-3'>
+                      <div className='form-check'>
+                        <input
+                          className='form-check-input'
+                          type='checkbox'
+                          id='exportOnlyAnsweredEng'
+                          checked={exportEngOnlyAnswered}
+                          onChange={(e) =>
+                            setExportEngOnlyAnswered(e.target.checked)
+                          }
+                        />
+                        <label
+                          className='form-check-label'
+                          htmlFor='exportOnlyAnsweredEng'
                         >
                           {t.exportLadderAnswered}
                         </label>

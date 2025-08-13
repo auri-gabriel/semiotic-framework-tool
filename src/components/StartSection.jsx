@@ -21,9 +21,10 @@ export default function StartSection({
   onAnswerChange,
   onImportXML,
   onExport,
-  translations,
   exportOnlyAnswered,
   setExportOnlyAnswered,
+  exportEngOnlyAnswered,
+  setExportEngOnlyAnswered,
 }) {
   const text = sectionTexts[language];
 
@@ -46,9 +47,10 @@ export default function StartSection({
         onImportXML={onImportXML}
         onExport={onExport}
         language={language}
-        translations={translations}
         exportOnlyAnswered={exportOnlyAnswered}
         setExportOnlyAnswered={setExportOnlyAnswered}
+        exportEngOnlyAnswered={exportEngOnlyAnswered}
+        setExportEngOnlyAnswered={setExportEngOnlyAnswered}
       />
     </section>
   );
