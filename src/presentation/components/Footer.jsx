@@ -156,12 +156,14 @@ const Footer = () => {
 
           {/* Logo */}
           <div className='col-lg-3 col-md-6 text-center text-lg-end'>
-            <img
-              src='/logo-geinfoedu.png'
-              alt='GEInfoEdu Logo'
-              className='img-fluid mb-3'
-              style={{ maxHeight: '80px' }}
-            />
+            <div className='logo-container d-inline-block p-3 bg-white rounded mb-3'>
+              <img
+                src='/logo-geinfoedu.png'
+                alt='GEInfoEdu Logo'
+                className='img-fluid'
+                style={{ maxHeight: '60px' }}
+              />
+            </div>
             <div className='small text-light'>
               <p className='mb-1 text-light'>
                 {t.developed} <i className='bi bi-heart-fill text-danger'></i>
