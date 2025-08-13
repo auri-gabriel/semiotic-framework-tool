@@ -1,3 +1,6 @@
+import React from 'react';
+import { useLanguage } from '../hooks/useLanguage';
+
 const worksTexts = {
   en: {
     works: 'Works',
@@ -33,67 +36,70 @@ const works = [
   },
 ];
 
-const Works = ({ language }) => (
-  <section className='py-5 border-top' id='works'>
-    <div className='container'>
-      <h2 className='mb-5 fw-bold display-6'>{worksTexts[language].works}</h2>
-      <div className='row g-4'>
-        {works.map((work, idx) => (
-          <div className='col-md-4' key={idx}>
-            <a
-              href={work.url}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='text-decoration-none text-dark'
-            >
-              <div className='card h-100 bg-light work-card shadow-sm'>
-                <div className='card-body d-flex flex-column justify-content-between'>
-                  <div>
-                    <h5 className='card-title fw-semibold lh-sm mb-3'>
-                      {work.title}
-                    </h5>
-                    <p className='card-text text-muted small mb-2'>
-                      {work.event}
-                    </p>
-                    <p className='card-text text-secondary fst-italic small'>
-                      <i className='bi bi-calendar me-2'></i>
-                      {new Date(work.date).toLocaleDateString(
-                        language === 'pt_BR' ? 'pt-BR' : 'en-US',
-                        {
-                          year: 'numeric',
-                          month: 'long',
-                          day: 'numeric',
-                        }
-                      )}
-                    </p>
+const Works = () => {
+  const { language } = useLanguage();
+  return (
+    <section className='py-5 border-top' id='works'>
+      <div className='container'>
+        <h2 className='mb-5 fw-bold display-6'>{worksTexts[language].works}</h2>
+        <div className='row g-4'>
+          {works.map((work, idx) => (
+            <div className='col-md-4' key={idx}>
+              <a
+                href={work.url}
+                target='_blank'
+                rel='noopener noreferrer'
+                className='text-decoration-none text-dark'
+              >
+                <div className='card h-100 bg-light work-card shadow-sm'>
+                  <div className='card-body d-flex flex-column justify-content-between'>
+                    <div>
+                      <h5 className='card-title fw-semibold lh-sm mb-3'>
+                        {work.title}
+                      </h5>
+                      <p className='card-text text-muted small mb-2'>
+                        {work.event}
+                      </p>
+                      <p className='card-text text-secondary fst-italic small'>
+                        <i className='bi bi-calendar me-2'></i>
+                        {new Date(work.date).toLocaleDateString(
+                          language === 'pt_BR' ? 'pt-BR' : 'en-US',
+                          {
+                            year: 'numeric',
+                            month: 'long',
+                            day: 'numeric',
+                          }
+                        )}
+                      </p>
+                    </div>
+                    <div className='mt-3 text-end arrow-container'>→</div>
                   </div>
-                  <div className='mt-3 text-end arrow-container'>→</div>
                 </div>
-              </div>
-            </a>
-          </div>
-        ))}
+              </a>
+            </div>
+          ))}
+        </div>
       </div>
-    </div>
-    <style jsx>{`
-      .work-card {
-        transition: border-color 0.3s ease, transform 0.2s ease;
-      }
-      a:hover .work-card {
-        transform: translateY(-2px);
-        border-bottom-color: black;
-        border-bottom-width: 2px;
-      }
-      .arrow-container {
-        display: inline-block;
-        font-size: 1.75rem;
-        transition: transform 0.2s ease;
-      }
-      a:hover .arrow-container {
-        transform: translateX(6px);
-      }
-    `}</style>
-  </section>
-);
+      <style jsx>{`
+        .work-card {
+          transition: border-color 0.3s ease, transform 0.2s ease;
+        }
+        a:hover .work-card {
+          transform: translateY(-2px);
+          border-bottom-color: black;
+          border-bottom-width: 2px;
+        }
+        .arrow-container {
+          display: inline-block;
+          font-size: 1.75rem;
+          transition: transform 0.2s ease;
+        }
+        a:hover .arrow-container {
+          transform: translateX(6px);
+        }
+      `}</style>
+    </section>
+  );
+};
 
 export default Works;

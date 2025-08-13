@@ -1,3 +1,6 @@
+import React from 'react';
+import { useLanguage } from '../hooks/useLanguage';
+
 const aboutUsTexts = {
   en: {
     aboutUs: 'About us',
@@ -31,7 +34,8 @@ const aboutUsTexts = {
   },
 };
 
-const AboutUs = ({ language }) => {
+const AboutUs = () => {
+  const { language } = useLanguage();
   const t = aboutUsTexts[language];
   return (
     <section id='sobre-nos' className='bg-light py-5 border-top'>

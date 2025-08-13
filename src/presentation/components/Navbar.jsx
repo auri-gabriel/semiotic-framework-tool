@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useLanguage } from '../hooks/useLanguage';
 
 const navbarTexts = {
   en: {
@@ -21,8 +22,9 @@ const navbarTexts = {
   },
 };
 
-const Navbar = ({ language, setLanguage, LANGUAGES }) => {
+const Navbar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const { language, setLanguage, LANGUAGES } = useLanguage();
   const t = navbarTexts[language];
 
   return (
