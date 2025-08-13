@@ -1,6 +1,6 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useEffect, useState } from 'react';
-import { getQuestionsGroupedBySemiotics } from './business/SemioticLadderManager';
+import { getQuestionsGroupedBySemiotics } from '../business/SemioticLadderManager';
 import SemioticAccordion from './components/SemioticAccordion';
 import BottomToolbar from './components/BottomToolbar';
 import {
@@ -8,7 +8,7 @@ import {
   importAnswersFromXML,
   exportSemioticLadderDoc,
   exportEngineeringLayers,
-} from './data/ImpexManager';
+} from '../data/ImpexManager';
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
