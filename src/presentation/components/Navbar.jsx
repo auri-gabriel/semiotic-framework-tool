@@ -3,8 +3,8 @@ import { useLanguage } from '../hooks/useLanguage';
 
 const navbarTexts = {
   en: {
-    brand: 'Educational Semioparticipatory Framework',
-    brandAcronym: 'ESF',
+    brand: 'Semioparticipatory Framework for Educational Software Development',
+    brandAcronym: 'SFESD',
     group: {
       framework: 'The Framework',
       start: 'Start',
@@ -14,8 +14,9 @@ const navbarTexts = {
     language: 'Language',
   },
   pt_BR: {
-    brand: 'Framework Semioparticipativo Educacional',
-    brandAcronym: 'FSE',
+    brand:
+      'Framework Semioparticipativo para o Desenvolvimento de Software Educacional',
+    brandAcronym: 'FSDSE',
     group: {
       framework: 'O Framework',
       start: 'Iniciar',
