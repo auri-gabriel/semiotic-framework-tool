@@ -1,7 +1,13 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import { useEffect, useState } from 'react';
 import { getQuestionsGroupedBySemiotics } from './business/SemioticLadderManager';
-import { exportAnswersAsXML, importAnswersFromXML } from './data/ImpexManager';
+import SemioticAccordion from './components/SemioticAccordion';
+import BottomToolbar from './components/BottomToolbar';
+import {
+  exportAnswersAsXML,
+  importAnswersFromXML,
+  exportSemioticLadderDoc,
+} from './data/ImpexManager';
 
 import Navbar from './components/Navbar';
 import Hero from './components/Hero';
@@ -26,6 +32,8 @@ function App() {
     const saved = localStorage.getItem('answers');
     return saved ? JSON.parse(saved) : {};
   });
+  const [exportOnlyAnswered, setExportOnlyAnswered] = useState(false);
+  const [exporting, setExporting] = useState(false);
 
   useEffect(() => {
     localStorage.setItem('language', language);
@@ -51,19 +59,32 @@ function App() {
     }));
   };
 
-  const handleExport = (format) => {
+  const handleExport = async (format, options = {}) => {
     let exportObj;
     if (format === 'xml') {
       exportObj = exportAnswersAsXML(answers);
+      if (exportObj) {
+        const blob = new Blob([exportObj.data], { type: exportObj.mimeType });
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = exportObj.fileName;
+        a.click();
+        URL.revokeObjectURL(url);
+      }
     }
-    if (exportObj) {
-      const blob = new Blob([exportObj.data], { type: exportObj.mimeType });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = exportObj.fileName;
-      a.click();
-      URL.revokeObjectURL(url);
+    if (format === 'semiotic-ladder') {
+      setExporting(true);
+      await exportSemioticLadderDoc({
+        grouping: semioticLadderGrouping,
+        answers,
+        onlyAnswered: options.onlyAnswered,
+        language,
+        format: options.format,
+        onExportStart: () => setExporting(true),
+        onExportEnd: () => setExporting(false),
+      });
+      setExporting(false);
     }
   };
 
@@ -89,23 +110,49 @@ function App() {
   }
 
   return (
-    <div>
+    <div className='min-vh-100 d-flex flex-column'>
+      {/* Overlay for exporting */}
+      {exporting && (
+        <div
+          className='position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center'
+          style={{
+            background: 'rgba(0,0,0,0.6)',
+            zIndex: 2000,
+            pointerEvents: 'all',
+          }}
+        >
+          <div className='bg-secondary shadow-lg p-5 d-flex flex-column align-items-center'>
+            <div className='spinner-border text-light mb-3' role='status'>
+              <span className='visually-hidden'>
+                {language === 'pt_BR' ? 'Exportando...' : 'Exporting...'}
+              </span>
+            </div>
+            <div className='fw-semibold text-light'>
+              {language === 'pt_BR' ? 'Exportando PDF...' : 'Exporting PDF...'}
+            </div>
+          </div>
+        </div>
+      )}
       <Navbar
         language={language}
         setLanguage={setLanguage}
         LANGUAGES={LANGUAGES}
       />
-      <Hero language={language} />
-      <StartSection
-        semioticLadderGrouping={semioticLadderGrouping}
-        language={language}
-        answers={answers}
-        onAnswerChange={handleAnswerChange}
-        onImportXML={handleImportXML}
-        onExport={handleExport}
-      />
-      <AboutUs language={language} />
-      <Works language={language} />
+      <main className='flex-grow-1'>
+        <Hero language={language} />
+        <StartSection
+          semioticLadderGrouping={semioticLadderGrouping}
+          language={language}
+          answers={answers}
+          onAnswerChange={handleAnswerChange}
+          onImportXML={handleImportXML}
+          onExport={handleExport}
+          exportOnlyAnswered={exportOnlyAnswered}
+          setExportOnlyAnswered={setExportOnlyAnswered}
+        />
+        <AboutUs language={language} />
+        <Works language={language} />
+      </main>
       <Footer language={language} />
     </div>
   );
