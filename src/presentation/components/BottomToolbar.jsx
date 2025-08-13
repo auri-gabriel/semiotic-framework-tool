@@ -128,38 +128,41 @@ function BottomToolbar({
                   <hr className='dropdown-divider' />
                 </li>
                 <li>
-                  <div className=''>
-                    <div className='my-2 d-flex gap-2'>
-                      <button
-                        className='dropdown-item'
-                        onClick={() =>
-                          onExport('semiotic-ladder', {
-                            onlyAnswered: exportOnlyAnswered,
-                            format: 'pdf',
-                          })
-                        }
+                  <button
+                    className='dropdown-item'
+                    onClick={() =>
+                      onExport('semiotic-ladder', {
+                        onlyAnswered: exportOnlyAnswered,
+                        format: 'pdf',
+                      })
+                    }
+                  >
+                    {t.exportLadder} {t.exportPDF}
+                  </button>
+                </li>
+                <li>
+                  <div
+                    className='dropdown-item-text px-3 py-2'
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <div className='form-check'>
+                      <input
+                        className='form-check-input'
+                        type='checkbox'
+                        id='exportOnlyAnswered'
+                        checked={exportOnlyAnswered}
+                        onChange={(e) => {
+                          e.stopPropagation();
+                          setExportOnlyAnswered(e.target.checked);
+                        }}
+                      />
+                      <label
+                        className='form-check-label'
+                        htmlFor='exportOnlyAnswered'
+                        onClick={(e) => e.stopPropagation()}
                       >
-                        {t.exportLadder} {t.exportPDF}
-                      </button>
-                    </div>
-                    <div className='px-3'>
-                      <div className='form-check'>
-                        <input
-                          className='form-check-input'
-                          type='checkbox'
-                          id='exportOnlyAnswered'
-                          checked={exportOnlyAnswered}
-                          onChange={(e) =>
-                            setExportOnlyAnswered(e.target.checked)
-                          }
-                        />
-                        <label
-                          className='form-check-label'
-                          htmlFor='exportOnlyAnswered'
-                        >
-                          {t.exportLadderAnswered}
-                        </label>
-                      </div>
+                        {t.exportLadderAnswered}
+                      </label>
                     </div>
                   </div>
                 </li>
@@ -167,38 +170,41 @@ function BottomToolbar({
                   <hr className='dropdown-divider' />
                 </li>
                 <li>
-                  <div className=''>
-                    <div className='my-2 d-flex gap-2'>
-                      <button
-                        className='dropdown-item'
-                        onClick={() =>
-                          onExport('engineering-layers', {
-                            onlyAnswered: exportEngOnlyAnswered,
-                            format: 'pdf',
-                          })
-                        }
+                  <button
+                    className='dropdown-item'
+                    onClick={() =>
+                      onExport('engineering-layers', {
+                        onlyAnswered: exportEngOnlyAnswered,
+                        format: 'pdf',
+                      })
+                    }
+                  >
+                    {t.exportEngLayers} {t.exportPDF}
+                  </button>
+                </li>
+                <li>
+                  <div
+                    className='dropdown-item-text px-3 py-2'
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <div className='form-check'>
+                      <input
+                        className='form-check-input'
+                        type='checkbox'
+                        id='exportOnlyAnsweredEng'
+                        checked={exportEngOnlyAnswered}
+                        onChange={(e) => {
+                          e.stopPropagation();
+                          setExportEngOnlyAnswered(e.target.checked);
+                        }}
+                      />
+                      <label
+                        className='form-check-label'
+                        htmlFor='exportOnlyAnsweredEng'
+                        onClick={(e) => e.stopPropagation()}
                       >
-                        {t.exportEngLayers} {t.exportPDF}
-                      </button>
-                    </div>
-                    <div className='px-3'>
-                      <div className='form-check'>
-                        <input
-                          className='form-check-input'
-                          type='checkbox'
-                          id='exportOnlyAnsweredEng'
-                          checked={exportEngOnlyAnswered}
-                          onChange={(e) =>
-                            setExportEngOnlyAnswered(e.target.checked)
-                          }
-                        />
-                        <label
-                          className='form-check-label'
-                          htmlFor='exportOnlyAnsweredEng'
-                        >
-                          {t.exportLadderAnswered}
-                        </label>
-                      </div>
+                        {t.exportLadderAnswered}
+                      </label>
                     </div>
                   </div>
                 </li>
