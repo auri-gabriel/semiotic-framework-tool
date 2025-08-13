@@ -124,7 +124,10 @@ function BottomToolbar({
                 <i className='bi bi-download me-2'></i>
                 {t.export}
               </button>
-              <ul className='dropdown-menu'>
+              <ul
+                className='dropdown-menu'
+                style={{ minWidth: '280px', maxWidth: '90vw' }}
+              >
                 {/* Data Export Section */}
                 <li>
                   <h6 className='dropdown-header d-flex align-items-center'>
@@ -136,11 +139,12 @@ function BottomToolbar({
                   <button
                     className='dropdown-item d-flex align-items-start'
                     onClick={() => onExport('xml')}
+                    style={{ whiteSpace: 'normal' }}
                   >
                     <div className='flex-shrink-0 me-2 mt-1'>
                       <i className='bi bi-file-earmark-code'></i>
                     </div>
-                    <div>
+                    <div className='text-break'>
                       <div className='fw-medium'>{t.exportXML}</div>
                       <small className='text-muted'>{t.exportXMLDesc}</small>
                     </div>
@@ -168,11 +172,12 @@ function BottomToolbar({
                         format: 'pdf',
                       })
                     }
+                    style={{ whiteSpace: 'normal' }}
                   >
                     <div className='flex-shrink-0 me-2 mt-1'>
                       <i className='bi bi-ladder'></i>
                     </div>
-                    <div>
+                    <div className='text-break'>
                       <div className='fw-medium'>
                         {t.exportLadder} {t.exportPDF}
                       </div>
@@ -217,11 +222,12 @@ function BottomToolbar({
                         format: 'pdf',
                       })
                     }
+                    style={{ whiteSpace: 'normal' }}
                   >
                     <div className='flex-shrink-0 me-2 mt-1'>
                       <i className='bi bi-layers'></i>
                     </div>
-                    <div>
+                    <div className='text-break'>
                       <div className='fw-medium'>
                         {t.exportEngLayers} {t.exportPDF}
                       </div>
