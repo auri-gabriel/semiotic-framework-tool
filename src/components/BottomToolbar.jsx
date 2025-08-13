@@ -124,10 +124,10 @@ function BottomToolbar({
                   <hr class='dropdown-divider' />
                 </li>
                 <li>
-                  <div className='dropdown-item'>
-                    <div className='mt-2 d-flex gap-2'>
+                  <div className=''>
+                    <div className='my-2 d-flex gap-2'>
                       <button
-                        className='btn btn-outline-secondary btn-sm'
+                        className='dropdown-item'
                         onClick={() =>
                           onExport('semiotic-ladder', {
                             onlyAnswered: exportOnlyAnswered,
@@ -138,22 +138,24 @@ function BottomToolbar({
                         {t.exportLadder} {t.exportPDF}
                       </button>
                     </div>
-                    <div className='form-check'>
-                      <input
-                        className='form-check-input'
-                        type='checkbox'
-                        id='exportOnlyAnswered'
-                        checked={exportOnlyAnswered}
-                        onChange={(e) =>
-                          setExportOnlyAnswered(e.target.checked)
-                        }
-                      />
-                      <label
-                        className='form-check-label'
-                        htmlFor='exportOnlyAnswered'
-                      >
-                        {t.exportLadderAnswered}
-                      </label>
+                    <div className='px-3'>
+                      <div className='form-check'>
+                        <input
+                          className='form-check-input'
+                          type='checkbox'
+                          id='exportOnlyAnswered'
+                          checked={exportOnlyAnswered}
+                          onChange={(e) =>
+                            setExportOnlyAnswered(e.target.checked)
+                          }
+                        />
+                        <label
+                          className='form-check-label'
+                          htmlFor='exportOnlyAnswered'
+                        >
+                          {t.exportLadderAnswered}
+                        </label>
+                      </div>
                     </div>
                   </div>
                 </li>
