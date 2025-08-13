@@ -92,6 +92,24 @@
                 culture, and more.
             </text>
         </tag>
+
+        <!-- Software Engineering Layers -->
+        <tag id="quality" type="engineering-layer" order="1">
+            <name lang="pt_BR">Foco na qualidade</name>
+            <name lang="en">Quality focus</name>
+        </tag>
+        <tag id="process" type="engineering-layer" order="2">
+            <name lang="pt_BR">Processo</name>
+            <name lang="en">Process</name>
+        </tag>
+        <tag id="methods" type="engineering-layer" order="3">
+            <name lang="pt_BR">Métodos</name>
+            <name lang="en">Methods</name>
+        </tag>
+        <tag id="tools" type="engineering-layer" order="4">
+            <name lang="pt_BR">Ferramentas</name>
+            <name lang="en">Tools</name>
+        </tag>
     </tag-definitions>
     <questions-definitions>
         <!-- Mundo Social -->
@@ -152,6 +170,7 @@
         </question>
         <question id="q08">
             <tag id="pragmatic" />
+            <tag id="quality" />
             <text lang="pt_BR">De que modo a qualidade deve ser abordada no desenvolvimento do
                 software?</text>
             <text lang="en">How should quality be addressed in software development?</text>
@@ -195,6 +214,7 @@
         </question>
         <question id="q13">
             <tag id="semantic" />
+            <tag id="quality" />
             <text lang="pt_BR">Quais as características de qualidade a serem observadas?</text>
             <text lang="en">What quality characteristics should be considered?</text>
             <placeholder lang="pt_BR">Exemplo: Usabilidade, acessibilidade e desempenho.</placeholder>
@@ -204,6 +224,7 @@
         <!-- Sintática -->
         <question id="q14">
             <tag id="syntactic" />
+            <tag id="methods" />
             <text lang="pt_BR">Quais padrões seguir?</text>
             <text lang="en">What standards should be followed?</text>
             <placeholder lang="pt_BR">Exemplo: Seguir padrões de desenvolvimento web.</placeholder>
@@ -211,6 +232,7 @@
         </question>
         <question id="q15">
             <tag id="syntactic" />
+            <tag id="process" />
             <text lang="pt_BR">Quais abordagens serão adotadas?</text>
             <text lang="en">What approaches will be adopted?</text>
             <placeholder lang="pt_BR">Exemplo: Adotar metodologia ágil.</placeholder>
@@ -225,6 +247,9 @@
         </question>
         <question id="q17">
             <tag id="syntactic" />
+            <tag id="process" />
+            <tag id="methods" />
+            <tag id="tools" />
             <text lang="pt_BR">Quais processos, métodos e ferramentas de Engenharia de Software
                 serão adotados?</text>
             <text lang="en">Which software engineering processes, methods, and tools will be
@@ -250,6 +275,7 @@
         </question>
         <question id="q20">
             <tag id="syntactic" />
+            <tag id="tools" />
             <text lang="pt_BR">Quais softwares serão adotados?</text>
             <text lang="en">Which software tools will be adopted?</text>
             <placeholder lang="pt_BR">Exemplo: VSCode, Figma e Trello.</placeholder>

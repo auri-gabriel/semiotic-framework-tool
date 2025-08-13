@@ -1,5 +1,9 @@
 import SemioticAccordion from './SemioticAccordion';
 import BottomToolbar from './BottomToolbar';
+import { useLanguage } from '../hooks/useLanguage';
+import { useSemioticData } from '../hooks/useSemioticData';
+import { useAnswers } from '../hooks/useAnswers';
+import { useExport } from '../hooks/useExport';
 
 const sectionTexts = {
   en: {
@@ -14,17 +18,18 @@ const sectionTexts = {
   },
 };
 
-export default function StartSection({
-  semioticLadderGrouping,
-  language,
-  answers,
-  onAnswerChange,
-  onImportXML,
-  onExport,
-  translations,
-  exportOnlyAnswered,
-  setExportOnlyAnswered,
-}) {
+export default function StartSection() {
+  const { language } = useLanguage();
+  const { semioticLadderGrouping } = useSemioticData();
+  const { answers, updateAnswer, importAnswers } = useAnswers();
+  const {
+    handleExport,
+    exportOnlyAnswered,
+    setExportOnlyAnswered,
+    exportEngOnlyAnswered,
+    setExportEngOnlyAnswered,
+  } = useExport();
+
   const text = sectionTexts[language];
 
   return (
@@ -38,17 +43,18 @@ export default function StartSection({
           grouping={semioticLadderGrouping}
           language={language}
           answers={answers}
-          onAnswerChange={onAnswerChange}
+          onAnswerChange={updateAnswer}
         />
       </div>
       <BottomToolbar
         answers={answers}
-        onImportXML={onImportXML}
-        onExport={onExport}
+        onImportXML={importAnswers}
+        onExport={handleExport}
         language={language}
-        translations={translations}
         exportOnlyAnswered={exportOnlyAnswered}
         setExportOnlyAnswered={setExportOnlyAnswered}
+        exportEngOnlyAnswered={exportEngOnlyAnswered}
+        setExportEngOnlyAnswered={setExportEngOnlyAnswered}
       />
     </section>
   );

@@ -1,4 +1,5 @@
 import React from 'react';
+import { useLanguage } from '../hooks/useLanguage';
 
 const heroTexts = {
   en: {
@@ -13,7 +14,8 @@ const heroTexts = {
   },
 };
 
-const Hero = ({ language }) => {
+const Hero = () => {
+  const { language } = useLanguage();
   const t = heroTexts[language];
   return (
     <section
