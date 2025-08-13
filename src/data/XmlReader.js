@@ -1,7 +1,93 @@
+import { DATA_CONFIG } from './config.js';
+
+/**
+ * Configuration constants for XML reading
+ *
+ * To use a different XML file path, you can either:
+ * 1. Modify DATA_CONFIG.XML_DEFINITIONS_PATH in config.js
+ * 2. Pass a custom path to readQuestions() or readTags()
+ *
+ * Example usage:
+ * - readQuestions() // uses configured path from config.js
+ * - readQuestions('/custom/path/to/definitions.xml') // uses custom path
+ */
+const CONFIG = {
+  XML_FILE_PATH: DATA_CONFIG.XML_DEFINITIONS_PATH,
+  DEFAULT_LANGUAGE: DATA_CONFIG.DEFAULT_LANGUAGE,
+  LOG_PREFIX: DATA_CONFIG.LOGGING.PREFIX,
+};
+
+/**
+ * Helper function to process language-based nodes (text, name, description, placeholder)
+ * @param {NodeList} nodes - The nodes to process
+ * @param {string} nodeType - Type of node for logging
+ * @param {string} elementName - Name of parent element for logging
+ * @param {string} elementId - ID of parent element for logging
+ * @returns {Object} Object with language keys and text content values
+ */
+function processLanguageNodes(nodes, nodeType, elementName, elementId) {
+  const result = {};
+
+  nodes.forEach((node, index) => {
+    const lang = node.getAttribute('lang');
+    if (!lang) {
+      console.warn(
+        `${CONFIG.LOG_PREFIX} <${nodeType}> in '${elementName}' id='${elementId}' at ${nodeType} index ${index} missing 'lang' attribute.`
+      );
+      return;
+    }
+    result[lang] = node.textContent;
+  });
+
+  return result;
+}
+
+/**
+ * Helper function to process tag nodes with type information
+ * @param {NodeList} tagNodes - The tag nodes to process
+ * @param {Document} ownerDocument - The XML document for tag definitions lookup
+ * @param {string} elementName - Name of parent element for logging
+ * @param {string} elementId - ID of parent element for logging
+ * @returns {Array} Array of tag objects with id and type
+ */
+function processTags(tagNodes, ownerDocument, elementName, elementId) {
+  const tags = [];
+
+  tagNodes.forEach((tag, tagIndex) => {
+    const tagId = tag.getAttribute('id');
+
+    if (!tagId) {
+      console.warn(
+        `${CONFIG.LOG_PREFIX} <tag> in '${elementName}' id='${elementId}' at tag index ${tagIndex} missing 'id' attribute.`
+      );
+      return;
+    }
+
+    // Find the tag definition to get its type
+    const tagDefinition = ownerDocument.querySelector(
+      `tag-definitions > tag[id="${tagId}"]`
+    );
+    const tagType = tagDefinition ? tagDefinition.getAttribute('type') : null;
+
+    tags.push({
+      id: tagId,
+      type: tagType,
+    });
+  });
+
+  return tags;
+}
+
+/**
+ * Reads and parses elements from XML definitions
+ * @param {Element} elementDefinitions - The parent element containing definitions
+ * @param {string} elementName - The name of elements to read
+ * @returns {Array} Array of parsed element objects
+ */
 function readElements(elementDefinitions, elementName) {
   if (!elementDefinitions) {
     console.error(
-      `[XmlReader] Element definitions node for '${elementName}' not found.`
+      `${CONFIG.LOG_PREFIX} Element definitions node for '${elementName}' not found.`
     );
     return [];
   }
@@ -10,104 +96,78 @@ function readElements(elementDefinitions, elementName) {
   const elements = [];
 
   if (elementNodes.length === 0) {
-    console.warn(`[XmlReader] No '${elementName}' elements found.`);
+    console.warn(`${CONFIG.LOG_PREFIX} No '${elementName}' elements found.`);
   }
 
-  elementNodes.forEach((elementNode, idx) => {
-    let elementId = elementNode.getAttribute('id');
-    let elementType = elementNode.getAttribute('type');
-    let elementOrder = elementNode.getAttribute('order'); // <-- NEW
+  elementNodes.forEach((elementNode, index) => {
+    const elementId = elementNode.getAttribute('id');
+    const elementType = elementNode.getAttribute('type');
+    const elementOrder = elementNode.getAttribute('order');
 
     if (!elementId) {
       console.warn(
-        `[XmlReader] '${elementName}' at index ${idx} is missing required 'id' attribute.`
+        `${CONFIG.LOG_PREFIX} '${elementName}' at index ${index} is missing required 'id' attribute.`
       );
     }
 
-    let tagsNodes = elementNode.querySelectorAll('tag');
-    let tags = [];
-    tagsNodes.forEach((tag, tagIdx) => {
-      const tagId = tag.getAttribute('id');
-      // Find the tag definition to get its type
-      const tagDef = elementDefinitions.ownerDocument.querySelector(
-        `tag-definitions > tag[id="${tagId}"]`
-      );
-      const tagType = tagDef ? tagDef.getAttribute('type') : null;
+    // Process tags
+    const tagNodes = elementNode.querySelectorAll('tag');
+    const tags = processTags(
+      tagNodes,
+      elementDefinitions.ownerDocument,
+      elementName,
+      elementId
+    );
 
-      if (!tagId) {
-        console.warn(
-          `[XmlReader] <tag> in '${elementName}' id='${elementId}' at tag index ${tagIdx} missing 'id' attribute.`
-        );
-      }
-      tags.push({
-        id: tagId,
-        type: tagType, // Include the tag type
-      });
-    });
+    // Process language-based nodes
+    const textNodes = elementNode.querySelectorAll('text');
+    const texts = processLanguageNodes(
+      textNodes,
+      'text',
+      elementName,
+      elementId
+    );
 
-    let textNodes = elementNode.querySelectorAll('text');
-    let texts = {};
-    textNodes.forEach((text, textIdx) => {
-      const lang = text.getAttribute('lang');
-      if (!lang) {
-        console.warn(
-          `[XmlReader] <text> in '${elementName}' id='${elementId}' at text index ${textIdx} missing 'lang' attribute.`
-        );
-      }
-      texts[lang] = text.textContent;
-    });
+    const nameNodes = elementNode.querySelectorAll('name');
+    const names = processLanguageNodes(
+      nameNodes,
+      'name',
+      elementName,
+      elementId
+    );
 
-    let nameNodes = elementNode.querySelectorAll('name');
-    let names = {};
-    nameNodes.forEach((name, nameIdx) => {
-      const lang = name.getAttribute('lang');
-      if (!lang) {
-        console.warn(
-          `[XmlReader] <name> in '${elementName}' id='${elementId}' at name index ${nameIdx} missing 'lang' attribute.`
-        );
-      }
-      names[lang] = name.textContent;
-    });
+    const descriptionNodes = elementNode.querySelectorAll('description');
+    const descriptions = processLanguageNodes(
+      descriptionNodes,
+      'description',
+      elementName,
+      elementId
+    );
 
-    let descriptionNodes = elementNode.querySelectorAll('description');
-    let descriptions = {};
-    descriptionNodes.forEach((description, descIdx) => {
-      const lang = description.getAttribute('lang');
-      if (!lang) {
-        console.warn(
-          `[XmlReader] <description> in '${elementName}' id='${elementId}' at description index ${descIdx} missing 'lang' attribute.`
-        );
-      }
-      descriptions[lang] = description.textContent;
-    });
+    const placeholderNodes = elementNode.querySelectorAll('placeholder');
+    const placeholders = processLanguageNodes(
+      placeholderNodes,
+      'placeholder',
+      elementName,
+      elementId
+    );
 
-    let placeholderNodes = elementNode.querySelectorAll('placeholder');
-    let placeholders = {};
-    placeholderNodes.forEach((placeholder, phIdx) => {
-      const lang = placeholder.getAttribute('lang');
-      if (!lang) {
-        console.warn(
-          `[XmlReader] <placeholder> in '${elementName}' id='${elementId}' at placeholder index ${phIdx} missing 'lang' attribute.`
-        );
-      }
-      placeholders[lang] = placeholder.textContent;
-    });
-
-    let element = {};
-    if (elementId) element['id'] = elementId;
-    if (elementType) element['type'] = elementType;
+    // Build element object
+    const element = {};
+    if (elementId) element.id = elementId;
+    if (elementType) element.type = elementType;
     if (elementOrder) {
-      element['order'] = Number(elementOrder);
+      element.order = Number(elementOrder);
     } else {
-      element['order'] = idx + 1; // fallback to XML document order
+      element.order = index + 1; // fallback to XML document order
     }
-    if (Object.keys(names).length !== 0) element['names'] = names;
-    if (Object.keys(descriptions).length !== 0)
-      element['descriptions'] = descriptions;
-    if (Object.keys(texts).length !== 0) element['texts'] = texts;
-    if (tags.length !== 0) element['tags'] = tags;
-    if (Object.keys(placeholders).length !== 0)
-      element['placeholders'] = placeholders;
+    if (Object.keys(names).length > 0) element.names = names;
+    if (Object.keys(descriptions).length > 0)
+      element.descriptions = descriptions;
+    if (Object.keys(texts).length > 0) element.texts = texts;
+    if (tags.length > 0) element.tags = tags;
+    if (Object.keys(placeholders).length > 0)
+      element.placeholders = placeholders;
 
     elements.push(element);
   });
@@ -116,102 +176,128 @@ function readElements(elementDefinitions, elementName) {
   return elements.sort((a, b) => a.order - b.order);
 }
 
-export async function readQuestions() {
+/**
+ * Fetches and parses the XML definitions file
+ * @param {string} xmlFilePath - Path to the XML file (optional, uses config default)
+ * @returns {Promise<Document>} Parsed XML document
+ * @throws {Error} If fetch fails or XML parsing fails
+ */
+async function fetchAndParseXml(xmlFilePath = CONFIG.XML_FILE_PATH) {
   try {
-    const res = await fetch('/src/assets/definitions/definitions.xml');
-    if (!res.ok) {
-      console.error(
-        `[XmlReader] Failed to fetch definitions.xml: ${res.status} ${res.statusText}`
-      );
-      throw new Error('Failed to fetch definitions.xml');
+    const response = await fetch(xmlFilePath);
+
+    if (!response.ok) {
+      const errorMessage = `Failed to fetch definitions.xml: ${response.status} ${response.statusText}`;
+      console.error(`${CONFIG.LOG_PREFIX} ${errorMessage}`);
+      throw new Error(errorMessage);
     }
 
-    const text = await res.text();
+    const xmlText = await response.text();
     const parser = new window.DOMParser();
-    const doc = parser.parseFromString(text, 'application/xml');
+    const xmlDocument = parser.parseFromString(xmlText, 'application/xml');
 
-    if (doc.querySelector('parsererror')) {
-      console.error(
-        '[XmlReader] XML parsing error:',
-        doc.querySelector('parsererror').textContent
-      );
-      throw new Error('XML parsing error');
+    const parseError = xmlDocument.querySelector('parsererror');
+    if (parseError) {
+      const errorMessage = `XML parsing error: ${parseError.textContent}`;
+      console.error(`${CONFIG.LOG_PREFIX} ${errorMessage}`);
+      throw new Error(errorMessage);
     }
 
-    const questionDefinitions = doc.querySelector('questions-definitions');
-    if (!questionDefinitions) {
-      console.error(
-        '[XmlReader] <questions-definitions> section missing in XML.'
-      );
-      throw new Error(
-        'No <questions-definitions> section found in the XML file.'
-      );
-    }
-
-    let questions = readElements(questionDefinitions, 'question');
-
-    // Enhance questions with tag information
-    questions = questions.map((question) => {
-      // Convert tags array to include both semiotic and engineering tags
-      const enhancedTags = question.tags.map((tag) => tag.id);
-      const semioticTags = question.tags
-        .filter((tag) => tag.type === 'semiotic-steps')
-        .map((tag) => tag.id);
-      const engineeringTags = question.tags
-        .filter((tag) => tag.type === 'engineering-layer')
-        .map((tag) => tag.id);
-
-      return {
-        ...question,
-        tags: enhancedTags,
-        semioticTags: semioticTags,
-        engineeringTags: engineeringTags,
-      };
-    });
-
-    return questions;
-  } catch (err) {
-    console.error('[XmlReader] Error reading questions:', err);
-    throw err;
+    return xmlDocument;
+  } catch (error) {
+    console.error(`${CONFIG.LOG_PREFIX} Error in fetchAndParseXml:`, error);
+    throw error;
   }
 }
 
-export async function readTags() {
+/**
+ * Enhances questions with categorized tag information
+ * @param {Array} questions - Array of question objects
+ * @returns {Array} Enhanced questions with tag categorization
+ */
+function enhanceQuestionsWithTags(questions) {
+  return questions.map((question) => {
+    if (!question.tags || question.tags.length === 0) {
+      return {
+        ...question,
+        tags: [],
+        semioticTags: [],
+        engineeringTags: [],
+      };
+    }
+
+    // Convert tags array to include both semiotic and engineering tags
+    const enhancedTags = question.tags.map((tag) => tag.id);
+    const semioticTags = question.tags
+      .filter((tag) => tag.type === 'semiotic-steps')
+      .map((tag) => tag.id);
+    const engineeringTags = question.tags
+      .filter((tag) => tag.type === 'engineering-layer')
+      .map((tag) => tag.id);
+
+    return {
+      ...question,
+      tags: enhancedTags,
+      semioticTags,
+      engineeringTags,
+    };
+  });
+}
+
+/**
+ * Reads and parses questions from the XML definitions file
+ * @param {string} xmlFilePath - Optional custom path to XML file
+ * @returns {Promise<Array>} Array of question objects with enhanced tag information
+ * @throws {Error} If XML file cannot be fetched, parsed, or doesn't contain questions
+ */
+export async function readQuestions(xmlFilePath) {
   try {
-    const res = await fetch('/src/assets/definitions/definitions.xml');
-    if (!res.ok) {
-      console.error(
-        `[XmlReader] Failed to fetch definitions.xml: ${res.status} ${res.statusText}`
+    const xmlDocument = await fetchAndParseXml(xmlFilePath);
+
+    const questionDefinitions = xmlDocument.querySelector(
+      'questions-definitions'
+    );
+    if (!questionDefinitions) {
+      const errorMessage = '<questions-definitions> section missing in XML.';
+      console.error(`${CONFIG.LOG_PREFIX} ${errorMessage}`);
+      throw new Error(
+        `No <questions-definitions> section found in the XML file.`
       );
-      throw new Error('Failed to fetch definitions.xml');
     }
 
-    const text = await res.text();
-    const parser = new window.DOMParser();
-    const doc = parser.parseFromString(text, 'application/xml');
+    const questions = readElements(questionDefinitions, 'question');
+    return enhanceQuestionsWithTags(questions);
+  } catch (error) {
+    console.error(`${CONFIG.LOG_PREFIX} Error reading questions:`, error);
+    throw error;
+  }
+}
 
-    if (doc.querySelector('parsererror')) {
-      console.error(
-        '[XmlReader] XML parsing error:',
-        doc.querySelector('parsererror').textContent
-      );
-      throw new Error('XML parsing error');
-    }
+/**
+ * Reads and parses tags from the XML definitions file
+ * @param {string} xmlFilePath - Optional custom path to XML file
+ * @returns {Promise<Array>} Array of tag objects
+ * @throws {Error} If XML file cannot be fetched, parsed, or doesn't contain tags
+ */
+export async function readTags(xmlFilePath) {
+  try {
+    const xmlDocument = await fetchAndParseXml(xmlFilePath);
 
-    const tagDefinitions = doc.querySelector('tag-definitions');
+    const tagDefinitions = xmlDocument.querySelector('tag-definitions');
     if (!tagDefinitions) {
-      console.error('[XmlReader] <tag-definitions> section missing in XML.');
+      const errorMessage = '<tag-definitions> section missing in XML.';
+      console.error(`${CONFIG.LOG_PREFIX} ${errorMessage}`);
       throw new Error('No <tag-definitions> section found in the XML file.');
     }
 
     const tags = readElements(tagDefinitions, 'tag');
     if (!tags || tags.length === 0) {
-      console.warn('[XmlReader] No tags found in the XML file.');
+      console.warn(`${CONFIG.LOG_PREFIX} No tags found in the XML file.`);
     }
 
     return tags;
-  } catch (err) {
-    console.error('[XmlReader] Error reading tags:', err);
-    throw err;
+  } catch (error) {
+    console.error(`${CONFIG.LOG_PREFIX} Error reading tags:`, error);
+    throw error;
   }
 }

@@ -1,4 +1,4 @@
-import definitionsXML from '../../assets/definitions/definitions.xml?raw';
+import definitionsXML from '../assets/definitions/definitions.xml?raw';
 
 /**
  * Service for handling XML import/export operations
