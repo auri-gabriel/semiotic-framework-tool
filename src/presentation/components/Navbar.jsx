@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 
 const navbarTexts = {
@@ -28,8 +28,28 @@ const navbarTexts = {
 
 const Navbar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
+  const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const { language, setLanguage, LANGUAGES } = useLanguage();
   const t = navbarTexts[language];
+
+  const currentLanguage = LANGUAGES.find(lang => lang.code === language);
+
+  const handleLanguageChange = (newLanguage) => {
+    setLanguage(newLanguage);
+    setIsLanguageDropdownOpen(false);
+  };
+
+  // Fechar dropdown quando clicar fora
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (isLanguageDropdownOpen && !event.target.closest('.dropdown')) {
+        setIsLanguageDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('click', handleClickOutside);
+    return () => document.removeEventListener('click', handleClickOutside);
+  }, [isLanguageDropdownOpen]);
 
   return (
     <nav
@@ -92,21 +112,44 @@ const Navbar = () => {
               </a>
             </li>
             <li className='nav-item d-flex align-items-center ms-3'>
-              <label htmlFor='lang-select' className='form-label me-2 mb-0'>
+              <span className='form-label me-2 mb-0'>
                 {t.language}:
-              </label>
-              <select
-                id='lang-select'
-                className='form-select d-inline-block w-auto'
-                value={language}
-                onChange={(e) => setLanguage(e.target.value)}
-              >
-                {LANGUAGES.map((lang) => (
-                  <option key={lang.code} value={lang.code}>
-                    {lang.label}
-                  </option>
-                ))}
-              </select>
+              </span>
+              <div className='dropdown'>
+                <button
+                  className='btn btn-outline-secondary dropdown-toggle d-flex align-items-center'
+                  type='button'
+                  onClick={() => setIsLanguageDropdownOpen(!isLanguageDropdownOpen)}
+                  aria-expanded={isLanguageDropdownOpen}
+                  style={{ minWidth: '140px' }}
+                >
+                  <span className='me-2' style={{ fontSize: '1.2em' }}>
+                    {currentLanguage?.flag}
+                  </span>
+                  <span className='d-none d-sm-inline'>
+                    {currentLanguage?.label.split(' ')[0]}
+                  </span>
+                </button>
+                <ul 
+                  className={`dropdown-menu${isLanguageDropdownOpen ? ' show' : ''}`}
+                  style={{ minWidth: '160px' }}
+                >
+                  {LANGUAGES.map((lang) => (
+                    <li key={lang.code}>
+                      <button
+                        className={`dropdown-item d-flex align-items-center${lang.code === language ? ' active' : ''}`}
+                        type='button'
+                        onClick={() => handleLanguageChange(lang.code)}
+                      >
+                        <span className='me-2' style={{ fontSize: '1.2em' }}>
+                          {lang.flag}
+                        </span>
+                        <span>{lang.label}</span>
+                      </button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
             </li>
           </ul>
         </div>
