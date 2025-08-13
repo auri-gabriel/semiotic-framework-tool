@@ -110,7 +110,7 @@ function App() {
   }
 
   return (
-    <div className='bg-light min-vh-100 d-flex flex-column'>
+    <div className='min-vh-100 d-flex flex-column'>
       {/* Overlay for exporting */}
       {exporting && (
         <div
