@@ -1,4 +1,5 @@
-@use "sass:color";
+@use 'sass:color';
+@import url('/fonts/inter.css');
 // === BASE COLORS ===
 $primary: #21409a; // #be1e2d; #21409a; #ffde17; #F45746;
 $secondary: #2e2e2e; // Dark neutral gray
@@ -64,7 +65,7 @@ $input-btn-focus-box-shadow: none;
 
 // === LINKS ===
 $link-color: $primary;
-$link-hover-color: color.mix(black ,$primary, 10%);
+$link-hover-color: color.mix(black, $primary, 10%);
 $link-decoration: underline;
 
 // === CARDS ===
