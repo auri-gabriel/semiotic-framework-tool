@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { getQuestionsGroupedBySemiotics } from '../business/SemioticLadderManager';
 import SemioticAccordion from './components/SemioticAccordion';
 import BottomToolbar from './components/BottomToolbar';
+import LoadingSpinner from './components/LoadingSpinner';
 import {
   exportAnswersAsXML,
   importAnswersFromXML,
@@ -112,52 +113,39 @@ function App() {
     try {
       const imported = importAnswersFromXML(xmlString);
       setAnswers(imported);
-    } catch (e) {
-      alert('Failed to import XML.');
+    } catch (error) {
+      console.error('Failed to import XML:', error);
+      alert('Failed to import XML. Please check the file format.');
     }
   };
 
   if (loading) {
-    const loadingText = language === 'pt_BR' ? 'Carregando...' : 'Loading...';
+    const loadingText =
+      language === 'pt_BR' ? 'Carregando dados...' : 'Loading data...';
     return (
-      <div className='d-flex flex-column align-items-center justify-content-center py-5'>
-        <div className='spinner-border text-primary mb-3' role='status'>
-          <span className='visually-hidden'>{loadingText}</span>
-        </div>
-        <div className='fw-semibold text-secondary'>{loadingText}</div>
+      <div className='min-vh-100 d-flex align-items-center justify-content-center bg-light'>
+        <LoadingSpinner size='lg' text={loadingText} className='fade-in' />
       </div>
     );
   }
 
   return (
     <div className='min-vh-100 d-flex flex-column'>
-      {/* Overlay for exporting */}
+      {/* Export Loading Overlay */}
       {exporting && (
-        <div
-          className='position-fixed top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center'
-          style={{
-            background: 'rgba(0,0,0,0.6)',
-            zIndex: 2000,
-            pointerEvents: 'all',
-          }}
-        >
-          <div className='bg-secondary shadow-lg p-5 d-flex flex-column align-items-center'>
-            <div className='spinner-border text-light mb-3' role='status'>
-              <span className='visually-hidden'>
-                {language === 'pt_BR' ? 'Exportando...' : 'Exporting...'}
-              </span>
-            </div>
-            <div className='fw-semibold text-light'>
-              {language === 'pt_BR' ? 'Exportando PDF...' : 'Exporting PDF...'}
-            </div>
-          </div>
-        </div>
+        <LoadingSpinner
+          overlay={true}
+          text={language === 'pt_BR' ? 'Exportando PDF...' : 'Exporting PDF...'}
+          variant='light'
+        />
       )}
+
       <Navbar
         language={language}
         setLanguage={setLanguage}
         LANGUAGES={LANGUAGES}
       />
+
       <main className='flex-grow-1'>
         <Hero language={language} />
         <StartSection
@@ -175,6 +163,7 @@ function App() {
         <AboutUs language={language} />
         <Works language={language} />
       </main>
+
       <Footer language={language} />
     </div>
   );
