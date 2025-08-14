@@ -17,6 +17,7 @@ const ActionTypes = {
   SET_EXPORT_ENG_ONLY_ANSWERED: 'SET_EXPORT_ENG_ONLY_ANSWERED',
   SET_EXPORTING: 'SET_EXPORTING',
   IMPORT_ANSWERS: 'IMPORT_ANSWERS',
+  CLEAR_ANSWERS: 'CLEAR_ANSWERS',
 };
 
 // Initial state
@@ -71,6 +72,9 @@ function appReducer(state, action) {
 
     case ActionTypes.IMPORT_ANSWERS:
       return { ...state, answers: action.payload };
+
+    case ActionTypes.CLEAR_ANSWERS:
+      return { ...state, answers: {} };
 
     default:
       return state;
@@ -198,6 +202,10 @@ export function AppProvider({ children }) {
         console.error('Import error:', error);
         alert('Failed to import XML.');
       }
+    },
+
+    clearAnswers: () => {
+      dispatch({ type: ActionTypes.CLEAR_ANSWERS });
     },
   };
 

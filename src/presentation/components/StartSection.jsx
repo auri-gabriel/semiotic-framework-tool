@@ -1,3 +1,4 @@
+import React, { useState } from 'react';
 import SemioticAccordion from './SemioticAccordion';
 import BottomToolbar from './BottomToolbar';
 import { useLanguage } from '../hooks/useLanguage';
@@ -10,18 +11,32 @@ const sectionTexts = {
     title: 'Start',
     intro:
       "Ready to start?\nClick the blocks below to show the questions. For each one, click the question and answer it. It's simple and fast — just answer.",
+    clearResponses: 'Clear All Responses',
+    clearResponsesDesc: 'Delete all saved responses',
+    clearConfirmTitle: 'Clear All Responses',
+    clearConfirmMessage:
+      'Are you sure you want to delete all your responses? This action cannot be undone.',
+    clearConfirmButton: 'Yes, Clear All',
+    cancelButton: 'Cancel',
   },
   pt_BR: {
     title: 'Iniciar',
     intro:
       'Pronto para começar?\nClique nos blocos abaixo para mostrar as perguntas. Em cada um, Clique na pergunta e responda. É simples e rápido — só ler e responder.',
+    clearResponses: 'Limpar Todas as Respostas',
+    clearResponsesDesc: 'Excluir todas as respostas salvas',
+    clearConfirmTitle: 'Limpar Todas as Respostas',
+    clearConfirmMessage:
+      'Tem certeza de que deseja excluir todas as suas respostas? Esta ação não pode ser desfeita.',
+    clearConfirmButton: 'Sim, Limpar Tudo',
+    cancelButton: 'Cancelar',
   },
 };
 
 export default function StartSection() {
   const { language } = useLanguage();
   const { semioticLadderGrouping } = useSemioticData();
-  const { answers, updateAnswer, importAnswers } = useAnswers();
+  const { answers, updateAnswer, importAnswers, clearAnswers } = useAnswers();
   const {
     handleExport,
     exportOnlyAnswered,
@@ -30,7 +45,22 @@ export default function StartSection() {
     setExportEngOnlyAnswered,
   } = useExport();
 
+  const [showClearModal, setShowClearModal] = useState(false);
+
   const text = sectionTexts[language];
+
+  const handleClearClick = () => {
+    setShowClearModal(true);
+  };
+
+  const handleClearConfirm = () => {
+    clearAnswers();
+    setShowClearModal(false);
+  };
+
+  const handleClearCancel = () => {
+    setShowClearModal(false);
+  };
 
   return (
     <section className='pt-5 border-top' id='start'>
@@ -45,6 +75,20 @@ export default function StartSection() {
         <p className='mb-4' style={{ whiteSpace: 'pre-line' }}>
           {text.intro}
         </p>
+
+        {/* Clear All Responses Button */}
+        <div className='mb-4 text-start'>
+          <button
+            type='button'
+            className='btn btn-danger'
+            onClick={handleClearClick}
+            title={text.clearResponsesDesc}
+          >
+            <i className='bi bi-trash me-2'></i>
+            {text.clearResponses}
+          </button>
+        </div>
+
         <SemioticAccordion
           grouping={semioticLadderGrouping}
           language={language}
@@ -62,6 +106,75 @@ export default function StartSection() {
         exportEngOnlyAnswered={exportEngOnlyAnswered}
         setExportEngOnlyAnswered={setExportEngOnlyAnswered}
       />
+
+      {/* Clear Confirmation Modal */}
+      <div
+        className={`modal fade ${showClearModal ? 'show' : ''}`}
+        style={{ display: showClearModal ? 'block' : 'none' }}
+        tabIndex='-1'
+        role='dialog'
+        aria-labelledby='clearModalLabel'
+        aria-hidden={!showClearModal}
+      >
+        <div className='modal-dialog modal-dialog-centered' role='document'>
+          <div className='modal-content border-0 shadow-lg'>
+            <div className='modal-header bg-danger text-white border-0'>
+              <h5 className='modal-title fw-bold' id='clearModalLabel'>
+                <i className='bi bi-exclamation-triangle-fill me-2'></i>
+                {text.clearConfirmTitle}
+              </h5>
+              <button
+                type='button'
+                className='btn-close btn-close-white'
+                aria-label='Close'
+                onClick={handleClearCancel}
+              ></button>
+            </div>
+            <div className='modal-body px-4 py-4'>
+              <div className='d-flex align-items-start'>
+                <div className='flex-shrink-0 me-3'>
+                  <div
+                    className='bg-danger bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center'
+                    style={{ width: '48px', height: '48px' }}
+                  >
+                    <i className='bi bi-trash text-danger fs-4'></i>
+                  </div>
+                </div>
+                <div className='flex-grow-1'>
+                  <p className='mb-0 text-dark' style={{ lineHeight: '1.6' }}>
+                    {text.clearConfirmMessage}
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div className='modal-footer border-0 px-4 pb-4'>
+              <button
+                type='button'
+                className='btn btn-outline-secondary me-2'
+                onClick={handleClearCancel}
+              >
+                {text.cancelButton}
+              </button>
+              <button
+                type='button'
+                className='btn btn-danger'
+                onClick={handleClearConfirm}
+              >
+                <i className='bi bi-trash me-2'></i>
+                {text.clearConfirmButton}
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Modal backdrop */}
+      {showClearModal && (
+        <div
+          className='modal-backdrop fade show'
+          onClick={handleClearCancel}
+        ></div>
+      )}
     </section>
   );
 }

@@ -18,9 +18,14 @@ export function useAnswers() {
     [actions]
   );
 
+  const clearAnswers = useCallback(() => {
+    actions.clearAnswers();
+  }, [actions]);
+
   return {
     answers: state.answers,
     updateAnswer,
     importAnswers,
+    clearAnswers,
   };
 }
