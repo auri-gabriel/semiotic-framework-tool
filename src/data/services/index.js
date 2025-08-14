@@ -1,5 +1,6 @@
 // Main service classes
 export { XmlService } from './XmlService.js';
+export { XmlReaderService } from './XmlReaderService.js';
 export { PdfService } from './PdfService.js';
 export { HtmlTemplateService } from './HtmlTemplateService.js';
 export { SemioticLadderService } from './SemioticLadderService.js';
