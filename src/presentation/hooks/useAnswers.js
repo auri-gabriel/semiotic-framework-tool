@@ -22,10 +22,20 @@ export function useAnswers() {
     actions.clearAnswers();
   }, [actions]);
 
+  const resetToDefaultDefinitions = useCallback(() => {
+    actions.resetToDefaultDefinitions();
+  }, [actions]);
+
+  const isUsingCustomDefinitions = useCallback(() => {
+    return actions.isUsingCustomDefinitions();
+  }, [actions]);
+
   return {
     answers: state.answers,
     updateAnswer,
     importAnswers,
     clearAnswers,
+    resetToDefaultDefinitions,
+    isUsingCustomDefinitions,
   };
 }

@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import { useAnswers } from '../hooks/useAnswers';
 
 const toolbarTexts = {
   en: {
@@ -15,6 +16,8 @@ const toolbarTexts = {
     exportXMLDesc: 'Save current data as XML file',
     exportLadderDesc: 'Generate PDF report of Semiotic Ladder',
     exportEngLayersDesc: 'Generate PDF report of Engineering Layers',
+    customDefinitions: 'Custom Definitions Active',
+    resetToDefault: 'Reset to Default',
   },
   pt_BR: {
     export: 'Exportar',
@@ -30,6 +33,8 @@ const toolbarTexts = {
     exportXMLDesc: 'Salvar dados atuais como arquivo XML',
     exportLadderDesc: 'Gerar relatório PDF da Escada Semiótica',
     exportEngLayersDesc: 'Gerar relatório PDF das Camadas de Engenharia',
+    customDefinitions: 'Definições Personalizadas Ativas',
+    resetToDefault: 'Voltar ao Padrão',
   },
 };
 
@@ -43,7 +48,9 @@ function BottomToolbar({
   setExportEngOnlyAnswered,
 }) {
   const fileInputRef = useRef();
+  const { isUsingCustomDefinitions, resetToDefaultDefinitions } = useAnswers();
   const t = toolbarTexts[language];
+  const usingCustomDefinitions = isUsingCustomDefinitions();
 
   const handleImportClick = () => {
     fileInputRef.current.click();
@@ -100,6 +107,33 @@ function BottomToolbar({
               {t.importXML}
             </button>
           </div>
+
+          {/* Custom Definitions Indicator */}
+          {usingCustomDefinitions && (
+            <div className='d-flex align-items-center gap-2'>
+              <span
+                className='badge bg-warning text-dark d-flex align-items-center'
+                style={{ fontSize: '0.75rem' }}
+                title={t.customDefinitions}
+              >
+                <i className='bi bi-file-earmark-code me-1'></i>
+                <span className='d-none d-sm-inline'>
+                  {t.customDefinitions}
+                </span>
+                <span className='d-sm-none'>Custom</span>
+              </span>
+              <button
+                className='btn btn-outline-light btn-sm'
+                onClick={resetToDefaultDefinitions}
+                title={t.resetToDefault}
+                style={{ fontSize: '0.75rem' }}
+              >
+                <i className='bi bi-arrow-clockwise me-1'></i>
+                <span className='d-none d-sm-inline'>{t.resetToDefault}</span>
+                <span className='d-sm-none'>Reset</span>
+              </button>
+            </div>
+          )}
 
           {/* Export Button with Dropdown */}
           <div>
