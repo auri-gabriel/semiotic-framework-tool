@@ -11,53 +11,102 @@ hide circle
 ' Main App Package
 package "Semiotic Framework Tool" {
     
-    package "View Layer" {
+    package "Presentation Layer" {
         class App
-        class Page
-        class Initializer
-        class FileDownloader
+        class MainLayout
+        class StartSection
+        class SemioticAccordion
+        class SemioticStepAccordion
+        class QuestionAccordion
         class BottomToolbar
-        class QuestionComponent
-        class TagComponent
+        class ExportOverlay
+        class Hero
+        class Navbar
+        class Footer
+        
+        package "Contexts" {
+            class AppContext
+            class LanguageContext
+        }
+        
+        package "Hooks" {
+            class useApp
+            class useSemioticData
+            class useAnswers
+            class useExport
+            class useLanguage
+        }
     }
     
     package "Business Layer" {
         class SemioticLadderManager
-        class AnswersManager
     }
     
     package "Data Layer" {
-        class XmlReader
-        class XmlWriter
-        class FrameworkDefinitionsXML
-        class FrameworkAnswersXML
+        package "Services" {
+            class XmlReaderService
+            class XmlService
+            class PdfService
+            class HtmlTemplateService
+            class SemioticLadderService
+            class EngineeringLayersService
+        }
+        
+        package "Config" {
+            class Config
+        }
     }
 
-    ' View Layer Relationships
-    App --> Initializer
-    Initializer --> Page : shows
-    Initializer --> BottomToolbar : shows
-    BottomToolbar --> FileDownloader
-    Page --> TagComponent : contains
-    TagComponent --> QuestionComponent : contains
+    ' Main App Flow
+    App --> AppContext : provides
+    App --> LanguageContext : provides
+    App --> MainLayout : renders
     
-    ' View to Business Layer
-    TagComponent --> SemioticLadderManager : uses
-    QuestionComponent --> SemioticLadderManager : uses
-    QuestionComponent --> AnswersManager : uses
+    ' Layout Relationships
+    MainLayout --> ExportOverlay : shows
+    MainLayout --> Navbar : contains
+    MainLayout --> Hero : contains
+    MainLayout --> StartSection : contains
+    MainLayout --> Footer : contains
     
-    ' Business to Data Layer
-    SemioticLadderManager --> XmlReader : uses
-    AnswersManager --> XmlWriter : uses
+    ' Component Relationships
+    StartSection --> SemioticAccordion : renders
+    SemioticAccordion --> SemioticStepAccordion : contains
+    SemioticStepAccordion --> QuestionAccordion : contains
+    StartSection --> BottomToolbar : shows
     
-    ' Data Layer Initialization
-    Initializer --> XmlReader : initializes
-    FileDownloader --> XmlWriter : uses
+    ' Hook Dependencies
+    StartSection --> useSemioticData : uses
+    StartSection --> useAnswers : uses
+    StartSection --> useExport : uses
+    StartSection --> useLanguage : uses
     
-    ' Data Layer to Models
-    XmlReader --> FrameworkDefinitionsXML : reads
-    XmlReader --> FrameworkAnswersXML : reads
-
-    XmlWriter --> FrameworkAnswersXML : writes
+    QuestionAccordion --> useAnswers : uses
+    BottomToolbar --> useExport : uses
+    ExportOverlay --> useExport : uses
+    
+    ' Context to Hook Relationships
+    useApp --> AppContext : accesses
+    useSemioticData --> useApp : uses
+    useAnswers --> useApp : uses
+    useExport --> useApp : uses
+    useLanguage --> LanguageContext : accesses
+    
+    ' Business Layer Integration
+    AppContext --> SemioticLadderManager : initializes
+    SemioticLadderManager --> XmlReaderService : uses
+    
+    ' Service Relationships
+    AppContext --> XmlService : uses
+    AppContext --> SemioticLadderService : uses
+    AppContext --> EngineeringLayersService : uses
+    
+    useExport --> PdfService : uses
+    useExport --> HtmlTemplateService : uses
+    
+    ' Data Layer Dependencies
+    XmlService --> XmlReaderService : extends
+    SemioticLadderService --> XmlReaderService : uses
+    EngineeringLayersService --> XmlReaderService : uses
 }
 @enduml
