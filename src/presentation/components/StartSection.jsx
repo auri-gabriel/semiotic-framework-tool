@@ -14,10 +14,10 @@ const sectionTexts = {
     newFormSuggestion:
       'Starting a new project? Try clearing all the old responses first.',
     clearResponses: 'Clear All Responses',
-    clearResponsesDesc: 'Delete all saved responses',
+    clearResponsesDesc: 'Delete all saved responses and reset definitions',
     clearConfirmTitle: 'Clear All Responses',
     clearConfirmMessage:
-      'Are you sure you want to delete all your responses? This action cannot be undone.',
+      'Are you sure you want to delete all your responses and reset definitions to default? This action cannot be undone.',
     clearConfirmButton: 'Yes, Clear All',
     cancelButton: 'Cancel',
   },
@@ -28,10 +28,11 @@ const sectionTexts = {
     newFormSuggestion:
       'Começando um novo projeto? Tente limpar todas as respostas antigas primeiro.',
     clearResponses: 'Limpar Todas as Respostas',
-    clearResponsesDesc: 'Excluir todas as respostas salvas',
+    clearResponsesDesc:
+      'Excluir todas as respostas salvas e resetar definições',
     clearConfirmTitle: 'Limpar Todas as Respostas',
     clearConfirmMessage:
-      'Tem certeza de que deseja excluir todas as suas respostas? Esta ação não pode ser desfeita.',
+      'Tem certeza de que deseja excluir todas as suas respostas e resetar as definições para o padrão? Esta ação não pode ser desfeita.',
     clearConfirmButton: 'Sim, Limpar Tudo',
     cancelButton: 'Cancelar',
   },
@@ -40,7 +41,13 @@ const sectionTexts = {
 export default function StartSection() {
   const { language } = useLanguage();
   const { semioticLadderGrouping } = useSemioticData();
-  const { answers, updateAnswer, importAnswers, clearAnswers } = useAnswers();
+  const {
+    answers,
+    updateAnswer,
+    importAnswers,
+    clearAnswers,
+    resetToDefaultDefinitions,
+  } = useAnswers();
   const {
     handleExport,
     exportOnlyAnswered,
@@ -59,6 +66,7 @@ export default function StartSection() {
 
   const handleClearConfirm = () => {
     clearAnswers();
+    resetToDefaultDefinitions();
     setShowClearModal(false);
   };
 
