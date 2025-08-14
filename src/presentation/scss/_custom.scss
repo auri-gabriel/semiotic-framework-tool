@@ -44,6 +44,15 @@ $font-family-base: 'Inter', sans-serif;
   box-shadow: none;
 }
 
+// Restore focus indicator for keyboard navigation accessibility
+.accordion-button:focus {
+  box-shadow: var(
+    --bs-btn-focus-box-shadow,
+    0 0 0 0.25rem rgba(var(--bs-primary-rgb), 0.25)
+  );
+  border-color: var(--bs-btn-focus-border-color, var(--bs-primary));
+}
+
 // Custom CKEditor min-height in order to make the placeholder readable on mobile
 .ck-editor__editable_inline {
   min-height: 150px;
