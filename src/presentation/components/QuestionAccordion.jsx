@@ -48,6 +48,9 @@ function QuestionAccordion({
   const characterCount = getCharacterCount(answer || '');
   const wordCount = getWordCount(answer || '');
 
+  // Check if the question has a meaningful answer
+  const hasAnswer = answer && stripHtml(answer).trim().length > 0;
+
   return (
     <div className='accordion-item'>
       <h2
@@ -62,7 +65,16 @@ function QuestionAccordion({
           aria-expanded='false'
           aria-controls={`collapse-${groupKey}-${stepKey}-q${question.id}`}
         >
-          {question.texts[language]}
+          <div className='d-flex align-items-center w-100'>
+            <span className='me-2'>
+              {hasAnswer ? (
+                <i className='bi bi-check-circle-fill text-success'></i>
+              ) : (
+                <i className='bi bi-circle text-muted'></i>
+              )}
+            </span>
+            <span>{question.texts[language]}</span>
+          </div>
         </button>
       </h2>
       <div

@@ -17,6 +17,19 @@ function SemioticStepAccordion({
   answers,
   onAnswerChange,
 }) {
+  // Helper function to check if a question has a meaningful answer
+  const hasAnswer = (answer) => {
+    if (!answer) return false;
+    const plainText = answer.replace(/<[^>]*>/g, '').trim();
+    return plainText.length > 0;
+  };
+
+  // Calculate answered questions count
+  const answeredCount = step.questions.filter((q) =>
+    hasAnswer(answers[q.id])
+  ).length;
+  const totalCount = step.questions.length;
+
   return (
     <div className='accordion-item'>
       <h2 className='accordion-header' id={`heading-${groupKey}-${stepKey}`}>
@@ -28,7 +41,12 @@ function SemioticStepAccordion({
           aria-expanded='false'
           aria-controls={`collapse-${groupKey}-${stepKey}`}
         >
-          {step.tag.names[language]}
+          <div className='d-flex justify-content-between align-items-center w-100'>
+            <span>{step.tag.names[language]}</span>
+            <span className='badge bg-secondary mx-2'>
+              {answeredCount}/{totalCount}
+            </span>
+          </div>
         </button>
       </h2>
       <div
