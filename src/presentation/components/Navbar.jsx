@@ -126,7 +126,8 @@ const Navbar = () => {
               </a>
             </li>
             <li className='nav-item d-flex align-items-center ms-3'>
-              <span className='form-label me-2 mb-0'>{t.language}:</span>
+              <i class='bi bi-globe2 mx-1'></i>
+              <span className='form-label mx-2 mb-0'>{t.language}:</span>
               <div className='dropdown'>
                 <button
                   className='btn btn-outline-secondary dropdown-toggle d-flex align-items-center'
@@ -137,7 +138,7 @@ const Navbar = () => {
                   aria-expanded={isLanguageDropdownOpen}
                   style={{ minWidth: '140px' }}
                 >
-                  <span className='me-2' style={{ fontSize: '1.2em' }}>
+                  <span className='mx-2' style={{ fontSize: '1.2em' }}>
                     {currentLanguage?.flag}
                   </span>
                   <span className='d-inline'>
@@ -159,7 +160,7 @@ const Navbar = () => {
                         type='button'
                         onClick={() => handleLanguageChange(lang.code)}
                       >
-                        <span className='me-2' style={{ fontSize: '1.2em' }}>
+                        <span className='mx-2' style={{ fontSize: '1.2em' }}>
                           {lang.flag}
                         </span>
                         <span>{lang.label}</span>
