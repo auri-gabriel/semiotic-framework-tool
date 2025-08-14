@@ -25,7 +25,7 @@ export const DATA_CONFIG = {
   /**
    * Default language for fallbacks
    */
-  DEFAULT_LANGUAGE: 'en',
+  DEFAULT_LANGUAGE: 'pt_BR',
 
   /**
    * Logging configuration
