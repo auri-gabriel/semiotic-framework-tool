@@ -66,7 +66,7 @@ const Navbar = () => {
           title={t.brand}
         >
           <span
-            className='me-3 p-2 bg-primary text-white d-flex align-items-center justify-content-center'
+            className='me-3 p-2 bg-primary text-white d-flex align-items-center justify-content-center flex-shrink-0'
             style={{
               height: '32px',
               fontSize: '1rem',
@@ -75,7 +75,19 @@ const Navbar = () => {
           >
             {t.brandAcronym}
           </span>
-          <span className='d-none d-md-inline text-dark'>{t.brand}</span>
+          <span
+            className='d-none d-md-block text-dark'
+            style={{
+              lineHeight: '1.2',
+              maxWidth: '200px',
+              fontSize: '0.85rem',
+              wordWrap: 'break-word',
+              hyphens: 'auto',
+              whiteSpace: 'normal',
+            }}
+          >
+            {t.brand}
+          </span>
         </a>
         <button
           className='navbar-toggler'
