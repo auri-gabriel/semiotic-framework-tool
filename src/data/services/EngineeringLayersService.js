@@ -34,7 +34,7 @@ export class EngineeringLayersService {
           ? 'Camadas de Engenharia de Software'
           : 'Software Engineering Layers';
 
-      const engineeringTags = XmlService.getEngineeringTags();
+      const engineeringTags = await XmlService.getEngineeringTags();
       const layers = this.groupQuestionsByEngineeringLayer(
         questions,
         engineeringTags

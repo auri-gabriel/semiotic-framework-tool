@@ -152,7 +152,7 @@ export function AppProvider({ children }) {
       try {
         let exportObj;
         if (format === 'xml') {
-          exportObj = XmlService.exportAnswersAsXML(state.answers);
+          exportObj = await XmlService.exportAnswersAsXML(state.answers);
           if (exportObj) {
             const blob = new Blob([exportObj.data], {
               type: exportObj.mimeType,

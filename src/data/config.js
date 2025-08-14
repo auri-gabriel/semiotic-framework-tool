@@ -5,12 +5,22 @@
  * to customize the behavior of data reading operations.
  */
 
+// Helper function to get the correct base path for assets
+const getBasePath = () => {
+  // In development, use the dev server base
+  if (import.meta.env.DEV) {
+    return '';
+  }
+  // In production, use the configured base path
+  return import.meta.env.BASE_URL || '/';
+};
+
 export const DATA_CONFIG = {
   /**
    * Path to the main XML definitions file
    * This can be modified to point to different files in different environments
    */
-  XML_DEFINITIONS_PATH: '/src/data/assets/definitions/definitions.xml',
+  XML_DEFINITIONS_PATH: `${getBasePath()}definitions.xml`,
 
   /**
    * Default language for fallbacks

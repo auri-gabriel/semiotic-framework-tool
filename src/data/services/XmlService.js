@@ -1,15 +1,34 @@
-import definitionsXML from '../assets/definitions/definitions.xml?raw';
+import { DATA_CONFIG } from '../config.js';
 
 /**
  * Service for handling XML import/export operations
  */
 export class XmlService {
   /**
+   * Fetches the definitions XML from the public folder
+   * @returns {Promise<string>} The XML content as string
+   */
+  static async fetchDefinitionsXML() {
+    try {
+      const response = await fetch(DATA_CONFIG.XML_DEFINITIONS_PATH);
+      if (!response.ok) {
+        throw new Error(`Failed to fetch definitions XML: ${response.status}`);
+      }
+      return await response.text();
+    } catch (error) {
+      console.error('[XmlService] Error fetching definitions XML:', error);
+      throw error;
+    }
+  }
+
+  /**
    * Exports answers as XML format
    * @param {Object} answers - Object with questionId as key and answer as value
-   * @returns {Object} Export result with data, mimeType, and fileName
+   * @returns {Promise<Object>} Export result with data, mimeType, and fileName
    */
-  static exportAnswersAsXML(answers) {
+  static async exportAnswersAsXML(answers) {
+    const definitionsXML = await this.fetchDefinitionsXML();
+
     const answersXML = `<answers>\n${Object.entries(answers)
       .map(
         ([k, v]) =>
@@ -59,9 +78,11 @@ export class XmlService {
 
   /**
    * Parses engineering layer tags from definitions XML
-   * @returns {Object} Engineering tags mapped by ID
+   * @returns {Promise<Object>} Engineering tags mapped by ID
    */
-  static getEngineeringTags() {
+  static async getEngineeringTags() {
+    const definitionsXML = await this.fetchDefinitionsXML();
+
     const parser = new DOMParser();
     const definitions = parser.parseFromString(
       definitionsXML,
