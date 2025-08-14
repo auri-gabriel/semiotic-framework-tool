@@ -11,6 +11,8 @@ const sectionTexts = {
     title: 'Start',
     intro:
       "Ready to start?\nClick the blocks below to show the questions. For each one, click the question and answer it. It's simple and fast — just answer.",
+    newFormSuggestion:
+      'Starting a new project? Try clearing all the old responses first.',
     clearResponses: 'Clear All Responses',
     clearResponsesDesc: 'Delete all saved responses',
     clearConfirmTitle: 'Clear All Responses',
@@ -23,6 +25,8 @@ const sectionTexts = {
     title: 'Iniciar',
     intro:
       'Pronto para começar?\nClique nos blocos abaixo para mostrar as perguntas. Em cada um, Clique na pergunta e responda. É simples e rápido — só ler e responder.',
+    newFormSuggestion:
+      'Começando um novo projeto? Tente limpar todas as respostas antigas primeiro.',
     clearResponses: 'Limpar Todas as Respostas',
     clearResponsesDesc: 'Excluir todas as respostas salvas',
     clearConfirmTitle: 'Limpar Todas as Respostas',
@@ -75,6 +79,14 @@ export default function StartSection() {
         <p className='mb-4' style={{ whiteSpace: 'pre-line' }}>
           {text.intro}
         </p>
+
+        {/* New Form Suggestion */}
+        <div className='mb-3'>
+          <p className='text-muted mb-0'>
+            <i className='bi bi-info-circle me-2'></i>
+            {text.newFormSuggestion}
+          </p>
+        </div>
 
         {/* Clear All Responses Button */}
         <div className='mb-4 text-start'>
