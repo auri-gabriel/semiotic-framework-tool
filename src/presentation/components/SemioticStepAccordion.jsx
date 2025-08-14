@@ -3,9 +3,13 @@ import QuestionAccordion from './QuestionAccordion';
 const semioticStepTexts = {
   en: {
     info: 'Info',
+    expandAll: 'Expand All',
+    collapseAll: 'Collapse All',
   },
   pt_BR: {
     info: 'Informações',
+    expandAll: 'Expandir Todas',
+    collapseAll: 'Recolher Todas',
   },
 };
 
@@ -29,6 +33,49 @@ function SemioticStepAccordion({
     hasAnswer(answers[q.id])
   ).length;
   const totalCount = step.questions.length;
+
+  // Functions to handle expand/collapse all questions
+  const expandAllQuestions = () => {
+    step.questions.forEach((q) => {
+      const collapseElement = document.getElementById(
+        `collapse-${groupKey}-${stepKey}-q${q.id}`
+      );
+      const buttonElement = document.querySelector(
+        `[data-bs-target="#collapse-${groupKey}-${stepKey}-q${q.id}"]`
+      );
+
+      if (
+        collapseElement &&
+        buttonElement &&
+        !collapseElement.classList.contains('show')
+      ) {
+        collapseElement.classList.add('show');
+        buttonElement.classList.remove('collapsed');
+        buttonElement.setAttribute('aria-expanded', 'true');
+      }
+    });
+  };
+
+  const collapseAllQuestions = () => {
+    step.questions.forEach((q) => {
+      const collapseElement = document.getElementById(
+        `collapse-${groupKey}-${stepKey}-q${q.id}`
+      );
+      const buttonElement = document.querySelector(
+        `[data-bs-target="#collapse-${groupKey}-${stepKey}-q${q.id}"]`
+      );
+
+      if (
+        collapseElement &&
+        buttonElement &&
+        collapseElement.classList.contains('show')
+      ) {
+        collapseElement.classList.remove('show');
+        buttonElement.classList.add('collapsed');
+        buttonElement.setAttribute('aria-expanded', 'false');
+      }
+    });
+  };
 
   return (
     <div className='accordion-item'>
@@ -55,15 +102,35 @@ function SemioticStepAccordion({
         aria-labelledby={`heading-${groupKey}-${stepKey}`}
       >
         <div className='accordion-body bg-white'>
-          <button
-            type='button'
-            className='btn btn-secondary mb-3'
-            data-bs-toggle='collapse'
-            data-bs-target={`#collapse-${groupKey}-${stepKey}-info`}
-          >
-            <i className='bi bi-info-circle-fill me-2'></i>
-            {semioticStepTexts[language].info}
-          </button>
+          <div className='d-flex gap-2 mb-3'>
+            <button
+              type='button'
+              className='btn btn-secondary'
+              data-bs-toggle='collapse'
+              data-bs-target={`#collapse-${groupKey}-${stepKey}-info`}
+            >
+              <i className='bi bi-info-circle-fill me-2'></i>
+              {semioticStepTexts[language].info}
+            </button>
+
+            <button
+              type='button'
+              className='btn btn-outline-primary btn-sm'
+              onClick={expandAllQuestions}
+            >
+              <i className='bi bi-arrows-expand me-1'></i>
+              {semioticStepTexts[language].expandAll}
+            </button>
+
+            <button
+              type='button'
+              className='btn btn-outline-secondary btn-sm'
+              onClick={collapseAllQuestions}
+            >
+              <i className='bi bi-arrows-collapse me-1'></i>
+              {semioticStepTexts[language].collapseAll}
+            </button>
+          </div>
 
           <div
             className='collapse alert alert-light alert-dismissible fade'
