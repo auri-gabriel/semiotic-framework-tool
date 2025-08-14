@@ -102,17 +102,16 @@ function SemioticStepAccordion({
         aria-labelledby={`heading-${groupKey}-${stepKey}`}
       >
         <div className='accordion-body bg-white'>
-          <div className='d-flex gap-2 mb-3'>
-            <button
-              type='button'
-              className='btn btn-secondary'
-              data-bs-toggle='collapse'
-              data-bs-target={`#collapse-${groupKey}-${stepKey}-info`}
-            >
-              <i className='bi bi-info-circle-fill me-2'></i>
-              {semioticStepTexts[language].info}
-            </button>
+          {step.tag?.texts?.[language] && (
+            <div className='alert alert-light mb-3' role='alert'>
+              <div className='d-flex align-items-start'>
+                <i className='bi bi-info-circle-fill text-primary me-2'></i>
+                <div>{step.tag.texts[language]}</div>
+              </div>
+            </div>
+          )}
 
+          <div className='d-flex gap-2 mb-3'>
             <button
               type='button'
               className='btn btn-outline-primary btn-sm'
@@ -130,21 +129,6 @@ function SemioticStepAccordion({
               <i className='bi bi-arrows-collapse me-1'></i>
               {semioticStepTexts[language].collapseAll}
             </button>
-          </div>
-
-          <div
-            className='collapse alert alert-light alert-dismissible fade'
-            id={`collapse-${groupKey}-${stepKey}-info`}
-            role='alert'
-          >
-            {step.tag?.texts?.[language]}
-            <button
-              type='button'
-              className='btn-close'
-              data-bs-toggle='collapse'
-              data-bs-target={`#collapse-${groupKey}-${stepKey}-info`}
-              aria-label='Close'
-            ></button>
           </div>
 
           <div
