@@ -1,11 +1,10 @@
 import React, { createContext, useReducer, useEffect } from 'react';
 import { getQuestionsGroupedBySemiotics } from '../../business/SemioticLadderManager';
 import {
-  exportAnswersAsXML,
-  importAnswersFromXML,
-  exportSemioticLadderDoc,
-  exportEngineeringLayers,
-} from '../../data/ImpexManager';
+  XmlService,
+  SemioticLadderService,
+  EngineeringLayersService,
+} from '../../data/services';
 
 // Action types
 const ActionTypes = {
@@ -149,7 +148,7 @@ export function AppProvider({ children }) {
       try {
         let exportObj;
         if (format === 'xml') {
-          exportObj = exportAnswersAsXML(state.answers);
+          exportObj = XmlService.exportAnswersAsXML(state.answers);
           if (exportObj) {
             const blob = new Blob([exportObj.data], {
               type: exportObj.mimeType,
@@ -164,7 +163,7 @@ export function AppProvider({ children }) {
         }
 
         if (format === 'semiotic-ladder') {
-          await exportSemioticLadderDoc({
+          await SemioticLadderService.exportDocument({
             grouping: state.semioticLadderGrouping,
             answers: state.answers,
             onlyAnswered: options.onlyAnswered,
@@ -174,7 +173,7 @@ export function AppProvider({ children }) {
         }
 
         if (format === 'engineering-layers') {
-          await exportEngineeringLayers({
+          await EngineeringLayersService.exportDocument({
             questions: Object.values(state.semioticLadderGrouping)
               .flatMap((group) => Object.values(group.steps))
               .flatMap((step) => step.questions),
@@ -193,7 +192,7 @@ export function AppProvider({ children }) {
 
     handleImportXML: (xmlString) => {
       try {
-        const imported = importAnswersFromXML(xmlString);
+        const imported = XmlService.importAnswersFromXML(xmlString);
         actions.importAnswers(imported);
       } catch (error) {
         console.error('Import error:', error);
