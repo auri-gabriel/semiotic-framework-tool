@@ -43,3 +43,8 @@ $font-family-base: 'Inter', sans-serif;
   color: var(--bs-accordion-button-active-color, var(--bs-accordion-color));
   box-shadow: none;
 }
+
+// Custom CKEditor min-height in order to make the placeholder readable on mobile
+.ck-editor__editable_inline {
+  min-height: 150px;
+}
