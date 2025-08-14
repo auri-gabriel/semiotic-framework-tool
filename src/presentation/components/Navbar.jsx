@@ -3,8 +3,9 @@ import { useLanguage } from '../hooks/useLanguage';
 
 const navbarTexts = {
   en: {
-    brand: 'Semioparticipatory Framework for Educational Software Development',
-    brandAcronym: 'SFESD',
+    brand:
+      'Semioparticipatory Framework for Educational Software Development Tool',
+    brandAcronym: 'SF.ESDT',
     group: {
       framework: 'The Framework',
       start: 'Start',
@@ -15,8 +16,8 @@ const navbarTexts = {
   },
   pt_BR: {
     brand:
-      'Framework Semioparticipativo para o Desenvolvimento de Software Educacional',
-    brandAcronym: 'FSDSE',
+      'Ferramenta de apoio ao Framework Semioparticipativo para o Desenvolvimento de Software Educacional',
+    brandAcronym: 'FFS.DSE',
     group: {
       framework: 'O Framework',
       start: 'Iniciar',
@@ -79,7 +80,7 @@ const Navbar = () => {
             className='d-none d-md-block text-dark'
             style={{
               lineHeight: '1.2',
-              maxWidth: '200px',
+              maxWidth: '300px',
               fontSize: '0.85rem',
               wordWrap: 'break-word',
               hyphens: 'auto',
