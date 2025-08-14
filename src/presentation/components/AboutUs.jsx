@@ -49,7 +49,7 @@ const AboutUs = () => {
         </div>
         <p>{t.aboutUsText}</p>
         <img
-          src='/logo-geinfoedu.png'
+          src={`${import.meta.env.BASE_URL}/logo-geinfoedu.png`}
           alt='GEInfoEdu'
           className='mb-3 img-fluid'
         />
