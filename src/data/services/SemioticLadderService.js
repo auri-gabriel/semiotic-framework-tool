@@ -73,8 +73,8 @@ export class SemioticLadderService {
             if (!questions) return '';
 
             return `
-              <div class="step">
-                <div class="step-title">${HtmlTemplateService.escapeHtml(
+              <div class="step avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important; display: block;">
+                <div class="step-title" style="page-break-after: avoid !important; break-after: avoid !important;">${HtmlTemplateService.escapeHtml(
                   stepProps.tag.names[language]
                 )}</div>
                 ${questions}
@@ -86,8 +86,8 @@ export class SemioticLadderService {
         if (!steps) return '';
 
         return `
-          <div class="group avoid-break">
-            <div class="group-title">${HtmlTemplateService.escapeHtml(
+          <div class="group avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important; display: block;">
+            <div class="group-title" style="page-break-after: avoid !important; break-after: avoid !important;">${HtmlTemplateService.escapeHtml(
               groupProps.tag.names[language]
             )}</div>
             ${steps}

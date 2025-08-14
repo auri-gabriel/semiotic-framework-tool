@@ -103,8 +103,8 @@ export class EngineeringLayersService {
         if (!questions) return '';
 
         return `
-          <div class="group avoid-break">
-            <div class="group-title">${HtmlTemplateService.escapeHtml(
+          <div class="group avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important; display: block;">
+            <div class="group-title" style="page-break-after: avoid !important; break-after: avoid !important;">${HtmlTemplateService.escapeHtml(
               layer.tag.names[language]
             )}</div>
             ${questions}

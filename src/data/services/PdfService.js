@@ -35,18 +35,26 @@ export class PdfService {
 
     document.body.appendChild(tempDiv);
 
-    // Wait for content to be ready
-    await new Promise((resolve) => setTimeout(resolve, 200));
+    // Wait for content to be ready and styles to be applied
+    await new Promise((resolve) => setTimeout(resolve, 500));
 
     const options = {
-      margin: [10, 10, 10, 10],
+      margin: [15, 15, 15, 15],
       filename: `${filename}.pdf`,
-      image: { type: 'jpeg', quality: 1 },
+      image: { type: 'jpeg', quality: 0.98 },
       html2canvas: {
-        scale: 2,
+        scale: 1.5,
         useCORS: true,
         letterRendering: true,
         backgroundColor: '#ffffff',
+        allowTaint: false,
+        height: null,
+        width: null,
+        scrollX: 0,
+        scrollY: 0,
+        onrendered: function () {
+          // Additional processing if needed
+        },
       },
       jsPDF: {
         unit: 'mm',
@@ -54,7 +62,19 @@ export class PdfService {
         orientation: 'portrait',
         compress: true,
       },
-      pagebreak: { mode: ['avoid-all', 'css', 'legacy'] },
+      pagebreak: {
+        mode: ['avoid-all', 'css'],
+        before: '.page-break',
+        after: '.page-break-after',
+        avoid: [
+          '.avoid-break',
+          '.group',
+          '.step',
+          '.question',
+          '.question-text',
+          '.answer-text',
+        ],
+      },
     };
 
     try {

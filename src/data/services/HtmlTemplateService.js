@@ -26,6 +26,58 @@ export class HtmlTemplateService {
   }
   .avoid-break {
     page-break-inside: avoid;
+    break-inside: avoid;
+  }
+  
+  /* Ensure groups don't break */
+  .group {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    display: block !important;
+  }
+  
+  /* Ensure steps don't break */
+  .step {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    display: block !important;
+  }
+  
+  /* Ensure questions don't break */
+  .question {
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    display: block !important;
+  }
+  
+  /* Prevent titles from being orphaned */
+  .group-title {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  
+  .step-title {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  
+  .question-text {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+  }
+  
+  /* Ensure answer text stays with question */
+  .answer-text {
+    page-break-before: avoid !important;
+    break-before: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
   }
 }
 
@@ -65,6 +117,7 @@ body {
 .group {
   margin-bottom: 32px;
   page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 .group:not(:last-child) {
@@ -82,11 +135,15 @@ body {
   border: none;
   border-left: 4px solid #000000;
   letter-spacing: -0.01em;
+  page-break-after: avoid;
+  break-after: avoid;
 }
 
 .step {
   margin-bottom: 24px;
   margin-left: 16px;
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 .step-title {
@@ -98,12 +155,15 @@ body {
   background: #ffffff;
   border: 1px solid #d1d1d1;
   border-left: 3px solid #666666;
+  page-break-after: avoid;
+  break-after: avoid;
 }
 
 .question {
   margin-bottom: 16px;
   margin-left: 24px;
   page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 .question-text {
@@ -113,6 +173,8 @@ body {
   margin-bottom: 8px;
   line-height: 1.4;
   letter-spacing: -0.005em;
+  page-break-after: avoid;
+  break-after: avoid;
 }
 
 .answer-text {
@@ -127,6 +189,10 @@ body {
   word-wrap: break-word;
   font-weight: 400;
   line-height: 1.5;
+  page-break-before: avoid;
+  break-before: avoid;
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
 .no-answer {
@@ -148,21 +214,68 @@ body {
 
 /* Better print spacing */
 @media print {
+  /* Force block display for better control */
+  * {
+    box-sizing: border-box;
+  }
+  
   .group { 
-    margin-bottom: 20px; 
+    margin-bottom: 20px;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    display: block !important;
+    overflow: visible !important;
   }
   .step { 
-    margin-bottom: 16px; 
+    margin-bottom: 16px;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    display: block !important;
+    overflow: visible !important;
   }
   .question { 
-    margin-bottom: 12px; 
+    margin-bottom: 12px;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    display: block !important;
+    overflow: visible !important;
   }
   .group-title {
     background: #f8f8f8 !important;
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    display: block !important;
+  }
+  .step-title {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    display: block !important;
+  }
+  .question-text {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    display: block !important;
   }
   .answer-text {
     background: #ffffff !important;
     border-color: #e0e0e0 !important;
+    page-break-before: avoid !important;
+    break-before: avoid !important;
+    page-break-inside: avoid !important;
+    break-inside: avoid !important;
+    display: block !important;
+  }
+  
+  /* Additional orphan and widow control */
+  p, div {
+    orphans: 3;
+    widows: 3;
   }
 }
 </style>
@@ -235,9 +348,13 @@ body {
       : '(no answer)';
 
     return `
-      <div class="question">
-        <div class="question-text">${this.escapeHtml(questionText)}</div>
-        <div class="answer-text ${!answer ? 'no-answer' : ''}">
+      <div class="question avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important; display: block;">
+        <div class="question-text" style="page-break-after: avoid !important; break-after: avoid !important;">${this.escapeHtml(
+          questionText
+        )}</div>
+        <div class="answer-text ${
+          !answer ? 'no-answer' : ''
+        }" style="page-break-before: avoid !important; break-before: avoid !important; page-break-inside: avoid !important; break-inside: avoid !important;">
           ${answerText}
         </div>
       </div>
