@@ -1,10 +1,10 @@
 # Semiotic Framework Tool
 
-A web-based educational tool for software engineering that implements the Semiotic Ladder framework proposed by Ronald Stamper, integrated with Pressman's Software Engineering Layers. This tool facilitates participatory design approaches in educational software development.
+A web-based participatory framework tool that implements the Semiotic Ladder framework proposed by Ronald Stamper, integrated with Pressman's Software Engineering Layers. This tool facilitates the development of educational software through structured semiotic modeling and participatory design approaches.
 
 ## 🎯 Overview
 
-**fs.SwEdu** (Semiotic Framework for Software Education) is a participatory framework designed to help in the development of software for the educational domain. The tool takes into account human information functions and IT platform aspects, providing a structured approach to software engineering education through semiotic modeling and visualization.
+**fs.SwEdu** (Semiotic Framework for Software Education) is a participatory framework designed to help software engineers and developers in the development of software for the educational domain. The tool takes into account human information functions and IT platform aspects, providing a structured approach to educational software development through semiotic modeling and visualization.
 
 ### Key Features
 
@@ -74,8 +74,8 @@ Choose between English and Portuguese (Brazil) using the language selector in th
 ### 2. Answer Questions
 
 - Navigate to the "Start" section
-- Expand semiotic groups and steps to reveal questions
-- Use the rich text editor to provide detailed answers
+- Expand semiotic groups and steps to reveal questions about your educational software project
+- Use the rich text editor to provide detailed answers about requirements, design, and implementation
 - Track your progress with the answer counters
 
 ### 3. Export Documents
@@ -83,7 +83,7 @@ Choose between English and Portuguese (Brazil) using the language selector in th
 - Use the bottom toolbar to export your responses
 - Choose between "Semiotic Ladder" or "Engineering Layers" format
 - Select whether to include only answered questions
-- Generate PDF documents with your responses
+- Generate PDF documents with your educational software development analysis
 
 ### 4. Data Management
 
@@ -115,24 +115,12 @@ src/
     └── scss/            # Stylesheets
 ```
 
-## 🎓 Educational Context
-
-This tool is designed for use in software engineering education, specifically:
-
-- **Target Audience**: Students and educators in software engineering
-- **Learning Objectives**: Understanding semiotic approaches to software development
-- **Use Cases**:
-  - Academic projects
-  - Research in participatory design
-  - Educational software development
-  - Semiotic framework exploration
-
 ## 📚 Theoretical Foundation
 
-The tool is based on two main theoretical frameworks:
+The tool is based on two main theoretical frameworks for educational software development:
 
-1. **Semiotic Ladder (Liu, 2000)**: A framework for understanding information systems through semiotic analysis
-2. **Pressman's Software Engineering Layers**: Structured approach to software engineering processes
+1. **Semiotic Ladder (Liu, 2000)**: A framework for understanding information systems through semiotic analysis, applied to educational software contexts
+2. **Pressman's Software Engineering Layers**: Structured approach to software engineering processes, specifically adapted for educational software development
 
 ## 🤝 Contributing
 
