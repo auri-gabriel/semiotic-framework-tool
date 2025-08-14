@@ -6,6 +6,36 @@ const answerLabel = {
   pt_BR: 'Sua resposta:',
 };
 
+const characterCountLabel = {
+  en: 'Characters:',
+  pt_BR: 'Caracteres:',
+};
+
+const wordCountLabel = {
+  en: 'Words:',
+  pt_BR: 'Palavras:',
+};
+
+// Helper function to strip HTML tags and get plain text
+const stripHtml = (html) => {
+  const div = document.createElement('div');
+  div.innerHTML = html;
+  return div.textContent || div.innerText || '';
+};
+
+// Helper function to count characters (excluding HTML tags)
+const getCharacterCount = (html) => {
+  const plainText = stripHtml(html);
+  return plainText.length;
+};
+
+// Helper function to count words (excluding HTML tags)
+const getWordCount = (html) => {
+  const plainText = stripHtml(html);
+  const words = plainText.trim().split(/\s+/);
+  return plainText.trim() === '' ? 0 : words.length;
+};
+
 function QuestionAccordion({
   groupKey,
   stepKey,
@@ -15,6 +45,9 @@ function QuestionAccordion({
   onAnswerChange,
 }) {
   const placeholder = question.placeholders?.[language] || '';
+  const characterCount = getCharacterCount(answer || '');
+  const wordCount = getWordCount(answer || '');
+
   return (
     <div className='accordion-item'>
       <h2
@@ -39,6 +72,7 @@ function QuestionAccordion({
       >
         <div className='accordion-body'>
           <label htmlFor={`answer-${question.id}`} className='form-label'>
+            <i className='bi bi-pencil-square me-2'></i>
             {answerLabel[language]}
           </label>
           <CKEditor
@@ -52,6 +86,16 @@ function QuestionAccordion({
               onAnswerChange(question.id, data);
             }}
           />
+          <div className='mt-2 text-muted small'>
+            <span className='me-3'>
+              <i className='bi bi-textarea-t me-1'></i>
+              {characterCountLabel[language]} {characterCount}
+            </span>
+            <span>
+              <i className='bi bi-journal-text me-1'></i>
+              {wordCountLabel[language]} {wordCount}
+            </span>
+          </div>
         </div>
       </div>
     </div>
