@@ -77,7 +77,7 @@ const Navbar = () => {
             {t.brandAcronym}
           </span>
           <span
-            className='d-none d-md-block text-dark'
+            className='d-none d-xl-block text-dark'
             style={{
               lineHeight: '1.2',
               maxWidth: '300px',
@@ -140,7 +140,7 @@ const Navbar = () => {
                   <span className='me-2' style={{ fontSize: '1.2em' }}>
                     {currentLanguage?.flag}
                   </span>
-                  <span className='d-none d-sm-inline'>
+                  <span className='d-inline'>
                     {currentLanguage?.label.split(' ')[0]}
                   </span>
                 </button>
