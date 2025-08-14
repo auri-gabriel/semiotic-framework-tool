@@ -45,7 +45,7 @@ const Hero = () => {
                 className='btn btn-primary mt-3'
                 style={{ textDecoration: 'none' }}
               >
-                <i class='bi bi-play-fill ms-2'></i>
+                <i class='bi bi-play-fill me-2'></i>
                 {t.ctaButton}
               </a>
             </div>
