@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<exported-semiotic-framework>
+    <definitions>
+        <tag-definitions>
+            <!-- Custom Semiotic Groups -->
+            <tag id="human" type="semiotic-group" order="1">
+                <name lang="en">Human information functions</name>
+                <name lang="pt_BR">Funções humanas da informação</name>
+            </tag>
+
+            <!-- Custom Semiotic Levels -->
+            <tag id="social_world" type="semiotic-steps" order="1">
+                <tag id="human" />
+                <name lang="pt_BR">Mundo Social</name>
+                <name lang="en">Social World</name>
+                <text lang="pt_BR">
+                    Crenças, expectativas, funções, compromissos, contratos, leis,
+                    cultura, entre outros.
+                </text>
+                <text lang="en">
+                    Beliefs, expectations, roles, commitments, contracts, laws,
+                    culture, and more.
+                </text>
+            </tag>
+
+            <tag id="pragmatic" type="semiotic-steps" order="2">
+                <tag id="human" />
+                <name lang="pt_BR">Pragmático</name>
+                <name lang="en">Pragmatic</name>
+                <text lang="pt_BR">
+                    Intenções, comunicações, conversações, negociações, entre outros.
+                </text>
+                <text lang="en">
+                    Intentions, communications, conversations, negotiations, and more.
+                </text>
+            </tag>
+
+            <!-- Custom Software Engineering Layers -->
+            <tag id="quality" type="engineering-layer" order="1">
+                <name lang="pt_BR">Foco na qualidade</name>
+                <name lang="en">Quality focus</name>
+            </tag>
+
+        </tag-definitions>
+
+        <questions-definitions>
+            <!-- Custom Questions for Social World -->
+            <question id="q01">
+                <tag id="social_world" />
+                <text lang="pt_BR">Quais são as principais expectativas dos stakeholders para este
+                    projeto personalizado?</text>
+                <text lang="en">What are the main stakeholder expectations for this custom project?</text>
+                <placeholder lang="pt_BR">Exemplo: Espera-se um software inovador e eficiente.</placeholder>
+                <placeholder lang="en">Example: Stakeholders expect innovative and efficient
+                    software.</placeholder>
+            </question>
+
+            <question id="q02">
+                <tag id="social_world" />
+                <text lang="pt_BR">Que valores culturais devem ser considerados neste contexto
+                    específico?</text>
+                <text lang="en">What cultural values should be considered in this specific context?</text>
+                <placeholder lang="pt_BR">Exemplo: Respeito pela diversidade e inclusão.</placeholder>
+                <placeholder lang="en">Example: Respect for diversity and inclusion.</placeholder>
+            </question>
+
+            <!-- Custom Questions for Pragmatic -->
+            <question id="q03">
+                <tag id="pragmatic" />
+                <text lang="pt_BR">Como será a comunicação entre as partes interessadas neste
+                    projeto?</text>
+                <text lang="en">How will communication between stakeholders be handled in this
+                    project?</text>
+                <placeholder lang="pt_BR">Exemplo: Reuniões semanais e relatórios quinzenais.</placeholder>
+                <placeholder lang="en">Example: Weekly meetings and biweekly reports.</placeholder>
+            </question>
+
+            <question id="q04">
+                <tag id="pragmatic" />
+                <tag id="quality" />
+                <text lang="pt_BR">Qual estratégia será usada para garantir a qualidade durante o
+                    desenvolvimento?</text>
+                <text lang="en">What strategy will be used to ensure quality during development?</text>
+                <placeholder lang="pt_BR">Exemplo: Revisões de código e testes automatizados.</placeholder>
+                <placeholder lang="en">Example: Code reviews and automated testing.</placeholder>
+            </question>
+        </questions-definitions>
+    </definitions>
+
+    <answers>
+        <answer id="q01">Os stakeholders esperam um software que revolucione a educação digital, com
+            alta usabilidade e performance excepcional.</answer>
+        <answer id="q02">Devemos considerar a diversidade cultural dos usuários, respeitando
+            diferentes backgrounds educacionais e tecnológicos.</answer>
+        <answer id="q03">Estabeleceremos um canal de comunicação contínua através de reuniões
+            semanais com todos os stakeholders e relatórios de progresso quinzenais.</answer>
+        <answer id="q04">Implementaremos uma estratégia robusta de qualidade incluindo revisões de
+            código peer-to-peer, testes automatizados e integração contínua.</answer>
+    </answers>
+</exported-semiotic-framework>

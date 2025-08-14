@@ -15,6 +15,35 @@ export class XmlReaderService {
   };
 
   /**
+   * Custom definitions XML string to use instead of the default file
+   * @type {string|null}
+   */
+  static customDefinitions = null;
+
+  /**
+   * Sets custom definitions XML to be used instead of the default file
+   * @param {string|null} xmlString - Custom definitions XML string, or null to reset to default
+   */
+  static setCustomDefinitions(xmlString) {
+    this.customDefinitions = xmlString;
+  }
+
+  /**
+   * Gets the current custom definitions XML
+   * @returns {string|null} Custom definitions XML string or null if using default
+   */
+  static getCustomDefinitions() {
+    return this.customDefinitions;
+  }
+
+  /**
+   * Resets to use default definitions file
+   */
+  static resetToDefaultDefinitions() {
+    this.customDefinitions = null;
+  }
+
+  /**
    * Helper function to process language-based nodes (text, name, description, placeholder)
    * @param {NodeList} nodes - The nodes to process
    * @param {string} nodeType - Type of node for logging
@@ -183,15 +212,23 @@ export class XmlReaderService {
    */
   static async fetchAndParseXml(xmlFilePath = this.CONFIG.XML_FILE_PATH) {
     try {
-      const response = await fetch(xmlFilePath);
+      let xmlText;
 
-      if (!response.ok) {
-        const errorMessage = `Failed to fetch definitions.xml: ${response.status} ${response.statusText}`;
-        console.error(`${this.CONFIG.LOG_PREFIX} ${errorMessage}`);
-        throw new Error(errorMessage);
+      // Use custom definitions if available
+      if (this.customDefinitions) {
+        xmlText = this.customDefinitions;
+      } else {
+        const response = await fetch(xmlFilePath);
+
+        if (!response.ok) {
+          const errorMessage = `Failed to fetch definitions.xml: ${response.status} ${response.statusText}`;
+          console.error(`${this.CONFIG.LOG_PREFIX} ${errorMessage}`);
+          throw new Error(errorMessage);
+        }
+
+        xmlText = await response.text();
       }
 
-      const xmlText = await response.text();
       const parser = new window.DOMParser();
       const xmlDocument = parser.parseFromString(xmlText, 'application/xml');
 

@@ -5,6 +5,7 @@ import {
   SemioticLadderService,
   EngineeringLayersService,
 } from '../../data/services';
+import { XmlReaderService } from '../../data/services/XmlReaderService';
 
 // Action types
 const ActionTypes = {
@@ -18,6 +19,7 @@ const ActionTypes = {
   SET_EXPORTING: 'SET_EXPORTING',
   IMPORT_ANSWERS: 'IMPORT_ANSWERS',
   CLEAR_ANSWERS: 'CLEAR_ANSWERS',
+  REFRESH_SEMIOTIC_DATA: 'REFRESH_SEMIOTIC_DATA',
 };
 
 // Initial state
@@ -75,6 +77,9 @@ function appReducer(state, action) {
 
     case ActionTypes.CLEAR_ANSWERS:
       return { ...state, answers: {} };
+
+    case ActionTypes.REFRESH_SEMIOTIC_DATA:
+      return { ...state, loading: true };
 
     default:
       return state;
@@ -194,18 +199,75 @@ export function AppProvider({ children }) {
       }
     },
 
-    handleImportXML: (xmlString) => {
+    handleImportXML: async (xmlString) => {
       try {
-        const imported = XmlService.importAnswersFromXML(xmlString);
-        actions.importAnswers(imported);
+        const imported = XmlService.importFromXML(xmlString);
+
+        // If definitions were found in the XML, update the system to use them
+        if (imported.definitions) {
+          XmlReaderService.setCustomDefinitions(imported.definitions);
+
+          // Refresh the semiotic ladder data with the new definitions
+          dispatch({ type: ActionTypes.REFRESH_SEMIOTIC_DATA });
+
+          try {
+            const semioticLadderGroupingData =
+              await getQuestionsGroupedBySemiotics();
+            dispatch({
+              type: ActionTypes.SET_SEMIOTIC_LADDER_GROUPING,
+              payload: semioticLadderGroupingData,
+            });
+          } catch (error) {
+            console.error(
+              'Error loading semiotic ladder data with new definitions:',
+              error
+            );
+          } finally {
+            dispatch({ type: ActionTypes.SET_LOADING, payload: false });
+          }
+        }
+
+        // Import the answers
+        actions.importAnswers(imported.answers);
       } catch (error) {
         console.error('Import error:', error);
         alert('Failed to import XML.');
       }
     },
 
+    resetToDefaultDefinitions: async () => {
+      try {
+        XmlReaderService.resetToDefaultDefinitions();
+
+        // Refresh the semiotic ladder data with default definitions
+        dispatch({ type: ActionTypes.REFRESH_SEMIOTIC_DATA });
+
+        try {
+          const semioticLadderGroupingData =
+            await getQuestionsGroupedBySemiotics();
+          dispatch({
+            type: ActionTypes.SET_SEMIOTIC_LADDER_GROUPING,
+            payload: semioticLadderGroupingData,
+          });
+        } catch (error) {
+          console.error(
+            'Error loading semiotic ladder data with default definitions:',
+            error
+          );
+        } finally {
+          dispatch({ type: ActionTypes.SET_LOADING, payload: false });
+        }
+      } catch (error) {
+        console.error('Error resetting to default definitions:', error);
+      }
+    },
+
     clearAnswers: () => {
       dispatch({ type: ActionTypes.CLEAR_ANSWERS });
+    },
+
+    isUsingCustomDefinitions: () => {
+      return XmlReaderService.getCustomDefinitions() !== null;
     },
   };
 

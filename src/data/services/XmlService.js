@@ -1,4 +1,5 @@
 import { DATA_CONFIG } from '../config.js';
+import { XmlReaderService } from './XmlReaderService.js';
 
 /**
  * Service for handling XML import/export operations
@@ -27,7 +28,15 @@ export class XmlService {
    * @returns {Promise<Object>} Export result with data, mimeType, and fileName
    */
   static async exportAnswersAsXML(answers) {
-    const definitionsXML = await this.fetchDefinitionsXML();
+    // Use custom definitions if available, otherwise fetch from default location
+    let definitionsXML;
+    const customDefinitions = XmlReaderService.getCustomDefinitions();
+
+    if (customDefinitions) {
+      definitionsXML = customDefinitions;
+    } else {
+      definitionsXML = await this.fetchDefinitionsXML();
+    }
 
     const answersXML = `<answers>\n${Object.entries(answers)
       .map(
@@ -77,6 +86,43 @@ export class XmlService {
   }
 
   /**
+   * Imports both definitions and answers from XML string
+   * @param {string} xmlString - XML string to parse
+   * @returns {Object} Object containing definitions (if any) and answers
+   */
+  static importFromXML(xmlString) {
+    const parser = new DOMParser();
+    const xml = parser.parseFromString(xmlString, 'application/xml');
+
+    const result = {
+      answers: {},
+      definitions: null,
+    };
+
+    // Check if this is an exported-semiotic-framework with definitions
+    const exportedFramework = xml.querySelector('exported-semiotic-framework');
+    if (exportedFramework) {
+      // Extract definitions if they exist
+      const definitionsNode = exportedFramework.querySelector('definitions');
+      if (definitionsNode) {
+        // Store the definitions as XML string for later use
+        const serializer = new XMLSerializer();
+        result.definitions = `<?xml version="1.0" encoding="UTF-8"?>\n${serializer.serializeToString(
+          definitionsNode
+        )}`;
+      }
+    }
+
+    // Extract answers (works for both old format and new format)
+    const answerNodes = xml.getElementsByTagName('answer');
+    for (let node of answerNodes) {
+      result.answers[node.getAttribute('id')] = node.textContent;
+    }
+
+    return result;
+  }
+
+  /**
    * Parses engineering layer tags from definitions XML
    * @returns {Promise<Object>} Engineering tags mapped by ID
    */
@@ -111,3 +157,4 @@ export class XmlService {
 // Legacy named exports for backward compatibility
 export const exportAnswersAsXML = XmlService.exportAnswersAsXML;
 export const importAnswersFromXML = XmlService.importAnswersFromXML;
+export const importFromXML = XmlService.importFromXML;
