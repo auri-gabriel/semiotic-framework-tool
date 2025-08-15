@@ -9,12 +9,17 @@ const toolbarTexts = {
     importXML: 'Import XML',
     exportPDF: 'as PDF',
     exportDOCX: 'as DOCX',
+    exportPreview: 'Preview HTML',
     exportEngLayers: 'Export Engineering Layers',
     dataExport: 'Data Export',
     documentExport: 'Document Export',
     exportXMLDesc: 'Save current data as XML file',
     exportLadderDesc: 'Generate PDF report of Semiotic Ladder',
+    exportLadderPreviewDesc:
+      'Open HTML preview in new tab for debugging (dev only)',
     exportEngLayersDesc: 'Generate PDF report of Engineering Layers',
+    exportEngLayersPreviewDesc:
+      'Open HTML preview in new tab for debugging (dev only)',
   },
   pt_BR: {
     export: 'Exportar',
@@ -24,12 +29,17 @@ const toolbarTexts = {
     importXML: 'Importar XML',
     exportPDF: 'em PDF',
     exportDOCX: 'em DOCX',
+    exportPreview: 'Pré-visualizar HTML',
     exportEngLayers: 'Exportar Camadas de Engenharia',
     dataExport: 'Exportação de Dados',
     documentExport: 'Exportação de Documentos',
     exportXMLDesc: 'Salvar dados atuais como arquivo XML',
     exportLadderDesc: 'Gerar relatório PDF da Escada Semiótica',
+    exportLadderPreviewDesc:
+      'Abrir pré-visualização HTML em nova aba para depuração (dev apenas)',
     exportEngLayersDesc: 'Gerar relatório PDF das Camadas de Engenharia',
+    exportEngLayersPreviewDesc:
+      'Abrir pré-visualização HTML em nova aba para depuração (dev apenas)',
   },
 };
 
@@ -44,6 +54,7 @@ function BottomToolbar({
 }) {
   const fileInputRef = useRef();
   const t = toolbarTexts[language];
+  const isDev = import.meta.env.DEV;
 
   const handleImportClick = () => {
     fileInputRef.current.click();
@@ -200,6 +211,35 @@ function BottomToolbar({
                     </div>
                   </button>
                 </li>
+
+                {/* Semiotic Ladder HTML Preview (Development Only) */}
+                {isDev && (
+                  <li>
+                    <button
+                      className='dropdown-item d-flex align-items-start'
+                      onClick={() =>
+                        onExport('semiotic-ladder', {
+                          onlyAnswered: exportOnlyAnswered,
+                          format: 'preview',
+                        })
+                      }
+                      style={{ whiteSpace: 'normal' }}
+                    >
+                      <div className='flex-shrink-0 me-2 mt-1'>
+                        <i className='bi bi-eye' aria-hidden='true'></i>
+                      </div>
+                      <div className='text-break'>
+                        <div className='fw-medium'>
+                          {t.exportLadder} {t.exportPreview}
+                        </div>
+                        <small className='text-muted'>
+                          {t.exportLadderPreviewDesc}
+                        </small>
+                      </div>
+                    </button>
+                  </li>
+                )}
+
                 <li>
                   <div
                     className='dropdown-item-text px-4 py-1'
@@ -252,6 +292,35 @@ function BottomToolbar({
                     </div>
                   </button>
                 </li>
+
+                {/* Engineering Layers HTML Preview (Development Only) */}
+                {isDev && (
+                  <li>
+                    <button
+                      className='dropdown-item d-flex align-items-start'
+                      onClick={() =>
+                        onExport('engineering-layers', {
+                          onlyAnswered: exportEngOnlyAnswered,
+                          format: 'preview',
+                        })
+                      }
+                      style={{ whiteSpace: 'normal' }}
+                    >
+                      <div className='flex-shrink-0 me-2 mt-1'>
+                        <i className='bi bi-eye' aria-hidden='true'></i>
+                      </div>
+                      <div className='text-break'>
+                        <div className='fw-medium'>
+                          {t.exportEngLayers} {t.exportPreview}
+                        </div>
+                        <small className='text-muted'>
+                          {t.exportEngLayersPreviewDesc}
+                        </small>
+                      </div>
+                    </button>
+                  </li>
+                )}
+
                 <li>
                   <div
                     className='dropdown-item-text px-4 py-1'
