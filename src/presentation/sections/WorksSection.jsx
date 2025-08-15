@@ -89,24 +89,6 @@ const WorksSection = () => {
           ))}
         </div>
       </div>
-      <style jsx>{`
-        .work-card {
-          transition: border-color 0.3s ease, transform 0.2s ease;
-        }
-        a:hover .work-card {
-          transform: translateY(-2px);
-          border-bottom-color: black;
-          border-bottom-width: 2px;
-        }
-        .arrow-container {
-          display: inline-block;
-          font-size: 1.75rem;
-          transition: transform 0.2s ease;
-        }
-        a:hover .arrow-container {
-          transform: translateX(6px);
-        }
-      `}</style>
     </section>
   );
 };
