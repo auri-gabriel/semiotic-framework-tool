@@ -1,13 +1,11 @@
 import QuestionAccordion from './QuestionAccordion';
 
-const semioticStepTexts = {
+const texts = {
   en: {
-    info: 'Info',
     expandAll: 'Expand All',
     collapseAll: 'Collapse All',
   },
   pt_BR: {
-    info: 'Informações',
     expandAll: 'Expandir Todas',
     collapseAll: 'Recolher Todas',
   },
@@ -21,6 +19,8 @@ function SemioticStepAccordion({
   answers,
   onAnswerChange,
 }) {
+  const t = texts[language];
+
   // Helper function to check if a question has a meaningful answer
   const hasAnswer = (answer) => {
     if (!answer) return false;
@@ -121,7 +121,7 @@ function SemioticStepAccordion({
               onClick={expandAllQuestions}
             >
               <i className='bi bi-arrows-expand me-1' aria-hidden='true'></i>
-              {semioticStepTexts[language].expandAll}
+              {t.expandAll}
             </button>
 
             <button
@@ -130,7 +130,7 @@ function SemioticStepAccordion({
               onClick={collapseAllQuestions}
             >
               <i className='bi bi-arrows-collapse me-1' aria-hidden='true'></i>
-              {semioticStepTexts[language].collapseAll}
+              {t.collapseAll}
             </button>
           </div>
 

@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 
-const navbarTexts = {
+const texts = {
   en: {
     brand:
       'Semioparticipatory Framework for Educational Software Development Tool',
     brandAcronym: 'SF.ESDT',
-    group: {
+    navigation: {
       framework: 'The Framework',
       start: 'Start',
       aboutUs: 'About us',
@@ -18,7 +18,7 @@ const navbarTexts = {
     brand:
       'Ferramenta de apoio ao Framework Semioparticipativo para o Desenvolvimento de Software Educacional',
     brandAcronym: 'FFS.DSE',
-    group: {
+    navigation: {
       framework: 'O Framework',
       start: 'Iniciar',
       aboutUs: 'Sobre nós',
@@ -32,7 +32,7 @@ const Navbar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const { language, setLanguage, LANGUAGES } = useLanguage();
-  const t = navbarTexts[language];
+  const t = texts[language];
 
   const currentLanguage = LANGUAGES.find((lang) => lang.code === language);
 
@@ -107,22 +107,22 @@ const Navbar = () => {
           <ul className='navbar-nav ms-auto mb-2 mb-lg-0'>
             <li className='nav-item d-flex align-items-center'>
               <a className='nav-link' href='#framework'>
-                {t.group.framework}
+                {t.navigation.framework}
               </a>
             </li>
             <li className='nav-item d-flex align-items-center'>
               <a className='nav-link' href='#start'>
-                {t.group.start}
+                {t.navigation.start}
               </a>
             </li>
             <li className='nav-item d-flex align-items-center'>
               <a className='nav-link' href='#sobre-nos'>
-                {t.group.aboutUs}
+                {t.navigation.aboutUs}
               </a>
             </li>
             <li className='nav-item d-flex align-items-center'>
               <a className='nav-link' href='#works'>
-                {t.group.works}
+                {t.navigation.works}
               </a>
             </li>
             <li className='nav-item d-flex align-items-center ms-3'>
