@@ -1,5 +1,5 @@
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import ReactQuill from 'react-quill-new';
+import 'react-quill-new/dist/quill.snow.css';
 
 const answerLabel = {
   en: 'Your answer:',
@@ -90,16 +90,31 @@ function QuestionAccordion({
             <i className='bi bi-pencil-square me-2' aria-hidden='true'></i>
             {answerLabel[language]}
           </label>
-          <CKEditor
-            editor={ClassicEditor}
-            data={answer}
-            config={{
-              placeholder: placeholder,
+          <ReactQuill
+            value={answer || ''}
+            onChange={(content) => {
+              onAnswerChange(question.id, content);
             }}
-            onChange={(_, editor) => {
-              const data = editor.getData();
-              onAnswerChange(question.id, data);
+            placeholder={placeholder}
+            theme='snow'
+            modules={{
+              toolbar: [
+                [{ header: [1, 2, 3, false] }],
+                ['bold', 'italic', 'underline', 'strike'],
+                [{ list: 'ordered' }, { list: 'bullet' }],
+                ['link'],
+                ['clean'],
+              ],
             }}
+            formats={[
+              'header',
+              'bold',
+              'italic',
+              'underline',
+              'strike',
+              'list',
+              'link',
+            ]}
           />
           <div className='mt-2 text-muted small'>
             <span className='me-3'>

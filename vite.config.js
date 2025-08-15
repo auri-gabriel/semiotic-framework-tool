@@ -5,7 +5,7 @@ import react from '@vitejs/plugin-react';
 export default defineConfig({
   base: '/semiotic-framework-tool/',
   optimizeDeps: {
-    include: ['html2canvas'],
+    include: ['html2canvas', 'react-quill-new'],
   },
   plugins: [react()],
   build: {

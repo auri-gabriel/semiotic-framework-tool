@@ -53,7 +53,34 @@ $font-family-base: 'Inter', sans-serif;
   border-color: var(--bs-btn-focus-border-color, var(--bs-primary));
 }
 
-// Custom CKEditor min-height in order to make the placeholder readable on mobile
-.ck-editor__editable_inline {
+// Custom ReactQuill styling
+.ql-editor {
   min-height: 150px;
+  background-color: #ffffff;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #333333;
+}
+
+// Ensure the Quill container has proper styling
+.ql-container {
+  border-color: #dee2e6;
+  font-family: inherit;
+}
+
+.ql-toolbar {
+  border-color: #dee2e6;
+  border-bottom: 1px solid #dee2e6;
+  background-color: #ffffff;
+}
+
+// Focus state for better accessibility
+.ql-container.ql-snow {
+  border-color: #dee2e6;
+}
+
+.ql-editor.ql-blank::before {
+  color: #6c757d;
+  font-style: italic;
+  font-size: 16px;
 }
