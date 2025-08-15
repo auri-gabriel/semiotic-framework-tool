@@ -2,10 +2,10 @@ import React from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import SectionTitle from '../components/SectionTitle';
 
-const aboutUsTexts = {
+const texts = {
   en: {
-    aboutUs: 'About us',
-    aboutUsText: 'This project is part of the GEInfoEdu Research Group',
+    title: 'About us',
+    description: 'This project is part of the GEInfoEdu Research Group',
     professors: [
       'Prof. Dr. Aline Vieira de Mello (Professor at Alegrete Campus)',
       'Prof. Dr. Amanda Meincke Melo (Professor at Alegrete Campus) – research group leader',
@@ -19,8 +19,8 @@ const aboutUsTexts = {
     ],
   },
   pt_BR: {
-    aboutUs: 'Sobre nós',
-    aboutUsText: 'Este projeto é parte do Grupo de Pesquisa GEInfoEdu',
+    title: 'Sobre nós',
+    description: 'Este projeto é parte do Grupo de Pesquisa GEInfoEdu',
     professors: [
       'Profa. Dra. Aline Vieira de Mello (Docente no Campus Alegrete)',
       'Profa. Dra. Amanda Meincke Melo (Docente no Campus Alegrete) – líder do grupo de pesquisa',
@@ -37,12 +37,12 @@ const aboutUsTexts = {
 
 const AboutUsSection = () => {
   const { language } = useLanguage();
-  const t = aboutUsTexts[language];
+  const t = texts[language];
   return (
     <section id='sobre-nos' className='bg-light py-5 border-top'>
       <div className='container'>
-        <SectionTitle title={t.aboutUs}></SectionTitle>
-        <p>{t.aboutUsText}</p>
+        <SectionTitle title={t.title}></SectionTitle>
+        <p>{t.description}</p>
         <img
           src={`${import.meta.env.BASE_URL}/logo-geinfoedu.png`}
           alt='GEInfoEdu'

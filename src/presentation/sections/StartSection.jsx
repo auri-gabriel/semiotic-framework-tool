@@ -7,7 +7,7 @@ import { useAnswers } from '../hooks/useAnswers';
 import { useExport } from '../hooks/useExport';
 import SectionTitle from '../components/SectionTitle';
 
-const sectionTexts = {
+const texts = {
   en: {
     title: 'Start',
     intro:
@@ -59,7 +59,7 @@ export default function StartSection() {
 
   const [showClearModal, setShowClearModal] = useState(false);
 
-  const text = sectionTexts[language];
+  const t = texts[language];
 
   const handleClearClick = () => {
     setShowClearModal(true);
@@ -78,16 +78,16 @@ export default function StartSection() {
   return (
     <section className='pt-5 border-top' id='start'>
       <div className='container mb-5'>
-        <SectionTitle title={text.title} />
+        <SectionTitle title={t.title} />
         <p className='mb-4' style={{ whiteSpace: 'pre-line' }}>
-          {text.intro}
+          {t.intro}
         </p>
 
         {/* New Form Suggestion */}
         <div className='mb-3'>
           <p className='text-muted mb-0'>
             <i className='bi bi-info-circle me-2' aria-hidden='true'></i>
-            {text.newFormSuggestion}
+            {t.newFormSuggestion}
           </p>
         </div>
 
@@ -97,10 +97,10 @@ export default function StartSection() {
             type='button'
             className='btn btn-danger'
             onClick={handleClearClick}
-            title={text.clearResponsesDesc}
+            title={t.clearResponsesDesc}
           >
             <i className='bi bi-trash me-2' aria-hidden='true'></i>
-            {text.clearResponses}
+            {t.clearResponses}
           </button>
         </div>
 
@@ -139,7 +139,7 @@ export default function StartSection() {
                   className='bi bi-exclamation-triangle-fill me-2'
                   aria-hidden='true'
                 ></i>
-                {text.clearConfirmTitle}
+                {t.clearConfirmTitle}
               </h5>
               <button
                 type='button'
@@ -163,7 +163,7 @@ export default function StartSection() {
                 </div>
                 <div className='flex-grow-1'>
                   <p className='mb-0 text-dark' style={{ lineHeight: '1.6' }}>
-                    {text.clearConfirmMessage}
+                    {t.clearConfirmMessage}
                   </p>
                 </div>
               </div>
@@ -174,7 +174,7 @@ export default function StartSection() {
                 className='btn btn-outline-secondary me-2'
                 onClick={handleClearCancel}
               >
-                {text.cancelButton}
+                {t.cancelButton}
               </button>
               <button
                 type='button'
@@ -182,7 +182,7 @@ export default function StartSection() {
                 onClick={handleClearConfirm}
               >
                 <i className='bi bi-trash me-2' aria-hidden='true'></i>
-                {text.clearConfirmButton}
+                {t.clearConfirmButton}
               </button>
             </div>
           </div>

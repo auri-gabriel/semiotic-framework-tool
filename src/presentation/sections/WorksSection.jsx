@@ -2,12 +2,12 @@ import React from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 import SectionTitle from '../components/SectionTitle';
 
-const worksTexts = {
+const texts = {
   en: {
-    works: 'Works',
+    title: 'Works',
   },
   pt_BR: {
-    works: 'Trabalhos',
+    title: 'Trabalhos',
   },
 };
 
@@ -39,10 +39,11 @@ const works = [
 
 const WorksSection = () => {
   const { language } = useLanguage();
+  const t = texts[language];
   return (
     <section className='py-5 border-top' id='works'>
       <div className='container'>
-        <SectionTitle title={worksTexts[language].works}></SectionTitle>
+        <SectionTitle title={t.title}></SectionTitle>
         <div className='row g-4'>
           {works.map((work, idx) => (
             <div className='col-md-4' key={idx}>
