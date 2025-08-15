@@ -1,19 +1,17 @@
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
 
-const answerLabel = {
-  en: 'Your answer:',
-  pt_BR: 'Sua resposta:',
-};
-
-const characterCountLabel = {
-  en: 'Characters:',
-  pt_BR: 'Caracteres:',
-};
-
-const wordCountLabel = {
-  en: 'Words:',
-  pt_BR: 'Palavras:',
+const texts = {
+  en: {
+    answerLabel: 'Your answer:',
+    characterCount: 'Characters:',
+    wordCount: 'Words:',
+  },
+  pt_BR: {
+    answerLabel: 'Sua resposta:',
+    characterCount: 'Caracteres:',
+    wordCount: 'Palavras:',
+  },
 };
 
 // Helper function to strip HTML tags and get plain text
@@ -44,6 +42,7 @@ function QuestionAccordion({
   answer,
   onAnswerChange,
 }) {
+  const t = texts[language];
   const placeholder = question.placeholders?.[language] || '';
   const characterCount = getCharacterCount(answer || '');
   const wordCount = getWordCount(answer || '');
@@ -88,7 +87,7 @@ function QuestionAccordion({
         <div className='accordion-body'>
           <label htmlFor={`answer-${question.id}`} className='form-label'>
             <i className='bi bi-pencil-square me-2' aria-hidden='true'></i>
-            {answerLabel[language]}
+            {t.answerLabel}
           </label>
           <ReactQuill
             value={answer || ''}
@@ -125,11 +124,11 @@ function QuestionAccordion({
           <div className='mt-2 text-muted small'>
             <span className='me-3'>
               <i className='bi bi-textarea-t me-1' aria-hidden='true'></i>
-              {characterCountLabel[language]} {characterCount}
+              {t.characterCount} {characterCount}
             </span>
             <span>
               <i className='bi bi-journal-text me-1' aria-hidden='true'></i>
-              {wordCountLabel[language]} {wordCount}
+              {t.wordCount} {wordCount}
             </span>
           </div>
         </div>
@@ -138,4 +137,5 @@ function QuestionAccordion({
   );
 }
 
+export default QuestionAccordion;
 export default QuestionAccordion;
