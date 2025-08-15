@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import SectionTitle from './SectionTitle';
+import SectionTitle from '../components/SectionTitle';
 
 const worksTexts = {
   en: {

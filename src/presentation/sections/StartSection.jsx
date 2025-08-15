@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
-import SemioticAccordion from './SemioticAccordion';
-import BottomToolbar from './BottomToolbar';
+import SemioticAccordion from '../components/SemioticAccordion';
+import BottomToolbar from '../components/BottomToolbar';
 import { useLanguage } from '../hooks/useLanguage';
 import { useSemioticData } from '../hooks/useSemioticData';
 import { useAnswers } from '../hooks/useAnswers';
 import { useExport } from '../hooks/useExport';
-import SectionTitle from './SectionTitle';
+import SectionTitle from '../components/SectionTitle';
 
 const sectionTexts = {
   en: {

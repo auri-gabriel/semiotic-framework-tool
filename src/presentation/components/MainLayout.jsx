@@ -2,11 +2,13 @@ import React from 'react';
 import { useExport } from '../hooks/useExport';
 import { ExportOverlay } from './ExportOverlay';
 import Navbar from './Navbar';
-import StartSection from './StartSection';
-import FooterSection from './FooterSection';
-import HeroSection from './HeroSection';
-import AboutUsSection from './AboutUsSection';
-import WorksSection from './WorksSection';
+import {
+  HeroSection,
+  StartSection,
+  AboutUsSection,
+  WorksSection,
+  FooterSection,
+} from '../sections';
 
 export function MainLayout() {
   const { exporting } = useExport();
