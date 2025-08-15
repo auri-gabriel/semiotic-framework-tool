@@ -1,0 +1,79 @@
+@startuml package-simplified
+' Simplified Architecture Diagram
+!theme mono
+skinparam linetype ortho
+skinparam dpi 150
+hide empty members
+skinparam shadowing false
+top to bottom direction
+hide circle
+
+' Main App Package
+package "Semiotic Framework Tool" {
+    
+    package "Presentation Layer" {
+        class "UI Components" as UI {
+            +App
+            +MainLayout
+            +SemioticAccordion
+            +QuestionAccordion
+            +BottomToolbar
+            +ExportOverlay
+        }
+        
+        class "State Management" as State {
+            +AppContext
+            +LanguageContext
+            +Custom Hooks
+        }
+        
+        note right of UI : User Interface\nComponents
+        note right of State : Contexts, Hooks
+    }
+    
+    package "Business Layer" {
+        class "Semiotic Logic" as Business {
+            +SemioticLadderManager
+            +Data Processing
+            +Business Rules
+        }
+        
+        note right of Business : Core Logic\nData Processing
+    }
+    
+    package "Data Layer" {
+        class "Services" as Services {
+            +XML Processing
+            +PDF Generation
+            +Template Management
+            +File I/O
+        }
+        
+        class "Configuration" as Config {
+            +App Settings
+            +Constants
+        }
+        
+        note right of Services : Data Access\nExternal Services
+        note right of Config : Settings
+    }
+
+    ' Simplified Relationships
+    UI --> State : uses
+    State --> Business : manages
+    Business --> Services : processes data
+    Services --> Config : reads settings
+    
+    ' Data Flow
+    UI ..> Services : export requests
+    Business ..> Config : configuration
+}
+
+note bottom
+    **Architecture Overview:**
+    • Presentation Layer: Handles user interface and interactions
+    • Business Layer: Implements core semiotic framework logic
+    • Data Layer: Manages data processing and external services
+end note
+
+@enduml
