@@ -10,7 +10,7 @@ import {
   FooterSection,
 } from '../sections';
 
-export function MainLayout() {
+function MainLayout() {
   const { exporting } = useExport();
 
   return (
@@ -27,3 +27,5 @@ export function MainLayout() {
     </div>
   );
 }
+
+export default MainLayout;

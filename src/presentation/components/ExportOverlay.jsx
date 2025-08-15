@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-export function ExportOverlay({ isExporting }) {
+function ExportOverlay({ isExporting }) {
   const { t } = useTranslation();
 
   if (!isExporting) return null;
@@ -24,3 +24,5 @@ export function ExportOverlay({ isExporting }) {
     </div>
   );
 }
+
+export default ExportOverlay;

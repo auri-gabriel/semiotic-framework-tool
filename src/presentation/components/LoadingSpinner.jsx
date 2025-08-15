@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-export function LoadingSpinner() {
+function LoadingSpinner() {
   const { t } = useTranslation();
 
   return (
@@ -13,3 +13,5 @@ export function LoadingSpinner() {
     </div>
   );
 }
+
+export default LoadingSpinner;

@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { LANGUAGES } from '../constants/languages';
 
-const Navbar = () => {
+function Navbar() {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
   const { t, i18n } = useTranslation();
@@ -162,5 +162,5 @@ const Navbar = () => {
       </div>
     </nav>
   );
-};
+}
 export default Navbar;

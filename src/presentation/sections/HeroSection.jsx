@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
-const HeroSection = () => {
+function HeroSection() {
   const { t } = useTranslation();
 
   return (
@@ -41,6 +41,6 @@ const HeroSection = () => {
       </div>
     </section>
   );
-};
+}
 
 export default HeroSection;

@@ -2,7 +2,7 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import SectionTitle from '../components/SectionTitle';
 
-const AboutUsSection = () => {
+function AboutUsSection() {
   const { t } = useTranslation();
 
   return (
@@ -33,6 +33,6 @@ const AboutUsSection = () => {
       </div>
     </section>
   );
-};
+}
 
 export default AboutUsSection;

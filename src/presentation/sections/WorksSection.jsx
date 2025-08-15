@@ -28,7 +28,7 @@ const works = [
   },
 ];
 
-const WorksSection = () => {
+function WorksSection() {
   const { t, i18n } = useTranslation();
 
   return (
@@ -82,6 +82,6 @@ const WorksSection = () => {
       </div>
     </section>
   );
-};
+}
 
 export default WorksSection;

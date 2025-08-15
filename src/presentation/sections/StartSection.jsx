@@ -7,7 +7,7 @@ import { useAnswers } from '../hooks/useAnswers';
 import { useExport } from '../hooks/useExport';
 import SectionTitle from '../components/SectionTitle';
 
-export default function StartSection() {
+function StartSection() {
   const { t, i18n } = useTranslation();
   const { semioticLadderGrouping } = useSemioticData();
   const {
@@ -164,3 +164,5 @@ export default function StartSection() {
     </section>
   );
 }
+
+export default StartSection;
