@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../hooks/useLanguage';
+import SectionTitle from './SectionTitle';
 
 const worksTexts = {
   en: {
@@ -36,18 +37,12 @@ const works = [
   },
 ];
 
-const Works = () => {
+const WorksSection = () => {
   const { language } = useLanguage();
   return (
     <section className='py-5 border-top' id='works'>
       <div className='container'>
-        <div className='d-flex align-items-center mb-4'>
-          <div
-            className='bg-primary'
-            style={{ width: '4px', height: '48px' }}
-          ></div>
-          <h2 className='ms-3 mb-0'>{worksTexts[language].works}</h2>
-        </div>
+        <SectionTitle title={worksTexts[language].works}></SectionTitle>
         <div className='row g-4'>
           {works.map((work, idx) => (
             <div className='col-md-4' key={idx}>
@@ -115,4 +110,4 @@ const Works = () => {
   );
 };
 
-export default Works;
+export default WorksSection;

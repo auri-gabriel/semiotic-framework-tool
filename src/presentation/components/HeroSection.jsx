@@ -14,7 +14,7 @@ const heroTexts = {
   },
 };
 
-const Hero = () => {
+const HeroSection = () => {
   const { language } = useLanguage();
   const t = heroTexts[language];
   return (
@@ -57,4 +57,4 @@ const Hero = () => {
   );
 };
 
-export default Hero;
+export default HeroSection;

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../hooks/useLanguage';
+import SectionTitle from './SectionTitle';
 
 const aboutUsTexts = {
   en: {
@@ -34,19 +35,13 @@ const aboutUsTexts = {
   },
 };
 
-const AboutUs = () => {
+const AboutUsSection = () => {
   const { language } = useLanguage();
   const t = aboutUsTexts[language];
   return (
     <section id='sobre-nos' className='bg-light py-5 border-top'>
       <div className='container'>
-        <div className='d-flex align-items-center mb-4'>
-          <div
-            className='bg-primary'
-            style={{ width: '4px', height: '48px' }}
-          ></div>
-          <h2 className='ms-3 mb-0'>{t.aboutUs}</h2>
-        </div>
+        <SectionTitle title={t.aboutUs}></SectionTitle>
         <p>{t.aboutUsText}</p>
         <img
           src={`${import.meta.env.BASE_URL}/logo-geinfoedu.png`}
@@ -71,4 +66,4 @@ const AboutUs = () => {
   );
 };
 
-export default AboutUs;
+export default AboutUsSection;
