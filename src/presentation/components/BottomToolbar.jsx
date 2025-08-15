@@ -1,16 +1,59 @@
 import React, { useRef } from 'react';
-import { useTranslation } from 'react-i18next';
+
+const texts = {
+  en: {
+    export: 'Export',
+    exportXML: 'Export XML',
+    exportLadder: 'Export Semiotic Ladder',
+    exportLadderAnswered: 'Only answered questions',
+    importXML: 'Import XML',
+    exportPDF: 'as PDF',
+    exportDOCX: 'as DOCX',
+    exportPreview: 'Preview HTML',
+    exportEngLayers: 'Export Engineering Layers',
+    dataExport: 'Data Export',
+    documentExport: 'Document Export',
+    exportXMLDesc: 'Save current data as XML file',
+    exportLadderDesc: 'Generate PDF report of Semiotic Ladder',
+    exportLadderPreviewDesc:
+      'Open HTML preview in new tab for debugging (dev only)',
+    exportEngLayersDesc: 'Generate PDF report of Engineering Layers',
+    exportEngLayersPreviewDesc:
+      'Open HTML preview in new tab for debugging (dev only)',
+  },
+  pt_BR: {
+    export: 'Exportar',
+    exportXML: 'Exportar XML',
+    exportLadder: 'Exportar Escada Semiótica',
+    exportLadderAnswered: 'Apenas perguntas respondidas',
+    importXML: 'Importar XML',
+    exportPDF: 'em PDF',
+    exportDOCX: 'em DOCX',
+    exportPreview: 'Pré-visualizar HTML',
+    exportEngLayers: 'Exportar Camadas de Engenharia',
+    dataExport: 'Exportação de Dados',
+    documentExport: 'Exportação de Documentos',
+    exportXMLDesc: 'Salvar dados atuais como arquivo XML',
+    exportLadderDesc: 'Gerar relatório PDF da Escada Semiótica',
+    exportLadderPreviewDesc:
+      'Abrir pré-visualização HTML em nova aba para depuração (dev apenas)',
+    exportEngLayersDesc: 'Gerar relatório PDF das Camadas de Engenharia',
+    exportEngLayersPreviewDesc:
+      'Abrir pré-visualização HTML em nova aba para depuração (dev apenas)',
+  },
+};
 
 function BottomToolbar({
   onImportXML,
   onExport,
+  language,
   exportOnlyAnswered,
   setExportOnlyAnswered,
   exportEngOnlyAnswered,
   setExportEngOnlyAnswered,
 }) {
   const fileInputRef = useRef();
-  const { t } = useTranslation();
+  const t = texts[language];
   const isDev = import.meta.env.DEV;
 
   const handleImportClick = () => {
@@ -45,7 +88,7 @@ function BottomToolbar({
           {/* Import Button */}
           <div>
             <label htmlFor='xmlFileInput' className='visually-hidden'>
-              {t('toolbar.importXML')}
+              {t.importXML}
             </label>
             <input
               id='xmlFileInput'
@@ -54,7 +97,7 @@ function BottomToolbar({
               ref={fileInputRef}
               style={{ display: 'none' }}
               onChange={handleFileChange}
-              aria-label={t('toolbar.importXML')}
+              aria-label={t.importXML}
             />
             {/* Mobile (small) button */}
             <button
@@ -63,7 +106,7 @@ function BottomToolbar({
               aria-describedby='xmlFileInput'
             >
               <i className='bi bi-upload me-2' aria-hidden='true'></i>
-              {t('toolbar.importXML')}
+              {t.importXML}
             </button>
             {/* Desktop (normal) button */}
             <button
@@ -72,7 +115,7 @@ function BottomToolbar({
               aria-describedby='xmlFileInput'
             >
               <i className='bi bi-upload me-2' aria-hidden='true'></i>
-              {t('toolbar.importXML')}
+              {t.importXML}
             </button>
           </div>
 
@@ -85,12 +128,10 @@ function BottomToolbar({
                 type='button'
                 data-bs-toggle='dropdown'
                 aria-expanded='false'
-                aria-label={`${t('toolbar.export')} - ${t(
-                  'toolbar.dataExport'
-                )} ${t('toolbar.documentExport')}`}
+                aria-label={`${t.export} - ${t.dataExport} ${t.documentExport}`}
               >
                 <i className='bi bi-download me-2' aria-hidden='true'></i>
-                {t('toolbar.export')}
+                {t.export}
               </button>
               {/* Desktop (normal) button */}
               <button
@@ -98,12 +139,10 @@ function BottomToolbar({
                 type='button'
                 data-bs-toggle='dropdown'
                 aria-expanded='false'
-                aria-label={`${t('toolbar.export')} - ${t(
-                  'toolbar.dataExport'
-                )} ${t('toolbar.documentExport')}`}
+                aria-label={`${t.export} - ${t.dataExport} ${t.documentExport}`}
               >
                 <i className='bi bi-download me-2' aria-hidden='true'></i>
-                {t('toolbar.export')}
+                {t.export}
               </button>
               <ul
                 className='dropdown-menu'
@@ -113,7 +152,7 @@ function BottomToolbar({
                 <li>
                   <h6 className='dropdown-header d-flex align-items-center'>
                     <i className='bi bi-database me-2' aria-hidden='true'></i>
-                    {t('toolbar.dataExport')}
+                    {t.dataExport}
                   </h6>
                 </li>
                 <li>
@@ -129,10 +168,8 @@ function BottomToolbar({
                       ></i>
                     </div>
                     <div className='text-break'>
-                      <div className='fw-medium'>{t('toolbar.exportXML')}</div>
-                      <small className='text-muted'>
-                        {t('toolbar.exportXMLDesc')}
-                      </small>
+                      <div className='fw-medium'>{t.exportXML}</div>
+                      <small className='text-muted'>{t.exportXMLDesc}</small>
                     </div>
                   </button>
                 </li>
@@ -147,7 +184,7 @@ function BottomToolbar({
                       className='bi bi-file-earmark-pdf me-2'
                       aria-hidden='true'
                     ></i>
-                    {t('toolbar.documentExport')}
+                    {t.documentExport}
                   </h6>
                 </li>
 
@@ -168,11 +205,9 @@ function BottomToolbar({
                     </div>
                     <div className='text-break'>
                       <div className='fw-medium'>
-                        {t('toolbar.exportLadder')} {t('toolbar.exportPDF')}
+                        {t.exportLadder} {t.exportPDF}
                       </div>
-                      <small className='text-muted'>
-                        {t('toolbar.exportLadderDesc')}
-                      </small>
+                      <small className='text-muted'>{t.exportLadderDesc}</small>
                     </div>
                   </button>
                 </li>
@@ -195,11 +230,10 @@ function BottomToolbar({
                       </div>
                       <div className='text-break'>
                         <div className='fw-medium'>
-                          {t('toolbar.exportLadder')}{' '}
-                          {t('toolbar.exportPreview')}
+                          {t.exportLadder} {t.exportPreview}
                         </div>
                         <small className='text-muted'>
-                          {t('toolbar.exportLadderPreviewDesc')}
+                          {t.exportLadderPreviewDesc}
                         </small>
                       </div>
                     </button>
@@ -227,7 +261,7 @@ function BottomToolbar({
                         htmlFor='exportOnlyAnswered'
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <small>{t('toolbar.exportLadderAnswered')}</small>
+                        <small>{t.exportLadderAnswered}</small>
                       </label>
                     </div>
                   </div>
@@ -250,10 +284,10 @@ function BottomToolbar({
                     </div>
                     <div className='text-break'>
                       <div className='fw-medium'>
-                        {t('toolbar.exportEngLayers')} {t('toolbar.exportPDF')}
+                        {t.exportEngLayers} {t.exportPDF}
                       </div>
                       <small className='text-muted'>
-                        {t('toolbar.exportEngLayersDesc')}
+                        {t.exportEngLayersDesc}
                       </small>
                     </div>
                   </button>
@@ -277,11 +311,10 @@ function BottomToolbar({
                       </div>
                       <div className='text-break'>
                         <div className='fw-medium'>
-                          {t('toolbar.exportEngLayers')}{' '}
-                          {t('toolbar.exportPreview')}
+                          {t.exportEngLayers} {t.exportPreview}
                         </div>
                         <small className='text-muted'>
-                          {t('toolbar.exportEngLayersPreviewDesc')}
+                          {t.exportEngLayersPreviewDesc}
                         </small>
                       </div>
                     </button>
@@ -309,7 +342,7 @@ function BottomToolbar({
                         htmlFor='exportOnlyAnsweredEng'
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <small>{t('toolbar.exportLadderAnswered')}</small>
+                        <small>{t.exportLadderAnswered}</small>
                       </label>
                     </div>
                   </div>
