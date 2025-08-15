@@ -3,7 +3,7 @@ import { useExport } from '../hooks/useExport';
 import { ExportOverlay } from './ExportOverlay';
 import Navbar from './Navbar';
 import StartSection from './StartSection';
-import Footer from './Footer';
+import FooterSection from './FooterSection';
 import HeroSection from './HeroSection';
 import AboutUsSection from './AboutUsSection';
 import WorksSection from './WorksSection';
@@ -21,7 +21,7 @@ export function MainLayout() {
         <AboutUsSection />
         <WorksSection />
       </main>
-      <Footer />
+      <FooterSection />
     </div>
   );
 }

@@ -6,7 +6,7 @@ const copyrightTexts = {
   pt_BR: '© 2025 GEInfoEdu. Todos os direitos reservados.',
 };
 
-const Footer = () => {
+const FooterSection = () => {
   const { language } = useLanguage();
   return (
     <footer className='bg-dark text-white text-center py-5'>
@@ -17,4 +17,4 @@ const Footer = () => {
   );
 };
 
-export default Footer;
+export default FooterSection;
