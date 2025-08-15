@@ -20,7 +20,7 @@ A web-based participatory framework tool that implements the Semiotic Ladder fra
 
 - **Frontend**: React 19.1.0 with Vite
 - **Styling**: Bootstrap 5.3.7 + SASS
-- **Rich Text Editing**: CKEditor 5
+- **Rich Text Editing**: ReactQuill (react-quill-new)
 - **PDF Generation**: html2pdf.js
 - **Build Tool**: Vite 6.3.5
 - **Linting**: ESLint 9
