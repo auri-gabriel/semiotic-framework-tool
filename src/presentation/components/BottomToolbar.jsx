@@ -1,6 +1,6 @@
 import React, { useRef } from 'react';
 
-const texts = {
+const toolbarTexts = {
   en: {
     export: 'Export',
     exportXML: 'Export XML',
@@ -53,7 +53,7 @@ function BottomToolbar({
   setExportEngOnlyAnswered,
 }) {
   const fileInputRef = useRef();
-  const t = texts[language];
+  const t = toolbarTexts[language];
   const isDev = import.meta.env.DEV;
 
   const handleImportClick = () => {
