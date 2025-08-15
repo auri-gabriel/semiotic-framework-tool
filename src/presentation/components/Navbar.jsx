@@ -126,7 +126,7 @@ const Navbar = () => {
               </a>
             </li>
             <li className='nav-item d-flex align-items-center ms-3'>
-              <i class='bi bi-globe2 mx-1'></i>
+              <i className='bi bi-globe2 mx-1' aria-hidden='true'></i>
               <span className='form-label mx-2 mb-0'>{t.language}:</span>
               <div className='dropdown'>
                 <button
@@ -136,9 +136,14 @@ const Navbar = () => {
                     setIsLanguageDropdownOpen(!isLanguageDropdownOpen)
                   }
                   aria-expanded={isLanguageDropdownOpen}
+                  aria-label={`${t.language}: ${currentLanguage?.label}`}
                   style={{ minWidth: '140px' }}
                 >
-                  <span className='mx-2' style={{ fontSize: '1.2em' }}>
+                  <span
+                    className='mx-2'
+                    style={{ fontSize: '1.2em' }}
+                    aria-hidden='true'
+                  >
                     {currentLanguage?.flag}
                   </span>
                   <span className='d-inline'>
@@ -159,8 +164,13 @@ const Navbar = () => {
                         }`}
                         type='button'
                         onClick={() => handleLanguageChange(lang.code)}
+                        aria-label={lang.label}
                       >
-                        <span className='mx-2' style={{ fontSize: '1.2em' }}>
+                        <span
+                          className='mx-2'
+                          style={{ fontSize: '1.2em' }}
+                          aria-hidden='true'
+                        >
                           {lang.flag}
                         </span>
                         <span>{lang.label}</span>

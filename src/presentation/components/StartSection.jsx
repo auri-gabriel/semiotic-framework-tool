@@ -91,7 +91,7 @@ export default function StartSection() {
         {/* New Form Suggestion */}
         <div className='mb-3'>
           <p className='text-muted mb-0'>
-            <i className='bi bi-info-circle me-2'></i>
+            <i className='bi bi-info-circle me-2' aria-hidden='true'></i>
             {text.newFormSuggestion}
           </p>
         </div>
@@ -104,7 +104,7 @@ export default function StartSection() {
             onClick={handleClearClick}
             title={text.clearResponsesDesc}
           >
-            <i className='bi bi-trash me-2'></i>
+            <i className='bi bi-trash me-2' aria-hidden='true'></i>
             {text.clearResponses}
           </button>
         </div>
@@ -140,7 +140,10 @@ export default function StartSection() {
           <div className='modal-content border-0 shadow-lg'>
             <div className='modal-header bg-danger text-white border-0'>
               <h5 className='modal-title fw-bold' id='clearModalLabel'>
-                <i className='bi bi-exclamation-triangle-fill me-2'></i>
+                <i
+                  className='bi bi-exclamation-triangle-fill me-2'
+                  aria-hidden='true'
+                ></i>
                 {text.clearConfirmTitle}
               </h5>
               <button
@@ -157,7 +160,10 @@ export default function StartSection() {
                     className='bg-danger bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center'
                     style={{ width: '48px', height: '48px' }}
                   >
-                    <i className='bi bi-trash text-danger fs-4'></i>
+                    <i
+                      className='bi bi-trash text-danger fs-4'
+                      aria-hidden='true'
+                    ></i>
                   </div>
                 </div>
                 <div className='flex-grow-1'>
@@ -180,7 +186,7 @@ export default function StartSection() {
                 className='btn btn-danger'
                 onClick={handleClearConfirm}
               >
-                <i className='bi bi-trash me-2'></i>
+                <i className='bi bi-trash me-2' aria-hidden='true'></i>
                 {text.clearConfirmButton}
               </button>
             </div>
