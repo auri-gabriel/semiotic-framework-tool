@@ -212,6 +212,39 @@ body {
   font-weight: 400;
 }
 
+/* List styles for proper formatting */
+ul, ol {
+  margin: 16px 0;
+  padding-left: 24px;
+}
+
+ul li {
+  list-style-type: disc;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+ol li {
+  list-style-type: decimal;
+  margin-bottom: 8px;
+  line-height: 1.5;
+}
+
+/* Nested list styles */
+ul ul, ol ul {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
+ul ul li {
+  list-style-type: circle;
+}
+
+ol ol, ul ol {
+  margin: 8px 0;
+  padding-left: 20px;
+}
+
 /* Better print spacing */
 @media print {
   /* Force block display for better control */
@@ -283,7 +316,48 @@ body {
   }
 
   /**
-   * Escapes HTML characters in text
+   * Fixes ReactQuill HTML formatting issues
+   * @param {string} html - HTML content to fix
+   * @returns {string} Fixed HTML content
+   */
+  static fixReactQuillHtml(html) {
+    if (!html) return html;
+
+    // Fix bullet lists that are incorrectly rendered as <ol><li data-list="bullet">
+    // Convert them to proper <ul><li>
+    let fixedHtml = html.replace(
+      /<ol>\s*<li\s+data-list="bullet"[^>]*>/gi,
+      '<ul><li>'
+    );
+
+    // Fix closing ol tags for bullet lists
+    fixedHtml = fixedHtml.replace(
+      /<\/li>\s*<\/ol>/gi,
+      (match, offset, string) => {
+        // Check if this is part of a bullet list by looking backwards
+        const beforeMatch = string.substring(0, offset);
+        const lastUlIndex = beforeMatch.lastIndexOf('<ul>');
+        const lastOlIndex = beforeMatch.lastIndexOf('<ol>');
+
+        // If the most recent list opening was <ul>, close with </ul>
+        if (lastUlIndex > lastOlIndex) {
+          return '</li></ul>';
+        }
+        return match; // Keep original if it's a real ordered list
+      }
+    );
+
+    // Clean up any remaining data-list attributes
+    fixedHtml = fixedHtml.replace(/\s+data-list="[^"]*"/gi, '');
+
+    // Clean up any ql-ui spans that might be left over
+    fixedHtml = fixedHtml.replace(/<span\s+class="ql-ui"[^>]*><\/span>/gi, '');
+
+    return fixedHtml;
+  }
+
+  /**
+   * Escapes HTML for safe display
    * @param {string} text - Text to escape
    * @returns {string} Escaped HTML
    */
@@ -341,8 +415,12 @@ body {
    */
   static generateQuestionHtml(question, answer, language) {
     const questionText = question.texts[language] || question.texts.en;
-    const answerText = answer
-      ? answer
+
+    // Fix ReactQuill HTML formatting issues and use fixed content
+    const fixedAnswer = answer ? this.fixReactQuillHtml(answer) : null;
+
+    const answerText = fixedAnswer
+      ? fixedAnswer
       : language === 'pt_BR'
       ? '(sem resposta)'
       : '(no answer)';
@@ -353,7 +431,7 @@ body {
           questionText
         )}</div>
         <div class="answer-text ${
-          !answer ? 'no-answer' : ''
+          !fixedAnswer ? 'no-answer' : ''
         }" style="page-break-before: avoid !important; break-before: avoid !important; page-break-inside: avoid !important; break-inside: avoid !important;">
           ${answerText}
         </div>

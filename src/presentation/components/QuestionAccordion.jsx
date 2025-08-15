@@ -113,8 +113,11 @@ function QuestionAccordion({
               'underline',
               'strike',
               'list',
+              'bullet',
+              'ordered',
               'link',
             ]}
+            preserveWhitespace={false}
           />
           <div className='mt-2 text-muted small'>
             <span className='me-3'>
