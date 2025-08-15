@@ -1,0 +1,85 @@
+{
+    "navbar": {
+        "brand": "Semioparticipatory Framework for Educational Software Development Tool",
+        "brandAcronym": "SF.ESDT",
+        "navigation": {
+            "framework": "The Framework",
+            "start": "Start",
+            "aboutUs": "About us",
+            "works": "Works"
+        },
+        "language": "Language"
+    },
+    "hero": {
+        "title": "The Framework",
+        "description": "In the development of software for the educational domain, a number of aspects must be taken into account, related to human information functions and the Information Technology (IT) Platform. Based on Ronald Stamper's Semiotic Framework, this framework adopts the Participatory Design approach, integrating Software Engineering in the development of software solutions for the Educational Domain.",
+        "ctaButton": "Get Started"
+    },
+    "start": {
+        "title": "Start",
+        "intro": "Ready to start?\nClick the blocks below to show the questions. For each one, click the question and answer it. It's simple and fast — just answer.",
+        "newFormSuggestion": "Starting a new project? Try clearing all the old responses first.",
+        "clearResponses": "Clear All Responses",
+        "clearResponsesDesc": "Delete all saved responses and reset definitions",
+        "clearConfirmTitle": "Clear All Responses",
+        "clearConfirmMessage": "Are you sure you want to delete all your responses and reset definitions to default? This action cannot be undone.",
+        "clearConfirmButton": "Yes, Clear All",
+        "cancelButton": "Cancel"
+    },
+    "works": {
+        "title": "Works"
+    },
+    "aboutUs": {
+        "title": "About us",
+        "description": "This project is part of the GEInfoEdu Research Group",
+        "professors": [
+            "Prof. Dr. Aline Vieira de Mello (Professor at Alegrete Campus)",
+            "Prof. Dr. Amanda Meincke Melo (Professor at Alegrete Campus) – research group leader",
+            "Prof. Dr. Jean Felipe Patikowski Cheiran (Professor at Alegrete Campus)"
+        ],
+        "studentsLabel": "Students involved in the project:",
+        "students": [
+            "Auri Gabriel Castro de Melo (Software Engineering student)",
+            "Renilson Pereira Torres (Computer Science student, PIBIC-Af 2024 fellow)",
+            "Gabriel Souza Rodrigues de Amorim (Software Engineering student, PRO-IC MC 2023 fellow)"
+        ]
+    },
+    "footer": {
+        "copyright": "© 2025 GEInfoEdu. All Rights Reserved."
+    },
+    "loading": {
+        "loading": "Loading..."
+    },
+    "export": {
+        "exporting": "Exporting...",
+        "exportingPDF": "Exporting PDF..."
+    },
+    "toolbar": {
+        "export": "Export",
+        "exportXML": "Export XML",
+        "exportLadder": "Export Semiotic Ladder",
+        "exportLadderAnswered": "Only answered questions",
+        "importXML": "Import XML",
+        "exportPDF": "as PDF",
+        "exportDOCX": "as DOCX",
+        "exportPreview": "Preview HTML",
+        "exportEngLayers": "Export Engineering Layers",
+        "dataExport": "Data Export",
+        "documentExport": "Document Export",
+        "exportXMLDesc": "Save current data as XML file",
+        "exportLadderDesc": "Generate PDF report of Semiotic Ladder",
+        "exportLadderPreviewDesc": "Open HTML preview in new tab for debugging (dev only)",
+        "exportEngLayersDesc": "Generate PDF report of Engineering Layers",
+        "exportEngLayersPreviewDesc": "Open HTML preview in new tab for debugging (dev only)"
+    },
+    "accordion": {
+        "expandAll": "Expand All",
+        "collapseAll": "Collapse All"
+    },
+    "question": {
+        "answerLabel": "Your Answer:",
+        "placeholder": "Type your answer here...",
+        "required": "Required",
+        "optional": "Optional"
+    }
+}

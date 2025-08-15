@@ -1,25 +1,15 @@
+import React from 'react';
+import { useTranslation } from 'react-i18next';
 import QuestionAccordion from './QuestionAccordion';
-
-const texts = {
-  en: {
-    expandAll: 'Expand All',
-    collapseAll: 'Collapse All',
-  },
-  pt_BR: {
-    expandAll: 'Expandir Todas',
-    collapseAll: 'Recolher Todas',
-  },
-};
 
 function SemioticStepAccordion({
   groupKey,
   stepKey,
   step,
-  language,
   answers,
   onAnswerChange,
 }) {
-  const t = texts[language];
+  const { t, i18n } = useTranslation();
 
   // Helper function to check if a question has a meaningful answer
   const hasAnswer = (answer) => {
@@ -89,7 +79,7 @@ function SemioticStepAccordion({
           aria-controls={`collapse-${groupKey}-${stepKey}`}
         >
           <div className='d-flex justify-content-between align-items-center w-100'>
-            <span>{step.tag.names[language]}</span>
+            <span>{step.tag.names[i18n.language]}</span>
             <span className='badge bg-secondary mx-2'>
               {answeredCount}/{totalCount}
             </span>
@@ -102,14 +92,14 @@ function SemioticStepAccordion({
         aria-labelledby={`heading-${groupKey}-${stepKey}`}
       >
         <div className='accordion-body bg-white'>
-          {step.tag?.texts?.[language] && (
+          {step.tag?.texts?.[i18n.language] && (
             <div className='alert alert-light mb-3' role='alert'>
               <div className='d-flex align-items-start'>
                 <i
                   className='bi bi-info-circle-fill text-primary me-2'
                   aria-hidden='true'
                 ></i>
-                <div>{step.tag.texts[language]}</div>
+                <div>{step.tag.texts[i18n.language]}</div>
               </div>
             </div>
           )}
@@ -121,7 +111,7 @@ function SemioticStepAccordion({
               onClick={expandAllQuestions}
             >
               <i className='bi bi-arrows-expand me-1' aria-hidden='true'></i>
-              {t.expandAll}
+              {t('accordion.expandAll')}
             </button>
 
             <button
@@ -130,7 +120,7 @@ function SemioticStepAccordion({
               onClick={collapseAllQuestions}
             >
               <i className='bi bi-arrows-collapse me-1' aria-hidden='true'></i>
-              {t.collapseAll}
+              {t('accordion.collapseAll')}
             </button>
           </div>
 
@@ -144,7 +134,7 @@ function SemioticStepAccordion({
                 groupKey={groupKey}
                 stepKey={stepKey}
                 question={q}
-                language={language}
+                language={i18n.language}
                 answer={answers[q.id] || ''}
                 onAnswerChange={onAnswerChange}
               />
