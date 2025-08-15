@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SectionTitle({ title, className = '' }) {
+const SectionTitle = ({ title, className = '' }) => {
   return (
     <div className={`d-flex align-items-center mb-4 ${className}`}>
       <div
@@ -10,6 +10,6 @@ function SectionTitle({ title, className = '' }) {
       <h2 className='ms-3 mb-0'>{title}</h2>
     </div>
   );
-}
+};
 
 export default SectionTitle;

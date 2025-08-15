@@ -1,16 +1,43 @@
 import { useState, useEffect } from 'react';
-import { useTranslation } from 'react-i18next';
-import { LANGUAGES } from '../constants/languages';
+import { useLanguage } from '../hooks/useLanguage';
 
-function Navbar() {
+const texts = {
+  en: {
+    brand:
+      'Semioparticipatory Framework for Educational Software Development Tool',
+    brandAcronym: 'SF.ESDT',
+    navigation: {
+      framework: 'The Framework',
+      start: 'Start',
+      aboutUs: 'About us',
+      works: 'Works',
+    },
+    language: 'Language',
+  },
+  pt_BR: {
+    brand:
+      'Ferramenta de apoio ao Framework Semioparticipativo para o Desenvolvimento de Software Educacional',
+    brandAcronym: 'FFS.DSE',
+    navigation: {
+      framework: 'O Framework',
+      start: 'Iniciar',
+      aboutUs: 'Sobre nós',
+      works: 'Trabalhos',
+    },
+    language: 'Idioma',
+  },
+};
+
+const Navbar = () => {
   const [isCollapsed, setIsCollapsed] = useState(true);
   const [isLanguageDropdownOpen, setIsLanguageDropdownOpen] = useState(false);
-  const { t, i18n } = useTranslation();
+  const { language, setLanguage, LANGUAGES } = useLanguage();
+  const t = texts[language];
 
-  const currentLanguage = LANGUAGES.find((lang) => lang.code === i18n.language);
+  const currentLanguage = LANGUAGES.find((lang) => lang.code === language);
 
   const handleLanguageChange = (newLanguage) => {
-    i18n.changeLanguage(newLanguage);
+    setLanguage(newLanguage);
     setIsLanguageDropdownOpen(false);
   };
 
@@ -37,7 +64,7 @@ function Navbar() {
         <a
           className='navbar-brand d-flex align-items-center fw-bold text-decoration-none text-white'
           href='#'
-          title={t('navbar.brand')}
+          title={t.brand}
         >
           <span
             className='me-3 p-2 bg-primary text-white d-flex align-items-center justify-content-center flex-shrink-0'
@@ -47,7 +74,7 @@ function Navbar() {
               fontWeight: 'bold',
             }}
           >
-            {t('navbar.brandAcronym')}
+            {t.brandAcronym}
           </span>
           <span
             className='d-none d-xl-block text-dark'
@@ -60,7 +87,7 @@ function Navbar() {
               whiteSpace: 'normal',
             }}
           >
-            {t('navbar.brand')}
+            {t.brand}
           </span>
         </a>
         <button
@@ -80,29 +107,27 @@ function Navbar() {
           <ul className='navbar-nav ms-auto mb-2 mb-lg-0'>
             <li className='nav-item d-flex align-items-center'>
               <a className='nav-link' href='#framework'>
-                {t('navbar.navigation.framework')}
+                {t.navigation.framework}
               </a>
             </li>
             <li className='nav-item d-flex align-items-center'>
               <a className='nav-link' href='#start'>
-                {t('navbar.navigation.start')}
+                {t.navigation.start}
               </a>
             </li>
             <li className='nav-item d-flex align-items-center'>
               <a className='nav-link' href='#sobre-nos'>
-                {t('navbar.navigation.aboutUs')}
+                {t.navigation.aboutUs}
               </a>
             </li>
             <li className='nav-item d-flex align-items-center'>
               <a className='nav-link' href='#works'>
-                {t('navbar.navigation.works')}
+                {t.navigation.works}
               </a>
             </li>
             <li className='nav-item d-flex align-items-center ms-3'>
               <i className='bi bi-globe2 mx-1' aria-hidden='true'></i>
-              <span className='form-label mx-2 mb-0'>
-                {t('navbar.language')}:
-              </span>
+              <span className='form-label mx-2 mb-0'>{t.language}:</span>
               <div className='dropdown'>
                 <button
                   className='btn btn-outline-secondary dropdown-toggle d-flex align-items-center'
@@ -111,9 +136,7 @@ function Navbar() {
                     setIsLanguageDropdownOpen(!isLanguageDropdownOpen)
                   }
                   aria-expanded={isLanguageDropdownOpen}
-                  aria-label={`${t('navbar.language')}: ${
-                    currentLanguage?.label
-                  }`}
+                  aria-label={`${t.language}: ${currentLanguage?.label}`}
                   style={{ minWidth: '140px' }}
                 >
                   <span
@@ -137,7 +160,7 @@ function Navbar() {
                     <li key={lang.code}>
                       <button
                         className={`dropdown-item d-flex align-items-center${
-                          lang.code === i18n.language ? ' active' : ''
+                          lang.code === language ? ' active' : ''
                         }`}
                         type='button'
                         onClick={() => handleLanguageChange(lang.code)}
@@ -162,5 +185,6 @@ function Navbar() {
       </div>
     </nav>
   );
-}
+};
+
 export default Navbar;

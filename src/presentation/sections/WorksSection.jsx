@@ -1,6 +1,15 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
+import { useLanguage } from '../hooks/useLanguage';
 import SectionTitle from '../components/SectionTitle';
+
+const texts = {
+  en: {
+    title: 'Works',
+  },
+  pt_BR: {
+    title: 'Trabalhos',
+  },
+};
 
 const works = [
   {
@@ -28,13 +37,13 @@ const works = [
   },
 ];
 
-function WorksSection() {
-  const { t, i18n } = useTranslation();
-
+const WorksSection = () => {
+  const { language } = useLanguage();
+  const t = texts[language];
   return (
     <section className='py-5 border-top' id='works'>
       <div className='container'>
-        <SectionTitle title={t('works.title')}></SectionTitle>
+        <SectionTitle title={t.title}></SectionTitle>
         <div className='row g-4'>
           {works.map((work, idx) => (
             <div className='col-md-4' key={idx}>
@@ -63,7 +72,7 @@ function WorksSection() {
                           aria-hidden='true'
                         ></i>
                         {new Date(work.date).toLocaleDateString(
-                          i18n.language === 'pt_BR' ? 'pt-BR' : 'en-US',
+                          language === 'pt_BR' ? 'pt-BR' : 'en-US',
                           {
                             year: 'numeric',
                             month: 'long',
@@ -82,6 +91,6 @@ function WorksSection() {
       </div>
     </section>
   );
-}
+};
 
 export default WorksSection;
