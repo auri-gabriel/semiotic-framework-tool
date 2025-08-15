@@ -1,11 +1,10 @@
 import React from 'react';
 import { useLanguage } from '../hooks/useLanguage';
-import SectionTitle from '../components/SectionTitle';
 
-const texts = {
+const aboutUsTexts = {
   en: {
-    title: 'About us',
-    description: 'This project is part of the GEInfoEdu Research Group',
+    aboutUs: 'About us',
+    aboutUsText: 'This project is part of the GEInfoEdu Research Group',
     professors: [
       'Prof. Dr. Aline Vieira de Mello (Professor at Alegrete Campus)',
       'Prof. Dr. Amanda Meincke Melo (Professor at Alegrete Campus) – research group leader',
@@ -19,8 +18,8 @@ const texts = {
     ],
   },
   pt_BR: {
-    title: 'Sobre nós',
-    description: 'Este projeto é parte do Grupo de Pesquisa GEInfoEdu',
+    aboutUs: 'Sobre nós',
+    aboutUsText: 'Este projeto é parte do Grupo de Pesquisa GEInfoEdu',
     professors: [
       'Profa. Dra. Aline Vieira de Mello (Docente no Campus Alegrete)',
       'Profa. Dra. Amanda Meincke Melo (Docente no Campus Alegrete) – líder do grupo de pesquisa',
@@ -35,14 +34,20 @@ const texts = {
   },
 };
 
-const AboutUsSection = () => {
+const AboutUs = () => {
   const { language } = useLanguage();
-  const t = texts[language];
+  const t = aboutUsTexts[language];
   return (
     <section id='sobre-nos' className='bg-light py-5 border-top'>
       <div className='container'>
-        <SectionTitle title={t.title}></SectionTitle>
-        <p>{t.description}</p>
+        <div className='d-flex align-items-center mb-4'>
+          <div
+            className='bg-primary'
+            style={{ width: '4px', height: '48px' }}
+          ></div>
+          <h2 className='ms-3 mb-0'>{t.aboutUs}</h2>
+        </div>
+        <p>{t.aboutUsText}</p>
         <img
           src={`${import.meta.env.BASE_URL}/logo-geinfoedu.png`}
           alt='GEInfoEdu'
@@ -66,4 +71,4 @@ const AboutUsSection = () => {
   );
 };
 
-export default AboutUsSection;
+export default AboutUs;
