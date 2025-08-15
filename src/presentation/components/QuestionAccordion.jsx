@@ -101,7 +101,10 @@ function QuestionAccordion({
               toolbar: [
                 [{ header: [1, 2, 3, false] }],
                 ['bold', 'italic', 'underline', 'strike'],
-                [{ list: 'ordered' }, { list: 'bullet' }],
+                // Deactivate the ordered list because it's currently bugged on the html2pdf.js rendering
+                // TODO: Fix the rendering of ordered lists, maybe even refactor the whole pdf rendering pipeline
+                // [{ list: 'ordered' }, { list: 'bullet' }],
+                [{ list: 'bullet' }],
                 ['link'],
                 ['clean'],
               ],
