@@ -105,7 +105,10 @@ function SemioticStepAccordion({
           {step.tag?.texts?.[language] && (
             <div className='alert alert-light mb-3' role='alert'>
               <div className='d-flex align-items-start'>
-                <i className='bi bi-info-circle-fill text-primary me-2'></i>
+                <i
+                  className='bi bi-info-circle-fill text-primary me-2'
+                  aria-hidden='true'
+                ></i>
                 <div>{step.tag.texts[language]}</div>
               </div>
             </div>
@@ -117,7 +120,7 @@ function SemioticStepAccordion({
               className='btn btn-outline-primary btn-sm'
               onClick={expandAllQuestions}
             >
-              <i className='bi bi-arrows-expand me-1'></i>
+              <i className='bi bi-arrows-expand me-1' aria-hidden='true'></i>
               {semioticStepTexts[language].expandAll}
             </button>
 
@@ -126,7 +129,7 @@ function SemioticStepAccordion({
               className='btn btn-outline-secondary btn-sm'
               onClick={collapseAllQuestions}
             >
-              <i className='bi bi-arrows-collapse me-1'></i>
+              <i className='bi bi-arrows-collapse me-1' aria-hidden='true'></i>
               {semioticStepTexts[language].collapseAll}
             </button>
           </div>

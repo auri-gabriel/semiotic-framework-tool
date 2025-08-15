@@ -76,27 +76,34 @@ function BottomToolbar({
         <div className='d-flex gap-3 align-items-center'>
           {/* Import Button */}
           <div>
+            <label htmlFor='xmlFileInput' className='visually-hidden'>
+              {t.importXML}
+            </label>
             <input
+              id='xmlFileInput'
               type='file'
               accept='.xml'
               ref={fileInputRef}
               style={{ display: 'none' }}
               onChange={handleFileChange}
+              aria-label={t.importXML}
             />
             {/* Mobile (small) button */}
             <button
               className='btn btn-outline-light btn-sm d-sm-none d-inline-flex align-items-center'
               onClick={handleImportClick}
+              aria-describedby='xmlFileInput'
             >
-              <i className='bi bi-upload me-2'></i>
+              <i className='bi bi-upload me-2' aria-hidden='true'></i>
               {t.importXML}
             </button>
             {/* Desktop (normal) button */}
             <button
               className='btn btn-outline-light d-none d-sm-inline-flex align-items-center'
               onClick={handleImportClick}
+              aria-describedby='xmlFileInput'
             >
-              <i className='bi bi-upload me-2'></i>
+              <i className='bi bi-upload me-2' aria-hidden='true'></i>
               {t.importXML}
             </button>
           </div>
@@ -110,8 +117,9 @@ function BottomToolbar({
                 type='button'
                 data-bs-toggle='dropdown'
                 aria-expanded='false'
+                aria-label={`${t.export} - ${t.dataExport} ${t.documentExport}`}
               >
-                <i className='bi bi-download me-2'></i>
+                <i className='bi bi-download me-2' aria-hidden='true'></i>
                 {t.export}
               </button>
               {/* Desktop (normal) button */}
@@ -120,8 +128,9 @@ function BottomToolbar({
                 type='button'
                 data-bs-toggle='dropdown'
                 aria-expanded='false'
+                aria-label={`${t.export} - ${t.dataExport} ${t.documentExport}`}
               >
-                <i className='bi bi-download me-2'></i>
+                <i className='bi bi-download me-2' aria-hidden='true'></i>
                 {t.export}
               </button>
               <ul
@@ -131,7 +140,7 @@ function BottomToolbar({
                 {/* Data Export Section */}
                 <li>
                   <h6 className='dropdown-header d-flex align-items-center'>
-                    <i className='bi bi-database me-2'></i>
+                    <i className='bi bi-database me-2' aria-hidden='true'></i>
                     {t.dataExport}
                   </h6>
                 </li>
@@ -142,7 +151,10 @@ function BottomToolbar({
                     style={{ whiteSpace: 'normal' }}
                   >
                     <div className='flex-shrink-0 me-2 mt-1'>
-                      <i className='bi bi-file-earmark-code'></i>
+                      <i
+                        className='bi bi-file-earmark-code'
+                        aria-hidden='true'
+                      ></i>
                     </div>
                     <div className='text-break'>
                       <div className='fw-medium'>{t.exportXML}</div>
@@ -157,7 +169,10 @@ function BottomToolbar({
                 </li>
                 <li>
                   <h6 className='dropdown-header d-flex align-items-center'>
-                    <i className='bi bi-file-earmark-pdf me-2'></i>
+                    <i
+                      className='bi bi-file-earmark-pdf me-2'
+                      aria-hidden='true'
+                    ></i>
                     {t.documentExport}
                   </h6>
                 </li>
@@ -175,7 +190,7 @@ function BottomToolbar({
                     style={{ whiteSpace: 'normal' }}
                   >
                     <div className='flex-shrink-0 me-2 mt-1'>
-                      <i className='bi bi-ladder'></i>
+                      <i className='bi bi-ladder' aria-hidden='true'></i>
                     </div>
                     <div className='text-break'>
                       <div className='fw-medium'>
@@ -225,7 +240,7 @@ function BottomToolbar({
                     style={{ whiteSpace: 'normal' }}
                   >
                     <div className='flex-shrink-0 me-2 mt-1'>
-                      <i className='bi bi-layers'></i>
+                      <i className='bi bi-layers' aria-hidden='true'></i>
                     </div>
                     <div className='text-break'>
                       <div className='fw-medium'>

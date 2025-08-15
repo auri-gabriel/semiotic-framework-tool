@@ -68,9 +68,12 @@ function QuestionAccordion({
           <div className='d-flex align-items-center w-100'>
             <span className='me-2'>
               {hasAnswer ? (
-                <i className='bi bi-check-circle-fill text-success'></i>
+                <i
+                  className='bi bi-check-circle-fill text-success'
+                  aria-hidden='true'
+                ></i>
               ) : (
-                <i className='bi bi-circle text-muted'></i>
+                <i className='bi bi-circle text-muted' aria-hidden='true'></i>
               )}
             </span>
             <span>{question.texts[language]}</span>
@@ -84,7 +87,7 @@ function QuestionAccordion({
       >
         <div className='accordion-body'>
           <label htmlFor={`answer-${question.id}`} className='form-label'>
-            <i className='bi bi-pencil-square me-2'></i>
+            <i className='bi bi-pencil-square me-2' aria-hidden='true'></i>
             {answerLabel[language]}
           </label>
           <CKEditor
@@ -100,11 +103,11 @@ function QuestionAccordion({
           />
           <div className='mt-2 text-muted small'>
             <span className='me-3'>
-              <i className='bi bi-textarea-t me-1'></i>
+              <i className='bi bi-textarea-t me-1' aria-hidden='true'></i>
               {characterCountLabel[language]} {characterCount}
             </span>
             <span>
-              <i className='bi bi-journal-text me-1'></i>
+              <i className='bi bi-journal-text me-1' aria-hidden='true'></i>
               {wordCountLabel[language]} {wordCount}
             </span>
           </div>
