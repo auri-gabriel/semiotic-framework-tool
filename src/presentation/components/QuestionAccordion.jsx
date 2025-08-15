@@ -1,5 +1,7 @@
+import React from 'react';
 import ReactQuill from 'react-quill-new';
 import 'react-quill-new/dist/quill.snow.css';
+import { useTranslation } from 'react-i18next';
 
 const texts = {
   en: {
@@ -38,12 +40,11 @@ function QuestionAccordion({
   groupKey,
   stepKey,
   question,
-  language,
   answer,
   onAnswerChange,
 }) {
-  const t = texts[language];
-  const placeholder = question.placeholders?.[language] || '';
+  const { t, i18n } = useTranslation();
+  const placeholder = question.placeholders?.[i18n.language] || '';
   const characterCount = getCharacterCount(answer || '');
   const wordCount = getWordCount(answer || '');
 
@@ -75,7 +76,7 @@ function QuestionAccordion({
                 <i className='bi bi-circle text-muted' aria-hidden='true'></i>
               )}
             </span>
-            <span>{question.texts[language]}</span>
+            <span>{question.texts[i18n.language]}</span>
           </div>
         </button>
       </h2>
@@ -85,48 +86,49 @@ function QuestionAccordion({
         aria-labelledby={`heading-${groupKey}-${stepKey}-q${question.id}`}
       >
         <div className='accordion-body'>
-          <label htmlFor={`answer-${question.id}`} className='form-label'>
-            <i className='bi bi-pencil-square me-2' aria-hidden='true'></i>
-            {t.answerLabel}
-          </label>
-          <ReactQuill
-            value={answer || ''}
-            onChange={(content) => {
-              onAnswerChange(question.id, content);
-            }}
-            placeholder={placeholder}
-            theme='snow'
-            modules={{
-              toolbar: [
-                [{ header: [1, 2, 3, false] }],
-                ['bold', 'italic', 'underline', 'strike'],
-                // Deactivate the ordered list because it's currently bugged on the html2pdf.js rendering
-                // TODO: Fix the rendering of ordered lists, maybe even refactor the whole pdf rendering pipeline
-                // [{ list: 'ordered' }, { list: 'bullet' }],
-                [{ list: 'bullet' }],
-                ['link'],
-                ['clean'],
-              ],
-            }}
-            formats={[
-              'header',
-              'bold',
-              'italic',
-              'underline',
-              'strike',
-              'list',
-              'link',
-            ]}
-            preserveWhitespace={false}
-          />
+          <div className='mb-3'>
+            <label className='form-label fw-bold'>
+              {t('question.answerLabel')}
+            </label>
+            <ReactQuill
+              value={answer || ''}
+              onChange={(content) => {
+                onAnswerChange(question.id, content);
+              }}
+              placeholder={placeholder}
+              theme='snow'
+              modules={{
+                toolbar: [
+                  [{ header: [1, 2, 3, false] }],
+                  ['bold', 'italic', 'underline', 'strike'],
+                  // Deactivate the ordered list because it's currently bugged on the html2pdf.js rendering
+                  // TODO: Fix the rendering of ordered lists, maybe even refactor the whole pdf rendering pipeline
+                  // [{ list: 'ordered' }, { list: 'bullet' }],
+                  [{ list: 'bullet' }],
+                  ['link'],
+                  ['clean'],
+                ],
+              }}
+              formats={[
+                'header',
+                'bold',
+                'italic',
+                'underline',
+                'strike',
+                'list',
+                'link',
+              ]}
+              preserveWhitespace={false}
+            />
+          </div>
           <div className='mt-2 text-muted small'>
             <span className='me-3'>
               <i className='bi bi-textarea-t me-1' aria-hidden='true'></i>
-              {t.characterCount} {characterCount}
+              {t('question.characterCount')} {characterCount}
             </span>
             <span>
               <i className='bi bi-journal-text me-1' aria-hidden='true'></i>
-              {t.wordCount} {wordCount}
+              {t('question.wordCount')} {wordCount}
             </span>
           </div>
         </div>

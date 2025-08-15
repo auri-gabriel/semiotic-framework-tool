@@ -1,46 +1,14 @@
 import React, { useState } from 'react';
 import SemioticAccordion from '../components/SemioticAccordion';
 import BottomToolbar from '../components/BottomToolbar';
-import { useLanguage } from '../hooks/useLanguage';
+import { useTranslation } from 'react-i18next';
 import { useSemioticData } from '../hooks/useSemioticData';
 import { useAnswers } from '../hooks/useAnswers';
 import { useExport } from '../hooks/useExport';
 import SectionTitle from '../components/SectionTitle';
 
-const texts = {
-  en: {
-    title: 'Start',
-    intro:
-      "Ready to start?\nClick the blocks below to show the questions. For each one, click the question and answer it. It's simple and fast — just answer.",
-    newFormSuggestion:
-      'Starting a new project? Try clearing all the old responses first.',
-    clearResponses: 'Clear All Responses',
-    clearResponsesDesc: 'Delete all saved responses and reset definitions',
-    clearConfirmTitle: 'Clear All Responses',
-    clearConfirmMessage:
-      'Are you sure you want to delete all your responses and reset definitions to default? This action cannot be undone.',
-    clearConfirmButton: 'Yes, Clear All',
-    cancelButton: 'Cancel',
-  },
-  pt_BR: {
-    title: 'Iniciar',
-    intro:
-      'Pronto para começar?\nClique nos blocos abaixo para mostrar as perguntas. Em cada um, Clique na pergunta e responda. É simples e rápido — só ler e responder.',
-    newFormSuggestion:
-      'Começando um novo projeto? Tente limpar todas as respostas antigas primeiro.',
-    clearResponses: 'Limpar Todas as Respostas',
-    clearResponsesDesc:
-      'Excluir todas as respostas salvas e resetar definições',
-    clearConfirmTitle: 'Limpar Todas as Respostas',
-    clearConfirmMessage:
-      'Tem certeza de que deseja excluir todas as suas respostas e resetar as definições para o padrão? Esta ação não pode ser desfeita.',
-    clearConfirmButton: 'Sim, Limpar Tudo',
-    cancelButton: 'Cancelar',
-  },
-};
-
 export default function StartSection() {
-  const { language } = useLanguage();
+  const { t, i18n } = useTranslation();
   const { semioticLadderGrouping } = useSemioticData();
   const {
     answers,
@@ -59,8 +27,6 @@ export default function StartSection() {
 
   const [showClearModal, setShowClearModal] = useState(false);
 
-  const t = texts[language];
-
   const handleClearClick = () => {
     setShowClearModal(true);
   };
@@ -78,16 +44,16 @@ export default function StartSection() {
   return (
     <section className='pt-5 border-top' id='start'>
       <div className='container mb-5'>
-        <SectionTitle title={t.title} />
+        <SectionTitle title={t('start.title')} />
         <p className='mb-4' style={{ whiteSpace: 'pre-line' }}>
-          {t.intro}
+          {t('start.intro')}
         </p>
 
         {/* New Form Suggestion */}
         <div className='mb-3'>
           <p className='text-muted mb-0'>
             <i className='bi bi-info-circle me-2' aria-hidden='true'></i>
-            {t.newFormSuggestion}
+            {t('start.newFormSuggestion')}
           </p>
         </div>
 
@@ -97,16 +63,16 @@ export default function StartSection() {
             type='button'
             className='btn btn-danger'
             onClick={handleClearClick}
-            title={t.clearResponsesDesc}
+            title={t('start.clearResponsesDesc')}
           >
             <i className='bi bi-trash me-2' aria-hidden='true'></i>
-            {t.clearResponses}
+            {t('start.clearResponses')}
           </button>
         </div>
 
         <SemioticAccordion
           grouping={semioticLadderGrouping}
-          language={language}
+          language={i18n.language}
           answers={answers}
           onAnswerChange={updateAnswer}
         />
@@ -115,7 +81,6 @@ export default function StartSection() {
         answers={answers}
         onImportXML={importAnswers}
         onExport={handleExport}
-        language={language}
         exportOnlyAnswered={exportOnlyAnswered}
         setExportOnlyAnswered={setExportOnlyAnswered}
         exportEngOnlyAnswered={exportEngOnlyAnswered}
@@ -139,7 +104,7 @@ export default function StartSection() {
                   className='bi bi-exclamation-triangle-fill me-2'
                   aria-hidden='true'
                 ></i>
-                {t.clearConfirmTitle}
+                {t('start.clearConfirmTitle')}
               </h5>
               <button
                 type='button'
@@ -163,7 +128,7 @@ export default function StartSection() {
                 </div>
                 <div className='flex-grow-1'>
                   <p className='mb-0 text-dark' style={{ lineHeight: '1.6' }}>
-                    {t.clearConfirmMessage}
+                    {t('start.clearConfirmMessage')}
                   </p>
                 </div>
               </div>
@@ -174,7 +139,7 @@ export default function StartSection() {
                 className='btn btn-outline-secondary me-2'
                 onClick={handleClearCancel}
               >
-                {t.cancelButton}
+                {t('start.cancelButton')}
               </button>
               <button
                 type='button'
@@ -182,7 +147,7 @@ export default function StartSection() {
                 onClick={handleClearConfirm}
               >
                 <i className='bi bi-trash me-2' aria-hidden='true'></i>
-                {t.clearConfirmButton}
+                {t('start.clearConfirmButton')}
               </button>
             </div>
           </div>

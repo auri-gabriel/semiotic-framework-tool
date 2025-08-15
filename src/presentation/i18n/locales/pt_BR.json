@@ -1,0 +1,85 @@
+{
+    "navbar": {
+        "brand": "Ferramenta de apoio ao Framework Semioparticipativo para o Desenvolvimento de Software Educacional",
+        "brandAcronym": "FFS.DSE",
+        "navigation": {
+            "framework": "O Framework",
+            "start": "Iniciar",
+            "aboutUs": "Sobre nós",
+            "works": "Trabalhos"
+        },
+        "language": "Idioma"
+    },
+    "hero": {
+        "title": "O Framework",
+        "description": "No desenvolvimento de software para o domínio educacional, uma série de aspectos deve ser levada em conta, relacionadas às funções humanas da informação e à Plataforma de Tecnologia da Informação (TI). Baseado no Framework Semiótico de Ronald Stamper, este framework adota a abordagem do Design Participativo integrando a Engenharia de Software no desenvolvimento de soluções em software para o Domínio Educacional.",
+        "ctaButton": "Iniciar"
+    },
+    "start": {
+        "title": "Iniciar",
+        "intro": "Pronto para começar?\nClique nos blocos abaixo para mostrar as perguntas. Em cada um, Clique na pergunta e responda. É simples e rápido — só ler e responder.",
+        "newFormSuggestion": "Começando um novo projeto? Tente limpar todas as respostas antigas primeiro.",
+        "clearResponses": "Limpar Todas as Respostas",
+        "clearResponsesDesc": "Excluir todas as respostas salvas e resetar definições",
+        "clearConfirmTitle": "Limpar Todas as Respostas",
+        "clearConfirmMessage": "Tem certeza de que deseja excluir todas as suas respostas e resetar as definições para o padrão? Esta ação não pode ser desfeita.",
+        "clearConfirmButton": "Sim, Limpar Tudo",
+        "cancelButton": "Cancelar"
+    },
+    "works": {
+        "title": "Trabalhos"
+    },
+    "aboutUs": {
+        "title": "Sobre nós",
+        "description": "Este projeto é parte do Grupo de Pesquisa GEInfoEdu",
+        "professors": [
+            "Profa. Dra. Aline Vieira de Mello (Docente no Campus Alegrete)",
+            "Profa. Dra. Amanda Meincke Melo (Docente no Campus Alegrete) – líder do grupo de pesquisa",
+            "Prof. Dr. Jean Felipe Patikowski Cheiran (Docente no Campus Alegrete)"
+        ],
+        "studentsLabel": "Estudantes envolvidos no projeto:",
+        "students": [
+            "Auri Gabriel Castro de Melo (Acadêmico do Curso de Engenharia de Software)",
+            "Renilson Pereira Torres (Acadêmico do Curso de Ciência da Computação, bolsista PIBIC-Af 2024)",
+            "Gabriel Souza Rodrigues de Amorim (Acadêmico do Curso de Engenharia de Software, bolsista PRO-IC MC 2023)"
+        ]
+    },
+    "footer": {
+        "copyright": "© 2025 GEInfoEdu. Todos os direitos reservados."
+    },
+    "loading": {
+        "loading": "Carregando..."
+    },
+    "export": {
+        "exporting": "Exportando...",
+        "exportingPDF": "Exportando PDF..."
+    },
+    "toolbar": {
+        "export": "Exportar",
+        "exportXML": "Exportar XML",
+        "exportLadder": "Exportar Escada Semiótica",
+        "exportLadderAnswered": "Apenas perguntas respondidas",
+        "importXML": "Importar XML",
+        "exportPDF": "em PDF",
+        "exportDOCX": "em DOCX",
+        "exportPreview": "Pré-visualizar HTML",
+        "exportEngLayers": "Exportar Camadas de Engenharia",
+        "dataExport": "Exportação de Dados",
+        "documentExport": "Exportação de Documentos",
+        "exportXMLDesc": "Salvar dados atuais como arquivo XML",
+        "exportLadderDesc": "Gerar relatório PDF da Escada Semiótica",
+        "exportLadderPreviewDesc": "Abrir pré-visualização HTML em nova aba para depuração (dev apenas)",
+        "exportEngLayersDesc": "Gerar relatório PDF das Camadas de Engenharia",
+        "exportEngLayersPreviewDesc": "Abrir pré-visualização HTML em nova aba para depuração (dev apenas)"
+    },
+    "accordion": {
+        "expandAll": "Expandir Tudo",
+        "collapseAll": "Recolher Tudo"
+    },
+    "question": {
+        "answerLabel": "Sua Resposta:",
+        "placeholder": "Digite sua resposta aqui...",
+        "required": "Obrigatório",
+        "optional": "Opcional"
+    }
+}

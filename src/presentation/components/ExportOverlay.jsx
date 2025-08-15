@@ -1,20 +1,8 @@
 import React from 'react';
-import { useLanguage } from '../hooks/useLanguage';
-
-const texts = {
-  en: {
-    exporting: 'Exporting...',
-    exportingPDF: 'Exporting PDF...',
-  },
-  pt_BR: {
-    exporting: 'Exportando...',
-    exportingPDF: 'Exportando PDF...',
-  },
-};
+import { useTranslation } from 'react-i18next';
 
 export function ExportOverlay({ isExporting }) {
-  const { language } = useLanguage();
-  const t = texts[language];
+  const { t } = useTranslation();
 
   if (!isExporting) return null;
 
@@ -29,9 +17,9 @@ export function ExportOverlay({ isExporting }) {
     >
       <div className='bg-secondary shadow-lg p-5 d-flex flex-column align-items-center'>
         <div className='spinner-border text-light mb-3' role='status'>
-          <span className='visually-hidden'>{t.exporting}</span>
+          <span className='visually-hidden'>{t('export.exporting')}</span>
         </div>
-        <div className='fw-semibold text-light'>{t.exportingPDF}</div>
+        <div className='fw-semibold text-light'>{t('export.exportingPDF')}</div>
       </div>
     </div>
   );

@@ -1,65 +1,34 @@
 import React from 'react';
-import { useLanguage } from '../hooks/useLanguage';
+import { useTranslation } from 'react-i18next';
 import SectionTitle from '../components/SectionTitle';
 
-const texts = {
-  en: {
-    title: 'About us',
-    description: 'This project is part of the GEInfoEdu Research Group',
-    professors: [
-      'Prof. Dr. Aline Vieira de Mello (Professor at Alegrete Campus)',
-      'Prof. Dr. Amanda Meincke Melo (Professor at Alegrete Campus) – research group leader',
-      'Prof. Dr. Jean Felipe Patikowski Cheiran (Professor at Alegrete Campus)',
-    ],
-    studentsLabel: 'Students involved in the project:',
-    students: [
-      'Auri Gabriel Castro de Melo (Software Engineering student)',
-      'Renilson Pereira Torres (Computer Science student, PIBIC-Af 2024 fellow)',
-      'Gabriel Souza Rodrigues de Amorim (Software Engineering student, PRO-IC MC 2023 fellow)',
-    ],
-  },
-  pt_BR: {
-    title: 'Sobre nós',
-    description: 'Este projeto é parte do Grupo de Pesquisa GEInfoEdu',
-    professors: [
-      'Profa. Dra. Aline Vieira de Mello (Docente no Campus Alegrete)',
-      'Profa. Dra. Amanda Meincke Melo (Docente no Campus Alegrete) – líder do grupo de pesquisa',
-      'Prof. Dr. Jean Felipe Patikowski Cheiran (Docente no Campus Alegrete)',
-    ],
-    studentsLabel: 'Estudantes envolvidos no projeto:',
-    students: [
-      'Auri Gabriel Castro de Melo (Acadêmico do Curso de Engenharia de Software)',
-      'Renilson Pereira Torres (Acadêmico do Curso de Ciência da Computação, bolsista PIBIC-Af 2024)',
-      'Gabriel Souza Rodrigues de Amorim (Acadêmico do Curso de Engenharia de Software, bolsista PRO-IC MC 2023)',
-    ],
-  },
-};
-
 const AboutUsSection = () => {
-  const { language } = useLanguage();
-  const t = texts[language];
+  const { t } = useTranslation();
+
   return (
     <section id='sobre-nos' className='bg-light py-5 border-top'>
       <div className='container'>
-        <SectionTitle title={t.title}></SectionTitle>
-        <p>{t.description}</p>
+        <SectionTitle title={t('aboutUs.title')}></SectionTitle>
+        <p>{t('aboutUs.description')}</p>
         <img
           src={`${import.meta.env.BASE_URL}/logo-geinfoedu.png`}
           alt='GEInfoEdu'
           className='mb-3 img-fluid'
         />
         <ul>
-          {t.professors.map((prof, idx) => (
+          {t('aboutUs.professors', { returnObjects: true }).map((prof, idx) => (
             <li key={idx}>{prof}</li>
           ))}
         </ul>
         <p>
-          <strong>{t.studentsLabel}</strong>
+          <strong>{t('aboutUs.studentsLabel')}</strong>
         </p>
         <ul>
-          {t.students.map((student, idx) => (
-            <li key={idx}>{student}</li>
-          ))}
+          {t('aboutUs.students', { returnObjects: true }).map(
+            (student, idx) => (
+              <li key={idx}>{student}</li>
+            )
+          )}
         </ul>
       </div>
     </section>
