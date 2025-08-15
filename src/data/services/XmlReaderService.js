@@ -346,7 +346,3 @@ export class XmlReaderService {
     }
   }
 }
-
-// Legacy named exports for backward compatibility
-export const readQuestions = XmlReaderService.readQuestions;
-export const readTags = XmlReaderService.readTags;
