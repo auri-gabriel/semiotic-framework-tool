@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
-import SemioticAccordion from '../components/SemioticAccordion';
-import BottomToolbar from '../components/BottomToolbar';
+import SemioticAccordion from './SemioticAccordion';
+import BottomToolbar from './BottomToolbar';
 import { useLanguage } from '../hooks/useLanguage';
 import { useSemioticData } from '../hooks/useSemioticData';
 import { useAnswers } from '../hooks/useAnswers';
 import { useExport } from '../hooks/useExport';
-import SectionTitle from '../components/SectionTitle';
 
-const texts = {
+const sectionTexts = {
   en: {
     title: 'Start',
     intro:
@@ -59,7 +58,7 @@ export default function StartSection() {
 
   const [showClearModal, setShowClearModal] = useState(false);
 
-  const t = texts[language];
+  const text = sectionTexts[language];
 
   const handleClearClick = () => {
     setShowClearModal(true);
@@ -78,16 +77,22 @@ export default function StartSection() {
   return (
     <section className='pt-5 border-top' id='start'>
       <div className='container mb-5'>
-        <SectionTitle title={t.title} />
+        <div className='d-flex align-items-center mb-4'>
+          <div
+            className='bg-primary'
+            style={{ width: '4px', height: '48px' }}
+          ></div>
+          <h2 className='ms-3 mb-0'>{text.title}</h2>
+        </div>
         <p className='mb-4' style={{ whiteSpace: 'pre-line' }}>
-          {t.intro}
+          {text.intro}
         </p>
 
         {/* New Form Suggestion */}
         <div className='mb-3'>
           <p className='text-muted mb-0'>
             <i className='bi bi-info-circle me-2' aria-hidden='true'></i>
-            {t.newFormSuggestion}
+            {text.newFormSuggestion}
           </p>
         </div>
 
@@ -97,10 +102,10 @@ export default function StartSection() {
             type='button'
             className='btn btn-danger'
             onClick={handleClearClick}
-            title={t.clearResponsesDesc}
+            title={text.clearResponsesDesc}
           >
             <i className='bi bi-trash me-2' aria-hidden='true'></i>
-            {t.clearResponses}
+            {text.clearResponses}
           </button>
         </div>
 
@@ -139,7 +144,7 @@ export default function StartSection() {
                   className='bi bi-exclamation-triangle-fill me-2'
                   aria-hidden='true'
                 ></i>
-                {t.clearConfirmTitle}
+                {text.clearConfirmTitle}
               </h5>
               <button
                 type='button'
@@ -163,7 +168,7 @@ export default function StartSection() {
                 </div>
                 <div className='flex-grow-1'>
                   <p className='mb-0 text-dark' style={{ lineHeight: '1.6' }}>
-                    {t.clearConfirmMessage}
+                    {text.clearConfirmMessage}
                   </p>
                 </div>
               </div>
@@ -174,7 +179,7 @@ export default function StartSection() {
                 className='btn btn-outline-secondary me-2'
                 onClick={handleClearCancel}
               >
-                {t.cancelButton}
+                {text.cancelButton}
               </button>
               <button
                 type='button'
@@ -182,7 +187,7 @@ export default function StartSection() {
                 onClick={handleClearConfirm}
               >
                 <i className='bi bi-trash me-2' aria-hidden='true'></i>
-                {t.clearConfirmButton}
+                {text.clearConfirmButton}
               </button>
             </div>
           </div>
