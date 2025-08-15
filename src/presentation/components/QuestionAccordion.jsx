@@ -115,8 +115,6 @@ function QuestionAccordion({
               'underline',
               'strike',
               'list',
-              'bullet',
-              'ordered',
               'link',
             ]}
             preserveWhitespace={false}
