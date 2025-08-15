@@ -1,6 +1,15 @@
 import React from 'react';
 import { useLanguage } from '../hooks/useLanguage';
 
+const texts = {
+  en: {
+    loading: 'Loading...',
+  },
+  pt_BR: {
+    loading: 'Carregando...',
+  },
+};
+
 export function LoadingSpinner({ fallbackLanguage = 'en' }) {
   let language = fallbackLanguage;
 
@@ -12,14 +21,14 @@ export function LoadingSpinner({ fallbackLanguage = 'en' }) {
     console.warn('LanguageContext not available, using fallback language');
   }
 
-  const loadingText = language === 'pt_BR' ? 'Carregando...' : 'Loading...';
+  const t = texts[language];
 
   return (
     <div className='d-flex flex-column align-items-center justify-content-center py-5'>
       <div className='spinner-border text-primary mb-3' role='status'>
-        <span className='visually-hidden'>{loadingText}</span>
+        <span className='visually-hidden'>{t.loading}</span>
       </div>
-      <div className='fw-semibold text-secondary'>{loadingText}</div>
+      <div className='fw-semibold text-secondary'>{t.loading}</div>
     </div>
   );
 }
