@@ -26,27 +26,28 @@ export class SemioticLadderService {
     onExportStart,
     onExportEnd,
   }) {
+    if (onExportStart) onExportStart();
+
+    const title = language === 'pt_BR' ? 'Escada Semiótica' : 'Semiotic Ladder';
+    const content = this.generateContent({
+      grouping,
+      answers,
+      onlyAnswered,
+      language,
+    });
+    const htmlContent = HtmlTemplateService.generateHtmlDocument({
+      title,
+      content,
+      language,
+    });
+
     if (format === 'pdf') {
-      if (onExportStart) onExportStart();
-
-      const title =
-        language === 'pt_BR' ? 'Escada Semiótica' : 'Semiotic Ladder';
-      const content = this.generateContent({
-        grouping,
-        answers,
-        onlyAnswered,
-        language,
-      });
-      const htmlContent = HtmlTemplateService.generateHtmlDocument({
-        title,
-        content,
-        language,
-      });
-
       await PdfService.generatePdf(htmlContent, title);
-
-      if (onExportEnd) onExportEnd();
+    } else if (format === 'preview') {
+      HtmlTemplateService.previewHtml(htmlContent, title);
     }
+
+    if (onExportEnd) onExportEnd();
   }
 
   /**

@@ -368,6 +368,24 @@ ol ol, ul ol {
   }
 
   /**
+   * Opens generated HTML in a new tab for debugging/preview (development only)
+   * @param {string} htmlContent - Complete HTML document to preview
+   * @param {string} title - Title for the preview window
+   */
+  static previewHtml(htmlContent, title = 'HTML Preview') {
+    // Only allow preview in development environment
+    if (!import.meta.env.DEV) {
+      console.warn('HTML preview is only available in development environment');
+      return;
+    }
+
+    const previewWindow = window.open('', '_blank');
+    previewWindow.document.write(htmlContent);
+    previewWindow.document.close();
+    previewWindow.document.title = title;
+  }
+
+  /**
    * Generates a complete HTML document
    * @param {Object} params - Parameters for HTML generation
    * @param {string} params.title - Document title
