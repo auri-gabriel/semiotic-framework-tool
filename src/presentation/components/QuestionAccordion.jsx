@@ -138,4 +138,3 @@ function QuestionAccordion({
 }
 
 export default QuestionAccordion;
-export default QuestionAccordion;
