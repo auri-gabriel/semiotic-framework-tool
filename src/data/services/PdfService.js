@@ -4,12 +4,38 @@
 export class PdfService {
   /**
    * Generates PDF using html2pdf library
-   * @param {string} htmlContent - HTML content to convert
+   * @param {string} htmlContent - Complete HTML document to convert
    * @param {string} filename - Name for the generated PDF file
    */
   static async generatePdf(htmlContent, filename) {
     const html2pdf = (await import('html2pdf.js')).default;
 
+    // Create temporary element to render the HTML content
+    const tempDiv = this._createTempContainer(htmlContent);
+    document.body.appendChild(tempDiv);
+
+    // Wait for content to be ready and styles to be applied
+    await new Promise((resolve) => setTimeout(resolve, 500));
+
+    const options = this._getPdfOptions(filename);
+
+    try {
+      await html2pdf()
+        .set(options)
+        .from(tempDiv.querySelector('.document-container'))
+        .save();
+    } finally {
+      document.body.removeChild(tempDiv);
+    }
+  }
+
+  /**
+   * Creates a temporary container for PDF rendering
+   * @param {string} htmlContent - Complete HTML document content
+   * @returns {HTMLElement} Temporary container element
+   * @private
+   */
+  static _createTempContainer(htmlContent) {
     const tempDiv = document.createElement('div');
     tempDiv.style.position = 'absolute';
     tempDiv.style.top = '-9999px';
@@ -33,12 +59,17 @@ export class PdfService {
       </div>
     `;
 
-    document.body.appendChild(tempDiv);
+    return tempDiv;
+  }
 
-    // Wait for content to be ready and styles to be applied
-    await new Promise((resolve) => setTimeout(resolve, 500));
-
-    const options = {
+  /**
+   * Gets PDF generation options
+   * @param {string} filename - Name for the generated PDF file
+   * @returns {Object} PDF options configuration
+   * @private
+   */
+  static _getPdfOptions(filename) {
+    return {
       margin: [15, 15, 15, 15],
       filename: `${filename}.pdf`,
       image: { type: 'jpeg', quality: 0.98 },
@@ -52,9 +83,6 @@ export class PdfService {
         width: null,
         scrollX: 0,
         scrollY: 0,
-        onrendered: function () {
-          // Additional processing if needed
-        },
       },
       jsPDF: {
         unit: 'mm',
@@ -76,15 +104,6 @@ export class PdfService {
         ],
       },
     };
-
-    try {
-      await html2pdf()
-        .set(options)
-        .from(tempDiv.querySelector('.document-container'))
-        .save();
-    } finally {
-      document.body.removeChild(tempDiv);
-    }
   }
 
   /**
