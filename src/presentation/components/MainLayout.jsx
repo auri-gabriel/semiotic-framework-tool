@@ -1,6 +1,6 @@
 import React from 'react';
 import { useExport } from '../hooks/useExport';
-import { ExportOverlay } from './ExportOverlay';
+import ExportOverlay from './ExportOverlay.jsx';
 import Navbar from './Navbar';
 import {
   HeroSection,

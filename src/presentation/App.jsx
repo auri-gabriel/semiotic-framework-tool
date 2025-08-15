@@ -1,7 +1,7 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import React from 'react';
 import { AppProvider } from './contexts/AppContext';
-import { MainLayout } from './components/MainLayout';
+import MainLayout from './components/MainLayout';
 import { useSemioticData } from './hooks/useSemioticData';
 import './i18n'; // Initialize i18next
 import { useTranslation } from 'react-i18next';
