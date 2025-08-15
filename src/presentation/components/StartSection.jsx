@@ -82,7 +82,7 @@ export default function StartSection() {
             className='bg-primary'
             style={{ width: '4px', height: '48px' }}
           ></div>
-          <h2 className='ms-3 mb-0 fw-bold text-dark'>{text.title}</h2>
+          <h2 className='ms-3 mb-0'>{text.title}</h2>
         </div>
         <p className='mb-4' style={{ whiteSpace: 'pre-line' }}>
           {text.intro}

@@ -45,7 +45,7 @@ const AboutUs = () => {
             className='bg-primary'
             style={{ width: '4px', height: '48px' }}
           ></div>
-          <h2 className='ms-3 mb-0 fw-bold text-dark'>{t.aboutUs}</h2>
+          <h2 className='ms-3 mb-0'>{t.aboutUs}</h2>
         </div>
         <p>{t.aboutUsText}</p>
         <img

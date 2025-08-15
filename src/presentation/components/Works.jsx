@@ -46,9 +46,7 @@ const Works = () => {
             className='bg-primary'
             style={{ width: '4px', height: '48px' }}
           ></div>
-          <h2 className='ms-3 mb-0 fw-bold text-dark'>
-            {worksTexts[language].works}
-          </h2>
+          <h2 className='ms-3 mb-0'>{worksTexts[language].works}</h2>
         </div>
         <div className='row g-4'>
           {works.map((work, idx) => (
