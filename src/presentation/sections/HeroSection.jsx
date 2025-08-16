@@ -22,9 +22,8 @@ const HeroSection = () => {
   return (
     <section
       id='framework'
-      className='hero-section d-flex align-items-center'
+      className='hero-section d-flex align-items-center hero-bg'
       style={{
-        background: "url('hero-bg.png') center center/cover no-repeat",
         minHeight: '350px',
         position: 'relative',
       }}

@@ -101,3 +101,20 @@ a:hover .arrow-container {
   font-style: italic;
   font-size: 16px;
 }
+
+// Hero section background styling
+.hero-bg {
+  background-image: url('hero-bg.png');
+  background-size: cover;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+}
+
+// Responsive background adjustments
+@media (max-width: 768px) {
+  .hero-bg {
+    background-size: cover;
+    background-position: center top;
+  }
+}
