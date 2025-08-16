@@ -1,2 +1,12 @@
-@use 'custom';
-@use 'react-quill';
+// Base styles and Bootstrap setup
+@use 'base/bootstrap-setup';
+
+// Component styles
+@use 'components/react-quill';
+@use 'components/accordion';
+@use 'components/cards';
+@use 'components/hero';
+
+// Utility styles
+@use 'utilities/animations';
+@use 'utilities/layout';
