@@ -1,6 +1,7 @@
 import { HtmlTemplateService } from './HtmlTemplateService.js';
 import { PdfService } from './PdfService.js';
 import { XmlService } from './XmlService.js';
+import { isAnswered } from '../utils/answerUtils.js';
 
 /**
  * Service for generating Semiotic Ladder documents
@@ -61,7 +62,7 @@ export class SemioticLadderService {
         const steps = Object.entries(groupProps.steps)
           .map(([, stepProps]) => {
             const questions = stepProps.questions
-              .filter((q) => !onlyAnswered || answers[q.id])
+              .filter((q) => !onlyAnswered || isAnswered(answers[q.id]))
               .map((q) => {
                 return HtmlTemplateService.generateQuestionHtml(
                   q,

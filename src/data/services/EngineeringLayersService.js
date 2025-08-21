@@ -1,6 +1,7 @@
 import { HtmlTemplateService } from './HtmlTemplateService.js';
 import { PdfService } from './PdfService.js';
 import { XmlService } from './XmlService.js';
+import { isAnswered } from '../utils/answerUtils.js';
 
 /**
  * Service for generating Engineering Layers documents
@@ -92,7 +93,7 @@ export class EngineeringLayersService {
       .sort(([, a], [, b]) => a.tag.order - b.tag.order)
       .map(([, layer]) => {
         const questions = layer.questions
-          .filter((q) => !onlyAnswered || answers[q.id])
+          .filter((q) => !onlyAnswered || isAnswered(answers[q.id]))
           .map((q) => {
             return HtmlTemplateService.generateQuestionHtml(
               q,

@@ -1,3 +1,5 @@
+import { isAnswered } from '../utils/answerUtils.js';
+
 /**
  * Service for generating HTML templates for documents
  */
@@ -434,8 +436,11 @@ ol ol, ul ol {
   static generateQuestionHtml(question, answer, language) {
     const questionText = question.texts[language] || question.texts.en;
 
+    // Check if answer is actually answered
+    const hasAnswer = isAnswered(answer);
+
     // Fix ReactQuill HTML formatting issues and use fixed content
-    const fixedAnswer = answer ? this.fixReactQuillHtml(answer) : null;
+    const fixedAnswer = hasAnswer ? this.fixReactQuillHtml(answer) : null;
 
     const answerText = fixedAnswer
       ? fixedAnswer
@@ -449,7 +454,7 @@ ol ol, ul ol {
           questionText
         )}</div>
         <div class="answer-text ${
-          !fixedAnswer ? 'no-answer' : ''
+          !hasAnswer ? 'no-answer' : ''
         }" style="page-break-before: avoid !important; break-before: avoid !important; page-break-inside: avoid !important; break-inside: avoid !important;">
           ${answerText}
         </div>
