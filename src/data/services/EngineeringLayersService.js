@@ -1,7 +1,7 @@
 import { HtmlTemplateService } from './HtmlTemplateService.js';
 import { PdfService } from './PdfService.js';
 import { XmlService } from './XmlService.js';
-import { isAnswered } from '../utils/answerUtils.js';
+import { isAnswered, generateDocumentOverview } from '../utils/answerUtils.js';
 
 /**
  * Service for generating Engineering Layers documents
@@ -39,11 +39,23 @@ export class EngineeringLayersService {
       questions,
       engineeringTags
     );
+
+    // Get only questions that have engineering tags for the overview
+    const engineeringQuestions = questions.filter(
+      (q) => q.engineeringTags && q.engineeringTags.length > 0
+    );
+
+    const overview = generateDocumentOverview(
+      engineeringQuestions,
+      answers,
+      language
+    );
     const content = this.generateContent({
       layers,
       answers,
       onlyAnswered,
       language,
+      overview,
     });
 
     const htmlContent = HtmlTemplateService.generateHtmlDocument({
@@ -88,7 +100,15 @@ export class EngineeringLayersService {
    * @param {Object} params - Generation parameters
    * @returns {string} Generated HTML content
    */
-  static generateContent({ layers, answers, onlyAnswered, language }) {
+  static generateContent({
+    layers,
+    answers,
+    onlyAnswered,
+    language,
+    overview,
+  }) {
+    const overviewHtml = HtmlTemplateService.generateOverviewHtml(overview);
+
     const layersContent = Object.entries(layers)
       .sort(([, a], [, b]) => a.tag.order - b.tag.order)
       .map(([, layer]) => {
@@ -116,6 +136,6 @@ export class EngineeringLayersService {
       })
       .join('');
 
-    return layersContent;
+    return overviewHtml + layersContent;
   }
 }

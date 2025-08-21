@@ -214,40 +214,53 @@ body {
   font-weight: 400;
 }
 
-/* List styles for proper formatting */
-ul, ol {
-  margin: 16px 0;
-  padding-left: 24px;
+.overview {
+  margin-bottom: 32px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  padding: 24px;
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
-ul li {
-  list-style-type: disc;
-  margin-bottom: 8px;
-  line-height: 1.5;
+.overview-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
 }
 
-ol li {
-  list-style-type: decimal;
-  margin-bottom: 8px;
-  line-height: 1.5;
+.overview-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
 }
 
-/* Nested list styles */
-ul ul, ol ul {
-  margin: 8px 0;
-  padding-left: 20px;
+.stat-item {
+  background: white;
+  padding: 16px;
+  border-radius: 6px;
+  border: 1px solid #dee2e6;
 }
 
-ul ul li {
-  list-style-type: circle;
+.stat-label {
+  font-size: 13px;
+  font-weight: 500;
+  color: #6c757d;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.02em;
 }
 
-ol ol, ul ol {
-  margin: 8px 0;
-  padding-left: 20px;
+.stat-value {
+  font-size: 20px;
+  font-weight: 600;
+  color: #212529;
+  line-height: 1.2;
 }
 
-/* Better print spacing */
 @media print {
   /* Force block display for better control */
   * {
@@ -457,6 +470,35 @@ ol ol, ul ol {
           !hasAnswer ? 'no-answer' : ''
         }" style="page-break-before: avoid !important; break-before: avoid !important; page-break-inside: avoid !important; break-inside: avoid !important;">
           ${answerText}
+        </div>
+      </div>
+    `;
+  }
+
+  /**
+   * Generates HTML for document overview section
+   * @param {Object} overview - Overview data with title and stats
+   * @returns {string} Overview HTML
+   */
+  static generateOverviewHtml(overview) {
+    const statsHtml = Object.entries(overview.stats)
+      .map(
+        ([key, stat]) => `
+        <div class="stat-item">
+          <div class="stat-label">${this.escapeHtml(stat.label)}</div>
+          <div class="stat-value">${this.escapeHtml(
+            stat.value.toString()
+          )}</div>
+        </div>
+      `
+      )
+      .join('');
+
+    return `
+      <div class="overview avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important;">
+        <div class="overview-title">${this.escapeHtml(overview.title)}</div>
+        <div class="overview-stats">
+          ${statsHtml}
         </div>
       </div>
     `;
