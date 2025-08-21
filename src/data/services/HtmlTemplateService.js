@@ -218,7 +218,6 @@ body {
   margin-bottom: 32px;
   background: #f8f9fa;
   border: 1px solid #e9ecef;
-  border-radius: 8px;
   padding: 24px;
   page-break-inside: avoid;
   break-inside: avoid;
@@ -260,7 +259,6 @@ body {
 .section-item {
   background: white;
   padding: 12px 16px;
-  border-radius: 6px;
   border: 1px solid #dee2e6;
   border-left: 3px solid #6c757d;
 }
