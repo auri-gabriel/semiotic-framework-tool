@@ -1,7 +1,10 @@
 import { HtmlTemplateService } from './HtmlTemplateService.js';
 import { PdfService } from './PdfService.js';
 import { XmlService } from './XmlService.js';
-import { isAnswered, generateDocumentOverview } from '../utils/answerUtils.js';
+import {
+  isAnswered,
+  generateGroupedDocumentOverview,
+} from '../utils/answerUtils.js';
 
 /**
  * Service for generating Engineering Layers documents
@@ -40,15 +43,11 @@ export class EngineeringLayersService {
       engineeringTags
     );
 
-    // Get only questions that have engineering tags for the overview
-    const engineeringQuestions = questions.filter(
-      (q) => q.engineeringTags && q.engineeringTags.length > 0
-    );
-
-    const overview = generateDocumentOverview(
-      engineeringQuestions,
+    const overview = generateGroupedDocumentOverview(
+      layers,
       answers,
-      language
+      language,
+      'engineering'
     );
     const content = this.generateContent({
       layers,

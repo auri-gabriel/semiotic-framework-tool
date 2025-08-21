@@ -1,7 +1,10 @@
 import { HtmlTemplateService } from './HtmlTemplateService.js';
 import { PdfService } from './PdfService.js';
 import { XmlService } from './XmlService.js';
-import { isAnswered, generateDocumentOverview } from '../utils/answerUtils.js';
+import {
+  isAnswered,
+  generateGroupedDocumentOverview,
+} from '../utils/answerUtils.js';
 
 /**
  * Service for generating Semiotic Ladder documents
@@ -31,12 +34,12 @@ export class SemioticLadderService {
 
     const title = language === 'pt_BR' ? 'Escada Semiótica' : 'Semiotic Ladder';
 
-    // Get all questions from grouping for overview
-    const allQuestions = Object.values(grouping).flatMap((group) =>
-      Object.values(group.steps).flatMap((step) => step.questions)
+    const overview = generateGroupedDocumentOverview(
+      grouping,
+      answers,
+      language,
+      'semiotic'
     );
-
-    const overview = generateDocumentOverview(allQuestions, answers, language);
     const content = this.generateContent({
       grouping,
       answers,

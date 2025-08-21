@@ -236,29 +236,54 @@ body {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
+  margin-bottom: 24px;
 }
 
-.stat-item {
+.sections-overview {
+  margin-top: 24px;
+}
+
+.sections-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.sections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 12px;
+}
+
+.section-item {
   background: white;
-  padding: 16px;
+  padding: 12px 16px;
   border-radius: 6px;
   border: 1px solid #dee2e6;
+  border-left: 3px solid #6c757d;
 }
 
-.stat-label {
+.section-name {
   font-size: 13px;
-  font-weight: 500;
-  color: #6c757d;
-  margin-bottom: 4px;
-  text-transform: uppercase;
-  letter-spacing: 0.02em;
-}
-
-.stat-value {
-  font-size: 20px;
   font-weight: 600;
   color: #212529;
-  line-height: 1.2;
+  margin-bottom: 8px;
+  line-height: 1.3;
+}
+
+.section-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #6c757d;
+}
+
+.section-completion {
+  font-weight: 600;
+  color: #212529;
 }
 
 @media print {
@@ -476,12 +501,13 @@ body {
   }
 
   /**
-   * Generates HTML for document overview section
-   * @param {Object} overview - Overview data with title and stats
+   * Generates HTML for document overview section with grouped statistics
+   * @param {Object} overview - Overview data with overall stats and sections
    * @returns {string} Overview HTML
    */
   static generateOverviewHtml(overview) {
-    const statsHtml = Object.entries(overview.stats)
+    // Generate overall statistics
+    const overallStatsHtml = Object.entries(overview.overallStats)
       .map(
         ([key, stat]) => `
         <div class="stat-item">
@@ -494,11 +520,36 @@ body {
       )
       .join('');
 
+    // Generate sections statistics
+    const sectionsHtml = overview.sections
+      .map(
+        (section) => `
+        <div class="section-item">
+          <div class="section-name">${this.escapeHtml(section.name)}</div>
+          <div class="section-stats">
+            <span>${section.answeredQuestions}/${section.totalQuestions}</span>
+            <span class="section-completion">${this.escapeHtml(
+              section.completionRate
+            )}</span>
+          </div>
+        </div>
+      `
+      )
+      .join('');
+
     return `
       <div class="overview avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important;">
         <div class="overview-title">${this.escapeHtml(overview.title)}</div>
         <div class="overview-stats">
-          ${statsHtml}
+          ${overallStatsHtml}
+        </div>
+        <div class="sections-overview">
+          <div class="sections-title">${this.escapeHtml(
+            overview.sectionTitle
+          )}</div>
+          <div class="sections-grid">
+            ${sectionsHtml}
+          </div>
         </div>
       </div>
     `;
