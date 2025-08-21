@@ -214,40 +214,76 @@ body {
   font-weight: 400;
 }
 
-/* List styles for proper formatting */
-ul, ol {
-  margin: 16px 0;
-  padding-left: 24px;
+.overview {
+  margin-bottom: 32px;
+  background: #f8f9fa;
+  border: 1px solid #e9ecef;
+  padding: 24px;
+  page-break-inside: avoid;
+  break-inside: avoid;
 }
 
-ul li {
-  list-style-type: disc;
+.overview-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.overview-stats {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.sections-overview {
+  margin-top: 24px;
+}
+
+.sections-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 16px;
+  letter-spacing: -0.01em;
+}
+
+.sections-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 12px;
+}
+
+.section-item {
+  background: white;
+  padding: 12px 16px;
+  border: 1px solid #dee2e6;
+  border-left: 3px solid #6c757d;
+}
+
+.section-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #212529;
   margin-bottom: 8px;
-  line-height: 1.5;
+  line-height: 1.3;
 }
 
-ol li {
-  list-style-type: decimal;
-  margin-bottom: 8px;
-  line-height: 1.5;
+.section-stats {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 12px;
+  color: #6c757d;
 }
 
-/* Nested list styles */
-ul ul, ol ul {
-  margin: 8px 0;
-  padding-left: 20px;
+.section-completion {
+  font-weight: 600;
+  color: #212529;
 }
 
-ul ul li {
-  list-style-type: circle;
-}
-
-ol ol, ul ol {
-  margin: 8px 0;
-  padding-left: 20px;
-}
-
-/* Better print spacing */
 @media print {
   /* Force block display for better control */
   * {
@@ -457,6 +493,61 @@ ol ol, ul ol {
           !hasAnswer ? 'no-answer' : ''
         }" style="page-break-before: avoid !important; break-before: avoid !important; page-break-inside: avoid !important; break-inside: avoid !important;">
           ${answerText}
+        </div>
+      </div>
+    `;
+  }
+
+  /**
+   * Generates HTML for document overview section with grouped statistics
+   * @param {Object} overview - Overview data with overall stats and sections
+   * @returns {string} Overview HTML
+   */
+  static generateOverviewHtml(overview) {
+    // Generate overall statistics
+    const overallStatsHtml = Object.entries(overview.overallStats)
+      .map(
+        ([key, stat]) => `
+        <div class="stat-item">
+          <div class="stat-label">${this.escapeHtml(stat.label)}</div>
+          <div class="stat-value">${this.escapeHtml(
+            stat.value.toString()
+          )}</div>
+        </div>
+      `
+      )
+      .join('');
+
+    // Generate sections statistics
+    const sectionsHtml = overview.sections
+      .map(
+        (section) => `
+        <div class="section-item">
+          <div class="section-name">${this.escapeHtml(section.name)}</div>
+          <div class="section-stats">
+            <span>${section.answeredQuestions}/${section.totalQuestions}</span>
+            <span class="section-completion">${this.escapeHtml(
+              section.completionRate
+            )}</span>
+          </div>
+        </div>
+      `
+      )
+      .join('');
+
+    return `
+      <div class="overview avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important;">
+        <div class="overview-title">${this.escapeHtml(overview.title)}</div>
+        <div class="overview-stats">
+          ${overallStatsHtml}
+        </div>
+        <div class="sections-overview">
+          <div class="sections-title">${this.escapeHtml(
+            overview.sectionTitle
+          )}</div>
+          <div class="sections-grid">
+            ${sectionsHtml}
+          </div>
         </div>
       </div>
     `;
