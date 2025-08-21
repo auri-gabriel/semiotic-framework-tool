@@ -107,6 +107,14 @@ function QuestionAccordion({
                 ['link'],
                 ['clean'],
               ],
+              keyboard: {
+                bindings: {
+                  tab: {
+                    key: 'Tab',
+                    handler: () => true,
+                  },
+                },
+              },
             }}
             formats={[
               'header',
