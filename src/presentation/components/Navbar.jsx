@@ -41,7 +41,6 @@ const Navbar = () => {
     setIsLanguageDropdownOpen(false);
   };
 
-  // Fechar dropdown quando clicar fora
   useEffect(() => {
     const handleClickOutside = (event) => {
       if (isLanguageDropdownOpen && !event.target.closest('.dropdown')) {

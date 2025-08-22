@@ -7,7 +7,6 @@ import {
 } from '../../data/services';
 import { XmlReaderService } from '../../data/services/XmlReaderService';
 
-// Action types
 const ActionTypes = {
   SET_LOADING: 'SET_LOADING',
   SET_SEMIOTIC_LADDER_GROUPING: 'SET_SEMIOTIC_LADDER_GROUPING',
@@ -22,7 +21,6 @@ const ActionTypes = {
   REFRESH_SEMIOTIC_DATA: 'REFRESH_SEMIOTIC_DATA',
 };
 
-// Initial state
 const initialState = {
   loading: true,
   semioticLadderGrouping: {},
@@ -39,7 +37,6 @@ const initialState = {
   exporting: false,
 };
 
-// Reducer
 function appReducer(state, action) {
   switch (action.type) {
     case ActionTypes.SET_LOADING:
@@ -86,24 +83,19 @@ function appReducer(state, action) {
   }
 }
 
-// Context
 export const AppContext = createContext();
 
-// Provider component
 export function AppProvider({ children }) {
   const [state, dispatch] = useReducer(appReducer, initialState);
 
-  // Effect for language persistence
   useEffect(() => {
     localStorage.setItem('language', state.language);
   }, [state.language]);
 
-  // Effect for answers persistence
   useEffect(() => {
     localStorage.setItem('answers', JSON.stringify(state.answers));
   }, [state.answers]);
 
-  // Effect for initial data loading
   useEffect(() => {
     async function fetchData() {
       try {
@@ -122,7 +114,6 @@ export function AppProvider({ children }) {
     fetchData();
   }, []);
 
-  // Action creators
   const actions = {
     setLoading: (loading) =>
       dispatch({ type: ActionTypes.SET_LOADING, payload: loading }),
@@ -203,11 +194,9 @@ export function AppProvider({ children }) {
       try {
         const imported = XmlService.importFromXML(xmlString);
 
-        // If definitions were found in the XML, update the system to use them
         if (imported.definitions) {
           XmlReaderService.setCustomDefinitions(imported.definitions);
 
-          // Refresh the semiotic ladder data with the new definitions
           dispatch({ type: ActionTypes.REFRESH_SEMIOTIC_DATA });
 
           try {
@@ -227,7 +216,6 @@ export function AppProvider({ children }) {
           }
         }
 
-        // Import the answers
         actions.importAnswers(imported.answers);
       } catch (error) {
         console.error('Import error:', error);
@@ -239,7 +227,6 @@ export function AppProvider({ children }) {
       try {
         XmlReaderService.resetToDefaultDefinitions();
 
-        // Refresh the semiotic ladder data with default definitions
         dispatch({ type: ActionTypes.REFRESH_SEMIOTIC_DATA });
 
         try {

@@ -21,20 +21,17 @@ function SemioticStepAccordion({
 }) {
   const t = texts[language];
 
-  // Helper function to check if a question has a meaningful answer
   const hasAnswer = (answer) => {
     if (!answer) return false;
     const plainText = answer.replace(/<[^>]*>/g, '').trim();
     return plainText.length > 0;
   };
 
-  // Calculate answered questions count
   const answeredCount = step.questions.filter((q) =>
     hasAnswer(answers[q.id])
   ).length;
   const totalCount = step.questions.length;
 
-  // Functions to handle expand/collapse all questions
   const expandAllQuestions = () => {
     step.questions.forEach((q) => {
       const collapseElement = document.getElementById(

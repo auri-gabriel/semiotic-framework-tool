@@ -265,7 +265,6 @@ export class XmlReaderService {
         };
       }
 
-      // Convert tags array to include both semiotic and engineering tags
       const enhancedTags = question.tags.map((tag) => tag.id);
       const semioticTags = question.tags
         .filter((tag) => tag.type === 'semiotic-steps')

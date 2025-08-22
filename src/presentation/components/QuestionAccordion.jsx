@@ -14,20 +14,17 @@ const texts = {
   },
 };
 
-// Helper function to strip HTML tags and get plain text
 const stripHtml = (html) => {
   const div = document.createElement('div');
   div.innerHTML = html;
   return div.textContent || div.innerText || '';
 };
 
-// Helper function to count characters (excluding HTML tags)
 const getCharacterCount = (html) => {
   const plainText = stripHtml(html);
   return plainText.length;
 };
 
-// Helper function to count words (excluding HTML tags)
 const getWordCount = (html) => {
   const plainText = stripHtml(html);
   const words = plainText.trim().split(/\s+/);
@@ -47,7 +44,6 @@ function QuestionAccordion({
   const characterCount = getCharacterCount(answer || '');
   const wordCount = getWordCount(answer || '');
 
-  // Check if the question has a meaningful answer
   const hasAnswer = answer && stripHtml(answer).trim().length > 0;
 
   return (
@@ -142,5 +138,4 @@ function QuestionAccordion({
     </div>
   );
 }
-
 export default QuestionAccordion;

@@ -99,7 +99,6 @@ function BottomToolbar({
               onChange={handleFileChange}
               aria-label={t.importXML}
             />
-            {/* Mobile (small) button */}
             <button
               className='btn btn-outline-light btn-sm d-sm-none d-inline-flex align-items-center'
               onClick={handleImportClick}
@@ -355,5 +354,4 @@ function BottomToolbar({
     </div>
   );
 }
-
 export default BottomToolbar;

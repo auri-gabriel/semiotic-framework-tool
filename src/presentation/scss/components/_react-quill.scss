@@ -117,31 +117,3 @@
     outline-offset: -2px;
   }
 }
-
-// Dark mode support
-// @if $enable-dark-mode {
-//   @media (prefers-color-scheme: dark) {
-//     .ql-editor {
-//       background-color: $gray-800;
-//       color: $gray-100;
-//     }
-
-//     .ql-toolbar {
-//       background-color: $gray-900;
-//       border-bottom-color: $gray-600;
-
-//       button:hover {
-//         background-color: $gray-700;
-//         border-color: $gray-600;
-//       }
-//     }
-
-//     .ql-container {
-//       border-color: $gray-600;
-//     }
-
-//     .ql-editor.ql-blank::before {
-//       color: $gray-400;
-//     }
-//   }
-// }
