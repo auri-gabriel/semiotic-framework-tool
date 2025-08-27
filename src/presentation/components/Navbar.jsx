@@ -5,7 +5,7 @@ const texts = {
   en: {
     brand:
       'Semioparticipatory Framework for Educational Software Development Tool',
-    brandAcronym: 'SF.ESDT',
+    brandAcronym: 'FFS.DSE',
     navigation: {
       framework: 'The Framework',
       start: 'Start',
