@@ -134,7 +134,10 @@ export default function StartSection() {
         <div className='modal-dialog modal-dialog-centered' role='document'>
           <div className='modal-content border-0 shadow-lg'>
             <div className='modal-header bg-danger text-white border-0'>
-              <h5 className='modal-title fw-bold' id='clearModalLabel'>
+              <h5
+                className='modal-title fw-bold text-white'
+                id='clearModalLabel'
+              >
                 <i
                   className='bi bi-exclamation-triangle-fill me-2'
                   aria-hidden='true'
