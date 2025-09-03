@@ -189,7 +189,12 @@ export default function StartSection() {
                 clearType === 'answers' ? 'bg-warning' : 'bg-danger'
               } text-white border-0`}
             >
-              <h5 className='modal-title fw-bold' id='clearModalLabel'>
+              <h5
+                className={`modal-title fw-bold ${
+                  clearType === 'answers' ? '' : 'text-white'
+                }`}
+                id='clearModalLabel'
+              >
                 <i
                   className='bi bi-exclamation-triangle-fill me-2'
                   aria-hidden='true'
