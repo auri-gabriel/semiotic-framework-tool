@@ -2,12 +2,12 @@ import 'bootstrap-icons/font/bootstrap-icons.css';
 import React from 'react';
 import { AppProvider } from './contexts/AppContext';
 import { LanguageProvider } from './contexts/LanguageContext';
-import { MainLayout } from './components/MainLayout';
+import MainLayout from './components/MainLayout';
 import { useSemioticData } from './hooks/useSemioticData';
 import { useApp } from './hooks/useApp';
 
 // Simple loading component that doesn't require language context
-function SimpleLoadingSpinner() {
+const SimpleLoadingSpinner = () => {
   return (
     <div className='d-flex flex-column align-items-center justify-content-center py-5'>
       <div className='spinner-border text-primary mb-3' role='status'>
@@ -16,9 +16,9 @@ function SimpleLoadingSpinner() {
       <div className='fw-semibold text-secondary'>Loading...</div>
     </div>
   );
-}
+};
 
-function AppContent() {
+const AppContent = () => {
   const { loading } = useSemioticData();
   const { state, actions } = useApp();
 
@@ -30,14 +30,14 @@ function AppContent() {
       {loading ? <SimpleLoadingSpinner /> : <MainLayout />}
     </LanguageProvider>
   );
-}
+};
 
-function App() {
+const App = () => {
   return (
     <AppProvider>
       <AppContent />
     </AppProvider>
   );
-}
+};
 
 export default App;

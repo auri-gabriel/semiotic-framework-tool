@@ -31,14 +31,14 @@ const getWordCount = (html) => {
   return plainText.trim() === '' ? 0 : words.length;
 };
 
-function QuestionAccordion({
+const QuestionAccordion = ({
   groupKey,
   stepKey,
   question,
   language,
   answer,
   onAnswerChange,
-}) {
+}) => {
   const t = texts[language];
   const placeholder = question.placeholders?.[language] || '';
   const characterCount = getCharacterCount(answer || '');
@@ -137,5 +137,5 @@ function QuestionAccordion({
       </div>
     </div>
   );
-}
+};
 export default QuestionAccordion;

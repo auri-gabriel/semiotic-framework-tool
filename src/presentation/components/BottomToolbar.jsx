@@ -43,7 +43,7 @@ const texts = {
   },
 };
 
-function BottomToolbar({
+const BottomToolbar = ({
   onImportXML,
   onExport,
   language,
@@ -51,7 +51,7 @@ function BottomToolbar({
   setExportOnlyAnswered,
   exportEngOnlyAnswered,
   setExportEngOnlyAnswered,
-}) {
+}) => {
   const fileInputRef = useRef();
   const t = texts[language];
   const isDev = import.meta.env.DEV;
@@ -353,5 +353,5 @@ function BottomToolbar({
       </div>
     </div>
   );
-}
+};
 export default BottomToolbar;

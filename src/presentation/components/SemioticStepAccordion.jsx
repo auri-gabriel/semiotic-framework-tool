@@ -11,14 +11,14 @@ const texts = {
   },
 };
 
-function SemioticStepAccordion({
+const SemioticStepAccordion = ({
   groupKey,
   stepKey,
   step,
   language,
   answers,
   onAnswerChange,
-}) {
+}) => {
   const t = texts[language];
 
   const hasAnswer = (answer) => {
@@ -151,6 +151,6 @@ function SemioticStepAccordion({
       </div>
     </div>
   );
-}
+};
 
 export default SemioticStepAccordion;

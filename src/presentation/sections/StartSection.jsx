@@ -52,7 +52,7 @@ const texts = {
   },
 };
 
-export default function StartSection() {
+const StartSection = () => {
   const { language } = useLanguage();
   const { semioticLadderGrouping } = useSemioticData();
   const {
@@ -271,4 +271,6 @@ export default function StartSection() {
       )}
     </section>
   );
-}
+};
+
+export default StartSection;

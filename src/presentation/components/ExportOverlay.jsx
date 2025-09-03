@@ -12,7 +12,7 @@ const texts = {
   },
 };
 
-export function ExportOverlay({ isExporting }) {
+const ExportOverlay = ({ isExporting }) => {
   const { language } = useLanguage();
   const t = texts[language];
 
@@ -35,4 +35,6 @@ export function ExportOverlay({ isExporting }) {
       </div>
     </div>
   );
-}
+};
+
+export default ExportOverlay;

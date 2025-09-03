@@ -1,6 +1,6 @@
 import React from 'react';
 import { useExport } from '../hooks/useExport';
-import { ExportOverlay } from './ExportOverlay';
+import ExportOverlay from './ExportOverlay';
 import Navbar from './Navbar';
 import {
   HeroSection,
@@ -10,7 +10,7 @@ import {
   FooterSection,
 } from '../sections';
 
-export function MainLayout() {
+const MainLayout = () => {
   const { exporting } = useExport();
 
   return (
@@ -26,4 +26,6 @@ export function MainLayout() {
       <FooterSection />
     </div>
   );
-}
+};
+
+export default MainLayout;

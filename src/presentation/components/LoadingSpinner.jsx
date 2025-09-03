@@ -10,7 +10,7 @@ const texts = {
   },
 };
 
-export function LoadingSpinner({ fallbackLanguage = 'en' }) {
+const LoadingSpinner = ({ fallbackLanguage = 'en' }) => {
   let language = fallbackLanguage;
 
   try {
@@ -31,4 +31,6 @@ export function LoadingSpinner({ fallbackLanguage = 'en' }) {
       <div className='fw-semibold text-secondary'>{t.loading}</div>
     </div>
   );
-}
+};
+
+export default LoadingSpinner;

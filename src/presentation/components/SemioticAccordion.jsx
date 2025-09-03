@@ -1,6 +1,6 @@
 import SemioticStepAccordion from './SemioticStepAccordion';
 
-function SemioticAccordion({ grouping, language, answers, onAnswerChange }) {
+const SemioticAccordion = ({ grouping, language, answers, onAnswerChange }) => {
   return (
     <div className='accordion' id='semioticAccordion'>
       {Object.entries(grouping).map(([groupKey, group]) => (
@@ -23,6 +23,6 @@ function SemioticAccordion({ grouping, language, answers, onAnswerChange }) {
       ))}
     </div>
   );
-}
+};
 
 export default SemioticAccordion;
