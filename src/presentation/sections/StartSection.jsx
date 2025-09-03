@@ -37,15 +37,15 @@ const texts = {
     clearAnswers: 'Limpar Apenas Respostas',
     clearAnswersDesc:
       'Excluir todas as respostas salvas mas manter definições personalizadas',
-    clearAll: 'Limpar Tudo e Resetar',
+    clearAll: 'Limpar Tudo e Restaurar',
     clearAllDesc:
-      'Excluir todas as respostas salvas e resetar definições para o padrão',
+      'Excluir todas as respostas salvas e restaurar definições para o padrão',
     clearAnswersConfirmTitle: 'Limpar Apenas Respostas',
     clearAnswersConfirmMessage:
       'Tem certeza de que deseja excluir todas as suas respostas? Suas definições personalizadas serão preservadas.',
-    clearAllConfirmTitle: 'Limpar Tudo e Resetar Definições',
+    clearAllConfirmTitle: 'Limpar Tudo e Restaurar Definições',
     clearAllConfirmMessage:
-      'Tem certeza de que deseja excluir todas as suas respostas e resetar as definições para o padrão? Esta ação não pode ser desfeita.',
+      'Tem certeza de que deseja excluir todas as suas respostas e restaurar as definições para o padrão? Esta ação não pode ser desfeita.',
     clearConfirmButton: 'Sim, Limpar',
     clearAllConfirmButton: 'Sim, Limpar Tudo',
     cancelButton: 'Cancelar',
