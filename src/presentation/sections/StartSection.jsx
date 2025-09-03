@@ -14,12 +14,18 @@ const texts = {
       "Ready to start?\nClick the blocks below to show the questions. For each one, click the question and answer it. It's simple and fast — just answer.",
     newFormSuggestion:
       'Starting a new project? Try clearing all the old responses first.',
-    clearResponses: 'Clear All Responses',
-    clearResponsesDesc: 'Delete all saved responses and reset definitions',
-    clearConfirmTitle: 'Clear All Responses',
-    clearConfirmMessage:
+    clearAnswers: 'Clear Answers Only',
+    clearAnswersDesc: 'Delete all saved responses but keep custom definitions',
+    clearAll: 'Clear All & Reset',
+    clearAllDesc: 'Delete all saved responses and reset definitions to default',
+    clearAnswersConfirmTitle: 'Clear Answers Only',
+    clearAnswersConfirmMessage:
+      'Are you sure you want to delete all your responses? Your custom definitions will be preserved.',
+    clearAllConfirmTitle: 'Clear All & Reset Definitions',
+    clearAllConfirmMessage:
       'Are you sure you want to delete all your responses and reset definitions to default? This action cannot be undone.',
-    clearConfirmButton: 'Yes, Clear All',
+    clearConfirmButton: 'Yes, Clear',
+    clearAllConfirmButton: 'Yes, Clear All',
     cancelButton: 'Cancel',
   },
   pt_BR: {
@@ -28,13 +34,20 @@ const texts = {
       'Pronto para começar?\nClique nos blocos abaixo para mostrar as perguntas. Em cada um, Clique na pergunta e responda. É simples e rápido — só ler e responder.',
     newFormSuggestion:
       'Começando um novo projeto? Tente limpar todas as respostas antigas primeiro.',
-    clearResponses: 'Limpar Todas as Respostas',
-    clearResponsesDesc:
-      'Excluir todas as respostas salvas e resetar definições',
-    clearConfirmTitle: 'Limpar Todas as Respostas',
-    clearConfirmMessage:
+    clearAnswers: 'Limpar Apenas Respostas',
+    clearAnswersDesc:
+      'Excluir todas as respostas salvas mas manter definições personalizadas',
+    clearAll: 'Limpar Tudo e Resetar',
+    clearAllDesc:
+      'Excluir todas as respostas salvas e resetar definições para o padrão',
+    clearAnswersConfirmTitle: 'Limpar Apenas Respostas',
+    clearAnswersConfirmMessage:
+      'Tem certeza de que deseja excluir todas as suas respostas? Suas definições personalizadas serão preservadas.',
+    clearAllConfirmTitle: 'Limpar Tudo e Resetar Definições',
+    clearAllConfirmMessage:
       'Tem certeza de que deseja excluir todas as suas respostas e resetar as definições para o padrão? Esta ação não pode ser desfeita.',
-    clearConfirmButton: 'Sim, Limpar Tudo',
+    clearConfirmButton: 'Sim, Limpar',
+    clearAllConfirmButton: 'Sim, Limpar Tudo',
     cancelButton: 'Cancelar',
   },
 };
@@ -58,22 +71,51 @@ export default function StartSection() {
   } = useExport();
 
   const [showClearModal, setShowClearModal] = useState(false);
+  const [clearType, setClearType] = useState('answers'); // 'answers' or 'all'
 
   const t = texts[language];
 
-  const handleClearClick = () => {
+  const handleClearAnswersClick = () => {
+    setClearType('answers');
+    setShowClearModal(true);
+  };
+
+  const handleClearAllClick = () => {
+    setClearType('all');
     setShowClearModal(true);
   };
 
   const handleClearConfirm = () => {
-    clearAnswers();
-    resetToDefaultDefinitions();
+    if (clearType === 'answers') {
+      clearAnswers();
+    } else {
+      clearAnswers();
+      resetToDefaultDefinitions();
+    }
     setShowClearModal(false);
   };
 
   const handleClearCancel = () => {
     setShowClearModal(false);
   };
+
+  const getCurrentModalTexts = () => {
+    if (clearType === 'answers') {
+      return {
+        title: t.clearAnswersConfirmTitle,
+        message: t.clearAnswersConfirmMessage,
+        confirmButton: t.clearConfirmButton,
+      };
+    } else {
+      return {
+        title: t.clearAllConfirmTitle,
+        message: t.clearAllConfirmMessage,
+        confirmButton: t.clearAllConfirmButton,
+      };
+    }
+  };
+
+  const modalTexts = getCurrentModalTexts();
 
   return (
     <section className='pt-5 border-top' id='start'>
@@ -91,16 +133,25 @@ export default function StartSection() {
           </p>
         </div>
 
-        {/* Clear All Responses Button */}
-        <div className='mb-4 text-start'>
+        {/* Clear Buttons */}
+        <div className='mb-4 text-start d-flex gap-2 flex-wrap'>
+          <button
+            type='button'
+            className='btn btn-warning'
+            onClick={handleClearAnswersClick}
+            title={t.clearAnswersDesc}
+          >
+            <i className='bi bi-eraser me-2' aria-hidden='true'></i>
+            {t.clearAnswers}
+          </button>
           <button
             type='button'
             className='btn btn-danger'
-            onClick={handleClearClick}
-            title={t.clearResponsesDesc}
+            onClick={handleClearAllClick}
+            title={t.clearAllDesc}
           >
             <i className='bi bi-trash me-2' aria-hidden='true'></i>
-            {t.clearResponses}
+            {t.clearAll}
           </button>
         </div>
 
@@ -133,16 +184,17 @@ export default function StartSection() {
       >
         <div className='modal-dialog modal-dialog-centered' role='document'>
           <div className='modal-content border-0 shadow-lg'>
-            <div className='modal-header bg-danger text-white border-0'>
-              <h5
-                className='modal-title fw-bold text-white'
-                id='clearModalLabel'
-              >
+            <div
+              className={`modal-header ${
+                clearType === 'answers' ? 'bg-warning' : 'bg-danger'
+              } text-white border-0`}
+            >
+              <h5 className='modal-title fw-bold' id='clearModalLabel'>
                 <i
                   className='bi bi-exclamation-triangle-fill me-2'
                   aria-hidden='true'
                 ></i>
-                {t.clearConfirmTitle}
+                {modalTexts.title}
               </h5>
               <button
                 type='button'
@@ -155,18 +207,24 @@ export default function StartSection() {
               <div className='d-flex align-items-start'>
                 <div className='flex-shrink-0 me-3'>
                   <div
-                    className='bg-danger bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center'
+                    className={`${
+                      clearType === 'answers' ? 'bg-warning' : 'bg-danger'
+                    } bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center`}
                     style={{ width: '48px', height: '48px' }}
                   >
                     <i
-                      className='bi bi-trash text-danger fs-4'
+                      className={`bi ${
+                        clearType === 'answers'
+                          ? 'bi-eraser text-warning'
+                          : 'bi-trash text-danger'
+                      } fs-4`}
                       aria-hidden='true'
                     ></i>
                   </div>
                 </div>
                 <div className='flex-grow-1'>
                   <p className='mb-0 text-dark' style={{ lineHeight: '1.6' }}>
-                    {t.clearConfirmMessage}
+                    {modalTexts.message}
                   </p>
                 </div>
               </div>
@@ -181,11 +239,18 @@ export default function StartSection() {
               </button>
               <button
                 type='button'
-                className='btn btn-danger'
+                className={`btn ${
+                  clearType === 'answers' ? 'btn-warning' : 'btn-danger'
+                }`}
                 onClick={handleClearConfirm}
               >
-                <i className='bi bi-trash me-2' aria-hidden='true'></i>
-                {t.clearConfirmButton}
+                <i
+                  className={`bi ${
+                    clearType === 'answers' ? 'bi-eraser' : 'bi-trash'
+                  } me-2`}
+                  aria-hidden='true'
+                ></i>
+                {modalTexts.confirmButton}
               </button>
             </div>
           </div>
