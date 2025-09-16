@@ -293,14 +293,14 @@
 
         <!-- Empírica -->
         <question id="q22">
-            <tag id="empirical" />
+            <tag class="empirical" />
             <text lang="pt_BR">Qual o tempo disponível?</text>
             <text lang="en">What is the available time?</text>
             <placeholder lang="pt_BR">Exemplo: 6 meses para desenvolvimento.</placeholder>
             <placeholder lang="en">Example: 6 months for development.</placeholder>
         </question>
         <question id="q23">
-            <tag id="empirical" />
+            <tag class="empirical" />
             <text lang="pt_BR">Quais os custos envolvidos?</text>
             <text lang="en">What are the costs involved?</text>
             <placeholder lang="pt_BR">Exemplo: R$ 50.000 para todo o projeto.</placeholder>
@@ -309,14 +309,14 @@
 
         <!-- Física / Material -->
         <question id="q24">
-            <tag id="physical" />
+            <tag class="physical" />
             <text lang="pt_BR">Qual a infraestrutura necessária para desenvolvê-lo?</text>
             <text lang="en">What infrastructure is needed to develop it?</text>
             <placeholder lang="pt_BR">Exemplo: Computadores, internet e servidores de teste.</placeholder>
             <placeholder lang="en">Example: Computers, internet, and test servers.</placeholder>
         </question>
         <question id="q25">
-            <tag id="physical" />
+            <tag class="physical" />
             <text lang="pt_BR">Qual a infraestrutura necessária para mantê-lo em operação?</text>
             <text lang="en">What infrastructure is needed to keep it operational?</text>
             <placeholder lang="pt_BR">Exemplo: Servidores dedicados e equipe de suporte.</placeholder>
