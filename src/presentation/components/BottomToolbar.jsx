@@ -51,6 +51,10 @@ const BottomToolbar = ({
   setExportOnlyAnswered,
   exportEngOnlyAnswered,
   setExportEngOnlyAnswered,
+  exportWithoutOverview,
+  setExportWithoutOverview,
+  exportEngWithoutOverview,
+  setExportEngWithoutOverview,
 }) => {
   const fileInputRef = useRef();
   const t = texts[language];
@@ -266,6 +270,33 @@ const BottomToolbar = ({
                   </div>
                 </li>
 
+                <li>
+                  <div
+                    className='dropdown-item-text px-4 py-1'
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <div className='form-check form-check-sm'>
+                      <input
+                        className='form-check-input'
+                        type='checkbox'
+                        id='exportWithoutOverview'
+                        checked={exportWithoutOverview}
+                        onChange={(e) => {
+                          e.stopPropagation();
+                          setExportWithoutOverview(e.target.checked);
+                        }}
+                      />
+                      <label
+                        className='form-check-label text-muted'
+                        htmlFor='exportWithoutOverview'
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <small>Export Without Overview</small>
+                      </label>
+                    </div>
+                  </div>
+                </li>
+
                 {/* Engineering Layers Export */}
                 <li>
                   <button
@@ -342,6 +373,33 @@ const BottomToolbar = ({
                         onClick={(e) => e.stopPropagation()}
                       >
                         <small>{t.exportLadderAnswered}</small>
+                      </label>
+                    </div>
+                  </div>
+                </li>
+
+                <li>
+                  <div
+                    className='dropdown-item-text px-4 py-1'
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <div className='form-check form-check-sm'>
+                      <input
+                        className='form-check-input'
+                        type='checkbox'
+                        id='exportEngWithoutOverview'
+                        checked={exportEngWithoutOverview}
+                        onChange={(e) => {
+                          e.stopPropagation();
+                          setExportEngWithoutOverview(e.target.checked);
+                        }}
+                      />
+                      <label
+                        className='form-check-label text-muted'
+                        htmlFor='exportEngWithoutOverview'
+                        onClick={(e) => e.stopPropagation()}
+                      >
+                        <small>Export Eng Without Overview</small>
                       </label>
                     </div>
                   </div>
