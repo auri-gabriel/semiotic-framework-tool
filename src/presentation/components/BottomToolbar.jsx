@@ -6,6 +6,7 @@ const texts = {
     exportXML: 'Export XML',
     exportLadder: 'Export Semiotic Ladder',
     exportLadderAnswered: 'Only answered questions',
+    exportWithoutOverview: 'Export without overview',
     importXML: 'Import XML',
     exportPDF: 'as PDF',
     exportDOCX: 'as DOCX',
@@ -26,6 +27,7 @@ const texts = {
     exportXML: 'Exportar XML',
     exportLadder: 'Exportar Escada Semiótica',
     exportLadderAnswered: 'Apenas perguntas respondidas',
+    exportWithoutOverview: 'Exportar sem visão geral',
     importXML: 'Importar XML',
     exportPDF: 'em PDF',
     exportDOCX: 'em DOCX',
@@ -291,7 +293,7 @@ const BottomToolbar = ({
                         htmlFor='exportWithoutOverview'
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <small>Export Without Overview</small>
+                        <small>{t.exportWithoutOverview}</small>
                       </label>
                     </div>
                   </div>
@@ -399,7 +401,7 @@ const BottomToolbar = ({
                         htmlFor='exportEngWithoutOverview'
                         onClick={(e) => e.stopPropagation()}
                       >
-                        <small>Export Eng Without Overview</small>
+                        <small>{t.exportWithoutOverview}</small>
                       </label>
                     </div>
                   </div>
