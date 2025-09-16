@@ -80,9 +80,9 @@ export class XmlReaderService {
     const tags = [];
 
     tagNodes.forEach((tag, tagIndex) => {
-      const tagId = tag.getAttribute('id');
+      const tagClass = tag.getAttribute('class');
 
-      if (!tagId) {
+      if (!tagClass) {
         console.warn(
           `${this.CONFIG.LOG_PREFIX} <tag> in '${elementName}' id='${elementId}' at tag index ${tagIndex} missing 'id' attribute.`
         );
@@ -91,12 +91,12 @@ export class XmlReaderService {
 
       // Find the tag definition to get its type
       const tagDefinition = ownerDocument.querySelector(
-        `tag-definitions > tag[id="${tagId}"]`
+        `tag-definitions > tag[id="${tagClass}"]`
       );
       const tagType = tagDefinition ? tagDefinition.getAttribute('type') : null;
 
       tags.push({
-        id: tagId,
+        id: tagClass,
         type: tagType,
       });
     });
