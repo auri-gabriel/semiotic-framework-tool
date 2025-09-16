@@ -47,5 +47,7 @@ export function useExport() {
     handleExport,
     setExportOnlyAnswered,
     setExportEngOnlyAnswered,
+    setExportWithoutOverview,
+    setExportEngWithoutOverview,
   };
 }
