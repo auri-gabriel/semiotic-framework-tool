@@ -13,6 +13,8 @@ const ActionTypes = {
   SET_LANGUAGE: 'SET_LANGUAGE',
   SET_ANSWERS: 'SET_ANSWERS',
   UPDATE_ANSWER: 'UPDATE_ANSWER',
+  SET_EXPORT_WITHOUT_OVERVIEW: 'SET_EXPORT_WITHOUT_OVERVIEW',
+  SET_EXPORT_ENG_WITHOUT_OVERVIEW: 'SET_EXPORT_ENG_WITHOUT_OVERVIEW',
   SET_EXPORT_ONLY_ANSWERED: 'SET_EXPORT_ONLY_ANSWERED',
   SET_EXPORT_ENG_ONLY_ANSWERED: 'SET_EXPORT_ENG_ONLY_ANSWERED',
   SET_EXPORTING: 'SET_EXPORTING',
@@ -34,6 +36,8 @@ const initialState = {
   })(),
   exportOnlyAnswered: false,
   exportEngOnlyAnswered: false,
+  exportWithoutOverview: false,
+  exportEngWithoutOverview: false,
   exporting: false,
 };
 
@@ -65,6 +69,12 @@ function appReducer(state, action) {
 
     case ActionTypes.SET_EXPORT_ENG_ONLY_ANSWERED:
       return { ...state, exportEngOnlyAnswered: action.payload };
+
+    case ActionTypes.SET_EXPORT_WITHOUT_OVERVIEW:
+      return { ...state, exportWithoutOverview: action.payload };
+
+    case ActionTypes.SET_EXPORT_ENG_WITHOUT_OVERVIEW:
+      return { ...state, exportEngWithoutOverview: action.payload };
 
     case ActionTypes.SET_EXPORTING:
       return { ...state, exporting: action.payload };
@@ -133,6 +143,18 @@ export function AppProvider({ children }) {
     setExportEngOnlyAnswered: (value) =>
       dispatch({
         type: ActionTypes.SET_EXPORT_ENG_ONLY_ANSWERED,
+        payload: value,
+      }),
+
+    setExportWithoutOverview: (value) =>
+      dispatch({
+        type: ActionTypes.SET_EXPORT_WITHOUT_OVERVIEW,
+        payload: value,
+      }),
+
+    setExportEngWithoutOverview: (value) =>
+      dispatch({
+        type: ActionTypes.SET_EXPORT_ENG_WITHOUT_OVERVIEW,
         payload: value,
       }),
 
