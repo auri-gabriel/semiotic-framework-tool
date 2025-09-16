@@ -189,7 +189,7 @@ export function AppProvider({ children }) {
             grouping: state.semioticLadderGrouping,
             answers: state.answers,
             onlyAnswered: options.onlyAnswered,
-            withoutOverview: options.withoutOverview,
+            withoutOverview: state.exportWithoutOverview,
             language: state.language,
             format: options.format,
           });
@@ -202,7 +202,7 @@ export function AppProvider({ children }) {
               .flatMap((step) => step.questions),
             answers: state.answers,
             onlyAnswered: options.onlyAnswered,
-            withoutOverview: options.withoutOverview,
+            withoutOverview: state.exportEngWithoutOverview,
             language: state.language,
             format: options.format,
           });
