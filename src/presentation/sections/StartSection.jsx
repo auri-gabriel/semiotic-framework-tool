@@ -68,6 +68,10 @@ const StartSection = () => {
     setExportOnlyAnswered,
     exportEngOnlyAnswered,
     setExportEngOnlyAnswered,
+    exportWithoutOverview,
+    setExportWithoutOverview,
+    exportEngWithoutOverview,
+    setExportEngWithoutOverview,
   } = useExport();
 
   const [showClearModal, setShowClearModal] = useState(false);
@@ -171,6 +175,10 @@ const StartSection = () => {
         setExportOnlyAnswered={setExportOnlyAnswered}
         exportEngOnlyAnswered={exportEngOnlyAnswered}
         setExportEngOnlyAnswered={setExportEngOnlyAnswered}
+        exportWithoutOverview={exportWithoutOverview}
+        setExportWithoutOverview={setExportWithoutOverview}
+        exportEngWithoutOverview={exportEngWithoutOverview}
+        setExportEngWithoutOverview={setExportEngWithoutOverview}
       />
 
       {/* Clear Confirmation Modal */}

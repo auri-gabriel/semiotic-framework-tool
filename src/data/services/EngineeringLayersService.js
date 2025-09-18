@@ -25,6 +25,7 @@ export class EngineeringLayersService {
     questions,
     answers,
     onlyAnswered,
+    withoutOverview,
     language,
     format = 'pdf',
     onExportStart,
@@ -43,12 +44,14 @@ export class EngineeringLayersService {
       engineeringTags
     );
 
-    const overview = generateGroupedDocumentOverview(
-      layers,
-      answers,
-      language,
-      'engineering'
-    );
+    const overview = withoutOverview
+      ? null
+      : generateGroupedDocumentOverview(
+          layers,
+          answers,
+          language,
+          'engineering'
+        );
     const content = this.generateContent({
       layers,
       answers,

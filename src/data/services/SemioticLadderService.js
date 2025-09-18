@@ -25,6 +25,7 @@ export class SemioticLadderService {
     grouping,
     answers,
     onlyAnswered,
+    withoutOverview,
     language,
     format = 'pdf',
     onExportStart,
@@ -34,12 +35,14 @@ export class SemioticLadderService {
 
     const title = language === 'pt_BR' ? 'Escada Semiótica' : 'Semiotic Ladder';
 
-    const overview = generateGroupedDocumentOverview(
-      grouping,
-      answers,
-      language,
-      'semiotic'
-    );
+    const overview = withoutOverview
+      ? null
+      : generateGroupedDocumentOverview(
+          grouping,
+          answers,
+          language,
+          'semiotic'
+        );
     const content = this.generateContent({
       grouping,
       answers,

@@ -17,6 +17,12 @@ export function useExport() {
     },
     [actions]
   );
+  const setExportWithoutOverview = useCallback(
+    (value) => {
+      actions.setExportWithoutOverview(value);
+    },
+    [actions]
+  );
 
   const setExportEngOnlyAnswered = useCallback(
     (value) => {
@@ -25,12 +31,23 @@ export function useExport() {
     [actions]
   );
 
+  const setExportEngWithoutOverview = useCallback(
+    (value) => {
+      actions.setExportEngWithoutOverview(value);
+    },
+    [actions]
+  );
+
   return {
     exportOnlyAnswered: state.exportOnlyAnswered,
     exportEngOnlyAnswered: state.exportEngOnlyAnswered,
+    exportWithoutOverview: state.exportWithoutOverview,
+    exportEngWithoutOverview: state.exportEngWithoutOverview,
     exporting: state.exporting,
     handleExport,
     setExportOnlyAnswered,
     setExportEngOnlyAnswered,
+    setExportWithoutOverview,
+    setExportEngWithoutOverview,
   };
 }

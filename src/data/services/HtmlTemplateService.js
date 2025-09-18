@@ -504,6 +504,11 @@ body {
    * @returns {string} Overview HTML
    */
   static generateOverviewHtml(overview) {
+    // Return empty string if overview is null/undefined
+    if (!overview) {
+      return '';
+    }
+
     // Generate overall statistics
     const overallStatsHtml = Object.entries(overview.overallStats)
       .map(
