@@ -11,7 +11,7 @@ const texts = {
   en: {
     title: 'Start',
     intro:
-      "Ready to start?\nClick the blocks below to show the questions. For each one, click the question and answer it. It's simple and fast — just answer.",
+      "Ready to get started? Select one of the blocks below to display the questions related to it. Then select a question to answer it. It's quick and easy — just read and answer.\n\nEach block corresponds to a step in Ronald Stamper's Semiotic Framework. The questions were designed to help software engineers, in collaboration with experts in the field of education, to specify the human and technical aspects involved in developing software for this field.  ",
     newFormSuggestion:
       'Starting a new project? Try clearing all the old responses first.',
     clearAnswers: 'Clear Answers Only',
