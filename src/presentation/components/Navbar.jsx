@@ -4,7 +4,7 @@ import { useLanguage } from '../hooks/useLanguage';
 const texts = {
   en: {
     brand:
-      'Semioparticipatory Framework for Educational Software Development Tool',
+      'Semioparticipatory Framework for Software Development for the Educational Domain Tool',
     brandAcronym: 'FFS.DSE',
     navigation: {
       framework: 'The Framework',
@@ -16,8 +16,8 @@ const texts = {
   },
   pt_BR: {
     brand:
-      'Ferramenta de apoio ao Framework Semioparticipativo para o Desenvolvimento de Software Educacional',
-    brandAcronym: 'FFS.DSE',
+      'Ferramenta de apoio ao Framework Semioparticipativo para o Desenvolvimento de Software em Domínio Educacional',
+    brandAcronym: 'FFS.DSDE',
     navigation: {
       framework: 'O Framework',
       start: 'Iniciar',
