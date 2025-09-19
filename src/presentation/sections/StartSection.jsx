@@ -31,7 +31,7 @@ const texts = {
   pt_BR: {
     title: 'Iniciar',
     intro:
-      'Pronto para começar?\n\nSelecione um dos blocos a seguir para mostrar as perguntas relacionadas a ele. Então, selecione uma pergunta para respondê-la. É simples e rápido — basta ler e responder.\n\nCada bloco corresponde a um degrau do Framework Semiótico de Ronald Stamper. Já as questões foram propostas para auxiliar engenheiros de software na especificação de aspectos humanos e técnicos envolvidos no desenvolvimento de software para o Domínio Educacional.',
+      'Tudo pronto para começar? Selecione um dos blocos a seguir para mostrar as perguntas relacionadas a ele. Então, selecione uma pergunta para respondê-la. É simples e rápido — basta ler e responder.\n\nCada bloco corresponde a um degrau do Framework Semiótico de Ronald Stamper. Já as questões foram propostas para auxiliar engenheiros de software, em colaboração com especialistas do Domínio Educacional, na especificação de aspectos humanos e técnicos envolvidos no desenvolvimento de software para esse domínio.',
     newFormSuggestion:
       'Começando um novo projeto? Tente limpar todas as respostas antigas primeiro.',
     clearAnswers: 'Limpar Apenas Respostas',
