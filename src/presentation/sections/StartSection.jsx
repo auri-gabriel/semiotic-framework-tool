@@ -31,7 +31,7 @@ const texts = {
   pt_BR: {
     title: 'Iniciar',
     intro:
-      'Pronto para começar?\n\nSelecione um dos blocos a seguir para mostrar as perguntas relacionadas a ele. Então, selecione uma pergunta para respondê-la. É simples e rápido — basta ler e responder.\n\nCada bloco corresponde a um degrau da Escada Semiótica de Ronald Stamper. Já as questões foram propostas para auxiliar engenheiros de software na especificação de aspectos humanos e técnicos envolvidos no desenvolvimento de software para o domínio educacional.',
+      'Pronto para começar?\n\nSelecione um dos blocos a seguir para mostrar as perguntas relacionadas a ele. Então, selecione uma pergunta para respondê-la. É simples e rápido — basta ler e responder.\n\nCada bloco corresponde a um degrau do Framework Semiótico de Ronald Stamper. Já as questões foram propostas para auxiliar engenheiros de software na especificação de aspectos humanos e técnicos envolvidos no desenvolvimento de software para o Domínio Educacional.',
     newFormSuggestion:
       'Começando um novo projeto? Tente limpar todas as respostas antigas primeiro.',
     clearAnswers: 'Limpar Apenas Respostas',
