@@ -10,17 +10,16 @@ const texts = {
     importXML: 'Import XML',
     exportPDF: 'as PDF',
     exportDOCX: 'as DOCX',
-    exportPreview: 'Preview HTML',
+    exportPreview: 'as HTML',
     exportEngLayers: 'Export Engineering Layers',
     dataExport: 'Data Export',
     documentExport: 'Document Export',
     exportXMLDesc: 'Save current data as XML file',
     exportLadderDesc: 'Generate PDF report of Semiotic Ladder',
-    exportLadderPreviewDesc:
-      'Open HTML preview in new tab for debugging (dev only)',
+    exportLadderPreviewDesc: 'Download HTML file for Semiotic Ladder report',
     exportEngLayersDesc: 'Generate PDF report of Engineering Layers',
     exportEngLayersPreviewDesc:
-      'Open HTML preview in new tab for debugging (dev only)',
+      'Download HTML file for Engineering Layers report',
   },
   pt_BR: {
     export: 'Exportar',
@@ -31,17 +30,17 @@ const texts = {
     importXML: 'Importar XML',
     exportPDF: 'em PDF',
     exportDOCX: 'em DOCX',
-    exportPreview: 'Pré-visualizar HTML',
+    exportPreview: 'em HTML',
     exportEngLayers: 'Exportar Camadas de Engenharia',
     dataExport: 'Exportação de Dados',
     documentExport: 'Exportação de Documentos',
     exportXMLDesc: 'Salvar dados atuais como arquivo XML',
     exportLadderDesc: 'Gerar relatório PDF da Escada Semiótica',
     exportLadderPreviewDesc:
-      'Abrir pré-visualização HTML em nova aba para depuração (dev apenas)',
+      'Baixar arquivo HTML do relatório da Escada Semiótica',
     exportEngLayersDesc: 'Gerar relatório PDF das Camadas de Engenharia',
     exportEngLayersPreviewDesc:
-      'Abrir pré-visualização HTML em nova aba para depuração (dev apenas)',
+      'Baixar arquivo HTML do relatório das Camadas de Engenharia',
   },
 };
 
@@ -60,7 +59,6 @@ const BottomToolbar = ({
 }) => {
   const fileInputRef = useRef();
   const t = texts[language];
-  const isDev = import.meta.env.DEV;
 
   const handleImportClick = () => {
     fileInputRef.current.click();
@@ -217,33 +215,31 @@ const BottomToolbar = ({
                   </button>
                 </li>
 
-                {/* Semiotic Ladder HTML Preview (Development Only) */}
-                {isDev && (
-                  <li>
-                    <button
-                      className='dropdown-item d-flex align-items-start'
-                      onClick={() =>
-                        onExport('semiotic-ladder', {
-                          onlyAnswered: exportOnlyAnswered,
-                          format: 'preview',
-                        })
-                      }
-                      style={{ whiteSpace: 'normal' }}
-                    >
-                      <div className='flex-shrink-0 me-2 mt-1'>
-                        <i className='bi bi-eye' aria-hidden='true'></i>
+                {/* Semiotic Ladder HTML Preview (now always available, downloads HTML) */}
+                <li>
+                  <button
+                    className='dropdown-item d-flex align-items-start'
+                    onClick={() =>
+                      onExport('semiotic-ladder', {
+                        onlyAnswered: exportOnlyAnswered,
+                        format: 'preview',
+                      })
+                    }
+                    style={{ whiteSpace: 'normal' }}
+                  >
+                    <div className='flex-shrink-0 me-2 mt-1'>
+                      <i className='bi bi-filetype-html' aria-hidden='true'></i>
+                    </div>
+                    <div className='text-break'>
+                      <div className='fw-medium'>
+                        {t.exportLadder} {t.exportPreview}
                       </div>
-                      <div className='text-break'>
-                        <div className='fw-medium'>
-                          {t.exportLadder} {t.exportPreview}
-                        </div>
-                        <small className='text-muted'>
-                          {t.exportLadderPreviewDesc}
-                        </small>
-                      </div>
-                    </button>
-                  </li>
-                )}
+                      <small className='text-muted'>
+                        {t.exportLadderPreviewDesc}
+                      </small>
+                    </div>
+                  </button>
+                </li>
 
                 <li>
                   <div
@@ -325,33 +321,31 @@ const BottomToolbar = ({
                   </button>
                 </li>
 
-                {/* Engineering Layers HTML Preview (Development Only) */}
-                {isDev && (
-                  <li>
-                    <button
-                      className='dropdown-item d-flex align-items-start'
-                      onClick={() =>
-                        onExport('engineering-layers', {
-                          onlyAnswered: exportEngOnlyAnswered,
-                          format: 'preview',
-                        })
-                      }
-                      style={{ whiteSpace: 'normal' }}
-                    >
-                      <div className='flex-shrink-0 me-2 mt-1'>
-                        <i className='bi bi-eye' aria-hidden='true'></i>
+                {/* Engineering Layers HTML Preview (now always available, downloads HTML) */}
+                <li>
+                  <button
+                    className='dropdown-item d-flex align-items-start'
+                    onClick={() =>
+                      onExport('engineering-layers', {
+                        onlyAnswered: exportEngOnlyAnswered,
+                        format: 'preview',
+                      })
+                    }
+                    style={{ whiteSpace: 'normal' }}
+                  >
+                    <div className='flex-shrink-0 me-2 mt-1'>
+                      <i className='bi bi-filetype-html' aria-hidden='true'></i>
+                    </div>
+                    <div className='text-break'>
+                      <div className='fw-medium'>
+                        {t.exportEngLayers} {t.exportPreview}
                       </div>
-                      <div className='text-break'>
-                        <div className='fw-medium'>
-                          {t.exportEngLayers} {t.exportPreview}
-                        </div>
-                        <small className='text-muted'>
-                          {t.exportEngLayersPreviewDesc}
-                        </small>
-                      </div>
-                    </button>
-                  </li>
-                )}
+                      <small className='text-muted'>
+                        {t.exportEngLayersPreviewDesc}
+                      </small>
+                    </div>
+                  </button>
+                </li>
 
                 <li>
                   <div

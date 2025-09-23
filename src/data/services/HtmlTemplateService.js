@@ -411,11 +411,11 @@ body {
    * @param {string} title - Title for the preview window
    */
   static previewHtml(htmlContent, title = 'HTML Preview') {
-    // Only allow preview in development environment
-    if (!import.meta.env.DEV) {
-      console.warn('HTML preview is only available in development environment');
-      return;
-    }
+    // // Only allow preview in development environment
+    // if (!import.meta.env.DEV) {
+    //   console.warn('HTML preview is only available in development environment');
+    //   return;
+    // }
 
     const previewWindow = window.open('', '_blank');
     previewWindow.document.write(htmlContent);
