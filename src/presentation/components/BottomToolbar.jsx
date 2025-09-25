@@ -222,7 +222,7 @@ const BottomToolbar = ({
                     onClick={() =>
                       onExport('semiotic-ladder', {
                         onlyAnswered: exportOnlyAnswered,
-                        format: 'preview',
+                        format: 'html',
                       })
                     }
                     style={{ whiteSpace: 'normal' }}
@@ -328,7 +328,7 @@ const BottomToolbar = ({
                     onClick={() =>
                       onExport('engineering-layers', {
                         onlyAnswered: exportEngOnlyAnswered,
-                        format: 'preview',
+                        format: 'html',
                       })
                     }
                     style={{ whiteSpace: 'normal' }}

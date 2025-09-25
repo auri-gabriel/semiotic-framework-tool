@@ -424,6 +424,27 @@ body {
   }
 
   /**
+   * Downloads generated HTML as a file
+   * @param {string} htmlContent - Complete HTML document to download
+   * @param {string} filename - Name of the file to download (default: 'document.html')
+   */
+  static downloadHtml(htmlContent, filename = 'document.html') {
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 0);
+  }
+
+  /**
    * Generates a complete HTML document
    * @param {Object} params - Parameters for HTML generation
    * @param {string} params.title - Document title
