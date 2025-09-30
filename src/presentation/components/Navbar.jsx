@@ -65,16 +65,18 @@ const Navbar = () => {
           href='#'
           title={t.brand}
         >
-          <span
-            className='me-3 p-2 bg-primary text-white d-flex align-items-center justify-content-center flex-shrink-0'
-            style={{
-              height: '32px',
-              fontSize: '1rem',
-              fontWeight: 'bold',
-            }}
-          >
-            {t.brandAcronym}
-          </span>
+          <h1>
+            <span
+              className='me-3 p-2 bg-primary text-white d-flex align-items-center justify-content-center flex-shrink-0'
+              style={{
+                height: '32px',
+                fontSize: '1rem',
+                fontWeight: 'bold',
+              }}
+            >
+              {t.brandAcronym}
+            </span>
+          </h1>
           <span
             className='d-none d-xl-block text-dark'
             style={{
