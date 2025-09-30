@@ -411,16 +411,37 @@ body {
    * @param {string} title - Title for the preview window
    */
   static previewHtml(htmlContent, title = 'HTML Preview') {
-    // Only allow preview in development environment
-    if (!import.meta.env.DEV) {
-      console.warn('HTML preview is only available in development environment');
-      return;
-    }
+    // // Only allow preview in development environment
+    // if (!import.meta.env.DEV) {
+    //   console.warn('HTML preview is only available in development environment');
+    //   return;
+    // }
 
     const previewWindow = window.open('', '_blank');
     previewWindow.document.write(htmlContent);
     previewWindow.document.close();
     previewWindow.document.title = title;
+  }
+
+  /**
+   * Downloads generated HTML as a file
+   * @param {string} htmlContent - Complete HTML document to download
+   * @param {string} filename - Name of the file to download (default: 'document.html')
+   */
+  static downloadHtml(htmlContent, filename = 'document.html') {
+    const blob = new Blob([htmlContent], { type: 'text/html' });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+
+    setTimeout(() => {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 0);
   }
 
   /**

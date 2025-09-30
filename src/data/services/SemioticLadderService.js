@@ -58,6 +58,8 @@ export class SemioticLadderService {
 
     if (format === 'pdf') {
       await PdfService.generatePdf(htmlContent, title);
+    } else if (format === 'html') {
+      HtmlTemplateService.downloadHtml(htmlContent, title);
     } else if (format === 'preview') {
       HtmlTemplateService.previewHtml(htmlContent, title);
     }

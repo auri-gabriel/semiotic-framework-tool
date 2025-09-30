@@ -28,7 +28,7 @@ const initialState = {
   semioticLadderGrouping: {},
   language: (() => {
     const savedLang = localStorage.getItem('language');
-    return savedLang || 'en';
+    return savedLang || 'pt_BR';
   })(),
   answers: (() => {
     const saved = localStorage.getItem('answers');
