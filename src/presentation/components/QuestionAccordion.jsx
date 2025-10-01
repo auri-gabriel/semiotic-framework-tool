@@ -48,7 +48,7 @@ const QuestionAccordion = ({
 
   return (
     <div className='accordion-item'>
-      <h2
+      <h5
         className='accordion-header'
         id={`heading-${groupKey}-${stepKey}-q${question.id}`}
       >
@@ -74,7 +74,7 @@ const QuestionAccordion = ({
             <span>{question.texts[language]}</span>
           </div>
         </button>
-      </h2>
+      </h5>
       <div
         id={`collapse-${groupKey}-${stepKey}-q${question.id}`}
         className='accordion-collapse collapse'

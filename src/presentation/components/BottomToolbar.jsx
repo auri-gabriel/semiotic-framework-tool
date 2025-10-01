@@ -153,10 +153,10 @@ const BottomToolbar = ({
               >
                 {/* Data Export Section */}
                 <li>
-                  <h5 className='dropdown-header d-flex align-items-center'>
+                  <h6 className='dropdown-header d-flex align-items-center'>
                     <i className='bi bi-database me-2' aria-hidden='true'></i>
                     {t.dataExport}
-                  </h5>
+                  </h6>
                 </li>
                 <li>
                   <button
@@ -182,13 +182,13 @@ const BottomToolbar = ({
                   <hr className='dropdown-divider' />
                 </li>
                 <li>
-                  <h5 className='dropdown-header d-flex align-items-center'>
+                  <h6 className='dropdown-header d-flex align-items-center'>
                     <i
                       className='bi bi-file-earmark-pdf me-2'
                       aria-hidden='true'
                     ></i>
                     {t.documentExport}
-                  </h5>
+                  </h6>
                 </li>
 
                 {/* Semiotic Ladder Export */}
