@@ -301,8 +301,26 @@ export class XmlReaderService {
         );
       }
 
+      // Use readTags to get tag definitions
+      const tagDefs = await this.readTags(xmlFilePath);
+      const tagDefMap = {};
+      tagDefs.forEach((tag) => {
+        tagDefMap[tag.id] = tag;
+      });
+
       const questions = this.readElements(questionDefinitions, 'question');
-      return this.enhanceQuestionsWithTags(questions);
+
+      // Enrich question tags with names from tag definitions
+      const enrichedQuestions = questions.map((q) => {
+        if (!q.tags) return q;
+        const enrichedTags = q.tags.map((tag) => {
+          const def = tagDefMap[tag.id];
+          return def ? { ...tag, names: def.names } : tag;
+        });
+        return { ...q, tags: enrichedTags };
+      });
+
+      return this.enhanceQuestionsWithTags(enrichedQuestions);
     } catch (error) {
       console.error(
         `${this.CONFIG.LOG_PREFIX} Error reading questions:`,

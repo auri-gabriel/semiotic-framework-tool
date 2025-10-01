@@ -94,7 +94,7 @@ const QuestionAccordion = ({
                         className='bi bi-person-badge me-1'
                         aria-hidden='true'
                       ></i>
-                      {tag.id}
+                      {tag.names[language]}
                     </span>
                   ))}
               </div>
