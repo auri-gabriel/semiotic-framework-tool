@@ -1,5 +1,5 @@
 import 'bootstrap-icons/font/bootstrap-icons.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import { AppProvider } from './contexts/AppContext';
 import { LanguageProvider } from './contexts/LanguageContext';
 import MainLayout from './components/MainLayout';
@@ -21,6 +21,10 @@ const SimpleLoadingSpinner = () => {
 const AppContent = () => {
   const { loading } = useSemioticData();
   const { state, actions } = useApp();
+
+  useEffect(() => {
+    document.documentElement.lang = state.language === 'pt_BR' ? 'pt-BR' : 'en';
+  }, [state.language]);
 
   return (
     <LanguageProvider
