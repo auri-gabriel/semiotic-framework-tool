@@ -76,7 +76,7 @@ const SemioticStepAccordion = ({
 
   return (
     <div className='accordion-item'>
-      <h2 className='accordion-header' id={`heading-${groupKey}-${stepKey}`}>
+      <h4 className='accordion-header' id={`heading-${groupKey}-${stepKey}`}>
         <button
           className='accordion-button collapsed bg-white'
           type='button'
@@ -92,7 +92,7 @@ const SemioticStepAccordion = ({
             </span>
           </div>
         </button>
-      </h2>
+      </h4>
       <div
         id={`collapse-${groupKey}-${stepKey}`}
         className='accordion-collapse collapse'

@@ -5,7 +5,7 @@ const SemioticAccordion = ({ grouping, language, answers, onAnswerChange }) => {
     <div className='accordion' id='semioticAccordion'>
       {Object.entries(grouping).map(([groupKey, group]) => (
         <div key={groupKey} className='mb-4'>
-          <h2>{group.tag.names[language]}</h2>
+          <h3>{group.tag.names[language]}</h3>
           <div className='accordion' id={`accordion-${groupKey}`}>
             {Object.entries(group.steps).map(([stepKey, step]) => (
               <SemioticStepAccordion
