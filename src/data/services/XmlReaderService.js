@@ -265,7 +265,6 @@ export class XmlReaderService {
         };
       }
 
-      const enhancedTags = question.tags.map((tag) => tag.id);
       const semioticTags = question.tags
         .filter((tag) => tag.type === 'semiotic-steps')
         .map((tag) => tag.id);
@@ -275,7 +274,6 @@ export class XmlReaderService {
 
       return {
         ...question,
-        tags: enhancedTags,
         semioticTags,
         engineeringTags,
       };

@@ -31,7 +31,7 @@ export async function getQuestionsGroupedBySemiotics() {
   // Assign each question to the correct step within the correct group
   questions.forEach((q) => {
     q.tags?.forEach((tagRef) => {
-      const step = semioticSteps.find((s) => s.id === tagRef);
+      const step = semioticSteps.find((s) => s.id === tagRef.id);
       if (step) {
         const parentGroupTag = step.tags?.[0]?.id;
         if (

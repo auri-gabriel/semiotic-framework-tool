@@ -81,6 +81,24 @@ const QuestionAccordion = ({
         aria-labelledby={`heading-${groupKey}-${stepKey}-q${question.id}`}
       >
         <div className='accordion-body'>
+          {/* Show respondent roles from tags if available */}
+          {Array.isArray(question.tags) &&
+            question.tags.filter((tag) => tag.type === 'respondent-role')
+              .length > 0 && (
+              <div className='mb-2'>
+                {question.tags
+                  .filter((tag) => tag.type === 'respondent-role')
+                  .map((tag, idx) => (
+                    <span key={idx} className='badge bg-secondary me-2 p-2'>
+                      <i
+                        className='bi bi-person-badge me-1'
+                        aria-hidden='true'
+                      ></i>
+                      {tag.id}
+                    </span>
+                  ))}
+              </div>
+            )}
           <label htmlFor={`answer-${question.id}`} className='form-label'>
             <i className='bi bi-pencil-square me-2' aria-hidden='true'></i>
             {t.answerLabel}
