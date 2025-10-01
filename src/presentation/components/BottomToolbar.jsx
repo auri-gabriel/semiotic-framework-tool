@@ -268,7 +268,7 @@ const BottomToolbar = ({
                   </div>
                 </li>
 
-                <li>
+                <li className='mb-3'>
                   <div
                     className='dropdown-item-text px-4 py-1'
                     onClick={(e) => e.stopPropagation()}
