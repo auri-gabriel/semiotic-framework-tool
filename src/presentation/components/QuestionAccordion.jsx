@@ -111,6 +111,11 @@ const QuestionAccordion = ({
                   },
                 },
               },
+              history: {
+                delay: 2000,
+                maxStack: 500,
+                userOnly: true,
+              },
             }}
             formats={[
               'header',
