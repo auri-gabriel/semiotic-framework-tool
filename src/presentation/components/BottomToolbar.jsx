@@ -4,43 +4,36 @@ const texts = {
   en: {
     export: 'Export',
     exportXML: 'Export XML',
-    exportLadder: 'Export Semiotic Ladder',
+    exportLadder: 'Semiotic Ladder',
     exportLadderAnswered: 'Only answered questions',
-    exportWithoutOverview: 'Export without overview',
+    exportWithoutOverview: 'Without overview',
     importXML: 'Import XML',
     exportPDF: 'as PDF',
     exportDOCX: 'as DOCX',
-    exportPreview: 'as HTML',
-    exportEngLayers: 'Export Engineering Layers',
+    exportHTML: 'as HTML',
+    exportEngLayers: 'Engineering Layers',
     dataExport: 'Data Export',
     documentExport: 'Document Export',
     exportXMLDesc: 'Save current data as XML file',
-    exportLadderDesc: 'Generate PDF report of Semiotic Ladder',
-    exportLadderPreviewDesc: 'Download HTML file for Semiotic Ladder report',
-    exportEngLayersDesc: 'Generate PDF report of Engineering Layers',
-    exportEngLayersPreviewDesc:
-      'Download HTML file for Engineering Layers report',
+    exportLadderDesc: 'Generate PDF or HTML report',
+    exportEngLayersDesc: 'Generate PDF or HTML report',
   },
   pt_BR: {
     export: 'Exportar',
     exportXML: 'Exportar XML',
-    exportLadder: 'Exportar Escada Semiótica',
+    exportLadder: 'Escada Semiótica',
     exportLadderAnswered: 'Apenas perguntas respondidas',
-    exportWithoutOverview: 'Exportar sem visão geral',
+    exportWithoutOverview: 'Sem visão geral',
     importXML: 'Importar XML',
     exportPDF: 'em PDF',
     exportDOCX: 'em DOCX',
-    exportPreview: 'em HTML',
-    exportEngLayers: 'Exportar Camadas de Engenharia',
+    exportHTML: 'em HTML',
+    exportEngLayers: 'Camadas de Engenharia',
     dataExport: 'Exportação de Dados',
     documentExport: 'Exportação de Documentos',
     exportXMLDesc: 'Salvar dados atuais como arquivo XML',
-    exportLadderDesc: 'Gerar relatório PDF da Escada Semiótica',
-    exportLadderPreviewDesc:
-      'Baixar arquivo HTML do relatório da Escada Semiótica',
-    exportEngLayersDesc: 'Gerar relatório PDF das Camadas de Engenharia',
-    exportEngLayersPreviewDesc:
-      'Baixar arquivo HTML do relatório das Camadas de Engenharia',
+    exportLadderDesc: 'Gerar relatório em PDF ou HTML',
+    exportEngLayersDesc: 'Gerar relatório em PDF ou HTML',
   },
 };
 
@@ -149,7 +142,12 @@ const BottomToolbar = ({
               </button>
               <ul
                 className='dropdown-menu'
-                style={{ minWidth: '280px', maxWidth: '90vw' }}
+                style={{
+                  minWidth: '280px',
+                  maxWidth: '90vw',
+                  maxHeight: '60vh',
+                  overflowY: 'auto',
+                }}
               >
                 {/* Data Export Section */}
                 <li>
@@ -191,215 +189,219 @@ const BottomToolbar = ({
                   </h6>
                 </li>
 
-                {/* Semiotic Ladder Export */}
+                {/* Semiotic Ladder - collapsed submenu */}
                 <li>
                   <button
                     className='dropdown-item d-flex align-items-start'
-                    onClick={() =>
-                      onExport('semiotic-ladder', {
-                        onlyAnswered: exportOnlyAnswered,
-                        format: 'pdf',
-                      })
-                    }
+                    type='button'
+                    data-bs-toggle='collapse'
+                    data-bs-target='#semioticSubmenu'
+                    aria-expanded='false'
+                    aria-controls='semioticSubmenu'
                     style={{ whiteSpace: 'normal' }}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <div className='flex-shrink-0 me-2 mt-1'>
                       <i className='bi bi-ladder' aria-hidden='true'></i>
                     </div>
                     <div className='text-break'>
-                      <div className='fw-medium'>
-                        {t.exportLadder} {t.exportPDF}
-                      </div>
+                      <div className='fw-medium'>{t.exportLadder}</div>
                       <small className='text-muted'>{t.exportLadderDesc}</small>
                     </div>
-                  </button>
-                </li>
-
-                {/* Semiotic Ladder HTML Preview (now always available, downloads HTML) */}
-                <li>
-                  <button
-                    className='dropdown-item d-flex align-items-start'
-                    onClick={() =>
-                      onExport('semiotic-ladder', {
-                        onlyAnswered: exportOnlyAnswered,
-                        format: 'html',
-                      })
-                    }
-                    style={{ whiteSpace: 'normal' }}
-                  >
-                    <div className='flex-shrink-0 me-2 mt-1'>
-                      <i className='bi bi-filetype-html' aria-hidden='true'></i>
+                    <div className='ms-auto'>
+                      <i
+                        className='bi bi-caret-down-fill'
+                        aria-hidden='true'
+                      ></i>
                     </div>
-                    <div className='text-break'>
-                      <div className='fw-medium'>
-                        {t.exportLadder} {t.exportPreview}
+                  </button>
+
+                  <div
+                    id='semioticSubmenu'
+                    className='collapse'
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <div className='px-4 py-2'>
+                      <div className='d-grid gap-2'>
+                        <button
+                          className='btn btn-sm btn-outline-primary text-start'
+                          onClick={() =>
+                            onExport('semiotic-ladder', {
+                              onlyAnswered: exportOnlyAnswered,
+                              format: 'pdf',
+                            })
+                          }
+                        >
+                          <i
+                            className='bi bi-file-pdf me-2'
+                            aria-hidden='true'
+                          ></i>
+                          {t.exportPDF}
+                        </button>
+                        <button
+                          className='btn btn-sm btn-outline-secondary text-start'
+                          onClick={() =>
+                            onExport('semiotic-ladder', {
+                              onlyAnswered: exportOnlyAnswered,
+                              format: 'html',
+                            })
+                          }
+                        >
+                          <i
+                            className='bi bi-filetype-html me-2'
+                            aria-hidden='true'
+                          ></i>
+                          {t.exportHTML}
+                        </button>
+
+                        <div className='form-check mt-2'>
+                          <input
+                            className='form-check-input'
+                            type='checkbox'
+                            id='exportOnlyAnswered'
+                            checked={exportOnlyAnswered}
+                            onChange={(e) => {
+                              setExportOnlyAnswered(e.target.checked);
+                            }}
+                          />
+                          <label
+                            className='form-check-label text-muted'
+                            htmlFor='exportOnlyAnswered'
+                          >
+                            <small>{t.exportLadderAnswered}</small>
+                          </label>
+                        </div>
+
+                        <div className='form-check'>
+                          <input
+                            className='form-check-input'
+                            type='checkbox'
+                            id='exportWithoutOverview'
+                            checked={exportWithoutOverview}
+                            onChange={(e) => {
+                              setExportWithoutOverview(e.target.checked);
+                            }}
+                          />
+                          <label
+                            className='form-check-label text-muted'
+                            htmlFor='exportWithoutOverview'
+                          >
+                            <small>{t.exportWithoutOverview}</small>
+                          </label>
+                        </div>
                       </div>
-                      <small className='text-muted'>
-                        {t.exportLadderPreviewDesc}
-                      </small>
-                    </div>
-                  </button>
-                </li>
-
-                <li>
-                  <div
-                    className='dropdown-item-text px-4 py-1'
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <div className='form-check form-check-sm'>
-                      <input
-                        className='form-check-input'
-                        type='checkbox'
-                        id='exportOnlyAnswered'
-                        checked={exportOnlyAnswered}
-                        onChange={(e) => {
-                          e.stopPropagation();
-                          setExportOnlyAnswered(e.target.checked);
-                        }}
-                      />
-                      <label
-                        className='form-check-label text-muted'
-                        htmlFor='exportOnlyAnswered'
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <small>{t.exportLadderAnswered}</small>
-                      </label>
                     </div>
                   </div>
                 </li>
 
-                <li className='mb-3'>
-                  <div
-                    className='dropdown-item-text px-4 py-1'
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <div className='form-check form-check-sm'>
-                      <input
-                        className='form-check-input'
-                        type='checkbox'
-                        id='exportWithoutOverview'
-                        checked={exportWithoutOverview}
-                        onChange={(e) => {
-                          e.stopPropagation();
-                          setExportWithoutOverview(e.target.checked);
-                        }}
-                      />
-                      <label
-                        className='form-check-label text-muted'
-                        htmlFor='exportWithoutOverview'
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <small>{t.exportWithoutOverview}</small>
-                      </label>
-                    </div>
-                  </div>
-                </li>
-
-                {/* Engineering Layers Export */}
+                {/* Engineering Layers - collapsed submenu */}
                 <li>
                   <button
                     className='dropdown-item d-flex align-items-start'
-                    onClick={() =>
-                      onExport('engineering-layers', {
-                        onlyAnswered: exportEngOnlyAnswered,
-                        format: 'pdf',
-                      })
-                    }
+                    type='button'
+                    data-bs-toggle='collapse'
+                    data-bs-target='#engineeringSubmenu'
+                    aria-expanded='false'
+                    aria-controls='engineeringSubmenu'
                     style={{ whiteSpace: 'normal' }}
+                    onClick={(e) => e.stopPropagation()}
                   >
                     <div className='flex-shrink-0 me-2 mt-1'>
                       <i className='bi bi-layers' aria-hidden='true'></i>
                     </div>
                     <div className='text-break'>
-                      <div className='fw-medium'>
-                        {t.exportEngLayers} {t.exportPDF}
-                      </div>
+                      <div className='fw-medium'>{t.exportEngLayers}</div>
                       <small className='text-muted'>
                         {t.exportEngLayersDesc}
                       </small>
                     </div>
-                  </button>
-                </li>
-
-                {/* Engineering Layers HTML Preview (now always available, downloads HTML) */}
-                <li>
-                  <button
-                    className='dropdown-item d-flex align-items-start'
-                    onClick={() =>
-                      onExport('engineering-layers', {
-                        onlyAnswered: exportEngOnlyAnswered,
-                        format: 'html',
-                      })
-                    }
-                    style={{ whiteSpace: 'normal' }}
-                  >
-                    <div className='flex-shrink-0 me-2 mt-1'>
-                      <i className='bi bi-filetype-html' aria-hidden='true'></i>
+                    <div className='ms-auto'>
+                      <i
+                        className='bi bi-caret-down-fill'
+                        aria-hidden='true'
+                      ></i>
                     </div>
-                    <div className='text-break'>
-                      <div className='fw-medium'>
-                        {t.exportEngLayers} {t.exportPreview}
+                  </button>
+
+                  <div
+                    id='engineeringSubmenu'
+                    className='collapse'
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    <div className='px-4 py-2'>
+                      <div className='d-grid gap-2'>
+                        <button
+                          className='btn btn-sm btn-outline-primary text-start'
+                          onClick={() =>
+                            onExport('engineering-layers', {
+                              onlyAnswered: exportEngOnlyAnswered,
+                              format: 'pdf',
+                            })
+                          }
+                        >
+                          <i
+                            className='bi bi-file-pdf me-2'
+                            aria-hidden='true'
+                          ></i>
+                          {t.exportPDF}
+                        </button>
+                        <button
+                          className='btn btn-sm btn-outline-secondary text-start'
+                          onClick={() =>
+                            onExport('engineering-layers', {
+                              onlyAnswered: exportEngOnlyAnswered,
+                              format: 'html',
+                            })
+                          }
+                        >
+                          <i
+                            className='bi bi-filetype-html me-2'
+                            aria-hidden='true'
+                          ></i>
+                          {t.exportHTML}
+                        </button>
+
+                        <div className='form-check mt-2'>
+                          <input
+                            className='form-check-input'
+                            type='checkbox'
+                            id='exportOnlyAnsweredEng'
+                            checked={exportEngOnlyAnswered}
+                            onChange={(e) => {
+                              setExportEngOnlyAnswered(e.target.checked);
+                            }}
+                          />
+                          <label
+                            className='form-check-label text-muted'
+                            htmlFor='exportOnlyAnsweredEng'
+                          >
+                            <small>{t.exportLadderAnswered}</small>
+                          </label>
+                        </div>
+
+                        <div className='form-check'>
+                          <input
+                            className='form-check-input'
+                            type='checkbox'
+                            id='exportEngWithoutOverview'
+                            checked={exportEngWithoutOverview}
+                            onChange={(e) => {
+                              setExportEngWithoutOverview(e.target.checked);
+                            }}
+                          />
+                          <label
+                            className='form-check-label text-muted'
+                            htmlFor='exportEngWithoutOverview'
+                          >
+                            <small>{t.exportWithoutOverview}</small>
+                          </label>
+                        </div>
                       </div>
-                      <small className='text-muted'>
-                        {t.exportEngLayersPreviewDesc}
-                      </small>
-                    </div>
-                  </button>
-                </li>
-
-                <li>
-                  <div
-                    className='dropdown-item-text px-4 py-1'
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <div className='form-check form-check-sm'>
-                      <input
-                        className='form-check-input'
-                        type='checkbox'
-                        id='exportOnlyAnsweredEng'
-                        checked={exportEngOnlyAnswered}
-                        onChange={(e) => {
-                          e.stopPropagation();
-                          setExportEngOnlyAnswered(e.target.checked);
-                        }}
-                      />
-                      <label
-                        className='form-check-label text-muted'
-                        htmlFor='exportOnlyAnsweredEng'
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <small>{t.exportLadderAnswered}</small>
-                      </label>
                     </div>
                   </div>
                 </li>
 
-                <li>
-                  <div
-                    className='dropdown-item-text px-4 py-1'
-                    onClick={(e) => e.stopPropagation()}
-                  >
-                    <div className='form-check form-check-sm'>
-                      <input
-                        className='form-check-input'
-                        type='checkbox'
-                        id='exportEngWithoutOverview'
-                        checked={exportEngWithoutOverview}
-                        onChange={(e) => {
-                          e.stopPropagation();
-                          setExportEngWithoutOverview(e.target.checked);
-                        }}
-                      />
-                      <label
-                        className='form-check-label text-muted'
-                        htmlFor='exportEngWithoutOverview'
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        <small>{t.exportWithoutOverview}</small>
-                      </label>
-                    </div>
-                  </div>
-                </li>
+                {/* ...existing code... (rest of dropdown items if any) */}
               </ul>
             </div>
           </div>
