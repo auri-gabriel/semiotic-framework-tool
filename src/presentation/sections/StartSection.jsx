@@ -129,6 +129,13 @@ const StartSection = () => {
           {t.intro}
         </p>
 
+        <SemioticAccordion
+          grouping={semioticLadderGrouping}
+          language={language}
+          answers={answers}
+          onAnswerChange={updateAnswer}
+        />
+
         {/* New Form Suggestion */}
         <div className='mb-3'>
           <p className='text-muted mb-0'>
@@ -158,14 +165,8 @@ const StartSection = () => {
             {t.clearAll}
           </button>
         </div>
-
-        <SemioticAccordion
-          grouping={semioticLadderGrouping}
-          language={language}
-          answers={answers}
-          onAnswerChange={updateAnswer}
-        />
       </div>
+
       <BottomToolbar
         answers={answers}
         onImportXML={importAnswers}
