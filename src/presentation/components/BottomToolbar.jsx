@@ -4,43 +4,36 @@ const texts = {
   en: {
     export: 'Export',
     exportXML: 'Export XML',
-    exportLadder: 'Export Semiotic Ladder',
+    exportLadder: 'Semiotic Ladder',
     exportLadderAnswered: 'Only answered questions',
-    exportWithoutOverview: 'Export without overview',
+    exportWithoutOverview: 'Without overview',
     importXML: 'Import XML',
     exportPDF: 'as PDF',
     exportDOCX: 'as DOCX',
-    exportPreview: 'as HTML',
-    exportEngLayers: 'Export Engineering Layers',
+    exportHTML: 'as HTML',
+    exportEngLayers: 'Engineering Layers',
     dataExport: 'Data Export',
     documentExport: 'Document Export',
     exportXMLDesc: 'Save current data as XML file',
-    exportLadderDesc: 'Generate PDF report of Semiotic Ladder',
-    exportLadderPreviewDesc: 'Download HTML file for Semiotic Ladder report',
-    exportEngLayersDesc: 'Generate PDF report of Engineering Layers',
-    exportEngLayersPreviewDesc:
-      'Download HTML file for Engineering Layers report',
+    exportLadderDesc: 'Generate PDF or HTML report',
+    exportEngLayersDesc: 'Generate PDF or HTML report',
   },
   pt_BR: {
     export: 'Exportar',
     exportXML: 'Exportar XML',
-    exportLadder: 'Exportar Escada Semiótica',
+    exportLadder: 'Escada Semiótica',
     exportLadderAnswered: 'Apenas perguntas respondidas',
-    exportWithoutOverview: 'Exportar sem visão geral',
+    exportWithoutOverview: 'Sem visão geral',
     importXML: 'Importar XML',
     exportPDF: 'em PDF',
     exportDOCX: 'em DOCX',
-    exportPreview: 'em HTML',
-    exportEngLayers: 'Exportar Camadas de Engenharia',
+    exportHTML: 'em HTML',
+    exportEngLayers: 'Camadas de Engenharia',
     dataExport: 'Exportação de Dados',
     documentExport: 'Exportação de Documentos',
     exportXMLDesc: 'Salvar dados atuais como arquivo XML',
-    exportLadderDesc: 'Gerar relatório PDF da Escada Semiótica',
-    exportLadderPreviewDesc:
-      'Baixar arquivo HTML do relatório da Escada Semiótica',
-    exportEngLayersDesc: 'Gerar relatório PDF das Camadas de Engenharia',
-    exportEngLayersPreviewDesc:
-      'Baixar arquivo HTML do relatório das Camadas de Engenharia',
+    exportLadderDesc: 'Gerar relatório em PDF ou HTML',
+    exportEngLayersDesc: 'Gerar relatório em PDF ou HTML',
   },
 };
 
@@ -239,7 +232,11 @@ const BottomToolbar = ({
                             })
                           }
                         >
-                          {t.exportLadder} {t.exportPDF}
+                          <i
+                            className='bi bi-file-pdf me-2'
+                            aria-hidden='true'
+                          ></i>
+                          {t.exportPDF}
                         </button>
                         <button
                           className='btn btn-sm btn-outline-secondary text-start'
@@ -250,7 +247,11 @@ const BottomToolbar = ({
                             })
                           }
                         >
-                          {t.exportLadder} {t.exportPreview}
+                          <i
+                            className='bi bi-filetype-html me-2'
+                            aria-hidden='true'
+                          ></i>
+                          {t.exportHTML}
                         </button>
 
                         <div className='form-check mt-2'>
@@ -338,7 +339,11 @@ const BottomToolbar = ({
                             })
                           }
                         >
-                          {t.exportEngLayers} {t.exportPDF}
+                          <i
+                            className='bi bi-file-pdf me-2'
+                            aria-hidden='true'
+                          ></i>
+                          {t.exportPDF}
                         </button>
                         <button
                           className='btn btn-sm btn-outline-secondary text-start'
@@ -349,7 +354,11 @@ const BottomToolbar = ({
                             })
                           }
                         >
-                          {t.exportEngLayers} {t.exportPreview}
+                          <i
+                            className='bi bi-filetype-html me-2'
+                            aria-hidden='true'
+                          ></i>
+                          {t.exportHTML}
                         </button>
 
                         <div className='form-check mt-2'>
