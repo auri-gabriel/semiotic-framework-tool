@@ -17,6 +17,10 @@ const texts = {
       'Renilson Pereira Torres (Computer Science student, PIBIC-Af 2024 fellow)',
       'Gabriel Souza Rodrigues de Amorim (Software Engineering student, PRO-IC MC 2023 fellow)',
     ],
+    collaboratorsLabel: 'Collaborators:',
+    collaborators: [
+      'Prof. Dr. Maria Cristina Graeff Wernz (Núcleo de Educação à Distância da Unipampa)',
+    ],
   },
   pt_BR: {
     title: 'Sobre nós',
@@ -31,6 +35,10 @@ const texts = {
       'Auri Gabriel Castro de Melo (Acadêmico do Curso de Engenharia de Software)',
       'Renilson Pereira Torres (Acadêmico do Curso de Ciência da Computação, bolsista PIBIC-Af 2024)',
       'Gabriel Souza Rodrigues de Amorim (Acadêmico do Curso de Engenharia de Software, bolsista PRO-IC MC 2023)',
+    ],
+    collaboratorsLabel: 'Colaboradores:',
+    collaborators: [
+      'Profa. Dra. Maria Cristina Graeff Wernz (Núcleo de Educação à Distância da Unipampa)',
     ],
   },
 };
@@ -59,6 +67,14 @@ const AboutUsSection = () => {
         <ul>
           {t.students.map((student, idx) => (
             <li key={idx}>{student}</li>
+          ))}
+        </ul>
+        <p>
+          <strong>{t.collaboratorsLabel}</strong>
+        </p>
+        <ul>
+          {t.collaborators.map((collaborator, idx) => (
+            <li key={idx}>{collaborator}</li>
           ))}
         </ul>
       </div>
