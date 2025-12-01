@@ -16,6 +16,14 @@ const texts = {
 const works = [
   {
     title:
+      'Contribuições para Organização e Aplicação de Um Framework em Engenharia de Software',
+    event:
+      'Anais do 17º Salão de inovação, ensino, pesquisa e extensão : Pesquisa ',
+    date: '2025-10-26',
+    url: 'https://periodicos.unipampa.edu.br/index.php/SIEPE/article/view/121430',
+  },
+  {
+    title:
       'Uma Revisão Sistematizada sobre Design Participativo Integrado à Engenharia de Software em Domínio Educacional',
     event: 'Simpósio Brasileiro de Informática na Educação (SBIE)',
     date: '2024-11-04',
