@@ -13,7 +13,7 @@ rectangle "Ferramenta de Framework Semiótico ES" {
     (UC05 - Exportar documento) as exportar
 
     (Exportar documento com elementos dispostos nas Camadas da Engenharia de Software) as camadas
-    (Exportar documento com checklist) as checklist
+    (Exportar documento como checklist) as checklist
     (Exportar documento com elementos dispostos na Escada Semiótica) as escada
 }
 
