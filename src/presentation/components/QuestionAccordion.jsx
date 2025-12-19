@@ -5,12 +5,10 @@ const texts = {
   en: {
     answerLabel: 'Your answer:',
     characterCount: 'Characters:',
-    wordCount: 'Words:',
   },
   pt_BR: {
     answerLabel: 'Sua resposta:',
     characterCount: 'Caracteres:',
-    wordCount: 'Palavras:',
   },
 };
 
@@ -25,12 +23,6 @@ const getCharacterCount = (html) => {
   return plainText.length;
 };
 
-const getWordCount = (html) => {
-  const plainText = stripHtml(html);
-  const words = plainText.trim().split(/\s+/);
-  return plainText.trim() === '' ? 0 : words.length;
-};
-
 const QuestionAccordion = ({
   groupKey,
   stepKey,
@@ -42,7 +34,6 @@ const QuestionAccordion = ({
   const t = texts[language];
   const placeholder = question.placeholders?.[language] || '';
   const characterCount = getCharacterCount(answer || '');
-  const wordCount = getWordCount(answer || '');
 
   const hasAnswer = answer && stripHtml(answer).trim().length > 0;
 
@@ -129,13 +120,9 @@ const QuestionAccordion = ({
             preserveWhitespace={false}
           />
           <div className='mt-2 text-muted small'>
-            <span className='me-3'>
+            <span>
               <i className='bi bi-textarea-t me-1' aria-hidden='true'></i>
               {t.characterCount} {characterCount}
-            </span>
-            <span>
-              <i className='bi bi-journal-text me-1' aria-hidden='true'></i>
-              {t.wordCount} {wordCount}
             </span>
           </div>
         </div>
