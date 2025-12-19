@@ -20,10 +20,10 @@ const texts = {
     clearAllDesc: 'Delete all saved responses and reset definitions to default',
     clearAnswersConfirmTitle: 'Clear Answers Only',
     clearAnswersConfirmMessage:
-      'Are you sure you want to delete all your responses? Your custom definitions will be preserved.',
+      'Are you sure you want to delete all your responses? Your custom definitions will be preserved. This action cannot be undone.',
     clearAllConfirmTitle: 'Clear All & Reset Definitions',
     clearAllConfirmMessage:
-      'Are you sure you want to delete all your responses and reset definitions to default? This action cannot be undone.',
+      'Are you sure you want to delete all your responses and reset questions to default? This action cannot be undone.',
     clearConfirmButton: 'Yes, Clear',
     clearAllConfirmButton: 'Yes, Clear All',
     cancelButton: 'Cancel',
@@ -42,10 +42,10 @@ const texts = {
       'Excluir todas as respostas salvas e restaurar definições para o padrão',
     clearAnswersConfirmTitle: 'Limpar Apenas Respostas',
     clearAnswersConfirmMessage:
-      'Tem certeza de que deseja excluir todas as suas respostas? Suas definições personalizadas serão preservadas.',
+      'Tem certeza de que deseja excluir todas as suas respostas? Suas definições personalizadas serão preservadas. Esta ação não pode ser desfeita.',
     clearAllConfirmTitle: 'Limpar Tudo e Restaurar Definições',
     clearAllConfirmMessage:
-      'Tem certeza de que deseja excluir todas as suas respostas e restaurar as definições para o padrão? Esta ação não pode ser desfeita.',
+      'Tem certeza de que deseja excluir todas as suas respostas e restaurar as perguntas para o padrão da ferramenta? Esta ação não pode ser desfeita.',
     clearConfirmButton: 'Sim, Limpar',
     clearAllConfirmButton: 'Sim, Limpar Tudo',
     cancelButton: 'Cancelar',
