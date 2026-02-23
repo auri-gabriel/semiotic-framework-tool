@@ -225,12 +225,20 @@
         <question id="q14">
             <tag class="syntactic" />
             <tag class="methods" />
+            <text lang="pt_BR">Que tipo de software poderia ser desenvolvido?</text>
+            <text lang="en">What kind of software could be developed?</text>
+            <placeholder lang="pt_BR">Exemplo: mobile, site etc..</placeholder>
+            <placeholder lang="en">Example: mobile, website etc..</placeholder>
+        </question>
+        <question id="q15">
+            <tag class="syntactic" />
+            <tag class="methods" />
             <text lang="pt_BR">Quais padrões seguir?</text>
             <text lang="en">What standards should be followed?</text>
             <placeholder lang="pt_BR">Exemplo: Seguir padrões de desenvolvimento web.</placeholder>
             <placeholder lang="en">Example: Follow web development standards.</placeholder>
         </question>
-        <question id="q15">
+        <question id="q16">
             <tag class="syntactic" />
             <tag class="process" />
             <text lang="pt_BR">Quais abordagens serão adotadas?</text>
@@ -238,14 +246,14 @@
             <placeholder lang="pt_BR">Exemplo: Adotar metodologia ágil.</placeholder>
             <placeholder lang="en">Example: Adopt agile methodology.</placeholder>
         </question>
-        <question id="q16">
+        <question id="q17">
             <tag class="syntactic" />
             <text lang="pt_BR">Quais frameworks serão adotados?</text>
             <text lang="en">What frameworks will be adopted?</text>
             <placeholder lang="pt_BR">Exemplo: Utilizar React para frontend.</placeholder>
             <placeholder lang="en">Example: Use React for frontend.</placeholder>
         </question>
-        <question id="q17">
+        <question id="q18">
             <tag class="syntactic" />
             <tag class="process" />
             <tag class="methods" />
@@ -257,7 +265,7 @@
             <placeholder lang="pt_BR">Exemplo: Scrum, Git e integração contínua.</placeholder>
             <placeholder lang="en">Example: Scrum, Git, and continuous integration.</placeholder>
         </question>
-        <question id="q18">
+        <question id="q19">
             <tag class="syntactic" />
             <text lang="pt_BR">Quais processos, métodos e ferramentas de Design Participativo serão
                 adotados?</text>
@@ -266,14 +274,14 @@
             <placeholder lang="pt_BR">Exemplo: Workshops e entrevistas com usuários.</placeholder>
             <placeholder lang="en">Example: Workshops and user interviews.</placeholder>
         </question>
-        <question id="q19">
+        <question id="q20">
             <tag class="syntactic" />
             <text lang="pt_BR">Quais linguagens serão adotadas?</text>
             <text lang="en">Which programming languages will be adopted?</text>
             <placeholder lang="pt_BR">Exemplo: JavaScript e Python.</placeholder>
             <placeholder lang="en">Example: JavaScript and Python.</placeholder>
         </question>
-        <question id="q20">
+        <question id="q21">
             <tag class="syntactic" />
             <tag class="tools" />
             <text lang="pt_BR">Quais softwares serão adotados?</text>
@@ -281,7 +289,7 @@
             <placeholder lang="pt_BR">Exemplo: VSCode, Figma e Trello.</placeholder>
             <placeholder lang="en">Example: VSCode, Figma, and Trello.</placeholder>
         </question>
-        <question id="q21">
+        <question id="q22">
             <tag class="syntactic" />
             <text lang="pt_BR">Qual a língua principal? Há outras línguas que precisam ser
                 consideradas?</text>
@@ -292,14 +300,14 @@
         </question>
 
         <!-- Empírica -->
-        <question id="q22">
+        <question id="q23">
             <tag class="empirical" />
             <text lang="pt_BR">Qual o tempo disponível?</text>
             <text lang="en">What is the available time?</text>
             <placeholder lang="pt_BR">Exemplo: 6 meses para desenvolvimento.</placeholder>
             <placeholder lang="en">Example: 6 months for development.</placeholder>
         </question>
-        <question id="q23">
+        <question id="q24">
             <tag class="empirical" />
             <text lang="pt_BR">Quais os custos envolvidos?</text>
             <text lang="en">What are the costs involved?</text>
@@ -308,14 +316,21 @@
         </question>
 
         <!-- Física / Material -->
-        <question id="q24">
+        <question id="q25">
+            <tag class="physical" />
+            <text lang="pt_BR">Qual a infraestrutura exigida de seus usuários finais?</text>
+            <text lang="en">What infrastructure is required from your end users?</text>
+            <placeholder lang="pt_BR">Exemplo: Computadores, Celulares e internet.</placeholder>
+            <placeholder lang="en">Example: Computers, Smartphones, internet.</placeholder>
+        </question>
+        <question id="q26">
             <tag class="physical" />
             <text lang="pt_BR">Qual a infraestrutura necessária para desenvolvê-lo?</text>
             <text lang="en">What infrastructure is needed to develop it?</text>
             <placeholder lang="pt_BR">Exemplo: Computadores, internet e servidores de teste.</placeholder>
             <placeholder lang="en">Example: Computers, internet, and test servers.</placeholder>
         </question>
-        <question id="q25">
+        <question id="q27">
             <tag class="physical" />
             <text lang="pt_BR">Qual a infraestrutura necessária para mantê-lo em operação?</text>
             <text lang="en">What infrastructure is needed to keep it operational?</text>
