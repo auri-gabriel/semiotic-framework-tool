@@ -5,13 +5,13 @@ const texts = {
   en: {
     title: 'The Framework',
     description:
-      "In the development of software for the educational domain, a number of aspects must be taken into account, related to human information functions and the Information Technology (IT) Platform. Based on Ronald Stamper's Semiotic Framework (Liu, 2000), this framework adopts the Participatory Design approach, integrating Software Engineering in the development of software solutions for the Educational Domain.",
+      "In the development of software for the educational domain, a number of aspects must be taken into account, related to human information functions and the Information Technology (IT) Platform. Based on Ronald Stamper's Semiotic Framework (Liu, 2000, p.27), this framework adopts the Participatory Design approach, integrating Software Engineering in the development of software solutions for the Educational Domain.",
     ctaButton: 'Get Started',
   },
   pt_BR: {
     title: 'O Framework',
     description:
-      'No desenvolvimento de software para o domínio educacional, uma série de aspectos deve ser levada em conta, relacionadas às funções humanas da informação e à Plataforma de Tecnologia da Informação (TI). Baseado no Framework Semiótico de Ronald Stamper (Liu, 2000), este framework adota a abordagem do Design Participativo integrando a Engenharia de Software no desenvolvimento de soluções em software para o Domínio Educacional.',
+      'No desenvolvimento de software para o domínio educacional, uma série de aspectos deve ser levada em conta, relacionadas às funções humanas da informação e à Plataforma de Tecnologia da Informação (TI). Baseado no Framework Semiótico de Ronald Stamper (Liu, 2000, p.27), este framework adota a abordagem do Design Participativo integrando a Engenharia de Software no desenvolvimento de soluções em software para o Domínio Educacional.',
     ctaButton: 'Iniciar',
   },
 };

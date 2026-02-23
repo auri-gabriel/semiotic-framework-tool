@@ -7,6 +7,7 @@ import {
   StartSection,
   AboutUsSection,
   WorksSection,
+  ReferencesSection,
   FooterSection,
 } from '../sections';
 
@@ -22,6 +23,7 @@ const MainLayout = () => {
         <StartSection />
         <AboutUsSection />
         <WorksSection />
+        <ReferencesSection />
       </main>
       <FooterSection />
     </div>
