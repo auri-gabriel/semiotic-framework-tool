@@ -13,8 +13,8 @@
         <!-- Semiotic Levels -->
         <tag id="physical" type="semiotic-steps" order="6">
             <tag class="it-platform" />
-            <name lang="pt_BR">Física</name>
-            <name lang="en">Physical</name>
+            <name lang="pt_BR">Mundo Físico</name>
+            <name lang="en">Physical World</name>
             <text lang="pt_BR">
                 Sinais, traços, distinções físicas, hardware, densidade de componentes,
                 velocidade, economia, entre outros.
