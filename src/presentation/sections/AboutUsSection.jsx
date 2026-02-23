@@ -5,7 +5,7 @@ import SectionTitle from '../components/SectionTitle';
 const texts = {
   en: {
     title: 'About us',
-    description: 'This project is part of the GEInfoEdu Research Group',
+    description: 'This tool, created by Auri Gabriel Castro de Melo under the guidance of Amanda Meincke Melo, is a product of the GEInfoEdu Research Group - Study Group on Information Technology in Education.',
     professors: [
       'Prof. Dr. Aline Vieira de Mello (Professor at Alegrete Campus)',
       'Prof. Dr. Amanda Meincke Melo (Professor at Alegrete Campus) – research group leader',
@@ -24,7 +24,7 @@ const texts = {
   },
   pt_BR: {
     title: 'Sobre nós',
-    description: 'Este projeto é parte do Grupo de Pesquisa GEInfoEdu',
+    description: 'Esta ferramenta, de autoria de Auri Gabriel Castro de Melo, sob orientação de Amanda Meincke Melo, é um produto do Grupo de Pesquisa GEInfoEdu - Grupo de Estudos em Informática na Educação.',
     professors: [
       'Profa. Dra. Aline Vieira de Mello (Docente no Campus Alegrete)',
       'Profa. Dra. Amanda Meincke Melo (Docente no Campus Alegrete) – líder do grupo de pesquisa',
