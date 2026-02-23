@@ -158,6 +158,15 @@
             <placeholder lang="pt_BR">Exemplo: Compromisso de atualização contínua do software.</placeholder>
             <placeholder lang="en">Example: Commitment to continuous software updates.</placeholder>
         </question>
+        <question id="q26">
+            <tag class="social_world" />
+            <text lang="pt_BR">Que outros aspectos devem ser considerados neste degrau, Mundo
+                Social?</text>
+            <text lang="en">What other aspects should be considered at this level, Social World?</text>
+            <placeholder lang="pt_BR">Exemplo: Outras demandas institucionais e comunitárias
+                relevantes.</placeholder>
+            <placeholder lang="en">Example: Other relevant institutional and community demands.</placeholder>
+        </question>
 
         <!-- Pragmática -->
         <question id="q07">
@@ -193,6 +202,15 @@
             <placeholder lang="pt_BR">Exemplo: Envolver usuários nas decisões de design.</placeholder>
             <placeholder lang="en">Example: Involve users in design decisions.</placeholder>
         </question>
+        <question id="q27">
+            <tag class="pragmatic" />
+            <text lang="pt_BR">Que outros aspectos devem ser considerados neste degrau, Pragmático?</text>
+            <text lang="en">What other aspects should be considered at this level, Pragmatic?</text>
+            <placeholder lang="pt_BR">Exemplo: Estratégias adicionais de engajamento e comunicação
+                entre as partes.</placeholder>
+            <placeholder lang="en">Example: Additional engagement and communication strategies among
+                stakeholders.</placeholder>
+        </question>
 
         <!-- Semântica -->
         <question id="q11">
@@ -219,6 +237,14 @@
             <text lang="en">What quality characteristics should be considered?</text>
             <placeholder lang="pt_BR">Exemplo: Usabilidade, acessibilidade e desempenho.</placeholder>
             <placeholder lang="en">Example: Usability, accessibility, and performance.</placeholder>
+        </question>
+        <question id="q28">
+            <tag class="semantic" />
+            <text lang="pt_BR">Que outros aspectos devem ser considerados neste degrau, Semântico?</text>
+            <text lang="en">What other aspects should be considered at this level, Semantic?</text>
+            <placeholder lang="pt_BR">Exemplo: Conceitos adicionais e significados específicos do
+                domínio.</placeholder>
+            <placeholder lang="en">Example: Additional concepts and domain-specific meanings.</placeholder>
         </question>
 
         <!-- Sintática -->
@@ -290,6 +316,15 @@
             <placeholder lang="pt_BR">Exemplo: Português como principal, inglês como secundária.</placeholder>
             <placeholder lang="en">Example: Portuguese as main, English as secondary.</placeholder>
         </question>
+        <question id="q29">
+            <tag class="syntactic" />
+            <text lang="pt_BR">Que outros aspectos devem ser considerados neste degrau, Sintático?</text>
+            <text lang="en">What other aspects should be considered at this level, Syntactic?</text>
+            <placeholder lang="pt_BR">Exemplo: Convenções extras de modelagem, documentação e
+                implementação.</placeholder>
+            <placeholder lang="en">Example: Additional conventions for modeling, documentation, and
+                implementation.</placeholder>
+        </question>
 
         <!-- Empírica -->
         <question id="q22">
@@ -306,6 +341,15 @@
             <placeholder lang="pt_BR">Exemplo: R$ 50.000 para todo o projeto.</placeholder>
             <placeholder lang="en">Example: $10,000 for the entire project.</placeholder>
         </question>
+        <question id="q30">
+            <tag class="empirical" />
+            <text lang="pt_BR">Que outros aspectos devem ser considerados neste degrau, Empírico?</text>
+            <text lang="en">What other aspects should be considered at this level, Empirical?</text>
+            <placeholder lang="pt_BR">Exemplo: Restrições adicionais de prazo, orçamento e
+                capacidade.</placeholder>
+            <placeholder lang="en">Example: Additional constraints on schedule, budget, and
+                capacity.</placeholder>
+        </question>
 
         <!-- Física / Material -->
         <question id="q24">
@@ -321,6 +365,16 @@
             <text lang="en">What infrastructure is needed to keep it operational?</text>
             <placeholder lang="pt_BR">Exemplo: Servidores dedicados e equipe de suporte.</placeholder>
             <placeholder lang="en">Example: Dedicated servers and support team.</placeholder>
+        </question>
+        <question id="q31">
+            <tag class="physical" />
+            <text lang="pt_BR">Que outros aspectos devem ser considerados neste degrau, Mundo
+                Físico?</text>
+            <text lang="en">What other aspects should be considered at this level, Physical World?</text>
+            <placeholder lang="pt_BR">Exemplo: Requisitos adicionais de hardware, energia e
+                conectividade.</placeholder>
+            <placeholder lang="en">Example: Additional hardware, power, and connectivity
+                requirements.</placeholder>
         </question>
     </questions-definitions>
 </definitions>
