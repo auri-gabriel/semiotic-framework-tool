@@ -318,12 +318,19 @@
         <!-- Física / Material -->
         <question id="q25">
             <tag class="physical" />
+            <text lang="pt_BR">Qual a infraestrutura exigida de seus usuários finais?</text>
+            <text lang="en">What infrastructure is required from your end users?</text>
+            <placeholder lang="pt_BR">Exemplo: Computadores, Celulares e internet.</placeholder>
+            <placeholder lang="en">Example: Computers, Smartphones, internet.</placeholder>
+        </question>
+        <question id="q26">
+            <tag class="physical" />
             <text lang="pt_BR">Qual a infraestrutura necessária para desenvolvê-lo?</text>
             <text lang="en">What infrastructure is needed to develop it?</text>
             <placeholder lang="pt_BR">Exemplo: Computadores, internet e servidores de teste.</placeholder>
             <placeholder lang="en">Example: Computers, internet, and test servers.</placeholder>
         </question>
-        <question id="q26">
+        <question id="q27">
             <tag class="physical" />
             <text lang="pt_BR">Qual a infraestrutura necessária para mantê-lo em operação?</text>
             <text lang="en">What infrastructure is needed to keep it operational?</text>
