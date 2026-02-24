@@ -5,7 +5,8 @@ import SectionTitle from '../components/SectionTitle';
 const texts = {
   en: {
     title: 'About us',
-    description: 'This tool, created by Auri Gabriel Castro de Melo under the guidance of Amanda Meincke Melo, is a product of the GEInfoEdu Research Group - Study Group on Information Technology in Education.',
+    description:
+      'This tool, authored by Auri Gabriel Castro de Melo under the guidance of Amanda Meincke Melo, is a product of the project "Participatory Design integrated with Software Engineering: a framework for software development in the educational domain", registration number 2023.PE.AL.1752, linked to GEInfoEdu - Grupo de Estudos em Informática na Educação.',
     professors: [
       'Prof. Dr. Aline Vieira de Mello (Professor at Alegrete Campus)',
       'Prof. Dr. Amanda Meincke Melo (Professor at Alegrete Campus) – research group leader',
@@ -24,7 +25,8 @@ const texts = {
   },
   pt_BR: {
     title: 'Sobre nós',
-    description: 'Esta ferramenta, de autoria de Auri Gabriel Castro de Melo, sob orientação de Amanda Meincke Melo, é um produto do Grupo de Pesquisa GEInfoEdu - Grupo de Estudos em Informática na Educação.',
+    description:
+      'Esta ferramenta, de autoria de Auri Gabriel Castro de Melo, sob orientação de Amanda Meincke Melo, é um produto do projeto "Design Participativo integrado à Engenharia de Software: um framework para o desenvolvimento de software no domínio educacional", número de registro 2023.PE.AL.1752, vinculado ao Grupo de Pesquisa GEInfoEdu - Grupo de Estudos em Informática na Educação.',
     professors: [
       'Profa. Dra. Aline Vieira de Mello (Docente no Campus Alegrete)',
       'Profa. Dra. Amanda Meincke Melo (Docente no Campus Alegrete) – líder do grupo de pesquisa',
