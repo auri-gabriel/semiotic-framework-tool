@@ -31,36 +31,42 @@
 - **PT-BR:** Quão fácil foi usar a ferramenta?
 - **EN-US:** How easy was it to use the tool?
 - **Type:** Linear scale (1-5)
+- **Scale labels:** `1 = Muito difícil` / `Very difficult`; `5 = Muito fácil` / `Very easy`
 
 ### 5) Clareza da interface / Interface clarity
 
 - **PT-BR:** Quão clara é a interface (menus, seções e navegação)?
 - **EN-US:** How clear is the interface (menus, sections, and navigation)?
 - **Type:** Linear scale (1-5)
+- **Scale labels:** `1 = Nada clara` / `Not clear at all`; `5 = Muito clara` / `Very clear`
 
 ### 6) Qualidade do conteúdo / Content quality
 
 - **PT-BR:** As perguntas e etapas do framework foram úteis para o seu trabalho?
 - **EN-US:** Were the framework questions and steps useful for your work?
 - **Type:** Linear scale (1-5)
+- **Scale labels:** `1 = Nada útil` / `Not useful at all`; `5 = Muito útil` / `Very useful`
 
 ### 7) Desempenho / Performance
 
 - **PT-BR:** Como você avalia o desempenho da ferramenta (velocidade e estabilidade)?
 - **EN-US:** How do you rate the tool's performance (speed and stability)?
 - **Type:** Linear scale (1-5)
+- **Scale labels:** `1 = Muito ruim` / `Very poor`; `5 = Excelente` / `Excellent`
 
 ### 8) Exportação/Importação / Export/Import
 
 - **PT-BR:** Os recursos de exportar/importar (PDF/XML) atenderam sua necessidade?
 - **EN-US:** Did the export/import features (PDF/XML) meet your needs?
 - **Type:** Linear scale (1-5)
+- **Scale labels:** `1 = Não atendeu` / `Did not meet my needs`; `5 = Atendeu totalmente` / `Fully met my needs`
 
 ### 9) Satisfação geral / Overall satisfaction
 
 - **PT-BR:** Qual é sua satisfação geral com a ferramenta?
 - **EN-US:** What is your overall satisfaction with the tool?
 - **Type:** Linear scale (1-5)
+- **Scale labels:** `1 = Muito insatisfeito` / `Very dissatisfied`; `5 = Muito satisfeito` / `Very satisfied`
 
 ### 10) Recursos mais úteis / Most useful features
 
@@ -85,6 +91,7 @@
 - **PT-BR:** De 0 a 10, o quanto você recomendaria esta ferramenta para outra pessoa?
 - **EN-US:** From 0 to 10, how likely are you to recommend this tool to someone else?
 - **Type:** Linear scale (0-10)
+- **Scale labels:** `0 = Nada provável` / `Not at all likely`; `10 = Extremamente provável` / `Extremely likely`
 
 ### 14) Comentários finais (opcional) / Final comments (optional)
 
