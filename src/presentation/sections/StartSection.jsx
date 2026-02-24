@@ -10,6 +10,14 @@ import SectionTitle from '../components/SectionTitle';
 const texts = {
   en: {
     title: 'Start',
+    projectInfoTitle: 'Project Information',
+    projectInfoHelper:
+      'Register the focal problem and authorship before filling in the questions.',
+    focalProblemLabel: 'Focal Problem',
+    focalProblemPlaceholder:
+      'Describe the central problem this project aims to solve',
+    authorshipLabel: 'Authorship',
+    authorshipPlaceholder: 'Person, team, or organization responsible',
     intro:
       "Ready to get started? Select one of the blocks below to display the questions related to it. Then select a question to answer it. It's quick and easy — just read and answer.\n\nEach block corresponds to a step in Ronald Stamper's Semiotic Framework. The questions were designed to help software engineers, in collaboration with experts in the field of education, to specify the human and technical aspects involved in developing software for this field.  ",
     newFormSuggestion:
@@ -30,6 +38,14 @@ const texts = {
   },
   pt_BR: {
     title: 'Iniciar',
+    projectInfoTitle: 'Informações do Projeto',
+    projectInfoHelper:
+      'Registre o problema focal e a autoria antes de preencher as perguntas.',
+    focalProblemLabel: 'Problema Focal',
+    focalProblemPlaceholder:
+      'Descreva o problema central que este projeto busca resolver',
+    authorshipLabel: 'Autoria',
+    authorshipPlaceholder: 'Pessoa, equipe ou organização responsável',
     intro:
       'Tudo pronto para começar? Selecione um dos blocos a seguir para mostrar as perguntas relacionadas a ele. Então, selecione uma pergunta para respondê-la. É simples e rápido — basta ler e responder.\n\nCada bloco corresponde a um degrau do Framework Semiótico de Ronald Stamper. Já as questões foram propostas para auxiliar engenheiros de software, em colaboração com especialistas do Domínio Educacional, na especificação de aspectos humanos e técnicos envolvidos no desenvolvimento de software para esse domínio.',
     newFormSuggestion:
@@ -57,9 +73,12 @@ const StartSection = () => {
   const { semioticLadderGrouping } = useSemioticData();
   const {
     answers,
+    projectMetadata,
     updateAnswer,
     importAnswers,
     clearAnswers,
+    setProjectMetadata,
+    clearProjectMetadata,
     resetToDefaultDefinitions,
   } = useAnswers();
   const {
@@ -78,6 +97,11 @@ const StartSection = () => {
   const [clearType, setClearType] = useState('answers'); // 'answers' or 'all'
 
   const t = texts[language];
+  const projectInfoAnsweredCount = [
+    projectMetadata.focalProblem,
+    projectMetadata.authorship,
+  ].filter((value) => value?.trim()).length;
+  const projectInfoTotalCount = 2;
 
   const handleClearAnswersClick = () => {
     setClearType('answers');
@@ -94,6 +118,7 @@ const StartSection = () => {
       clearAnswers();
     } else {
       clearAnswers();
+      clearProjectMetadata();
       resetToDefaultDefinitions();
     }
     setShowClearModal(false);
@@ -128,6 +153,81 @@ const StartSection = () => {
         <p className='mb-4' style={{ whiteSpace: 'pre-line' }}>
           {t.intro}
         </p>
+
+        <div className='accordion mb-4' id='projectInfoAccordion'>
+          <div className='accordion-item'>
+            <h4 className='accordion-header' id='heading-project-info'>
+              <button
+                className='accordion-button bg-white'
+                type='button'
+                data-bs-toggle='collapse'
+                data-bs-target='#collapse-project-info'
+                aria-expanded='true'
+                aria-controls='collapse-project-info'
+              >
+                <div className='d-flex justify-content-between align-items-center w-100'>
+                  <span>{t.projectInfoTitle}</span>
+                  <span className='badge bg-secondary mx-2'>
+                    {projectInfoAnsweredCount}/{projectInfoTotalCount}
+                  </span>
+                </div>
+              </button>
+            </h4>
+
+            <div
+              id='collapse-project-info'
+              className='accordion-collapse collapse show'
+              aria-labelledby='heading-project-info'
+            >
+              <div className='accordion-body bg-white'>
+                <div className='alert alert-light mb-3' role='alert'>
+                  <div className='d-flex align-items-start'>
+                    <i
+                      className='bi bi-info-circle-fill text-primary me-2'
+                      aria-hidden='true'
+                    ></i>
+                    <div>{t.projectInfoHelper}</div>
+                  </div>
+                </div>
+
+                <div className='mb-3'>
+                  <label
+                    htmlFor='focalProblem'
+                    className='form-label fw-medium'
+                  >
+                    {t.focalProblemLabel}
+                  </label>
+                  <textarea
+                    id='focalProblem'
+                    className='form-control'
+                    rows='3'
+                    value={projectMetadata.focalProblem}
+                    onChange={(event) =>
+                      setProjectMetadata({ focalProblem: event.target.value })
+                    }
+                    placeholder={t.focalProblemPlaceholder}
+                  />
+                </div>
+
+                <div>
+                  <label htmlFor='authorship' className='form-label fw-medium'>
+                    {t.authorshipLabel}
+                  </label>
+                  <input
+                    id='authorship'
+                    type='text'
+                    className='form-control'
+                    value={projectMetadata.authorship}
+                    onChange={(event) =>
+                      setProjectMetadata({ authorship: event.target.value })
+                    }
+                    placeholder={t.authorshipPlaceholder}
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
 
         <SemioticAccordion
           grouping={semioticLadderGrouping}

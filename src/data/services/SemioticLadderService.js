@@ -27,6 +27,7 @@ export class SemioticLadderService {
     onlyAnswered,
     withoutOverview,
     language,
+    projectMetadata,
     format = 'pdf',
     onExportStart,
     onExportEnd,
@@ -41,7 +42,7 @@ export class SemioticLadderService {
           grouping,
           answers,
           language,
-          'semiotic'
+          'semiotic',
         );
     const content = this.generateContent({
       grouping,
@@ -54,6 +55,7 @@ export class SemioticLadderService {
       title,
       content,
       language,
+      projectMetadata,
     });
 
     if (format === 'pdf') {
@@ -91,7 +93,7 @@ export class SemioticLadderService {
                 return HtmlTemplateService.generateQuestionHtml(
                   q,
                   answers[q.id],
-                  language
+                  language,
                 );
               })
               .join('');
@@ -101,7 +103,7 @@ export class SemioticLadderService {
             return `
               <div class="step avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important; display: block;">
                 <div class="step-title" style="page-break-after: avoid !important; break-after: avoid !important;">${HtmlTemplateService.escapeHtml(
-                  stepProps.tag.names[language]
+                  stepProps.tag.names[language],
                 )}</div>
                 ${questions}
               </div>
@@ -114,7 +116,7 @@ export class SemioticLadderService {
         return `
           <div class="group avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important; display: block;">
             <div class="group-title" style="page-break-after: avoid !important; break-after: avoid !important;">${HtmlTemplateService.escapeHtml(
-              groupProps.tag.names[language]
+              groupProps.tag.names[language],
             )}</div>
             ${steps}
           </div>

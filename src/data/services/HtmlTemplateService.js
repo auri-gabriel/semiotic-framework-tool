@@ -116,6 +116,35 @@ body {
   line-height: 1.2;
 }
 
+.metadata {
+  margin-top: 16px;
+  display: grid;
+  gap: 10px;
+}
+
+.metadata-item {
+  background: #f8f8f8;
+  border: 1px solid #e5e5e5;
+  border-left: 3px solid #666666;
+  padding: 10px 12px;
+}
+
+.metadata-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #4a4a4a;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.metadata-value {
+  font-size: 14px;
+  color: #1a1a1a;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
 .group {
   margin-bottom: 32px;
   page-break-inside: avoid;
@@ -365,7 +394,7 @@ body {
     // Convert them to proper <ul><li>
     let fixedHtml = html.replace(
       /<ol>\s*<li\s+data-list="bullet"[^>]*>/gi,
-      '<ul><li>'
+      '<ul><li>',
     );
 
     // Fix closing ol tags for bullet lists
@@ -382,7 +411,7 @@ body {
           return '</li></ul>';
         }
         return match; // Keep original if it's a real ordered list
-      }
+      },
     );
 
     // Clean up any remaining data-list attributes
@@ -452,7 +481,44 @@ body {
    * @param {string} params.language - Language code
    * @returns {string} Complete HTML document
    */
-  static generateHtmlDocument({ title, content, language }) {
+  static generateHtmlDocument({ title, content, language, projectMetadata }) {
+    const labels =
+      language === 'pt_BR'
+        ? {
+            focalProblem: 'Problema Focal',
+            authorship: 'Autoria',
+            notInformed: '(não informado)',
+          }
+        : {
+            focalProblem: 'Focal Problem',
+            authorship: 'Authorship',
+            notInformed: '(not provided)',
+          };
+
+    const focalProblem = projectMetadata?.focalProblem || '';
+    const authorship = projectMetadata?.authorship || '';
+
+    const metadataHtml = `
+      <div class="metadata">
+        <div class="metadata-item">
+          <div class="metadata-label">${this.escapeHtml(labels.focalProblem)}</div>
+          <div class="metadata-value">${
+            focalProblem
+              ? this.escapeHtml(focalProblem)
+              : this.escapeHtml(labels.notInformed)
+          }</div>
+        </div>
+        <div class="metadata-item">
+          <div class="metadata-label">${this.escapeHtml(labels.authorship)}</div>
+          <div class="metadata-value">${
+            authorship
+              ? this.escapeHtml(authorship)
+              : this.escapeHtml(labels.notInformed)
+          }</div>
+        </div>
+      </div>
+    `;
+
     return `
     <!DOCTYPE html>
     <html lang="${language === 'pt_BR' ? 'pt-BR' : 'en'}">
@@ -466,6 +532,7 @@ body {
       <div class="document-container">
         <div class="header">
           <h1 class="document-title">${this.escapeHtml(title)}</h1>
+          ${metadataHtml}
         </div>
         
         <div class="content">
@@ -474,7 +541,7 @@ body {
         
         <div class="footer">
           <p>Generated on ${new Date().toLocaleDateString(
-            language === 'pt_BR' ? 'pt-BR' : 'en-US'
+            language === 'pt_BR' ? 'pt-BR' : 'en-US',
           )}</p>
         </div>
       </div>
@@ -502,13 +569,13 @@ body {
     const answerText = fixedAnswer
       ? fixedAnswer
       : language === 'pt_BR'
-      ? '(sem resposta)'
-      : '(no answer)';
+        ? '(sem resposta)'
+        : '(no answer)';
 
     return `
       <div class="question avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important; display: block;">
         <div class="question-text" style="page-break-after: avoid !important; break-after: avoid !important;">${this.escapeHtml(
-          questionText
+          questionText,
         )}</div>
         <div class="answer-text ${
           !hasAnswer ? 'no-answer' : ''
@@ -537,10 +604,10 @@ body {
         <div class="stat-item">
           <div class="stat-label">${this.escapeHtml(stat.label)}</div>
           <div class="stat-value">${this.escapeHtml(
-            stat.value.toString()
+            stat.value.toString(),
           )}</div>
         </div>
-      `
+      `,
       )
       .join('');
 
@@ -553,11 +620,11 @@ body {
           <div class="section-stats">
             <span>${section.answeredQuestions}/${section.totalQuestions}</span>
             <span class="section-completion">${this.escapeHtml(
-              section.completionRate
+              section.completionRate,
             )}</span>
           </div>
         </div>
-      `
+      `,
       )
       .join('');
 
@@ -569,7 +636,7 @@ body {
         </div>
         <div class="sections-overview">
           <div class="sections-title">${this.escapeHtml(
-            overview.sectionTitle
+            overview.sectionTitle,
           )}</div>
           <div class="sections-grid">
             ${sectionsHtml}

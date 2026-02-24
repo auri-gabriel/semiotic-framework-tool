@@ -27,6 +27,7 @@ export class EngineeringLayersService {
     onlyAnswered,
     withoutOverview,
     language,
+    projectMetadata,
     format = 'pdf',
     onExportStart,
     onExportEnd,
@@ -41,7 +42,7 @@ export class EngineeringLayersService {
     const engineeringTags = await XmlService.getEngineeringTags();
     const layers = this.groupQuestionsByEngineeringLayer(
       questions,
-      engineeringTags
+      engineeringTags,
     );
 
     const overview = withoutOverview
@@ -50,7 +51,7 @@ export class EngineeringLayersService {
           layers,
           answers,
           language,
-          'engineering'
+          'engineering',
         );
     const content = this.generateContent({
       layers,
@@ -64,6 +65,7 @@ export class EngineeringLayersService {
       title,
       content,
       language,
+      projectMetadata,
     });
 
     if (format === 'pdf') {
@@ -122,7 +124,7 @@ export class EngineeringLayersService {
             return HtmlTemplateService.generateQuestionHtml(
               q,
               answers[q.id],
-              language
+              language,
             );
           })
           .join('');
@@ -132,7 +134,7 @@ export class EngineeringLayersService {
         return `
           <div class="group avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important; display: block;">
             <div class="group-title" style="page-break-after: avoid !important; break-after: avoid !important;">${HtmlTemplateService.escapeHtml(
-              layer.tag.names[language]
+              layer.tag.names[language],
             )}</div>
             ${questions}
           </div>

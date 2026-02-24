@@ -8,18 +8,29 @@ export function useAnswers() {
     (questionId, value) => {
       actions.updateAnswer(questionId, value);
     },
-    [actions]
+    [actions],
   );
 
   const importAnswers = useCallback(
     (xmlString) => {
       actions.handleImportXML(xmlString);
     },
-    [actions]
+    [actions],
   );
 
   const clearAnswers = useCallback(() => {
     actions.clearAnswers();
+  }, [actions]);
+
+  const setProjectMetadata = useCallback(
+    (metadata) => {
+      actions.setProjectMetadata(metadata);
+    },
+    [actions],
+  );
+
+  const clearProjectMetadata = useCallback(() => {
+    actions.clearProjectMetadata();
   }, [actions]);
 
   const resetToDefaultDefinitions = useCallback(() => {
@@ -32,9 +43,12 @@ export function useAnswers() {
 
   return {
     answers: state.answers,
+    projectMetadata: state.projectMetadata,
     updateAnswer,
     importAnswers,
     clearAnswers,
+    setProjectMetadata,
+    clearProjectMetadata,
     resetToDefaultDefinitions,
     isUsingCustomDefinitions,
   };

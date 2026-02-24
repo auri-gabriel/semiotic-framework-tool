@@ -19,6 +19,8 @@ const ActionTypes = {
   SET_EXPORT_ENG_ONLY_ANSWERED: 'SET_EXPORT_ENG_ONLY_ANSWERED',
   SET_EXPORTING: 'SET_EXPORTING',
   IMPORT_ANSWERS: 'IMPORT_ANSWERS',
+  SET_PROJECT_METADATA: 'SET_PROJECT_METADATA',
+  CLEAR_PROJECT_METADATA: 'CLEAR_PROJECT_METADATA',
   CLEAR_ANSWERS: 'CLEAR_ANSWERS',
   REFRESH_SEMIOTIC_DATA: 'REFRESH_SEMIOTIC_DATA',
 };
@@ -33,6 +35,22 @@ const initialState = {
   answers: (() => {
     const saved = localStorage.getItem('answers');
     return saved ? JSON.parse(saved) : {};
+  })(),
+  projectMetadata: (() => {
+    const saved = localStorage.getItem('projectMetadata');
+    if (!saved) {
+      return { focalProblem: '', authorship: '' };
+    }
+
+    try {
+      const parsed = JSON.parse(saved);
+      return {
+        focalProblem: parsed?.focalProblem || '',
+        authorship: parsed?.authorship || '',
+      };
+    } catch {
+      return { focalProblem: '', authorship: '' };
+    }
   })(),
   exportOnlyAnswered: false,
   exportEngOnlyAnswered: false,
@@ -82,6 +100,21 @@ function appReducer(state, action) {
     case ActionTypes.IMPORT_ANSWERS:
       return { ...state, answers: action.payload };
 
+    case ActionTypes.SET_PROJECT_METADATA:
+      return {
+        ...state,
+        projectMetadata: {
+          ...state.projectMetadata,
+          ...action.payload,
+        },
+      };
+
+    case ActionTypes.CLEAR_PROJECT_METADATA:
+      return {
+        ...state,
+        projectMetadata: { focalProblem: '', authorship: '' },
+      };
+
     case ActionTypes.CLEAR_ANSWERS:
       return { ...state, answers: {} };
 
@@ -105,6 +138,13 @@ export function AppProvider({ children }) {
   useEffect(() => {
     localStorage.setItem('answers', JSON.stringify(state.answers));
   }, [state.answers]);
+
+  useEffect(() => {
+    localStorage.setItem(
+      'projectMetadata',
+      JSON.stringify(state.projectMetadata),
+    );
+  }, [state.projectMetadata]);
 
   useEffect(() => {
     async function fetchData() {
@@ -164,13 +204,22 @@ export function AppProvider({ children }) {
     importAnswers: (answers) =>
       dispatch({ type: ActionTypes.IMPORT_ANSWERS, payload: answers }),
 
+    setProjectMetadata: (metadata) =>
+      dispatch({ type: ActionTypes.SET_PROJECT_METADATA, payload: metadata }),
+
+    clearProjectMetadata: () =>
+      dispatch({ type: ActionTypes.CLEAR_PROJECT_METADATA }),
+
     handleExport: async (format, options = {}) => {
       actions.setExporting(true);
 
       try {
         let exportObj;
         if (format === 'xml') {
-          exportObj = await XmlService.exportAnswersAsXML(state.answers);
+          exportObj = await XmlService.exportAnswersAsXML(
+            state.answers,
+            state.projectMetadata,
+          );
           if (exportObj) {
             const blob = new Blob([exportObj.data], {
               type: exportObj.mimeType,
@@ -191,6 +240,7 @@ export function AppProvider({ children }) {
             onlyAnswered: options.onlyAnswered,
             withoutOverview: state.exportWithoutOverview,
             language: state.language,
+            projectMetadata: state.projectMetadata,
             format: options.format,
           });
         }
@@ -204,6 +254,7 @@ export function AppProvider({ children }) {
             onlyAnswered: options.onlyAnswered,
             withoutOverview: state.exportEngWithoutOverview,
             language: state.language,
+            projectMetadata: state.projectMetadata,
             format: options.format,
           });
         }
@@ -233,7 +284,7 @@ export function AppProvider({ children }) {
           } catch (error) {
             console.error(
               'Error loading semiotic ladder data with new definitions:',
-              error
+              error,
             );
           } finally {
             dispatch({ type: ActionTypes.SET_LOADING, payload: false });
@@ -241,6 +292,7 @@ export function AppProvider({ children }) {
         }
 
         actions.importAnswers(imported.answers);
+        actions.setProjectMetadata(imported.projectMetadata);
       } catch (error) {
         console.error('Import error:', error);
         alert('Failed to import XML.');
@@ -263,7 +315,7 @@ export function AppProvider({ children }) {
         } catch (error) {
           console.error(
             'Error loading semiotic ladder data with default definitions:',
-            error
+            error,
           );
         } finally {
           dispatch({ type: ActionTypes.SET_LOADING, payload: false });
