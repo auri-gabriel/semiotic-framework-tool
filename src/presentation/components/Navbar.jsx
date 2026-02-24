@@ -148,14 +148,12 @@ const Navbar = () => {
                   style={{ minWidth: '140px' }}
                 >
                   <span
-                    className='mx-2'
-                    style={{ fontSize: '1.2em' }}
+                    className={`fi fi-${currentLanguage?.flagCode} mx-2`}
+                    style={{ width: '1.2em', height: '0.9em' }}
                     aria-hidden='true'
-                  >
-                    {currentLanguage?.flag}
-                  </span>
+                  ></span>
                   <span className='d-inline'>
-                    {currentLanguage?.label.split(' ')[0]}
+                    {currentLanguage?.shortLabel || currentLanguage?.label}
                   </span>
                 </button>
                 <ul
@@ -175,12 +173,10 @@ const Navbar = () => {
                         aria-label={lang.label}
                       >
                         <span
-                          className='mx-2'
-                          style={{ fontSize: '1.2em' }}
+                          className={`fi fi-${lang.flagCode} mx-2`}
+                          style={{ width: '1.2em', height: '0.9em' }}
                           aria-hidden='true'
-                        >
-                          {lang.flag}
-                        </span>
+                        ></span>
                         <span>{lang.label}</span>
                       </button>
                     </li>
