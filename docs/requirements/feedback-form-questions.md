@@ -4,6 +4,8 @@
 
 - Satisfaction scale: 1 (Muito insatisfeito / Very dissatisfied) to 5 (Muito satisfeito / Very satisfied)
 - Mark questions 1 to 9 as required
+- Required questions: 1 to 9
+- Optional questions: 10 to 14 (question 14 explicitly optional)
 - Use two separate Google Forms with mirrored structure (one PT-BR, one EN-US)
 
 ## Questions
