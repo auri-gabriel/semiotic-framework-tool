@@ -16,9 +16,18 @@ const texts = {
   },
 };
 
+const heroBackgroundByLanguage = {
+  en: 'hero_bg_en.png',
+  pt_BR: 'hero_bg_pt-br.png',
+};
+
 const HeroSection = () => {
   const { language } = useLanguage();
   const t = texts[language];
+  const heroBackgroundFile =
+    heroBackgroundByLanguage[language] || heroBackgroundByLanguage.en;
+  const heroBackgroundImage = `${import.meta.env.BASE_URL}${heroBackgroundFile}`;
+
   return (
     <section
       id='framework'
@@ -26,6 +35,7 @@ const HeroSection = () => {
       style={{
         minHeight: '350px',
         position: 'relative',
+        backgroundImage: `url('${heroBackgroundImage}')`,
       }}
     >
       <div className='container'>
