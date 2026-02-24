@@ -4,8 +4,8 @@ import SectionTitle from '../components/SectionTitle';
 
 const FORM_LINKS = {
   pt_BR:
-    'https://docs.google.com/forms/d/e/1FAIpQLSf2deNnYVJX4vTPYbMxnNFNXsoJVOSlvT9u4CbwOabaDn28vQ/',
-  en: 'https://docs.google.com/forms/d/e/1FAIpQLScPC_xasWNKnlxTkbEqqBKS2x-Nh_5jdHq2o1j1Yv9hlQG4EQ/',
+    'https://docs.google.com/forms/d/e/1FAIpQLSf2deNnYVJX4vTPYbMxnNFNXsoJVOSlvT9u4CbwOabaDn28vQ/viewform?usp=dialog',
+  en: 'https://docs.google.com/forms/d/e/1FAIpQLScPC_xasWNKnlxTkbEqqBKS2x-Nh_5jdHq2o1j1Yv9hlQG4EQ/viewform?usp=dialog',
 };
 
 const texts = {

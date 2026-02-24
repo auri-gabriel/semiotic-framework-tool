@@ -2,8 +2,8 @@
 
 ## Links
 
-- **PT-BR:** https://docs.google.com/forms/d/e/1FAIpQLSf2deNnYVJX4vTPYbMxnNFNXsoJVOSlvT9u4CbwOabaDn28vQ/
-- **EN-US:** https://docs.google.com/forms/d/e/1FAIpQLScPC_xasWNKnlxTkbEqqBKS2x-Nh_5jdHq2o1j1Yv9hlQG4EQ/
+- **PT-BR:** https://docs.google.com/forms/d/e/1FAIpQLSf2deNnYVJX4vTPYbMxnNFNXsoJVOSlvT9u4CbwOabaDn28vQ/viewform?usp=dialog
+- **EN-US:** https://docs.google.com/forms/d/e/1FAIpQLScPC_xasWNKnlxTkbEqqBKS2x-Nh_5jdHq2o1j1Yv9hlQG4EQ/viewform?usp=dialog
 
 ## Suggested setup
 
