@@ -4,4 +4,5 @@ export { default as StartSection } from './StartSection';
 export { default as AboutUsSection } from './AboutUsSection';
 export { default as WorksSection } from './WorksSection';
 export { default as ReferencesSection } from './ReferencesSection';
+export { default as FeedbackSection } from './FeedbackSection';
 export { default as FooterSection } from './FooterSection';

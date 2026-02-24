@@ -8,6 +8,7 @@ import {
   AboutUsSection,
   WorksSection,
   ReferencesSection,
+  FeedbackSection,
   FooterSection,
 } from '../sections';
 
@@ -42,6 +43,7 @@ const MainLayout = () => {
         <AboutUsSection />
         <WorksSection />
         <ReferencesSection />
+        <FeedbackSection />
       </main>
       <FooterSection />
       {showBackToTopButton ? (

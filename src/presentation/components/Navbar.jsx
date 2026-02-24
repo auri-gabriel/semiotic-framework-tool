@@ -11,6 +11,7 @@ const texts = {
       start: 'Start',
       aboutUs: 'About us',
       works: 'Works',
+      feedback: 'Feedback',
     },
     language: 'Language',
   },
@@ -23,6 +24,7 @@ const texts = {
       start: 'Iniciar',
       aboutUs: 'Sobre nós',
       works: 'Trabalhos',
+      feedback: 'Feedback',
     },
     language: 'Idioma',
   },
@@ -124,6 +126,11 @@ const Navbar = () => {
             <li className='nav-item d-flex align-items-center'>
               <a className='nav-link' href='#works'>
                 {t.navigation.works}
+              </a>
+            </li>
+            <li className='nav-item d-flex align-items-center'>
+              <a className='nav-link' href='#feedback'>
+                {t.navigation.feedback}
               </a>
             </li>
             <li className='nav-item d-flex align-items-center ms-3'>
