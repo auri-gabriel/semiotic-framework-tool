@@ -42,8 +42,8 @@ const MainLayout = () => {
         <StartSection />
         <AboutUsSection />
         <WorksSection />
-        <ReferencesSection />
         <FeedbackSection />
+        <ReferencesSection />
       </main>
       <FooterSection />
       {showBackToTopButton ? (
