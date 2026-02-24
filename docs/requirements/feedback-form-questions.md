@@ -8,6 +8,11 @@
 - Optional questions: 10 to 14 (question 14 explicitly optional)
 - Use two separate Google Forms with mirrored structure (one PT-BR, one EN-US)
 
+## Form description
+
+- **PT-BR:** Este formulário coleta feedback sobre a ferramenta FS.Edu para apoiar melhorias de usabilidade, desempenho e funcionalidades. O preenchimento leva cerca de 5 a 10 minutos. As respostas são analisadas de forma anônima e usadas exclusivamente para fins acadêmicos e de evolução da ferramenta.
+- **EN-US:** This form collects feedback about the FS.Edu Tool to support improvements in usability, performance, and features. It takes about 5 to 10 minutes to complete. Responses are analyzed anonymously and used exclusively for academic purposes and tool evolution.
+
 ## Questions
 
 ### 1) Consentimento / Consent
