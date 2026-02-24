@@ -22,14 +22,13 @@ const ReferencesSection = () => {
   const t = texts[language];
 
   return (
-    <section id='references' className='bg-light py-5 border-top'>
+    <section id='references' className='py-5 border-top'>
       <div className='container'>
         <SectionTitle title={t.title}></SectionTitle>
-        
-          {t.references.map((reference, idx) => (
-            <p key={idx}>{reference}</p>
-          ))}
 
+        {t.references.map((reference, idx) => (
+          <p key={idx}>{reference}</p>
+        ))}
       </div>
     </section>
   );

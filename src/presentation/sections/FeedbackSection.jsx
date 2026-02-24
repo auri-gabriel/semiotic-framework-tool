@@ -28,7 +28,7 @@ const FeedbackSection = () => {
   const t = texts[language];
 
   return (
-    <section className='py-5 border-top' id='feedback'>
+    <section className='bg-light py-5 border-top' id='feedback'>
       <div className='container'>
         <SectionTitle title={t.title}></SectionTitle>
         <p className='mb-4'>{t.description}</p>
