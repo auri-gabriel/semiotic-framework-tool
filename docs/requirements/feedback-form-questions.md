@@ -1,5 +1,10 @@
 # Feedback Form Questions (PT-BR / EN-US)
 
+## Links
+
+- **PT-BR:** https://docs.google.com/forms/d/e/1FAIpQLSf2deNnYVJX4vTPYbMxnNFNXsoJVOSlvT9u4CbwOabaDn28vQ/viewform?usp=dialog
+- **EN-US:** https://docs.google.com/forms/d/e/1FAIpQLScPC_xasWNKnlxTkbEqqBKS2x-Nh_5jdHq2o1j1Yv9hlQG4EQ/viewform?usp=publish-editor
+
 ## Suggested setup
 
 - Satisfaction scale: 1 (Muito insatisfeito / Very dissatisfied) to 5 (Muito satisfeito / Very satisfied)
