@@ -25,9 +25,10 @@ export class XmlService {
   /**
    * Exports answers as XML format
    * @param {Object} answers - Object with questionId as key and answer as value
+   * @param {Object} projectMetadata - Project metadata object
    * @returns {Promise<Object>} Export result with data, mimeType, and fileName
    */
-  static async exportAnswersAsXML(answers) {
+  static async exportAnswersAsXML(answers, projectMetadata = {}) {
     // Use custom definitions if available, otherwise fetch from default location
     let definitionsXML;
     const customDefinitions = XmlReaderService.getCustomDefinitions();
@@ -43,10 +44,25 @@ export class XmlService {
         ([k, v]) =>
           `  <answer id="${k}">${String(v).replace(
             /[<>&]/g,
-            (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' }[c])
-          )}</answer>`
+            (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' })[c],
+          )}</answer>`,
       )
       .join('\n')}\n</answers>`;
+
+    const focalProblem = String(projectMetadata?.focalProblem || '').replace(
+      /[<>&]/g,
+      (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' })[c],
+    );
+    const authorship = String(projectMetadata?.authorship || '').replace(
+      /[<>&]/g,
+      (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' })[c],
+    );
+
+    const metadataXML =
+      '<project-metadata>\n' +
+      `  <focal-problem>${focalProblem}</focal-problem>\n` +
+      `  <authorship>${authorship}</authorship>\n` +
+      '</project-metadata>';
 
     // Remove XML declaration from definitions if present
     const cleanedDefinitions = definitionsXML.replace(/<\?xml.*?\?>\s*/i, '');
@@ -56,6 +72,8 @@ export class XmlService {
       `<?xml version="1.0" encoding="UTF-8"?>\n` +
       `<exported-semiotic-framework>\n` +
       cleanedDefinitions.trim() +
+      '\n' +
+      metadataXML +
       '\n' +
       answersXML +
       '\n</exported-semiotic-framework>';
@@ -97,6 +115,10 @@ export class XmlService {
     const result = {
       answers: {},
       definitions: null,
+      projectMetadata: {
+        focalProblem: '',
+        authorship: '',
+      },
     };
 
     // Check if this is an exported-semiotic-framework with definitions
@@ -108,7 +130,7 @@ export class XmlService {
         // Store the definitions as XML string for later use
         const serializer = new XMLSerializer();
         result.definitions = `<?xml version="1.0" encoding="UTF-8"?>\n${serializer.serializeToString(
-          definitionsNode
+          definitionsNode,
         )}`;
       }
     }
@@ -117,6 +139,15 @@ export class XmlService {
     const answerNodes = xml.getElementsByTagName('answer');
     for (let node of answerNodes) {
       result.answers[node.getAttribute('id')] = node.textContent;
+    }
+
+    const metadataNode = xml.querySelector('project-metadata');
+    if (metadataNode) {
+      result.projectMetadata = {
+        focalProblem:
+          metadataNode.querySelector('focal-problem')?.textContent || '',
+        authorship: metadataNode.querySelector('authorship')?.textContent || '',
+      };
     }
 
     return result;
@@ -132,7 +163,7 @@ export class XmlService {
     const parser = new DOMParser();
     const definitions = parser.parseFromString(
       definitionsXML,
-      'application/xml'
+      'application/xml',
     );
     const engineeringTags = {};
 
