@@ -38,6 +38,10 @@ export class EngineeringLayersService {
       language === 'pt_BR'
         ? 'Camadas de Engenharia de Software'
         : 'Software Engineering Layers';
+    const timestamp = HtmlTemplateService.getTimestampString();
+    const baseFileName =
+      language === 'pt_BR' ? 'camadas-engenharia' : 'engineering-layers';
+    const fileName = `${baseFileName}_${timestamp}`;
 
     const engineeringTags = await XmlService.getEngineeringTags();
     const layers = this.groupQuestionsByEngineeringLayer(
@@ -69,9 +73,9 @@ export class EngineeringLayersService {
     });
 
     if (format === 'pdf') {
-      await PdfService.generatePdf(htmlContent, title);
+      await PdfService.generatePdf(htmlContent, fileName);
     } else if (format === 'html') {
-      HtmlTemplateService.downloadHtml(htmlContent, title);
+      HtmlTemplateService.downloadHtml(htmlContent, `${fileName}.html`);
     } else if (format === 'preview') {
       HtmlTemplateService.previewHtml(htmlContent, title);
     }

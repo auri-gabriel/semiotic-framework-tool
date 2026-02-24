@@ -35,6 +35,10 @@ export class SemioticLadderService {
     if (onExportStart) onExportStart();
 
     const title = language === 'pt_BR' ? 'Escada Semiótica' : 'Semiotic Ladder';
+    const timestamp = HtmlTemplateService.getTimestampString();
+    const baseFileName =
+      language === 'pt_BR' ? 'escada-semiótica' : 'semiotic-ladder';
+    const fileName = `${baseFileName}_${timestamp}`;
 
     const overview = withoutOverview
       ? null
@@ -59,9 +63,9 @@ export class SemioticLadderService {
     });
 
     if (format === 'pdf') {
-      await PdfService.generatePdf(htmlContent, title);
+      await PdfService.generatePdf(htmlContent, fileName);
     } else if (format === 'html') {
-      HtmlTemplateService.downloadHtml(htmlContent, title);
+      HtmlTemplateService.downloadHtml(htmlContent, `${fileName}.html`);
     } else if (format === 'preview') {
       HtmlTemplateService.previewHtml(htmlContent, title);
     }

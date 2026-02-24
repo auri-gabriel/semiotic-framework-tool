@@ -39,6 +39,19 @@ export class XmlService {
       definitionsXML = await this.fetchDefinitionsXML();
     }
 
+    // Generate timestamp string: YYYYMMDD_HHMMSS
+    const now = new Date();
+    const pad = (n) => n.toString().padStart(2, '0');
+    const timestamp = `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}_${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
+    // Use project title or fallback
+    let baseFileName = 'semiotic-answers';
+    if (projectMetadata && projectMetadata.title) {
+      baseFileName = String(projectMetadata.title)
+        .replace(/[^a-zA-Z0-9-_]/g, '_')
+        .toLowerCase();
+    }
+    const fileName = `${baseFileName}_${timestamp}.xml`;
+
     const answersXML = `<answers>\n${Object.entries(answers)
       .map(
         ([k, v]) =>
@@ -81,7 +94,7 @@ export class XmlService {
     return {
       data,
       mimeType: 'application/xml',
-      fileName: 'answers.xml',
+      fileName,
     };
   }
 

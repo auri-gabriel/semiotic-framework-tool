@@ -540,14 +540,28 @@ body {
         </div>
         
         <div class="footer">
-          <p>Generated on ${new Date().toLocaleDateString(
+          <p>Generated on ${new Date().toLocaleString(
             language === 'pt_BR' ? 'pt-BR' : 'en-US',
+            {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+              second: '2-digit',
+            }
           )}</p>
         </div>
       </div>
     </body>
     </html>
   `;
+    // Utility for timestamped filenames
+    static getTimestampString() {
+      const now = new Date();
+      const pad = (n) => n.toString().padStart(2, '0');
+      return `${now.getFullYear()}${pad(now.getMonth() + 1)}${pad(now.getDate())}_${pad(now.getHours())}${pad(now.getMinutes())}${pad(now.getSeconds())}`;
+    }
   }
 
   /**
