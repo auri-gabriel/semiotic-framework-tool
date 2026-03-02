@@ -39,17 +39,18 @@ const initialState = {
   projectMetadata: (() => {
     const saved = localStorage.getItem('projectMetadata');
     if (!saved) {
-      return { focalProblem: '', authorship: '' };
+      return { title: '', focalProblem: '', authorship: '' };
     }
 
     try {
       const parsed = JSON.parse(saved);
       return {
+        title: parsed?.title || '',
         focalProblem: parsed?.focalProblem || '',
         authorship: parsed?.authorship || '',
       };
     } catch {
-      return { focalProblem: '', authorship: '' };
+      return { title: '', focalProblem: '', authorship: '' };
     }
   })(),
   exportOnlyAnswered: false,
@@ -112,7 +113,7 @@ function appReducer(state, action) {
     case ActionTypes.CLEAR_PROJECT_METADATA:
       return {
         ...state,
-        projectMetadata: { focalProblem: '', authorship: '' },
+        projectMetadata: { title: '', focalProblem: '', authorship: '' },
       };
 
     case ActionTypes.CLEAR_ANSWERS:

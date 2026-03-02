@@ -5,6 +5,7 @@ import {
   isAnswered,
   generateGroupedDocumentOverview,
 } from '../utils/answerUtils.js';
+import { buildExportFileBaseName } from '../utils/exportFileNameUtils.js';
 
 /**
  * Service for generating Engineering Layers documents
@@ -68,10 +69,16 @@ export class EngineeringLayersService {
       projectMetadata,
     });
 
+    const fileBaseName = buildExportFileBaseName(
+      projectMetadata,
+      new Date(),
+      'engineering-layers',
+    );
+
     if (format === 'pdf') {
-      await PdfService.generatePdf(htmlContent, title);
+      await PdfService.generatePdf(htmlContent, fileBaseName);
     } else if (format === 'html') {
-      HtmlTemplateService.downloadHtml(htmlContent, title);
+      HtmlTemplateService.downloadHtml(htmlContent, `${fileBaseName}.html`);
     } else if (format === 'preview') {
       HtmlTemplateService.previewHtml(htmlContent, title);
     }

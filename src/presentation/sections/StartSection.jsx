@@ -12,7 +12,9 @@ const texts = {
     title: 'Start',
     projectInfoTitle: 'Project Information',
     projectInfoHelper:
-      'Register the focal problem and authorship before filling in the questions.',
+      'Register the project title, focal problem, and authorship before filling in the questions.',
+    projectTitleLabel: 'Project Title',
+    projectTitlePlaceholder: 'Enter the project title',
     focalProblemLabel: 'Focal Problem',
     focalProblemPlaceholder:
       'Describe the central problem this project aims to solve',
@@ -40,7 +42,9 @@ const texts = {
     title: 'Iniciar',
     projectInfoTitle: 'Informações do Projeto',
     projectInfoHelper:
-      'Registre o problema focal e a autoria antes de preencher as perguntas.',
+      'Registre o título do projeto, o problema focal e a autoria antes de preencher as perguntas.',
+    projectTitleLabel: 'Título do Projeto',
+    projectTitlePlaceholder: 'Digite o título do projeto',
     focalProblemLabel: 'Problema Focal',
     focalProblemPlaceholder:
       'Descreva o problema central que este projeto busca resolver',
@@ -98,10 +102,11 @@ const StartSection = () => {
 
   const t = texts[language];
   const projectInfoAnsweredCount = [
+    projectMetadata.title,
     projectMetadata.focalProblem,
     projectMetadata.authorship,
   ].filter((value) => value?.trim()).length;
-  const projectInfoTotalCount = 2;
+  const projectInfoTotalCount = 3;
 
   const handleClearAnswersClick = () => {
     setClearType('answers');
@@ -188,6 +193,25 @@ const StartSection = () => {
                     ></i>
                     <div>{t.projectInfoHelper}</div>
                   </div>
+                </div>
+
+                <div className='mb-3'>
+                  <label
+                    htmlFor='projectTitle'
+                    className='form-label fw-medium'
+                  >
+                    {t.projectTitleLabel}
+                  </label>
+                  <input
+                    id='projectTitle'
+                    type='text'
+                    className='form-control'
+                    value={projectMetadata.title}
+                    onChange={(event) =>
+                      setProjectMetadata({ title: event.target.value })
+                    }
+                    placeholder={t.projectTitlePlaceholder}
+                  />
                 </div>
 
                 <div className='mb-3'>

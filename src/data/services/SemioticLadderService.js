@@ -5,6 +5,7 @@ import {
   isAnswered,
   generateGroupedDocumentOverview,
 } from '../utils/answerUtils.js';
+import { buildExportFileBaseName } from '../utils/exportFileNameUtils.js';
 
 /**
  * Service for generating Semiotic Ladder documents
@@ -58,10 +59,16 @@ export class SemioticLadderService {
       projectMetadata,
     });
 
+    const fileBaseName = buildExportFileBaseName(
+      projectMetadata,
+      new Date(),
+      'semiotic-ladder',
+    );
+
     if (format === 'pdf') {
-      await PdfService.generatePdf(htmlContent, title);
+      await PdfService.generatePdf(htmlContent, fileBaseName);
     } else if (format === 'html') {
-      HtmlTemplateService.downloadHtml(htmlContent, title);
+      HtmlTemplateService.downloadHtml(htmlContent, `${fileBaseName}.html`);
     } else if (format === 'preview') {
       HtmlTemplateService.previewHtml(htmlContent, title);
     }

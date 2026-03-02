@@ -485,21 +485,32 @@ body {
     const labels =
       language === 'pt_BR'
         ? {
+            projectTitle: 'Título do Projeto',
             focalProblem: 'Problema Focal',
             authorship: 'Autoria',
             notInformed: '(não informado)',
           }
         : {
+            projectTitle: 'Project Title',
             focalProblem: 'Focal Problem',
             authorship: 'Authorship',
             notInformed: '(not provided)',
           };
 
+    const projectTitle = projectMetadata?.title || '';
     const focalProblem = projectMetadata?.focalProblem || '';
     const authorship = projectMetadata?.authorship || '';
 
     const metadataHtml = `
       <div class="metadata">
+        <div class="metadata-item">
+          <div class="metadata-label">${this.escapeHtml(labels.projectTitle)}</div>
+          <div class="metadata-value">${
+            projectTitle
+              ? this.escapeHtml(projectTitle)
+              : this.escapeHtml(labels.notInformed)
+          }</div>
+        </div>
         <div class="metadata-item">
           <div class="metadata-label">${this.escapeHtml(labels.focalProblem)}</div>
           <div class="metadata-value">${
@@ -600,7 +611,7 @@ body {
     // Generate overall statistics
     const overallStatsHtml = Object.entries(overview.overallStats)
       .map(
-        ([key, stat]) => `
+        ([, stat]) => `
         <div class="stat-item">
           <div class="stat-label">${this.escapeHtml(stat.label)}</div>
           <div class="stat-value">${this.escapeHtml(
