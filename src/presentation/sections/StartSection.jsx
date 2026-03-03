@@ -114,6 +114,10 @@ const StartSection = () => {
     setExportWithoutOverview,
     exportEngWithoutOverview,
     setExportEngWithoutOverview,
+    exportIncludeDescriptions,
+    setExportIncludeDescriptions,
+    exportEngIncludeDescriptions,
+    setExportEngIncludeDescriptions,
   } = useExport();
 
   const [showClearModal, setShowClearModal] = useState(false);
@@ -383,6 +387,10 @@ const StartSection = () => {
         setExportWithoutOverview={setExportWithoutOverview}
         exportEngWithoutOverview={exportEngWithoutOverview}
         setExportEngWithoutOverview={setExportEngWithoutOverview}
+        exportIncludeDescriptions={exportIncludeDescriptions}
+        setExportIncludeDescriptions={setExportIncludeDescriptions}
+        exportEngIncludeDescriptions={exportEngIncludeDescriptions}
+        setExportEngIncludeDescriptions={setExportEngIncludeDescriptions}
       />
 
       {/* Clear Confirmation Modal */}

@@ -190,6 +190,19 @@ body {
   break-after: avoid;
 }
 
+.item-description {
+  font-size: 13px;
+  color: #4a4a4a;
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-left: 3px solid #999999;
+  padding: 10px 12px;
+  margin: -4px 0 12px 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.5;
+}
+
 .question {
   margin-bottom: 16px;
   margin-left: 24px;
@@ -666,6 +679,33 @@ body {
         </div>
       </div>
     `;
+  }
+
+  /**
+   * Generates optional description HTML block for steps/layers
+   * @param {Object} params - Description params
+   * @param {Object} params.item - Item object containing texts/descriptions
+   * @param {boolean} params.includeDescriptions - Whether to include descriptions
+   * @param {string} params.language - Language code
+   * @returns {string} Description HTML or empty string
+   */
+  static generateItemDescriptionHtml({ item, includeDescriptions, language }) {
+    if (!includeDescriptions || !item) {
+      return '';
+    }
+
+    const descriptionText =
+      item.texts?.[language] ||
+      item.texts?.en ||
+      item.descriptions?.[language] ||
+      item.descriptions?.en ||
+      '';
+
+    if (!descriptionText?.trim()) {
+      return '';
+    }
+
+    return `<div class="item-description">${this.escapeHtml(descriptionText.trim())}</div>`;
   }
 
   /**

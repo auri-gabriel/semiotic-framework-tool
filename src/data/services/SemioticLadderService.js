@@ -27,6 +27,7 @@ export class SemioticLadderService {
     answers,
     onlyAnswered,
     withoutOverview,
+    includeDescriptions,
     language,
     projectMetadata,
     format = 'pdf',
@@ -49,6 +50,7 @@ export class SemioticLadderService {
       grouping,
       answers,
       onlyAnswered,
+      includeDescriptions,
       language,
       overview,
     });
@@ -85,6 +87,7 @@ export class SemioticLadderService {
     grouping,
     answers,
     onlyAnswered,
+    includeDescriptions,
     language,
     overview,
   }) {
@@ -107,11 +110,19 @@ export class SemioticLadderService {
 
             if (!questions) return '';
 
+            const descriptionHtml =
+              HtmlTemplateService.generateItemDescriptionHtml({
+                item: stepProps.tag,
+                includeDescriptions,
+                language,
+              });
+
             return `
               <div class="step avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important; display: block;">
                 <div class="step-title" style="page-break-after: avoid !important; break-after: avoid !important;">${HtmlTemplateService.escapeHtml(
                   stepProps.tag.names[language],
                 )}</div>
+                ${descriptionHtml}
                 ${questions}
               </div>
             `;

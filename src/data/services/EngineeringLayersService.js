@@ -27,6 +27,7 @@ export class EngineeringLayersService {
     answers,
     onlyAnswered,
     withoutOverview,
+    includeDescriptions,
     language,
     projectMetadata,
     format = 'pdf',
@@ -58,6 +59,7 @@ export class EngineeringLayersService {
       layers,
       answers,
       onlyAnswered,
+      includeDescriptions,
       language,
       overview,
     });
@@ -117,6 +119,7 @@ export class EngineeringLayersService {
     layers,
     answers,
     onlyAnswered,
+    includeDescriptions,
     language,
     overview,
   }) {
@@ -138,11 +141,20 @@ export class EngineeringLayersService {
 
         if (!questions) return '';
 
+        const descriptionHtml = HtmlTemplateService.generateItemDescriptionHtml(
+          {
+            item: layer.tag,
+            includeDescriptions,
+            language,
+          },
+        );
+
         return `
           <div class="group avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important; display: block;">
             <div class="group-title" style="page-break-after: avoid !important; break-after: avoid !important;">${HtmlTemplateService.escapeHtml(
               layer.tag.names[language],
             )}</div>
+            ${descriptionHtml}
             ${questions}
           </div>
         `;

@@ -17,6 +17,8 @@ const ActionTypes = {
   SET_EXPORT_ENG_WITHOUT_OVERVIEW: 'SET_EXPORT_ENG_WITHOUT_OVERVIEW',
   SET_EXPORT_ONLY_ANSWERED: 'SET_EXPORT_ONLY_ANSWERED',
   SET_EXPORT_ENG_ONLY_ANSWERED: 'SET_EXPORT_ENG_ONLY_ANSWERED',
+  SET_EXPORT_INCLUDE_DESCRIPTIONS: 'SET_EXPORT_INCLUDE_DESCRIPTIONS',
+  SET_EXPORT_ENG_INCLUDE_DESCRIPTIONS: 'SET_EXPORT_ENG_INCLUDE_DESCRIPTIONS',
   SET_EXPORTING: 'SET_EXPORTING',
   IMPORT_ANSWERS: 'IMPORT_ANSWERS',
   SET_PROJECT_METADATA: 'SET_PROJECT_METADATA',
@@ -57,6 +59,8 @@ const initialState = {
   exportEngOnlyAnswered: false,
   exportWithoutOverview: false,
   exportEngWithoutOverview: false,
+  exportIncludeDescriptions: false,
+  exportEngIncludeDescriptions: false,
   exporting: false,
 };
 
@@ -94,6 +98,12 @@ function appReducer(state, action) {
 
     case ActionTypes.SET_EXPORT_ENG_WITHOUT_OVERVIEW:
       return { ...state, exportEngWithoutOverview: action.payload };
+
+    case ActionTypes.SET_EXPORT_INCLUDE_DESCRIPTIONS:
+      return { ...state, exportIncludeDescriptions: action.payload };
+
+    case ActionTypes.SET_EXPORT_ENG_INCLUDE_DESCRIPTIONS:
+      return { ...state, exportEngIncludeDescriptions: action.payload };
 
     case ActionTypes.SET_EXPORTING:
       return { ...state, exporting: action.payload };
@@ -199,6 +209,18 @@ export function AppProvider({ children }) {
         payload: value,
       }),
 
+    setExportIncludeDescriptions: (value) =>
+      dispatch({
+        type: ActionTypes.SET_EXPORT_INCLUDE_DESCRIPTIONS,
+        payload: value,
+      }),
+
+    setExportEngIncludeDescriptions: (value) =>
+      dispatch({
+        type: ActionTypes.SET_EXPORT_ENG_INCLUDE_DESCRIPTIONS,
+        payload: value,
+      }),
+
     setExporting: (exporting) =>
       dispatch({ type: ActionTypes.SET_EXPORTING, payload: exporting }),
 
@@ -240,6 +262,7 @@ export function AppProvider({ children }) {
             answers: state.answers,
             onlyAnswered: options.onlyAnswered,
             withoutOverview: state.exportWithoutOverview,
+            includeDescriptions: state.exportIncludeDescriptions,
             language: state.language,
             projectMetadata: state.projectMetadata,
             format: options.format,
@@ -254,6 +277,7 @@ export function AppProvider({ children }) {
             answers: state.answers,
             onlyAnswered: options.onlyAnswered,
             withoutOverview: state.exportEngWithoutOverview,
+            includeDescriptions: state.exportEngIncludeDescriptions,
             language: state.language,
             projectMetadata: state.projectMetadata,
             format: options.format,
