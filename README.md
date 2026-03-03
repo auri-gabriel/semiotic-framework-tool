@@ -65,6 +65,32 @@ npm run preview  # Preview production build
 npm run lint     # Run ESLint
 ```
 
+## 🔁 Branching, CI, and Release Flow
+
+This repository follows a lightweight Git Flow-style process:
+
+- **`feature/*` branches**: new work starts here
+- **`develop` branch**: integration branch for completed features
+- **`main` branch**: production branch
+
+### Automation
+
+- **CI (`.github/workflows/ci.yml`)** runs on pushes to `feature/*`, `develop`, and `main`, and on pull requests to `develop`/`main`.
+- CI validates commit messages against Conventional Commits.
+- CI validates code quality with `npm ci`, `npm run lint`, and `npm run build`.
+- **Release + deploy (`.github/workflows/release-deploy.yml`)** runs automatically when a pull request from `develop` to `main` is merged.
+- On that merge, the workflow uses semantic versioning (from commit messages) to create a GitHub Release and then deploys `dist/` to GitHub Pages.
+
+### Recommended Team Practice
+
+Use Conventional Commits so versioning is computed automatically:
+
+- `feat:` -> **minor** version bump
+- `fix:` -> **patch** version bump
+- `BREAKING CHANGE:` (or `type!:`) -> **major** version bump
+
+Examples: `feat(auth): add SSO login`, `fix(pdf): prevent empty export`, `feat!: redesign XML schema`.
+
 ## 📖 How to Use
 
 ### 1. Language Selection
