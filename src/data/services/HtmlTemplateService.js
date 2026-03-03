@@ -420,7 +420,59 @@ body {
     // Clean up any ql-ui spans that might be left over
     fixedHtml = fixedHtml.replace(/<span\s+class="ql-ui"[^>]*><\/span>/gi, '');
 
+    // Normalize links without protocol (e.g. www.google.com -> https://www.google.com)
+    fixedHtml = this.normalizeAnchorHrefs(fixedHtml);
+
     return fixedHtml;
+  }
+
+  /**
+   * Normalizes anchor href values to avoid relative/local links in exports
+   * @param {string} html - HTML content with anchors
+   * @returns {string} HTML with normalized href values
+   */
+  static normalizeAnchorHrefs(html) {
+    if (!html) return html;
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const anchors = doc.querySelectorAll('a[href]');
+
+    anchors.forEach((anchor) => {
+      const href = anchor.getAttribute('href');
+      if (!href) return;
+
+      const normalizedHref = this.normalizeHref(href);
+      if (normalizedHref !== href) {
+        anchor.setAttribute('href', normalizedHref);
+      }
+    });
+
+    return doc.body.innerHTML;
+  }
+
+  /**
+   * Normalizes a single href value for exported documents
+   * @param {string} href - Anchor href value
+   * @returns {string} Normalized href
+   */
+  static normalizeHref(href) {
+    const trimmedHref = href.trim();
+    if (!trimmedHref) return href;
+
+    if (/^(https?:|mailto:|tel:|ftp:|#)/i.test(trimmedHref)) {
+      return trimmedHref;
+    }
+
+    if (trimmedHref.startsWith('//')) {
+      return `https:${trimmedHref}`;
+    }
+
+    if (/^www\./i.test(trimmedHref)) {
+      return `https://${trimmedHref}`;
+    }
+
+    return trimmedHref;
   }
 
   /**
