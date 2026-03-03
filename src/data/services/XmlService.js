@@ -1,5 +1,6 @@
 import { DATA_CONFIG } from '../config.js';
 import { XmlReaderService } from './XmlReaderService.js';
+import { buildExportFileBaseName } from '../utils/exportFileNameUtils.js';
 
 /**
  * Service for handling XML import/export operations
@@ -49,6 +50,10 @@ export class XmlService {
       )
       .join('\n')}\n</answers>`;
 
+    const projectTitle = String(projectMetadata?.title || '').replace(
+      /[<>&]/g,
+      (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' })[c],
+    );
     const focalProblem = String(projectMetadata?.focalProblem || '').replace(
       /[<>&]/g,
       (c) => ({ '<': '&lt;', '>': '&gt;', '&': '&amp;' })[c],
@@ -60,9 +65,16 @@ export class XmlService {
 
     const metadataXML =
       '<project-metadata>\n' +
+      `  <title>${projectTitle}</title>\n` +
       `  <focal-problem>${focalProblem}</focal-problem>\n` +
       `  <authorship>${authorship}</authorship>\n` +
       '</project-metadata>';
+
+    const fileBaseName = buildExportFileBaseName(
+      projectMetadata,
+      new Date(),
+      'xml',
+    );
 
     // Remove XML declaration from definitions if present
     const cleanedDefinitions = definitionsXML.replace(/<\?xml.*?\?>\s*/i, '');
@@ -81,7 +93,7 @@ export class XmlService {
     return {
       data,
       mimeType: 'application/xml',
-      fileName: 'answers.xml',
+      fileName: `${fileBaseName}.xml`,
     };
   }
 
@@ -116,6 +128,7 @@ export class XmlService {
       answers: {},
       definitions: null,
       projectMetadata: {
+        title: '',
         focalProblem: '',
         authorship: '',
       },
@@ -144,6 +157,7 @@ export class XmlService {
     const metadataNode = xml.querySelector('project-metadata');
     if (metadataNode) {
       result.projectMetadata = {
+        title: metadataNode.querySelector('title')?.textContent || '',
         focalProblem:
           metadataNode.querySelector('focal-problem')?.textContent || '',
         authorship: metadataNode.querySelector('authorship')?.textContent || '',

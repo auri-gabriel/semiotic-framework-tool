@@ -7,6 +7,7 @@ const texts = {
     exportLadder: 'Semiotic Ladder',
     exportLadderAnswered: 'Only answered questions',
     exportWithoutOverview: 'Without overview',
+    exportIncludeDescriptions: 'Include step descriptions',
     importXML: 'Import XML',
     exportPDF: 'as PDF',
     exportDOCX: 'as DOCX',
@@ -24,6 +25,7 @@ const texts = {
     exportLadder: 'Escada Semiótica',
     exportLadderAnswered: 'Apenas perguntas respondidas',
     exportWithoutOverview: 'Sem visão geral',
+    exportIncludeDescriptions: 'Incluir descrições dos degraus',
     importXML: 'Importar XML',
     exportPDF: 'em PDF',
     exportDOCX: 'em DOCX',
@@ -49,6 +51,10 @@ const BottomToolbar = ({
   setExportWithoutOverview,
   exportEngWithoutOverview,
   setExportEngWithoutOverview,
+  exportIncludeDescriptions,
+  setExportIncludeDescriptions,
+  exportEngIncludeDescriptions,
+  setExportEngIncludeDescriptions,
 }) => {
   const fileInputRef = useRef();
   const t = texts[language];
@@ -289,6 +295,24 @@ const BottomToolbar = ({
                             <small>{t.exportWithoutOverview}</small>
                           </label>
                         </div>
+
+                        <div className='form-check'>
+                          <input
+                            className='form-check-input'
+                            type='checkbox'
+                            id='exportIncludeDescriptions'
+                            checked={exportIncludeDescriptions}
+                            onChange={(e) => {
+                              setExportIncludeDescriptions(e.target.checked);
+                            }}
+                          />
+                          <label
+                            className='form-check-label text-muted'
+                            htmlFor='exportIncludeDescriptions'
+                          >
+                            <small>{t.exportIncludeDescriptions}</small>
+                          </label>
+                        </div>
                       </div>
                     </div>
                   </div>
@@ -396,12 +420,28 @@ const BottomToolbar = ({
                             <small>{t.exportWithoutOverview}</small>
                           </label>
                         </div>
+
+                        <div className='form-check'>
+                          <input
+                            className='form-check-input'
+                            type='checkbox'
+                            id='exportEngIncludeDescriptions'
+                            checked={exportEngIncludeDescriptions}
+                            onChange={(e) => {
+                              setExportEngIncludeDescriptions(e.target.checked);
+                            }}
+                          />
+                          <label
+                            className='form-check-label text-muted'
+                            htmlFor='exportEngIncludeDescriptions'
+                          >
+                            <small>{t.exportIncludeDescriptions}</small>
+                          </label>
+                        </div>
                       </div>
                     </div>
                   </div>
                 </li>
-
-                {/* ...existing code... (rest of dropdown items if any) */}
               </ul>
             </div>
           </div>

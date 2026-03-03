@@ -5,6 +5,7 @@ import {
   isAnswered,
   generateGroupedDocumentOverview,
 } from '../utils/answerUtils.js';
+import { buildExportFileBaseName } from '../utils/exportFileNameUtils.js';
 
 /**
  * Service for generating Engineering Layers documents
@@ -26,6 +27,7 @@ export class EngineeringLayersService {
     answers,
     onlyAnswered,
     withoutOverview,
+    includeDescriptions,
     language,
     projectMetadata,
     format = 'pdf',
@@ -57,6 +59,7 @@ export class EngineeringLayersService {
       layers,
       answers,
       onlyAnswered,
+      includeDescriptions,
       language,
       overview,
     });
@@ -68,10 +71,16 @@ export class EngineeringLayersService {
       projectMetadata,
     });
 
+    const fileBaseName = buildExportFileBaseName(
+      projectMetadata,
+      new Date(),
+      'engineering-layers',
+    );
+
     if (format === 'pdf') {
-      await PdfService.generatePdf(htmlContent, title);
+      await PdfService.generatePdf(htmlContent, fileBaseName);
     } else if (format === 'html') {
-      HtmlTemplateService.downloadHtml(htmlContent, title);
+      HtmlTemplateService.downloadHtml(htmlContent, `${fileBaseName}.html`);
     } else if (format === 'preview') {
       HtmlTemplateService.previewHtml(htmlContent, title);
     }
@@ -110,6 +119,7 @@ export class EngineeringLayersService {
     layers,
     answers,
     onlyAnswered,
+    includeDescriptions,
     language,
     overview,
   }) {
@@ -131,11 +141,20 @@ export class EngineeringLayersService {
 
         if (!questions) return '';
 
+        const descriptionHtml = HtmlTemplateService.generateItemDescriptionHtml(
+          {
+            item: layer.tag,
+            includeDescriptions,
+            language,
+          },
+        );
+
         return `
           <div class="group avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important; display: block;">
             <div class="group-title" style="page-break-after: avoid !important; break-after: avoid !important;">${HtmlTemplateService.escapeHtml(
               layer.tag.names[language],
             )}</div>
+            ${descriptionHtml}
             ${questions}
           </div>
         `;

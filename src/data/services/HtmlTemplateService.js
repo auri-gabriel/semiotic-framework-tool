@@ -190,6 +190,19 @@ body {
   break-after: avoid;
 }
 
+.item-description {
+  font-size: 13px;
+  color: #4a4a4a;
+  background: #fafafa;
+  border: 1px solid #e0e0e0;
+  border-left: 3px solid #999999;
+  padding: 10px 12px;
+  margin: -4px 0 12px 0;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  line-height: 1.5;
+}
+
 .question {
   margin-bottom: 16px;
   margin-left: 24px;
@@ -420,7 +433,71 @@ body {
     // Clean up any ql-ui spans that might be left over
     fixedHtml = fixedHtml.replace(/<span\s+class="ql-ui"[^>]*><\/span>/gi, '');
 
+    // Normalize links without protocol (e.g. www.google.com -> https://www.google.com)
+    fixedHtml = this.normalizeAnchorHrefs(fixedHtml);
+
     return fixedHtml;
+  }
+
+  /**
+   * Normalizes anchor href values to avoid relative/local links in exports
+   * @param {string} html - HTML content with anchors
+   * @returns {string} HTML with normalized href values
+   */
+  static normalizeAnchorHrefs(html) {
+    if (!html) return html;
+
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
+    const anchors = doc.querySelectorAll('a[href]');
+
+    anchors.forEach((anchor) => {
+      const href = anchor.getAttribute('href');
+      if (!href) return;
+
+      const normalizedHref = this.normalizeHref(href);
+      if (normalizedHref !== href) {
+        anchor.setAttribute('href', normalizedHref);
+      }
+    });
+
+    return doc.body.innerHTML;
+  }
+
+  /**
+   * Normalizes a single href value for exported documents
+   * @param {string} href - Anchor href value
+   * @returns {string} Normalized href
+   */
+  static normalizeHref(href) {
+    const trimmedHref = href.trim();
+    if (!trimmedHref) return href;
+
+    if (/^#/.test(trimmedHref)) {
+      return trimmedHref;
+    }
+
+    if (/^[a-z][a-z0-9+.-]*:/i.test(trimmedHref)) {
+      return trimmedHref;
+    }
+
+    if (trimmedHref.startsWith('//')) {
+      return `https:${trimmedHref}`;
+    }
+
+    if (/^www\./i.test(trimmedHref)) {
+      return `https://${trimmedHref}`;
+    }
+
+    const looksLikeDomain =
+      /^([a-z0-9-]+\.)+[a-z]{2,}(?::\d+)?(?:[/?#].*)?$/i.test(trimmedHref) &&
+      !trimmedHref.includes('@');
+
+    if (looksLikeDomain) {
+      return `https://${trimmedHref}`;
+    }
+
+    return trimmedHref;
   }
 
   /**
@@ -485,21 +562,41 @@ body {
     const labels =
       language === 'pt_BR'
         ? {
+            projectTitle: 'Título do Projeto',
             focalProblem: 'Problema Focal',
             authorship: 'Autoria',
+            generatedOn: 'Gerado em',
             notInformed: '(não informado)',
           }
         : {
+            projectTitle: 'Project Title',
             focalProblem: 'Focal Problem',
             authorship: 'Authorship',
+            generatedOn: 'Generated on',
             notInformed: '(not provided)',
           };
 
+    const projectTitle = projectMetadata?.title || '';
     const focalProblem = projectMetadata?.focalProblem || '';
     const authorship = projectMetadata?.authorship || '';
+    const now = new Date();
+    const pad = (value) => String(value).padStart(2, '0');
+    const generatedAt = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(
+      now.getDate(),
+    )} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(
+      now.getSeconds(),
+    )}`;
 
     const metadataHtml = `
       <div class="metadata">
+        <div class="metadata-item">
+          <div class="metadata-label">${this.escapeHtml(labels.projectTitle)}</div>
+          <div class="metadata-value">${
+            projectTitle
+              ? this.escapeHtml(projectTitle)
+              : this.escapeHtml(labels.notInformed)
+          }</div>
+        </div>
         <div class="metadata-item">
           <div class="metadata-label">${this.escapeHtml(labels.focalProblem)}</div>
           <div class="metadata-value">${
@@ -540,9 +637,7 @@ body {
         </div>
         
         <div class="footer">
-          <p>Generated on ${new Date().toLocaleDateString(
-            language === 'pt_BR' ? 'pt-BR' : 'en-US',
-          )}</p>
+          <p>${this.escapeHtml(labels.generatedOn)} ${generatedAt}</p>
         </div>
       </div>
     </body>
@@ -587,6 +682,33 @@ body {
   }
 
   /**
+   * Generates optional description HTML block for steps/layers
+   * @param {Object} params - Description params
+   * @param {Object} params.item - Item object containing texts/descriptions
+   * @param {boolean} params.includeDescriptions - Whether to include descriptions
+   * @param {string} params.language - Language code
+   * @returns {string} Description HTML or empty string
+   */
+  static generateItemDescriptionHtml({ item, includeDescriptions, language }) {
+    if (!includeDescriptions || !item) {
+      return '';
+    }
+
+    const descriptionText =
+      item.texts?.[language] ||
+      item.texts?.en ||
+      item.descriptions?.[language] ||
+      item.descriptions?.en ||
+      '';
+
+    if (!descriptionText?.trim()) {
+      return '';
+    }
+
+    return `<div class="item-description">${this.escapeHtml(descriptionText.trim())}</div>`;
+  }
+
+  /**
    * Generates HTML for document overview section with grouped statistics
    * @param {Object} overview - Overview data with overall stats and sections
    * @returns {string} Overview HTML
@@ -600,7 +722,7 @@ body {
     // Generate overall statistics
     const overallStatsHtml = Object.entries(overview.overallStats)
       .map(
-        ([key, stat]) => `
+        ([, stat]) => `
         <div class="stat-item">
           <div class="stat-label">${this.escapeHtml(stat.label)}</div>
           <div class="stat-value">${this.escapeHtml(

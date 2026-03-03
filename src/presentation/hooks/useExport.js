@@ -8,34 +8,48 @@ export function useExport() {
     (format, options = {}) => {
       actions.handleExport(format, options);
     },
-    [actions]
+    [actions],
   );
 
   const setExportOnlyAnswered = useCallback(
     (value) => {
       actions.setExportOnlyAnswered(value);
     },
-    [actions]
+    [actions],
   );
   const setExportWithoutOverview = useCallback(
     (value) => {
       actions.setExportWithoutOverview(value);
     },
-    [actions]
+    [actions],
+  );
+
+  const setExportIncludeDescriptions = useCallback(
+    (value) => {
+      actions.setExportIncludeDescriptions(value);
+    },
+    [actions],
   );
 
   const setExportEngOnlyAnswered = useCallback(
     (value) => {
       actions.setExportEngOnlyAnswered(value);
     },
-    [actions]
+    [actions],
   );
 
   const setExportEngWithoutOverview = useCallback(
     (value) => {
       actions.setExportEngWithoutOverview(value);
     },
-    [actions]
+    [actions],
+  );
+
+  const setExportEngIncludeDescriptions = useCallback(
+    (value) => {
+      actions.setExportEngIncludeDescriptions(value);
+    },
+    [actions],
   );
 
   return {
@@ -43,11 +57,15 @@ export function useExport() {
     exportEngOnlyAnswered: state.exportEngOnlyAnswered,
     exportWithoutOverview: state.exportWithoutOverview,
     exportEngWithoutOverview: state.exportEngWithoutOverview,
+    exportIncludeDescriptions: state.exportIncludeDescriptions,
+    exportEngIncludeDescriptions: state.exportEngIncludeDescriptions,
     exporting: state.exporting,
     handleExport,
     setExportOnlyAnswered,
     setExportEngOnlyAnswered,
     setExportWithoutOverview,
     setExportEngWithoutOverview,
+    setExportIncludeDescriptions,
+    setExportEngIncludeDescriptions,
   };
 }
