@@ -1,9 +1,9 @@
 name: Release and Deploy
 
 on:
-  pull_request:
-    branches: ['main']
-    types: [closed]
+  push:
+    branches:
+      - main
   workflow_dispatch:
 
 permissions:
@@ -17,12 +17,7 @@ concurrency:
 
 jobs:
   release-and-deploy:
-    if: |
-      github.event_name == 'workflow_dispatch' ||
-      (
-        github.event.pull_request.merged == true &&
-        github.event.pull_request.head.ref == 'develop'
-      )
+    if: github.event_name == 'workflow_dispatch' || github.ref == 'refs/heads/main'
     environment:
       name: github-pages
       url: ${{ steps.deployment.outputs.page_url }}
