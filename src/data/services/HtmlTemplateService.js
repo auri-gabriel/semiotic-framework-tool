@@ -460,7 +460,11 @@ body {
     const trimmedHref = href.trim();
     if (!trimmedHref) return href;
 
-    if (/^(https?:|mailto:|tel:|ftp:|#)/i.test(trimmedHref)) {
+    if (/^#/.test(trimmedHref)) {
+      return trimmedHref;
+    }
+
+    if (/^[a-z][a-z0-9+.-]*:/i.test(trimmedHref)) {
       return trimmedHref;
     }
 
@@ -469,6 +473,14 @@ body {
     }
 
     if (/^www\./i.test(trimmedHref)) {
+      return `https://${trimmedHref}`;
+    }
+
+    const looksLikeDomain =
+      /^([a-z0-9-]+\.)+[a-z]{2,}(?::\d+)?(?:[/?#].*)?$/i.test(trimmedHref) &&
+      !trimmedHref.includes('@');
+
+    if (looksLikeDomain) {
       return `https://${trimmedHref}`;
     }
 
