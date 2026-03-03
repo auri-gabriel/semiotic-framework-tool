@@ -400,8 +400,6 @@ const BottomToolbar = ({
                     </div>
                   </div>
                 </li>
-
-                {/* ...existing code... (rest of dropdown items if any) */}
               </ul>
             </div>
           </div>

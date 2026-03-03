@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Tooltip } from 'bootstrap';
+import Tooltip from 'bootstrap/js/dist/tooltip';
 import SemioticAccordion from '../components/SemioticAccordion';
 import BottomToolbar from '../components/BottomToolbar';
 import { useLanguage } from '../hooks/useLanguage';
