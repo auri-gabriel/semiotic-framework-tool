@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Tooltip } from 'bootstrap';
 import SemioticAccordion from '../components/SemioticAccordion';
 import BottomToolbar from '../components/BottomToolbar';
 import { useLanguage } from '../hooks/useLanguage';
@@ -23,11 +24,20 @@ const texts = {
     intro:
       "Ready to get started? Select one of the blocks below to display the questions related to it. Then select a question to answer it. It's quick and easy — just read and answer.\n\nEach block corresponds to a step in Ronald Stamper's Semiotic Framework. The questions were designed to help software engineers, in collaboration with experts in the field of education, to specify the human and technical aspects involved in developing software for this field.  ",
     newFormSuggestion:
-      'Starting a new project? Try clearing all the old responses first.',
-    clearAnswers: 'Clear Answers Only',
+      'Starting a new project? Choose one of the cleanup options below based on what you want to keep.',
+    clearActionsTitle: 'What each option clears:',
+    definitionsTooltip:
+      "Definitions are the tool's customized question settings (for example, edited/imported question texts and structure).",
+    clearAnswers: 'Clear Responses (Keep Settings)',
     clearAnswersDesc: 'Delete all saved responses but keep custom definitions',
-    clearAll: 'Clear All & Reset',
+    clearAnswersScopePrefix:
+      'Removes: answers only • Keeps: project information and ',
+    clearAnswersScopeHighlighted: 'customized definitions',
+    clearAll: 'Reset Tool (Clear Everything)',
     clearAllDesc: 'Delete all saved responses and reset definitions to default',
+    clearAllScopePrefix: 'Removes: answers, project information, and ',
+    clearAllScopeHighlighted: 'customized definitions',
+    clearAllScopeSuffix: ' • Restores default tool definitions',
     clearAnswersConfirmTitle: 'Clear Answers Only',
     clearAnswersConfirmMessage:
       'Are you sure you want to delete all your responses? Your custom definitions will be preserved. This action cannot be undone.',
@@ -53,13 +63,22 @@ const texts = {
     intro:
       'Tudo pronto para começar? Selecione um dos blocos a seguir para mostrar as perguntas relacionadas a ele. Então, selecione uma pergunta para respondê-la. É simples e rápido — basta ler e responder.\n\nCada bloco corresponde a um degrau do Framework Semiótico de Ronald Stamper. Já as questões foram propostas para auxiliar engenheiros de software, em colaboração com especialistas do Domínio Educacional, na especificação de aspectos humanos e técnicos envolvidos no desenvolvimento de software para esse domínio.',
     newFormSuggestion:
-      'Começando um novo projeto? Tente limpar todas as respostas antigas primeiro.',
-    clearAnswers: 'Limpar Apenas Respostas',
+      'Começando um novo projeto? Escolha abaixo a opção de limpeza conforme o que você deseja manter.',
+    clearActionsTitle: 'O que cada opção limpa:',
+    definitionsTooltip:
+      'Definições são as personalizações das perguntas da ferramenta (por exemplo, textos e estrutura editados/importados).',
+    clearAnswers: 'Limpar Respostas (Manter Configurações)',
     clearAnswersDesc:
       'Excluir todas as respostas salvas mas manter definições personalizadas',
-    clearAll: 'Limpar Tudo e Restaurar',
+    clearAnswersScopePrefix:
+      'Remove: apenas respostas • Mantém: informações do projeto e ',
+    clearAnswersScopeHighlighted: 'definições personalizadas',
+    clearAll: 'Restaurar Ferramenta (Limpar Tudo)',
     clearAllDesc:
       'Excluir todas as respostas salvas e restaurar definições para o padrão',
+    clearAllScopePrefix: 'Remove: respostas, informações do projeto e ',
+    clearAllScopeHighlighted: 'definições personalizadas',
+    clearAllScopeSuffix: ' • Restaura as definições padrão da ferramenta',
     clearAnswersConfirmTitle: 'Limpar Apenas Respostas',
     clearAnswersConfirmMessage:
       'Tem certeza de que deseja excluir todas as suas respostas? Suas definições personalizadas serão preservadas. Esta ação não pode ser desfeita.',
@@ -150,6 +169,19 @@ const StartSection = () => {
   };
 
   const modalTexts = getCurrentModalTexts();
+
+  useEffect(() => {
+    const tooltipTriggerList = document.querySelectorAll(
+      '[data-bs-toggle="tooltip"]',
+    );
+    const tooltipInstances = Array.from(tooltipTriggerList).map(
+      (tooltipTriggerEl) => new Tooltip(tooltipTriggerEl),
+    );
+
+    return () => {
+      tooltipInstances.forEach((tooltipInstance) => tooltipInstance.dispose());
+    };
+  }, [language]);
 
   return (
     <section className='pt-5 border-top' id='start'>
@@ -265,6 +297,52 @@ const StartSection = () => {
           <p className='text-muted mb-0'>
             <i className='bi bi-info-circle me-2' aria-hidden='true'></i>
             {t.newFormSuggestion}
+          </p>
+        </div>
+
+        <div className='alert alert-light border mb-3' role='status'>
+          <p className='fw-semibold mb-2'>{t.clearActionsTitle}</p>
+          <p className='mb-1'>
+            <i
+              className='bi bi-eraser me-2 text-warning'
+              aria-hidden='true'
+            ></i>
+            {t.clearAnswersScopePrefix}
+            <span
+              data-bs-toggle='tooltip'
+              data-bs-trigger='click'
+              data-bs-placement='top'
+              data-bs-title={t.definitionsTooltip}
+              aria-label={t.definitionsTooltip}
+              tabIndex='0'
+              style={{
+                textDecoration: 'underline dotted',
+                textUnderlineOffset: '3px',
+                cursor: 'help',
+              }}
+            >
+              {t.clearAnswersScopeHighlighted}
+            </span>
+          </p>
+          <p className='mb-0'>
+            <i className='bi bi-trash me-2 text-danger' aria-hidden='true'></i>
+            {t.clearAllScopePrefix}
+            <span
+              data-bs-toggle='tooltip'
+              data-bs-trigger='click'
+              data-bs-placement='top'
+              data-bs-title={t.definitionsTooltip}
+              aria-label={t.definitionsTooltip}
+              tabIndex='0'
+              style={{
+                textDecoration: 'underline dotted',
+                textUnderlineOffset: '3px',
+                cursor: 'help',
+              }}
+            >
+              {t.clearAllScopeHighlighted}
+            </span>
+            {t.clearAllScopeSuffix}
           </p>
         </div>
 
