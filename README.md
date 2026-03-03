@@ -78,8 +78,8 @@ This repository follows a lightweight Git Flow-style process:
 - **CI (`.github/workflows/ci.yml`)** runs on pushes to `feature/*`, `develop`, and `main`, and on pull requests to `develop`/`main`.
 - CI validates commit messages against Conventional Commits.
 - CI validates code quality with `npm ci`, `npm run lint`, and `npm run build`.
-- **Release + deploy (`.github/workflows/release-deploy.yml`)** runs automatically when a pull request from `develop` to `main` is merged.
-- On that merge, the workflow uses semantic versioning (from commit messages) to create a GitHub Release and then deploys `dist/` to GitHub Pages.
+- **Release + deploy (`.github/workflows/release-deploy.yml`)** runs automatically on pushes to `main` (typically after merging `develop` into `main`).
+- On that push, the workflow uses semantic versioning (from commit messages) to create a GitHub Release and then deploys `dist/` to GitHub Pages.
 
 ### Recommended Team Practice
 
