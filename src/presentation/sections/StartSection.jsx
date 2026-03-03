@@ -187,9 +187,6 @@ const StartSection = () => {
     <section className='pt-5 border-top' id='start'>
       <div className='container mb-5'>
         <SectionTitle title={t.title} />
-        <p className='mb-4' style={{ whiteSpace: 'pre-line' }}>
-          {t.intro}
-        </p>
 
         <div className='accordion mb-4' id='projectInfoAccordion'>
           <div className='accordion-item'>
@@ -284,6 +281,10 @@ const StartSection = () => {
             </div>
           </div>
         </div>
+
+        <p className='mb-4' style={{ whiteSpace: 'pre-line' }}>
+          {t.intro}
+        </p>
 
         <SemioticAccordion
           grouping={semioticLadderGrouping}
