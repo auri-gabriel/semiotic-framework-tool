@@ -488,18 +488,27 @@ body {
             projectTitle: 'Título do Projeto',
             focalProblem: 'Problema Focal',
             authorship: 'Autoria',
+            generatedOn: 'Gerado em',
             notInformed: '(não informado)',
           }
         : {
             projectTitle: 'Project Title',
             focalProblem: 'Focal Problem',
             authorship: 'Authorship',
+            generatedOn: 'Generated on',
             notInformed: '(not provided)',
           };
 
     const projectTitle = projectMetadata?.title || '';
     const focalProblem = projectMetadata?.focalProblem || '';
     const authorship = projectMetadata?.authorship || '';
+    const now = new Date();
+    const pad = (value) => String(value).padStart(2, '0');
+    const generatedAt = `${now.getFullYear()}-${pad(now.getMonth() + 1)}-${pad(
+      now.getDate(),
+    )} ${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(
+      now.getSeconds(),
+    )}`;
 
     const metadataHtml = `
       <div class="metadata">
@@ -551,9 +560,7 @@ body {
         </div>
         
         <div class="footer">
-          <p>Generated on ${new Date().toLocaleDateString(
-            language === 'pt_BR' ? 'pt-BR' : 'en-US',
-          )}</p>
+          <p>${this.escapeHtml(labels.generatedOn)} ${generatedAt}</p>
         </div>
       </div>
     </body>
