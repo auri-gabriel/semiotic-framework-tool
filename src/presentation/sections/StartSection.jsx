@@ -52,7 +52,7 @@ const texts = {
     title: 'Iniciar',
     projectInfoTitle: 'Informações do Projeto',
     projectInfoHelper:
-      'Registre o título do projeto, o problema focal e a autoria antes de preencher as perguntas.',
+      'Registre o título do projeto, o problema focal e a autoria antes de responder as perguntas.',
     projectTitleLabel: 'Título do Projeto',
     projectTitlePlaceholder: 'Digite o título do projeto',
     focalProblemLabel: 'Problema Focal',
