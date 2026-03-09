@@ -13,8 +13,7 @@ const texts = {
     title: 'Start',
     projectInfoTitle: 'Project Information',
     projectMetadataAccordionTitle: 'Project Metadata',
-    projectInfoHelper:
-      'Register the project title, focal problem, and authorship before filling in the questions.',
+    projectInfoHelper: 'project title, focal problem, and authorship.',
     projectTitleLabel: 'Project Title',
     projectTitlePlaceholder: 'Enter the project title',
     focalProblemLabel: 'Focal Problem',
@@ -54,7 +53,7 @@ const texts = {
     projectInfoTitle: 'Informações do Projeto',
     projectMetadataAccordionTitle: 'Metadados do Projeto',
     projectInfoHelper:
-      'Registre o título do projeto, o problema focal e a autoria antes de responder as perguntas.',
+      'título do projeto, problema focal e autoria.',
     projectTitleLabel: 'Título do Projeto',
     projectTitlePlaceholder: 'Digite o título do projeto',
     focalProblemLabel: 'Problema Focal',
