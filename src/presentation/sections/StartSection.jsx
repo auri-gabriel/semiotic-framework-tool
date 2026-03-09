@@ -23,7 +23,7 @@ const texts = {
     authorshipLabel: 'Authorship',
     authorshipPlaceholder: 'Person, team, or organization responsible',
     intro:
-      "Ready to get started? First, fill in the Project Information section with the project title, focal problem, and authorship. Then select one of the blocks below to display the related questions and choose a question to answer. It's quick and easy — just read and answer.\n\nEach block corresponds to a step in Ronald Stamper's Semiotic Framework. The questions were designed to help software engineers, in collaboration with experts in the field of education, to specify the human and technical aspects involved in developing software for this field.",
+      "Ready to get started? First, fill in the project information — project title, focal problem, and authorship. Then select one of the blocks related to human information functions or the information technology (IT) platform to display the related questions. It's quick and easy — just read and answer.\n\nEach block corresponds to a step in Ronald Stamper's Semiotic Framework. The questions were designed to help software engineers, in collaboration with experts in the educational domain, specify the human and technical aspects involved in developing software for this domain.",
     newFormSuggestion:
       'Starting a new project? Choose one of the cleanup options below based on what you want to keep.',
     clearActionsTitle: 'What each option clears:',
@@ -63,7 +63,7 @@ const texts = {
     authorshipLabel: 'Autoria',
     authorshipPlaceholder: 'Pessoa, equipe ou organização responsável',
     intro:
-      'Tudo pronto para começar? Primeiro, preencha a seção de Informações do Projeto com o título do projeto, o problema focal e a autoria. Em seguida, selecione um dos blocos a seguir para mostrar as perguntas relacionadas e escolha uma pergunta para respondê-la. É simples e rápido — basta ler e responder.\n\nCada bloco corresponde a um degrau do Framework Semiótico de Ronald Stamper. Já as questões foram propostas para auxiliar engenheiros de software, em colaboração com especialistas do Domínio Educacional, na especificação de aspectos humanos e técnicos envolvidos no desenvolvimento de software para esse domínio.',
+      'Tudo pronto para começar? Inicialmente, preencha as informações sobre o projeto — título do projeto, problema focal e a autoria. Em seguida, selecione um dos blocos relacionados às funções humanas da informação ou à plataforma de tecnologia da informação (TI) para mostrar as perguntas relacionadas. É simples e rápido — basta ler e responder.\n\nCada bloco corresponde a um degrau do Framework Semiótico de Ronald Stamper. Já as questões foram propostas para auxiliar engenheiros de software, em colaboração com especialistas do Domínio Educacional, na especificação de aspectos humanos e técnicos envolvidos no desenvolvimento de software para esse domínio.',
     newFormSuggestion:
       'Começando um novo projeto? Escolha abaixo a opção de limpeza conforme o que você deseja manter.',
     clearActionsTitle: 'O que cada opção limpa:',
