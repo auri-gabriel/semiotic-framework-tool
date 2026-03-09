@@ -12,6 +12,7 @@ const texts = {
   en: {
     title: 'Start',
     projectInfoTitle: 'Project Information',
+    projectMetadataAccordionTitle: 'Project Metadata',
     projectInfoHelper:
       'Register the project title, focal problem, and authorship before filling in the questions.',
     projectTitleLabel: 'Project Title',
@@ -51,6 +52,7 @@ const texts = {
   pt_BR: {
     title: 'Iniciar',
     projectInfoTitle: 'Informações do Projeto',
+    projectMetadataAccordionTitle: 'Metadados do Projeto',
     projectInfoHelper:
       'Registre o título do projeto, o problema focal e a autoria antes de responder as perguntas.',
     projectTitleLabel: 'Título do Projeto',
@@ -210,7 +212,7 @@ const StartSection = () => {
                 aria-controls='collapse-project-info'
               >
                 <div className='d-flex justify-content-between align-items-center w-100'>
-                  <span>{t.projectInfoTitle}</span>
+                  <span>{t.projectMetadataAccordionTitle}</span>
                   <span className='badge bg-secondary mx-2'>
                     {projectInfoAnsweredCount}/{projectInfoTotalCount}
                   </span>
