@@ -297,15 +297,13 @@ const StartSection = () => {
           onAnswerChange={updateAnswer}
         />
 
-        {/* New Form Suggestion */}
-        <div className='mb-3'>
-          <p className='text-muted mb-0'>
-            <i className='bi bi-info-circle me-2' aria-hidden='true'></i>
-            {t.newFormSuggestion}
-          </p>
-        </div>
-
         <div className='alert alert-light border mb-3' role='status'>
+          <div className='mb-2'>
+            <p className='text-muted mb-0'>
+              <i className='bi bi-info-circle me-2' aria-hidden='true'></i>
+              {t.newFormSuggestion}
+            </p>
+          </div>
           <p className='fw-semibold mb-2'>{t.clearActionsTitle}</p>
           <p className='mb-1'>
             <i
