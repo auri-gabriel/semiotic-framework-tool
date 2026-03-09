@@ -12,6 +12,7 @@ const texts = {
   en: {
     title: 'Start',
     projectInfoTitle: 'Project Information',
+    projectMetadataAccordionTitle: 'Project Metadata',
     projectInfoHelper:
       'Register the project title, focal problem, and authorship before filling in the questions.',
     projectTitleLabel: 'Project Title',
@@ -22,7 +23,7 @@ const texts = {
     authorshipLabel: 'Authorship',
     authorshipPlaceholder: 'Person, team, or organization responsible',
     intro:
-      "Ready to get started? Select one of the blocks below to display the questions related to it. Then select a question to answer it. It's quick and easy — just read and answer.\n\nEach block corresponds to a step in Ronald Stamper's Semiotic Framework. The questions were designed to help software engineers, in collaboration with experts in the field of education, to specify the human and technical aspects involved in developing software for this field.  ",
+      "Ready to get started? First, fill in the Project Information section with the project title, focal problem, and authorship. Then select one of the blocks below to display the related questions and choose a question to answer. It's quick and easy — just read and answer.\n\nEach block corresponds to a step in Ronald Stamper's Semiotic Framework. The questions were designed to help software engineers, in collaboration with experts in the field of education, to specify the human and technical aspects involved in developing software for this field.",
     newFormSuggestion:
       'Starting a new project? Choose one of the cleanup options below based on what you want to keep.',
     clearActionsTitle: 'What each option clears:',
@@ -51,8 +52,9 @@ const texts = {
   pt_BR: {
     title: 'Iniciar',
     projectInfoTitle: 'Informações do Projeto',
+    projectMetadataAccordionTitle: 'Metadados do Projeto',
     projectInfoHelper:
-      'Registre o título do projeto, o problema focal e a autoria antes de preencher as perguntas.',
+      'Registre o título do projeto, o problema focal e a autoria antes de responder as perguntas.',
     projectTitleLabel: 'Título do Projeto',
     projectTitlePlaceholder: 'Digite o título do projeto',
     focalProblemLabel: 'Problema Focal',
@@ -61,7 +63,7 @@ const texts = {
     authorshipLabel: 'Autoria',
     authorshipPlaceholder: 'Pessoa, equipe ou organização responsável',
     intro:
-      'Tudo pronto para começar? Selecione um dos blocos a seguir para mostrar as perguntas relacionadas a ele. Então, selecione uma pergunta para respondê-la. É simples e rápido — basta ler e responder.\n\nCada bloco corresponde a um degrau do Framework Semiótico de Ronald Stamper. Já as questões foram propostas para auxiliar engenheiros de software, em colaboração com especialistas do Domínio Educacional, na especificação de aspectos humanos e técnicos envolvidos no desenvolvimento de software para esse domínio.',
+      'Tudo pronto para começar? Primeiro, preencha a seção de Informações do Projeto com o título do projeto, o problema focal e a autoria. Em seguida, selecione um dos blocos a seguir para mostrar as perguntas relacionadas e escolha uma pergunta para respondê-la. É simples e rápido — basta ler e responder.\n\nCada bloco corresponde a um degrau do Framework Semiótico de Ronald Stamper. Já as questões foram propostas para auxiliar engenheiros de software, em colaboração com especialistas do Domínio Educacional, na especificação de aspectos humanos e técnicos envolvidos no desenvolvimento de software para esse domínio.',
     newFormSuggestion:
       'Começando um novo projeto? Escolha abaixo a opção de limpeza conforme o que você deseja manter.',
     clearActionsTitle: 'O que cada opção limpa:',
@@ -192,19 +194,25 @@ const StartSection = () => {
       <div className='container mb-5'>
         <SectionTitle title={t.title} />
 
+        <p className='mb-4' style={{ whiteSpace: 'pre-line' }}>
+          {t.intro}
+        </p>
+
+        <h3>{t.projectInfoTitle}</h3>
+
         <div className='accordion mb-4' id='projectInfoAccordion'>
           <div className='accordion-item'>
             <h4 className='accordion-header' id='heading-project-info'>
               <button
-                className='accordion-button bg-white'
+                className='accordion-button collapsed bg-white'
                 type='button'
                 data-bs-toggle='collapse'
                 data-bs-target='#collapse-project-info'
-                aria-expanded='true'
+                aria-expanded='false'
                 aria-controls='collapse-project-info'
               >
                 <div className='d-flex justify-content-between align-items-center w-100'>
-                  <span>{t.projectInfoTitle}</span>
+                  <span>{t.projectMetadataAccordionTitle}</span>
                   <span className='badge bg-secondary mx-2'>
                     {projectInfoAnsweredCount}/{projectInfoTotalCount}
                   </span>
@@ -214,7 +222,7 @@ const StartSection = () => {
 
             <div
               id='collapse-project-info'
-              className='accordion-collapse collapse show'
+              className='accordion-collapse collapse'
               aria-labelledby='heading-project-info'
             >
               <div className='accordion-body bg-white'>
@@ -286,10 +294,6 @@ const StartSection = () => {
           </div>
         </div>
 
-        <p className='mb-4' style={{ whiteSpace: 'pre-line' }}>
-          {t.intro}
-        </p>
-
         <SemioticAccordion
           grouping={semioticLadderGrouping}
           language={language}
@@ -297,15 +301,13 @@ const StartSection = () => {
           onAnswerChange={updateAnswer}
         />
 
-        {/* New Form Suggestion */}
-        <div className='mb-3'>
-          <p className='text-muted mb-0'>
-            <i className='bi bi-info-circle me-2' aria-hidden='true'></i>
-            {t.newFormSuggestion}
-          </p>
-        </div>
-
         <div className='alert alert-light border mb-3' role='status'>
+          <div className='mb-2'>
+            <p className='text-muted mb-0'>
+              <i className='bi bi-info-circle me-2' aria-hidden='true'></i>
+              {t.newFormSuggestion}
+            </p>
+          </div>
           <p className='fw-semibold mb-2'>{t.clearActionsTitle}</p>
           <p className='mb-1'>
             <i
