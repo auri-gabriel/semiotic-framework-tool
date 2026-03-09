@@ -229,38 +229,7 @@ const BottomToolbar = ({
                   >
                     <div className='px-4 py-2'>
                       <div className='d-grid gap-2'>
-                        <button
-                          className='btn btn-sm btn-outline-primary text-start'
-                          onClick={() =>
-                            onExport('semiotic-ladder', {
-                              onlyAnswered: exportOnlyAnswered,
-                              format: 'pdf',
-                            })
-                          }
-                        >
-                          <i
-                            className='bi bi-file-pdf me-2'
-                            aria-hidden='true'
-                          ></i>
-                          {t.exportPDF}
-                        </button>
-                        <button
-                          className='btn btn-sm btn-outline-secondary text-start'
-                          onClick={() =>
-                            onExport('semiotic-ladder', {
-                              onlyAnswered: exportOnlyAnswered,
-                              format: 'html',
-                            })
-                          }
-                        >
-                          <i
-                            className='bi bi-filetype-html me-2'
-                            aria-hidden='true'
-                          ></i>
-                          {t.exportHTML}
-                        </button>
-
-                        <div className='form-check mt-2'>
+                        <div className='form-check'>
                           <input
                             className='form-check-input'
                             type='checkbox'
@@ -313,6 +282,37 @@ const BottomToolbar = ({
                             <small>{t.exportIncludeDescriptions}</small>
                           </label>
                         </div>
+
+                        <button
+                          className='btn btn-sm btn-outline-primary text-start mt-2'
+                          onClick={() =>
+                            onExport('semiotic-ladder', {
+                              onlyAnswered: exportOnlyAnswered,
+                              format: 'pdf',
+                            })
+                          }
+                        >
+                          <i
+                            className='bi bi-file-pdf me-2'
+                            aria-hidden='true'
+                          ></i>
+                          {t.exportPDF}
+                        </button>
+                        <button
+                          className='btn btn-sm btn-outline-secondary text-start'
+                          onClick={() =>
+                            onExport('semiotic-ladder', {
+                              onlyAnswered: exportOnlyAnswered,
+                              format: 'html',
+                            })
+                          }
+                        >
+                          <i
+                            className='bi bi-filetype-html me-2'
+                            aria-hidden='true'
+                          ></i>
+                          {t.exportHTML}
+                        </button>
                       </div>
                     </div>
                   </div>
@@ -354,38 +354,7 @@ const BottomToolbar = ({
                   >
                     <div className='px-4 py-2'>
                       <div className='d-grid gap-2'>
-                        <button
-                          className='btn btn-sm btn-outline-primary text-start'
-                          onClick={() =>
-                            onExport('engineering-layers', {
-                              onlyAnswered: exportEngOnlyAnswered,
-                              format: 'pdf',
-                            })
-                          }
-                        >
-                          <i
-                            className='bi bi-file-pdf me-2'
-                            aria-hidden='true'
-                          ></i>
-                          {t.exportPDF}
-                        </button>
-                        <button
-                          className='btn btn-sm btn-outline-secondary text-start'
-                          onClick={() =>
-                            onExport('engineering-layers', {
-                              onlyAnswered: exportEngOnlyAnswered,
-                              format: 'html',
-                            })
-                          }
-                        >
-                          <i
-                            className='bi bi-filetype-html me-2'
-                            aria-hidden='true'
-                          ></i>
-                          {t.exportHTML}
-                        </button>
-
-                        <div className='form-check mt-2'>
+                        <div className='form-check'>
                           <input
                             className='form-check-input'
                             type='checkbox'
@@ -438,6 +407,37 @@ const BottomToolbar = ({
                             <small>{t.exportIncludeDescriptions}</small>
                           </label>
                         </div>
+
+                        <button
+                          className='btn btn-sm btn-outline-primary text-start mt-2'
+                          onClick={() =>
+                            onExport('engineering-layers', {
+                              onlyAnswered: exportEngOnlyAnswered,
+                              format: 'pdf',
+                            })
+                          }
+                        >
+                          <i
+                            className='bi bi-file-pdf me-2'
+                            aria-hidden='true'
+                          ></i>
+                          {t.exportPDF}
+                        </button>
+                        <button
+                          className='btn btn-sm btn-outline-secondary text-start'
+                          onClick={() =>
+                            onExport('engineering-layers', {
+                              onlyAnswered: exportEngOnlyAnswered,
+                              format: 'html',
+                            })
+                          }
+                        >
+                          <i
+                            className='bi bi-filetype-html me-2'
+                            aria-hidden='true'
+                          ></i>
+                          {t.exportHTML}
+                        </button>
                       </div>
                     </div>
                   </div>
