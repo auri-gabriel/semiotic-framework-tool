@@ -246,6 +246,15 @@
         </question>
 
         <!-- Sintática -->
+        <question id="q22">
+            <tag class="syntactic" />
+            <text lang="pt_BR">Qual a língua principal? Há outras línguas que precisam ser
+                consideradas?</text>
+            <text lang="en">What is the main language? Are there other languages that need to be
+                considered?</text>
+            <placeholder lang="pt_BR">Exemplo: Português como principal, inglês como secundária.</placeholder>
+            <placeholder lang="en">Example: Portuguese as main, English as secondary.</placeholder>
+        </question>
         <question id="q14">
             <tag class="syntactic" />
             <tag class="methods" />
@@ -280,23 +289,50 @@
         <question id="q18">
             <tag class="syntactic" />
             <tag class="process" />
+            <text lang="pt_BR">Quais processos de Engenharia de Software serão adotados?</text>
+            <text lang="en">Which software engineering processes will be adopted?</text>
+            <placeholder lang="pt_BR">Exemplo: Scrum ou Kanban.</placeholder>
+            <placeholder lang="en">Example: Scrum or Kanban.</placeholder>
+        </question>
+        <question id="q34">
+            <tag class="syntactic" />
             <tag class="methods" />
+            <text lang="pt_BR">Quais métodos de Engenharia de Software serão adotados?</text>
+            <text lang="en">Which software engineering methods will be adopted?</text>
+            <placeholder lang="pt_BR">Exemplo: TDD, revisão por pares e integração contínua.</placeholder>
+            <placeholder lang="en">Example: TDD, peer review, and continuous integration.</placeholder>
+        </question>
+        <question id="q35">
+            <tag class="syntactic" />
             <tag class="tools" />
-            <text lang="pt_BR">Quais processos, métodos e ferramentas de Engenharia de Software
-                serão adotados?</text>
-            <text lang="en">Which software engineering processes, methods, and tools will be
-                adopted?</text>
-            <placeholder lang="pt_BR">Exemplo: Scrum, Git e integração contínua.</placeholder>
-            <placeholder lang="en">Example: Scrum, Git, and continuous integration.</placeholder>
+            <text lang="pt_BR">Quais ferramentas de Engenharia de Software serão adotados?</text>
+            <text lang="en">Which software engineering tools will be adopted?</text>
+            <placeholder lang="pt_BR">Exemplo: Git, GitHub e Jira.</placeholder>
+            <placeholder lang="en">Example: Git, GitHub, and Jira.</placeholder>
         </question>
         <question id="q19">
             <tag class="syntactic" />
-            <text lang="pt_BR">Quais processos, métodos e ferramentas de Design Participativo serão
-                adotados?</text>
-            <text lang="en">Which participatory design processes, methods, and tools will be
-                adopted?</text>
-            <placeholder lang="pt_BR">Exemplo: Workshops e entrevistas com usuários.</placeholder>
-            <placeholder lang="en">Example: Workshops and user interviews.</placeholder>
+            <tag class="process" />
+            <text lang="pt_BR">Quais processos de Design Participativo serão adotados?</text>
+            <text lang="en">Which participatory design processes will be adopted?</text>
+            <placeholder lang="pt_BR">Exemplo: Ciclos iterativos com oficinas participativas.</placeholder>
+            <placeholder lang="en">Example: Iterative cycles with participatory workshops.</placeholder>
+        </question>
+        <question id="q36">
+            <tag class="syntactic" />
+            <tag class="methods" />
+            <text lang="pt_BR">Quais métodos de Design Participativo serão adotados?</text>
+            <text lang="en">Which participatory design methods will be adopted?</text>
+            <placeholder lang="pt_BR">Exemplo: Entrevistas, observação contextual e prototipação.</placeholder>
+            <placeholder lang="en">Example: Interviews, contextual inquiry, and prototyping.</placeholder>
+        </question>
+        <question id="q37">
+            <tag class="syntactic" />
+            <tag class="tools" />
+            <text lang="pt_BR">Quais ferramentas de Design Participativo serão adotados?</text>
+            <text lang="en">Which participatory design tools will be adopted?</text>
+            <placeholder lang="pt_BR">Exemplo: Figma, Miro e formulários online.</placeholder>
+            <placeholder lang="en">Example: Figma, Miro, and online forms.</placeholder>
         </question>
         <question id="q20">
             <tag class="syntactic" />
@@ -304,23 +340,6 @@
             <text lang="en">Which programming languages will be adopted?</text>
             <placeholder lang="pt_BR">Exemplo: JavaScript e Python.</placeholder>
             <placeholder lang="en">Example: JavaScript and Python.</placeholder>
-        </question>
-        <question id="q21">
-            <tag class="syntactic" />
-            <tag class="tools" />
-            <text lang="pt_BR">Quais softwares serão adotados?</text>
-            <text lang="en">Which software tools will be adopted?</text>
-            <placeholder lang="pt_BR">Exemplo: VSCode, Figma e Trello.</placeholder>
-            <placeholder lang="en">Example: VSCode, Figma, and Trello.</placeholder>
-        </question>
-        <question id="q22">
-            <tag class="syntactic" />
-            <text lang="pt_BR">Qual a língua principal? Há outras línguas que precisam ser
-                consideradas?</text>
-            <text lang="en">What is the main language? Are there other languages that need to be
-                considered?</text>
-            <placeholder lang="pt_BR">Exemplo: Português como principal, inglês como secundária.</placeholder>
-            <placeholder lang="en">Example: Portuguese as main, English as secondary.</placeholder>
         </question>
         <question id="q31">
             <tag class="syntactic" />
