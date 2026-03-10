@@ -63,7 +63,16 @@ npm run dev      # Start development server
 npm run build    # Build for production
 npm run preview  # Preview production build
 npm run lint     # Run ESLint
+npm run headers:add # Add SPDX/author headers to source files
 ```
+
+### Header Automation
+
+Use `npm run headers:add` to insert standard copyright/license headers in source files.
+
+- Applies only to `src/**/*.js`, `src/**/*.jsx`, `src/**/*.scss`, and root `*.js`/`*.jsx` config files.
+- Ignores third-party/generated paths such as `node_modules/`, `dist/`, `out/`, and `public/fonts/`.
+- Is idempotent: files that already contain `SPDX-License-Identifier: GPL-3.0-only` are not modified.
 
 ## 🔁 Branching, CI, and Release Flow
 

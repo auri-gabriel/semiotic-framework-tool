@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2025 GEInfoEdu
+ * SPDX-License-Identifier: GPL-3.0-only
+ * Author: Auri Gabriel Castro de Melo
+ */
+
 import React, { useEffect, useState } from 'react';
 import Tooltip from 'bootstrap/js/dist/tooltip';
 import SemioticAccordion from '../components/SemioticAccordion';
