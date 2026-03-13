@@ -257,7 +257,6 @@
         </question>
         <question id="q14">
             <tag class="syntactic" />
-            <tag class="methods" />
             <text lang="pt_BR">Que tipo de software poderia ser desenvolvido?</text>
             <text lang="en">What kind of software could be developed?</text>
             <placeholder lang="pt_BR">Exemplo: mobile, site etc.</placeholder>
@@ -265,7 +264,6 @@
         </question>
         <question id="q15">
             <tag class="syntactic" />
-            <tag class="methods" />
             <text lang="pt_BR">Quais padrões seguir?</text>
             <text lang="en">What standards should be followed?</text>
             <placeholder lang="pt_BR">Exemplo: Seguir padrões de desenvolvimento web.</placeholder>
