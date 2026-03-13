@@ -236,8 +236,8 @@
             <tag class="quality" />
             <text lang="pt_BR">Quais as características de qualidade a serem observadas?</text>
             <text lang="en">What quality characteristics should be considered?</text>
-            <placeholder lang="pt_BR">Exemplo: Usabilidade, acessibilidade e desempenho.</placeholder>
-            <placeholder lang="en">Example: Usability, accessibility, and performance.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: usabilidade, compreendida como eficácia, eficiência e satisfação na realização de uma tarefa por um determinado usuário em um dado contexto de uso.</placeholder>
+            <placeholder lang="en">Example: usability, understood as effectiveness, efficiency, and satisfaction in performing a task by a specific user in a given context of use.</placeholder>
         </question>
         <question id="q30">
             <tag class="semantic" />
@@ -257,15 +257,13 @@
         </question>
         <question id="q14">
             <tag class="syntactic" />
-            <tag class="methods" />
             <text lang="pt_BR">Que tipo de software poderia ser desenvolvido?</text>
             <text lang="en">What kind of software could be developed?</text>
-            <placeholder lang="pt_BR">Exemplo: mobile, site etc..</placeholder>
-            <placeholder lang="en">Example: mobile, website etc..</placeholder>
+            <placeholder lang="pt_BR">Exemplo: mobile, site etc.</placeholder>
+            <placeholder lang="en">Example: mobile, website etc.</placeholder>
         </question>
         <question id="q15">
             <tag class="syntactic" />
-            <tag class="methods" />
             <text lang="pt_BR">Quais padrões seguir?</text>
             <text lang="en">What standards should be followed?</text>
             <placeholder lang="pt_BR">Exemplo: Seguir padrões de desenvolvimento web.</placeholder>
@@ -273,7 +271,6 @@
         </question>
         <question id="q16">
             <tag class="syntactic" />
-            <tag class="process" />
             <text lang="pt_BR">Quais abordagens serão adotadas?</text>
             <text lang="en">What approaches will be adopted?</text>
             <placeholder lang="pt_BR">Exemplo: Adotar metodologia ágil.</placeholder>
@@ -291,16 +288,16 @@
             <tag class="process" />
             <text lang="pt_BR">Quais processos de Engenharia de Software serão adotados?</text>
             <text lang="en">Which software engineering processes will be adopted?</text>
-            <placeholder lang="pt_BR">Exemplo: Scrum ou Kanban.</placeholder>
-            <placeholder lang="en">Example: Scrum or Kanban.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Engenharia de Requisitos e Desenvolvimento Incremental.</placeholder>
+            <placeholder lang="en">Example: Requirements Engineering and Incremental Development.</placeholder>
         </question>
         <question id="q34">
             <tag class="syntactic" />
             <tag class="methods" />
             <text lang="pt_BR">Quais métodos de Engenharia de Software serão adotados?</text>
             <text lang="en">Which software engineering methods will be adopted?</text>
-            <placeholder lang="pt_BR">Exemplo: TDD, revisão por pares e integração contínua.</placeholder>
-            <placeholder lang="en">Example: TDD, peer review, and continuous integration.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Kanban, TDD, revisão por pares e integração contínua.</placeholder>
+            <placeholder lang="en">Example: Kanban, TDD, peer review, and continuous integration.</placeholder>
         </question>
         <question id="q35">
             <tag class="syntactic" />
@@ -315,16 +312,16 @@
             <tag class="process" />
             <text lang="pt_BR">Quais processos de Design Participativo serão adotados?</text>
             <text lang="en">Which participatory design processes will be adopted?</text>
-            <placeholder lang="pt_BR">Exemplo: Ciclos iterativos com oficinas participativas.</placeholder>
-            <placeholder lang="en">Example: Iterative cycles with participatory workshops.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Design Participativo Radical.</placeholder>
+            <placeholder lang="en">Example: Radical Participatory Design (RPD).</placeholder>
         </question>
         <question id="q36">
             <tag class="syntactic" />
             <tag class="methods" />
             <text lang="pt_BR">Quais métodos de Design Participativo serão adotados?</text>
             <text lang="en">Which participatory design methods will be adopted?</text>
-            <placeholder lang="pt_BR">Exemplo: Entrevistas, observação contextual e prototipação.</placeholder>
-            <placeholder lang="en">Example: Interviews, contextual inquiry, and prototyping.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Investigação Contextual, BrainDraw e Avaliação Cooperativa.</placeholder>
+            <placeholder lang="en">Example: Contextual Inquiry, BrainDraw, and Cooperative Evaluation.</placeholder>
         </question>
         <question id="q37">
             <tag class="syntactic" />
@@ -371,8 +368,8 @@
         <!-- Física / Material -->
         <question id="q25">
             <tag class="physical" />
-            <text lang="pt_BR">Qual a infraestrutura exigida de seus usuários finais?</text>
-            <text lang="en">What infrastructure is required from your end users?</text>
+            <text lang="pt_BR">Qual a infraestrutura exigida dos usuários finais?</text>
+            <text lang="en">What infrastructure is required from end users?</text>
             <placeholder lang="pt_BR">Exemplo: Computadores, Celulares e Internet.</placeholder>
             <placeholder lang="en">Example: Computers, Smartphones, Internet.</placeholder>
         </question>
