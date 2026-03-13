@@ -236,8 +236,8 @@
             <tag class="quality" />
             <text lang="pt_BR">Quais as características de qualidade a serem observadas?</text>
             <text lang="en">What quality characteristics should be considered?</text>
-            <placeholder lang="pt_BR">Exemplo: Usabilidade, acessibilidade e desempenho.</placeholder>
-            <placeholder lang="en">Example: Usability, accessibility, and performance.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: usabilidade, compreendida como eficácia, eficiência e satisfação na realização de uma tarefa por um determinado usuário em um dado contexto de uso.</placeholder>
+            <placeholder lang="en">Example: usability, understood as effectiveness, efficiency, and satisfaction in performing a task by a specific user in a given context of use.</placeholder>
         </question>
         <question id="q30">
             <tag class="semantic" />
