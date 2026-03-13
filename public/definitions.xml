@@ -371,8 +371,8 @@
         <!-- Física / Material -->
         <question id="q25">
             <tag class="physical" />
-            <text lang="pt_BR">Qual a infraestrutura exigida de seus usuários finais?</text>
-            <text lang="en">What infrastructure is required from your end users?</text>
+            <text lang="pt_BR">Qual a infraestrutura exigida dos usuários finais?</text>
+            <text lang="en">What infrastructure is required from end users?</text>
             <placeholder lang="pt_BR">Exemplo: Computadores, Celulares e Internet.</placeholder>
             <placeholder lang="en">Example: Computers, Smartphones, Internet.</placeholder>
         </question>
