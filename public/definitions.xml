@@ -273,7 +273,6 @@
         </question>
         <question id="q16">
             <tag class="syntactic" />
-            <tag class="process" />
             <text lang="pt_BR">Quais abordagens serão adotadas?</text>
             <text lang="en">What approaches will be adopted?</text>
             <placeholder lang="pt_BR">Exemplo: Adotar metodologia ágil.</placeholder>
