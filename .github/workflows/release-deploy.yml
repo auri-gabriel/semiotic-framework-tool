@@ -57,7 +57,7 @@ jobs:
       - name: Package release artifact
         if: steps.semantic.outputs.new_release_published == 'true'
         run: |
-          tar -czf semiotic-framework-tool-${{ steps.semantic.outputs.new_release_version }}.tar.gz -C dist .
+          tar -czf semiotic-framework-tool-${{ steps.semantic.outputs.new_release_version }}.tar.gz -C . .
 
       - name: Upload release assets
         if: steps.semantic.outputs.new_release_published == 'true'
