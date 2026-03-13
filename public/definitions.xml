@@ -323,8 +323,8 @@
             <tag class="methods" />
             <text lang="pt_BR">Quais métodos de Design Participativo serão adotados?</text>
             <text lang="en">Which participatory design methods will be adopted?</text>
-            <placeholder lang="pt_BR">Exemplo: Entrevistas, observação contextual e prototipação.</placeholder>
-            <placeholder lang="en">Example: Interviews, contextual inquiry, and prototyping.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Investigação Contextual, BrainDraw e Avaliação Cooperativa.</placeholder>
+            <placeholder lang="en">Example: Contextual Inquiry, BrainDraw, and Cooperative Evaluation.</placeholder>
         </question>
         <question id="q37">
             <tag class="syntactic" />
