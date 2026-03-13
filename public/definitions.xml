@@ -260,8 +260,8 @@
             <tag class="methods" />
             <text lang="pt_BR">Que tipo de software poderia ser desenvolvido?</text>
             <text lang="en">What kind of software could be developed?</text>
-            <placeholder lang="pt_BR">Exemplo: mobile, site etc..</placeholder>
-            <placeholder lang="en">Example: mobile, website etc..</placeholder>
+            <placeholder lang="pt_BR">Exemplo: mobile, site etc.</placeholder>
+            <placeholder lang="en">Example: mobile, website etc.</placeholder>
         </question>
         <question id="q15">
             <tag class="syntactic" />
