@@ -59,12 +59,6 @@ jobs:
         run: |
           tar -czf semiotic-framework-tool-${{ steps.semantic.outputs.new_release_version }}.tar.gz -C dist .
 
-      - name: Generate release hashes
-        if: steps.semantic.outputs.new_release_published == 'true'
-        run: |
-          sha256sum semiotic-framework-tool-${{ steps.semantic.outputs.new_release_version }}.tar.gz > SHA256SUMS.txt
-          sha512sum semiotic-framework-tool-${{ steps.semantic.outputs.new_release_version }}.tar.gz > SHA512SUMS.txt
-
       - name: Upload release assets
         if: steps.semantic.outputs.new_release_published == 'true'
         uses: softprops/action-gh-release@v2
@@ -72,8 +66,6 @@ jobs:
           tag_name: ${{ steps.semantic.outputs.new_release_git_tag }}
           files: |
             semiotic-framework-tool-${{ steps.semantic.outputs.new_release_version }}.tar.gz
-            SHA256SUMS.txt
-            SHA512SUMS.txt
           fail_on_unmatched_files: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
