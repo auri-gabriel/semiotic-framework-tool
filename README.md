@@ -157,6 +157,10 @@ The tool is based on two main theoretical frameworks for educational software de
 1. **Semiotic Ladder (Liu, 2000)**: A framework for understanding information systems through semiotic analysis, applied to educational software contexts
 2. **Pressman's Software Engineering Layers**: Structured approach to software engineering processes, specifically adapted for educational software development
 
+## ✍️ Authorship
+
+This tool, authored by Auri Gabriel Castro de Melo under the supervision of Amanda Meincke Melo, is a product of the project "Participatory Design integrated with Software Engineering: a framework for software development in the educational domain," registration number 2023.PE.AL.1752, linked to the GEInfoEdu Research Group - Study Group on Informatics in Education.
+
 ## 🤝 Contributing
 
 This project is developed as part of the GEInfoEdu Research Group and welcomes contributions:
