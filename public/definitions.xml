@@ -291,16 +291,16 @@
             <tag class="process" />
             <text lang="pt_BR">Quais processos de Engenharia de Software serão adotados?</text>
             <text lang="en">Which software engineering processes will be adopted?</text>
-            <placeholder lang="pt_BR">Exemplo: Scrum ou Kanban.</placeholder>
-            <placeholder lang="en">Example: Scrum or Kanban.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Engenharia de Requisitos e Desenvolvimento Incremental.</placeholder>
+            <placeholder lang="en">Example: Requirements Engineering and Incremental Development.</placeholder>
         </question>
         <question id="q34">
             <tag class="syntactic" />
             <tag class="methods" />
             <text lang="pt_BR">Quais métodos de Engenharia de Software serão adotados?</text>
             <text lang="en">Which software engineering methods will be adopted?</text>
-            <placeholder lang="pt_BR">Exemplo: TDD, revisão por pares e integração contínua.</placeholder>
-            <placeholder lang="en">Example: TDD, peer review, and continuous integration.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Kanban, TDD, revisão por pares e integração contínua.</placeholder>
+            <placeholder lang="en">Example: Kanban, TDD, peer review, and continuous integration.</placeholder>
         </question>
         <question id="q35">
             <tag class="syntactic" />
