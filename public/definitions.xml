@@ -315,8 +315,8 @@
             <tag class="process" />
             <text lang="pt_BR">Quais processos de Design Participativo serão adotados?</text>
             <text lang="en">Which participatory design processes will be adopted?</text>
-            <placeholder lang="pt_BR">Exemplo: Ciclos iterativos com oficinas participativas.</placeholder>
-            <placeholder lang="en">Example: Iterative cycles with participatory workshops.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Design Participativo Radical.</placeholder>
+            <placeholder lang="en">Example: Radical Participatory Design (RPD).</placeholder>
         </question>
         <question id="q36">
             <tag class="syntactic" />
