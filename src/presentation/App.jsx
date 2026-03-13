@@ -1,3 +1,9 @@
+/*
+ * Copyright (c) 2025 GEInfoEdu
+ * SPDX-License-Identifier: GPL-3.0-only
+ * Author: Auri Gabriel Castro de Melo
+ */
+
 import 'bootstrap-icons/font/bootstrap-icons.css';
 import React, { useEffect } from 'react';
 import { AppProvider } from './contexts/AppContext';
