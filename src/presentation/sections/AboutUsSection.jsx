@@ -21,7 +21,7 @@ const texts = {
     studentsLabel: 'Students involved in the project:',
     students: [
       'Auri Gabriel Castro de Melo (Software Engineering student)',
-      'Renilson Pereira Torres (Computer Science student, PIBIC-Af 2024 fellow)',
+      'Renilson Pereira Torres (Computer Science student, PIBIC-Af 2024 fellow, PROBIC 2025 fellow)',
       'Gabriel Souza Rodrigues de Amorim (Software Engineering student, PRO-IC MC 2023 fellow)',
     ],
     collaboratorsLabel: 'Collaborators:',
