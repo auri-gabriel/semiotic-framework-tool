@@ -4,7 +4,7 @@ A web-based participatory framework tool that implements the Semiotic Ladder fra
 
 ## 🎯 Overview
 
-**fs.SwEdu** (Semiotic Framework for Software Education) is a participatory framework designed to help software engineers and developers in the development of software for the educational domain. The tool takes into account human information functions and IT platform aspects, providing a structured approach to educational software development through semiotic modeling and visualization.
+**FS.Edu** (Semiotic Framework for Software Education) is a participatory framework designed to help software engineers and developers in the development of software for the educational domain. The tool takes into account human information functions and IT platform aspects, providing a structured approach to educational software development through semiotic modeling and visualization.
 
 ### Key Features
 
