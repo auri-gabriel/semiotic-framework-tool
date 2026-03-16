@@ -13,14 +13,14 @@ const texts = {
     title: 'References',
     references: [
       'LIU, K. Semiotics in Information Systems Engineering. Cambridge, England: Cambridge University Press, 2000.',
-      'PRESSMAN, R. S. Engenharia de software: uma abordagem profissional. 9. ed. Porto Alegre: AMGH Editora Ltda., 2021.',
+      ' PRESSMAN, R. S.; MAXIM, B. R. Engenharia de software: uma abordagem profissional. 9. ed. Porto Alegre: AMGH, 2021.',
     ],
   },
   pt_BR: {
     title: 'Referências',
     references: [
       'LIU, K. Semiotics in Information Systems Engineering. Cambridge, England: Cambridge University Press, 2000.',
-      'PRESSMAN, R. S. Engenharia de software: uma abordagem profissional. 9. ed. Porto Alegre: AMGH Editora Ltda., 2021.',
+      ' PRESSMAN, R. S.; MAXIM, B. R. Engenharia de software: uma abordagem profissional. 9. ed. Porto Alegre: AMGH, 2021.',
     ],
   },
 };
