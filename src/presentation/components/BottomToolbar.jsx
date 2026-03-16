@@ -59,8 +59,6 @@ const BottomToolbar = ({
   setExportEngWithoutOverview,
   exportIncludeDescriptions,
   setExportIncludeDescriptions,
-  exportEngIncludeDescriptions,
-  setExportEngIncludeDescriptions,
 }) => {
   const fileInputRef = useRef();
   const t = texts[language];
@@ -396,6 +394,7 @@ const BottomToolbar = ({
                           </label>
                         </div>
 
+                        {/*
                         <div className='form-check'>
                           <input
                             className='form-check-input'
@@ -413,6 +412,7 @@ const BottomToolbar = ({
                             <small>{t.exportIncludeDescriptions}</small>
                           </label>
                         </div>
+                        */}
 
                         <button
                           className='btn btn-sm btn-outline-primary text-start mt-2'
