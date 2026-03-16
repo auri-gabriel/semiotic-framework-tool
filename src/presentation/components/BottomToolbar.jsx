@@ -36,7 +36,7 @@ const texts = {
     exportPDF: 'em PDF',
     exportDOCX: 'em DOCX',
     exportHTML: 'em HTML',
-    exportEngLayers: 'Camadas de Engenharia',
+    exportEngLayers: 'Camadas de Engenharia de Software',
     dataExport: 'Exportação de Dados',
     documentExport: 'Exportação de Documentos',
     exportXMLDesc: 'Salvar dados atuais como arquivo XML',
