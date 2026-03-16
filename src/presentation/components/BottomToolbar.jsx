@@ -18,7 +18,7 @@ const texts = {
     exportPDF: 'as PDF',
     exportDOCX: 'as DOCX',
     exportHTML: 'as HTML',
-    exportEngLayers: 'Engineering Layers',
+    exportEngLayers: 'Software Engineering Layers',
     dataExport: 'Data Export',
     documentExport: 'Document Export',
     exportXMLDesc: 'Save current data as XML file',
