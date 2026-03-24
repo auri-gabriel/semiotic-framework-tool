@@ -345,6 +345,13 @@
         </question>
 
         <!-- Empírica -->
+        <question id="q42">
+            <tag class="empirical" />
+            <text lang="pt_BR">Quais as características do ambiente em que a solução será adotada?</text>
+            <text lang="en">What are the characteristics of the environment in which the solution will be adopted?</text>
+            <placeholder lang="pt_BR">Ex.: Estruturado, porém com estímulos de outros usuários.</placeholder>
+            <placeholder lang="en">Ex.: Structured, but with stimuli from other users.</placeholder>
+        </question>
         <question id="q38">
             <tag class="empirical" />
             <text lang="pt_BR">Qual o orçamento disponível?</text>
@@ -380,6 +387,20 @@
         </question>
 
         <!-- Física / Material -->
+        <question id="q43">
+            <tag class="physical" />
+            <text lang="pt_BR">Quais os usuários da solução no domínio educacional?</text>
+            <text lang="en">Who are the users of the solution in the educational domain?</text>
+            <placeholder lang="pt_BR">Ex.: Estudantes do ensino médio e professores de História.</placeholder>
+            <placeholder lang="en">Ex.: High school students and History teachers.</placeholder>
+        </question>
+        <question id="q44">
+            <tag class="physical" />
+            <text lang="pt_BR">Em que ambiente(s) a solução será utilizada?</text>
+            <text lang="en">In which environment(s) will the solution be used?</text>
+            <placeholder lang="pt_BR">Ex.: No laboratório de informática da escola.</placeholder>
+            <placeholder lang="en">Ex.: In the school's computer lab.</placeholder>
+        </question>
         <question id="q25">
             <tag class="physical" />
             <text lang="pt_BR">Qual a infraestrutura exigida dos usuários finais?</text>
