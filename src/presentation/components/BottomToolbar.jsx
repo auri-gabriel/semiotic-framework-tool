@@ -18,7 +18,7 @@ const texts = {
     exportPDF: 'as PDF',
     exportDOCX: 'as DOCX',
     exportHTML: 'as HTML',
-    exportEngLayers: 'Engineering Layers',
+    exportEngLayers: 'Software Engineering Layers',
     dataExport: 'Data Export',
     documentExport: 'Document Export',
     exportXMLDesc: 'Save current data as XML file',
@@ -36,7 +36,7 @@ const texts = {
     exportPDF: 'em PDF',
     exportDOCX: 'em DOCX',
     exportHTML: 'em HTML',
-    exportEngLayers: 'Camadas de Engenharia',
+    exportEngLayers: 'Camadas de Engenharia de Software',
     dataExport: 'Exportação de Dados',
     documentExport: 'Exportação de Documentos',
     exportXMLDesc: 'Salvar dados atuais como arquivo XML',
@@ -59,8 +59,6 @@ const BottomToolbar = ({
   setExportEngWithoutOverview,
   exportIncludeDescriptions,
   setExportIncludeDescriptions,
-  exportEngIncludeDescriptions,
-  setExportEngIncludeDescriptions,
 }) => {
   const fileInputRef = useRef();
   const t = texts[language];
@@ -396,6 +394,7 @@ const BottomToolbar = ({
                           </label>
                         </div>
 
+                        {/*
                         <div className='form-check'>
                           <input
                             className='form-check-input'
@@ -413,6 +412,7 @@ const BottomToolbar = ({
                             <small>{t.exportIncludeDescriptions}</small>
                           </label>
                         </div>
+                        */}
 
                         <button
                           className='btn btn-sm btn-outline-primary text-start mt-2'

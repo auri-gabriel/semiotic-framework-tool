@@ -133,14 +133,30 @@ export class EngineeringLayersService {
 
     const layersContent = Object.entries(layers)
       .sort(([, a], [, b]) => a.tag.order - b.tag.order)
-      .map(([, layer]) => {
+      .map(([, layer], layerIndex) => {
+        const layerTitle = layer.tag.names[language] || layer.tag.names.en;
+        const layerId = HtmlTemplateService.createId(
+          'engineering-layer',
+          layerIndex + 1,
+          layerTitle,
+        );
+
         const questions = layer.questions
           .filter((q) => !onlyAnswered || isAnswered(answers[q.id]))
-          .map((q) => {
+          .map((q, questionIndex) => {
             return HtmlTemplateService.generateQuestionHtml(
               q,
               answers[q.id],
               language,
+              {
+                headingTag: 'h3',
+                id: HtmlTemplateService.createId(
+                  'engineering-question',
+                  layerIndex + 1,
+                  questionIndex + 1,
+                  q.id,
+                ),
+              },
             );
           })
           .join('');
@@ -156,13 +172,15 @@ export class EngineeringLayersService {
         );
 
         return `
-          <div class="group avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important; display: block;">
-            <div class="group-title" style="page-break-after: avoid !important; break-after: avoid !important;">${HtmlTemplateService.escapeHtml(
-              layer.tag.names[language],
-            )}</div>
+          <section class="group avoid-break" aria-labelledby="${layerId}">
+            <h2 class="group-title" id="${layerId}">${HtmlTemplateService.escapeHtml(
+              layerTitle,
+            )}</h2>
             ${descriptionHtml}
-            ${questions}
-          </div>
+            <ol class="question-list">
+              ${questions}
+            </ol>
+          </section>
         `;
       })
       .join('');

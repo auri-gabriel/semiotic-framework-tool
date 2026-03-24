@@ -6,7 +6,6 @@
 
 import { HtmlTemplateService } from './HtmlTemplateService.js';
 import { PdfService } from './PdfService.js';
-import { XmlService } from './XmlService.js';
 import {
   isAnswered,
   generateGroupedDocumentOverview,
@@ -100,16 +99,43 @@ export class SemioticLadderService {
     const overviewHtml = HtmlTemplateService.generateOverviewHtml(overview);
 
     const groups = Object.entries(grouping)
-      .map(([, groupProps]) => {
+      .map(([, groupProps], groupIndex) => {
+        const groupTitle =
+          groupProps.tag.names[language] || groupProps.tag.names.en;
+        const groupId = HtmlTemplateService.createId(
+          'semiotic-group',
+          groupIndex + 1,
+          groupTitle,
+        );
+
         const steps = Object.entries(groupProps.steps)
-          .map(([, stepProps]) => {
+          .map(([, stepProps], stepIndex) => {
+            const stepTitle =
+              stepProps.tag.names[language] || stepProps.tag.names.en;
+            const stepId = HtmlTemplateService.createId(
+              'semiotic-step',
+              groupIndex + 1,
+              stepIndex + 1,
+              stepTitle,
+            );
+
             const questions = stepProps.questions
               .filter((q) => !onlyAnswered || isAnswered(answers[q.id]))
-              .map((q) => {
+              .map((q, questionIndex) => {
                 return HtmlTemplateService.generateQuestionHtml(
                   q,
                   answers[q.id],
                   language,
+                  {
+                    headingTag: 'h4',
+                    id: HtmlTemplateService.createId(
+                      'semiotic-question',
+                      groupIndex + 1,
+                      stepIndex + 1,
+                      questionIndex + 1,
+                      q.id,
+                    ),
+                  },
                 );
               })
               .join('');
@@ -124,13 +150,15 @@ export class SemioticLadderService {
               });
 
             return `
-              <div class="step avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important; display: block;">
-                <div class="step-title" style="page-break-after: avoid !important; break-after: avoid !important;">${HtmlTemplateService.escapeHtml(
-                  stepProps.tag.names[language],
-                )}</div>
+              <article class="step avoid-break" aria-labelledby="${stepId}">
+                <h3 class="step-title" id="${stepId}">${HtmlTemplateService.escapeHtml(
+                  stepTitle,
+                )}</h3>
                 ${descriptionHtml}
-                ${questions}
-              </div>
+                <ol class="question-list">
+                  ${questions}
+                </ol>
+              </article>
             `;
           })
           .join('');
@@ -138,12 +166,12 @@ export class SemioticLadderService {
         if (!steps) return '';
 
         return `
-          <div class="group avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important; display: block;">
-            <div class="group-title" style="page-break-after: avoid !important; break-after: avoid !important;">${HtmlTemplateService.escapeHtml(
-              groupProps.tag.names[language],
-            )}</div>
+          <section class="group avoid-break" aria-labelledby="${groupId}">
+            <h2 class="group-title" id="${groupId}">${HtmlTemplateService.escapeHtml(
+              groupTitle,
+            )}</h2>
             ${steps}
-          </div>
+          </section>
         `;
       })
       .join('');

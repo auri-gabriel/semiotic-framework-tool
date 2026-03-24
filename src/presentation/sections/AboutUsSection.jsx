@@ -21,7 +21,7 @@ const texts = {
     studentsLabel: 'Students involved in the project:',
     students: [
       'Auri Gabriel Castro de Melo (Software Engineering student)',
-      'Renilson Pereira Torres (Computer Science student, PIBIC-Af 2024 fellow)',
+      'Renilson Pereira Torres (Computer Science student, PIBIC-Af 2024 fellow, PROBIC 2025 fellow)',
       'Gabriel Souza Rodrigues de Amorim (Software Engineering student, PRO-IC MC 2023 fellow)',
     ],
     collaboratorsLabel: 'Collaborators:',
@@ -41,7 +41,7 @@ const texts = {
     studentsLabel: 'Estudantes envolvidos no projeto:',
     students: [
       'Auri Gabriel Castro de Melo (Acadêmico do Curso de Engenharia de Software)',
-      'Renilson Pereira Torres (Acadêmico do Curso de Ciência da Computação, bolsista PIBIC-Af 2024)',
+      'Renilson Pereira Torres (Acadêmico do Curso de Ciência da Computação, bolsista PIBIC-Af 2024, bolsista PROBIC 2025)',
       'Gabriel Souza Rodrigues de Amorim (Acadêmico do Curso de Engenharia de Software, bolsista PRO-IC MC 2023)',
     ],
     collaboratorsLabel: 'Colaboradores:',

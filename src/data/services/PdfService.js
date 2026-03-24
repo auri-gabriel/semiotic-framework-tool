@@ -60,9 +60,7 @@ export class PdfService {
 
     tempDiv.innerHTML = `
       <style>${styleContent}</style>
-      <div class="document-container">
-        ${doc.body.innerHTML}
-      </div>
+      ${doc.body.innerHTML}
     `;
 
     return tempDiv;

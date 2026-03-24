@@ -10,7 +10,7 @@ titlepage: true
 
 ### 1.1 Propósito
 
-Este documento tem como objetivo descrever os requisitos da ferramenta fs.SwEdu: Um Framework Semioparticipativo para o Desenvolvimento de Software em Domínio Educacional. Baseada na Escada Semiótica (LIU, 2000), ou *framework* semiótico (do inglês, *semiotic framework*), e nas Camadas da Engenharia de Software propostas por Pressman e Maxim (2016), a ferramenta visa auxiliar no ensino e na prática da Engenharia de Software por meio da modelagem, visualização e documentação de elementos semióticos.
+Este documento tem como objetivo descrever os requisitos da ferramenta FS.Edu: Um Framework Semioparticipativo para o Desenvolvimento de Software em Domínio Educacional. Baseada na Escada Semiótica (LIU, 2000), ou *framework* semiótico (do inglês, *semiotic framework*), e nas Camadas da Engenharia de Software propostas por Pressman e Maxim (2016), a ferramenta visa auxiliar no ensino e na prática da Engenharia de Software por meio da modelagem, visualização e documentação de elementos semióticos.
 
 ### 1.2 Escopo
 

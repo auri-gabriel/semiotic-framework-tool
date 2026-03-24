@@ -11,6 +11,28 @@ import { isAnswered } from '../utils/answerUtils.js';
  */
 export class HtmlTemplateService {
   /**
+   * Generates a stable HTML id from arbitrary parts
+   * @param {...string|number} parts - Values to compose the id from
+   * @returns {string} Safe HTML id
+   */
+  static createId(...parts) {
+    const normalized = parts
+      .filter((part) => part !== undefined && part !== null && part !== '')
+      .map((part) =>
+        String(part)
+          .normalize('NFD')
+          .replace(/[\u0300-\u036f]/g, '')
+          .toLowerCase()
+          .replace(/[^a-z0-9]+/g, '-')
+          .replace(/^-+|-+$/g, ''),
+      )
+      .filter(Boolean)
+      .join('-');
+
+    return normalized || 'section';
+  }
+
+  /**
    * Generates common CSS styles for documents
    * @returns {string} CSS styles as string
    */
@@ -106,6 +128,22 @@ body {
   background: white;
 }
 
+.content {
+  display: block;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
 .header {
   text-align: left;
   margin-bottom: 32px;
@@ -126,6 +164,10 @@ body {
   margin-top: 16px;
   display: grid;
   gap: 10px;
+}
+
+.metadata-title {
+  margin: 0;
 }
 
 .metadata-item {
@@ -149,6 +191,7 @@ body {
   color: #1a1a1a;
   white-space: pre-wrap;
   word-wrap: break-word;
+  margin: 0;
 }
 
 .group {
@@ -209,6 +252,13 @@ body {
   line-height: 1.5;
 }
 
+.question-list,
+.sections-grid {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .question {
   margin-bottom: 16px;
   margin-left: 24px;
@@ -243,6 +293,14 @@ body {
   break-before: avoid;
   page-break-inside: avoid;
   break-inside: avoid;
+}
+
+.answer-text > :first-child {
+  margin-top: 0;
+}
+
+.answer-text > :last-child {
+  margin-bottom: 0;
 }
 
 .no-answer {
@@ -284,6 +342,30 @@ body {
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 16px;
   margin-bottom: 24px;
+}
+
+.stat-item {
+  background: white;
+  border: 1px solid #dee2e6;
+  border-left: 3px solid #6c757d;
+  padding: 12px 16px;
+}
+
+.stat-label {
+  font-size: 12px;
+  font-weight: 600;
+  color: #6c757d;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+}
+
+.stat-value {
+  margin: 0;
+  font-size: 20px;
+  font-weight: 700;
+  color: #212529;
+  letter-spacing: -0.01em;
 }
 
 .sections-overview {
@@ -409,40 +491,57 @@ body {
   static fixReactQuillHtml(html) {
     if (!html) return html;
 
-    // Fix bullet lists that are incorrectly rendered as <ol><li data-list="bullet">
-    // Convert them to proper <ul><li>
-    let fixedHtml = html.replace(
-      /<ol>\s*<li\s+data-list="bullet"[^>]*>/gi,
-      '<ul><li>',
-    );
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, 'text/html');
 
-    // Fix closing ol tags for bullet lists
-    fixedHtml = fixedHtml.replace(
-      /<\/li>\s*<\/ol>/gi,
-      (match, offset, string) => {
-        // Check if this is part of a bullet list by looking backwards
-        const beforeMatch = string.substring(0, offset);
-        const lastUlIndex = beforeMatch.lastIndexOf('<ul>');
-        const lastOlIndex = beforeMatch.lastIndexOf('<ol>');
+    doc.querySelectorAll('span.ql-ui').forEach((span) => span.remove());
 
-        // If the most recent list opening was <ul>, close with </ul>
-        if (lastUlIndex > lastOlIndex) {
-          return '</li></ul>';
-        }
-        return match; // Keep original if it's a real ordered list
-      },
-    );
+    doc.querySelectorAll('ol').forEach((list) => {
+      const items = Array.from(list.children).filter(
+        (child) => child.tagName === 'LI',
+      );
 
-    // Clean up any remaining data-list attributes
-    fixedHtml = fixedHtml.replace(/\s+data-list="[^"]*"/gi, '');
+      if (!items.length) {
+        return;
+      }
 
-    // Clean up any ql-ui spans that might be left over
-    fixedHtml = fixedHtml.replace(/<span\s+class="ql-ui"[^>]*><\/span>/gi, '');
+      const isBulletList = items.every(
+        (item) => item.getAttribute('data-list') === 'bullet',
+      );
 
-    // Normalize links without protocol (e.g. www.google.com -> https://www.google.com)
-    fixedHtml = this.normalizeAnchorHrefs(fixedHtml);
+      items.forEach((item) => item.removeAttribute('data-list'));
 
-    return fixedHtml;
+      if (!isBulletList) {
+        return;
+      }
+
+      const bulletList = doc.createElement('ul');
+      list.replaceWith(bulletList);
+      items.forEach((item) => bulletList.appendChild(item));
+    });
+
+    doc.querySelectorAll('li[data-list]').forEach((item) => {
+      item.removeAttribute('data-list');
+    });
+
+    doc.querySelectorAll('a[href]').forEach((anchor) => {
+      const href = anchor.getAttribute('href');
+      if (!href) {
+        return;
+      }
+
+      const normalizedHref = this.normalizeHref(href);
+      if (normalizedHref !== href) {
+        anchor.setAttribute('href', normalizedHref);
+      }
+
+      if (/^https?:/i.test(normalizedHref)) {
+        anchor.setAttribute('target', '_blank');
+        anchor.setAttribute('rel', 'noopener noreferrer');
+      }
+    });
+
+    return doc.body.innerHTML;
   }
 
   /**
@@ -571,6 +670,7 @@ body {
             projectTitle: 'Título do Projeto',
             focalProblem: 'Problema Focal',
             authorship: 'Autoria',
+            metadata: 'Metadados do projeto',
             generatedOn: 'Gerado em',
             notInformed: '(não informado)',
           }
@@ -578,6 +678,7 @@ body {
             projectTitle: 'Project Title',
             focalProblem: 'Focal Problem',
             authorship: 'Authorship',
+            metadata: 'Project metadata',
             generatedOn: 'Generated on',
             notInformed: '(not provided)',
           };
@@ -594,32 +695,37 @@ body {
     )}`;
 
     const metadataHtml = `
-      <div class="metadata">
+      <section class="project-metadata" aria-labelledby="project-metadata-title">
+        <h2 class="metadata-title visually-hidden" id="project-metadata-title">${this.escapeHtml(
+          labels.metadata,
+        )}</h2>
+        <dl class="metadata">
         <div class="metadata-item">
-          <div class="metadata-label">${this.escapeHtml(labels.projectTitle)}</div>
-          <div class="metadata-value">${
+          <dt class="metadata-label">${this.escapeHtml(labels.projectTitle)}</dt>
+          <dd class="metadata-value">${
             projectTitle
               ? this.escapeHtml(projectTitle)
               : this.escapeHtml(labels.notInformed)
-          }</div>
+          }</dd>
         </div>
         <div class="metadata-item">
-          <div class="metadata-label">${this.escapeHtml(labels.focalProblem)}</div>
-          <div class="metadata-value">${
+          <dt class="metadata-label">${this.escapeHtml(labels.focalProblem)}</dt>
+          <dd class="metadata-value">${
             focalProblem
               ? this.escapeHtml(focalProblem)
               : this.escapeHtml(labels.notInformed)
-          }</div>
+          }</dd>
         </div>
         <div class="metadata-item">
-          <div class="metadata-label">${this.escapeHtml(labels.authorship)}</div>
-          <div class="metadata-value">${
+          <dt class="metadata-label">${this.escapeHtml(labels.authorship)}</dt>
+          <dd class="metadata-value">${
             authorship
               ? this.escapeHtml(authorship)
               : this.escapeHtml(labels.notInformed)
-          }</div>
+          }</dd>
         </div>
-      </div>
+        </dl>
+      </section>
     `;
 
     return `
@@ -633,18 +739,18 @@ body {
     </head>
     <body>
       <div class="document-container">
-        <div class="header">
+        <header class="header">
           <h1 class="document-title">${this.escapeHtml(title)}</h1>
           ${metadataHtml}
-        </div>
+        </header>
         
-        <div class="content">
+        <main class="content">
           ${content}
-        </div>
+        </main>
         
-        <div class="footer">
+        <footer class="footer">
           <p>${this.escapeHtml(labels.generatedOn)} ${generatedAt}</p>
-        </div>
+        </footer>
       </div>
     </body>
     </html>
@@ -656,10 +762,17 @@ body {
    * @param {Object} question - Question object
    * @param {string} answer - Answer text
    * @param {string} language - Language code
+   * @param {Object} options - Rendering options
+   * @param {string} options.headingTag - Heading tag name for the question text
+   * @param {string} options.id - Stable HTML id for the question heading
    * @returns {string} Question HTML
    */
-  static generateQuestionHtml(question, answer, language) {
+  static generateQuestionHtml(question, answer, language, options = {}) {
     const questionText = question.texts[language] || question.texts.en;
+    const headingTag = options.headingTag || 'h3';
+    const questionId =
+      options.id || this.createId('question', question.id || questionText);
+    const answerLabel = language === 'pt_BR' ? 'Resposta' : 'Answer';
 
     // Check if answer is actually answered
     const hasAnswer = isAnswered(answer);
@@ -669,21 +782,22 @@ body {
 
     const answerText = fixedAnswer
       ? fixedAnswer
-      : language === 'pt_BR'
-        ? '(sem resposta)'
-        : '(no answer)';
+      : `<p>${this.escapeHtml(
+          language === 'pt_BR' ? '(sem resposta)' : '(no answer)',
+        )}</p>`;
 
     return `
-      <div class="question avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important; display: block;">
-        <div class="question-text" style="page-break-after: avoid !important; break-after: avoid !important;">${this.escapeHtml(
-          questionText,
-        )}</div>
-        <div class="answer-text ${
-          !hasAnswer ? 'no-answer' : ''
-        }" style="page-break-before: avoid !important; break-before: avoid !important; page-break-inside: avoid !important; break-inside: avoid !important;">
-          ${answerText}
-        </div>
-      </div>
+      <li class="question avoid-break">
+        <article aria-labelledby="${questionId}">
+          <${headingTag} class="question-text" id="${questionId}">${this.escapeHtml(
+            questionText,
+          )}</${headingTag}>
+          <div class="answer-text ${!hasAnswer ? 'no-answer' : ''}">
+            <p class="visually-hidden">${this.escapeHtml(answerLabel)}</p>
+            ${answerText}
+          </div>
+        </article>
+      </li>
     `;
   }
 
@@ -730,10 +844,8 @@ body {
       .map(
         ([, stat]) => `
         <div class="stat-item">
-          <div class="stat-label">${this.escapeHtml(stat.label)}</div>
-          <div class="stat-value">${this.escapeHtml(
-            stat.value.toString(),
-          )}</div>
+          <dt class="stat-label">${this.escapeHtml(stat.label)}</dt>
+          <dd class="stat-value">${this.escapeHtml(stat.value.toString())}</dd>
         </div>
       `,
       )
@@ -743,34 +855,36 @@ body {
     const sectionsHtml = overview.sections
       .map(
         (section) => `
-        <div class="section-item">
-          <div class="section-name">${this.escapeHtml(section.name)}</div>
+        <li class="section-item">
+          <article>
+          <h4 class="section-name">${this.escapeHtml(section.name)}</h4>
           <div class="section-stats">
             <span>${section.answeredQuestions}/${section.totalQuestions}</span>
             <span class="section-completion">${this.escapeHtml(
               section.completionRate,
             )}</span>
           </div>
-        </div>
+          </article>
+        </li>
       `,
       )
       .join('');
 
     return `
-      <div class="overview avoid-break" style="page-break-inside: avoid !important; break-inside: avoid !important;">
-        <div class="overview-title">${this.escapeHtml(overview.title)}</div>
-        <div class="overview-stats">
+      <section class="overview avoid-break" aria-labelledby="overview-title">
+        <h2 class="overview-title" id="overview-title">${this.escapeHtml(overview.title)}</h2>
+        <dl class="overview-stats">
           ${overallStatsHtml}
-        </div>
-        <div class="sections-overview">
-          <div class="sections-title">${this.escapeHtml(
+        </dl>
+        <section class="sections-overview" aria-labelledby="overview-sections-title">
+          <h3 class="sections-title" id="overview-sections-title">${this.escapeHtml(
             overview.sectionTitle,
-          )}</div>
-          <div class="sections-grid">
+          )}</h3>
+          <ul class="sections-grid">
             ${sectionsHtml}
-          </div>
-        </div>
-      </div>
+          </ul>
+        </section>
+      </section>
     `;
   }
 }
