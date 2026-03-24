@@ -345,19 +345,33 @@
         </question>
 
         <!-- Empírica -->
-        <question id="q23">
+        <question id="q38">
             <tag class="empirical" />
-            <text lang="pt_BR">Qual o tempo disponível?</text>
-            <text lang="en">What is the available time?</text>
-            <placeholder lang="pt_BR">Exemplo: 6 meses para desenvolvimento.</placeholder>
-            <placeholder lang="en">Example: 6 months for development.</placeholder>
+            <text lang="pt_BR">Qual o orçamento disponível?</text>
+            <text lang="en">What is the available budget?</text>
+            <placeholder lang="pt_BR">Exemplo: Duas bolsas para estudantes de graduação.</placeholder>
+            <placeholder lang="en">Example: Two scholarships for undergraduate students.</placeholder>
         </question>
-        <question id="q24">
+        <question id="q39">
             <tag class="empirical" />
-            <text lang="pt_BR">Quais os custos envolvidos?</text>
-            <text lang="en">What are the costs involved?</text>
-            <placeholder lang="pt_BR">Exemplo: R$ 50.000 para todo o projeto.</placeholder>
-            <placeholder lang="en">Example: $10,000 for the entire project.</placeholder>
+            <text lang="pt_BR">Qual o tempo estimado para entregar a solução?</text>
+            <text lang="en">What is the estimated time to deliver the solution?</text>
+            <placeholder lang="pt_BR">Exemplo: 6 meses.</placeholder>
+            <placeholder lang="en">Example: 6 months.</placeholder>
+        </question>
+        <question id="q40">
+            <tag class="empirical" />
+            <text lang="pt_BR">Qual o tempo disponível para implementar a solução?</text>
+            <text lang="en">What is the available time to implement the solution?</text>
+            <placeholder lang="pt_BR">Exemplo: 20h/semana.</placeholder>
+            <placeholder lang="en">Example: 20h/week.</placeholder>
+        </question>
+        <question id="q41">
+            <tag class="empirical" />
+            <text lang="pt_BR">Qual a disponibilidade das fontes de conhecimento para implementar a solução?</text>
+            <text lang="en">What is the availability of knowledge sources to implement the solution?</text>
+            <placeholder lang="pt_BR">Exemplo: Professores estão disponíveis 1h/semana, no turno da manhã, em horário a combinar.</placeholder>
+            <placeholder lang="en">Example: Professors are available 1h/week, in the morning, at a time to be arranged.</placeholder>
         </question>
         <question id="q32">
             <tag class="empirical" />
