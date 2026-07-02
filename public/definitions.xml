@@ -1,4 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!-- Framework versão 2.0 -->
+<!-- Autoria: Amanda Meincke Melo, Auri Gabriel Castro de Melo, Renilson Pereira Torres -->
 <definitions>
     <tag-definitions>
         <!-- Semiotic Groups -->
@@ -124,10 +126,12 @@
         </question>
         <question id="q02">
             <tag class="social_world" />
-            <text lang="pt_BR">Que aspectos culturais podem ou devem ser considerados?</text>
+            <text lang="pt_BR">Quais aspectos culturais podem ou devem ser considerados?</text>
             <text lang="en">What cultural aspects can or should be considered?</text>
-            <placeholder lang="pt_BR">Exemplo: Considerar diversidade cultural dos usuários.</placeholder>
-            <placeholder lang="en">Example: Consider the cultural diversity of users.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Considerar diferentes aspectos culturais, como o
+                contexto social e a linguagem.</placeholder>
+            <placeholder lang="en">Example: Consider different cultural aspects, such as social
+                context and language.</placeholder>
         </question>
         <question id="q03">
             <tag class="social_world" />
@@ -135,41 +139,43 @@
                 educacional que devem ser considerados?</text>
             <text lang="en">Are there standards, regulations or reference documents from the
                 educational domain that should be considered?</text>
-            <placeholder lang="pt_BR">Exemplo: Deve-se observar a BNCC - Base Nacional Comum
-                Curricular na publicação de materiais para a educação básica.</placeholder>
-            <placeholder lang="en">Example: The Brazilian BNCC must be observed when publishing
-                materials for basic education.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Observar a BNCC - Base Nacional Comum Curricular na
+                publicação de materiais para a educação básica.</placeholder>
+            <placeholder lang="en">Example: Observe the BNCC - National Common Curricular Base -
+                when publishing materials for basic education.</placeholder>
         </question>
         <question id="q04">
             <tag class="social_world" />
             <text lang="pt_BR">Quais os aspectos éticos envolvidos?</text>
             <text lang="en">What are the ethical aspects involved?</text>
-            <placeholder lang="pt_BR">Exemplo: Garantir acessibilidade digital.</placeholder>
-            <placeholder lang="en">Example: Ensure digital accessibility.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Garantir a proteção da autoria das culturas
+                indígenas.</placeholder>
+            <placeholder lang="en">Example: To guarantee the protection of the authorship of
+                indigenous cultures.</placeholder>
         </question>
         <question id="q05">
             <tag class="social_world" />
-            <text lang="pt_BR">Que aspectos legais devem ser observados?</text>
-            <text lang="en">What legal aspects should be considered?</text>
+            <text lang="pt_BR">Quais aspectos legais devem ser observados?</text>
+            <text lang="en">What legal aspects should be observed?</text>
             <placeholder lang="pt_BR">Exemplo: Observar a legislação nacional de acessibilidade.</placeholder>
             <placeholder lang="en">Example: Observe national accessibility legislation.</placeholder>
         </question>
         <question id="q06">
             <tag class="social_world" />
-            <text lang="pt_BR">Que compromissos devem ser estabelecidos?</text>
-            <text lang="en">What commitments should be established?</text>
-            <placeholder lang="pt_BR">Exemplo: Não discriminação.</placeholder>
-            <placeholder lang="en">Example: No discrimination.</placeholder>
+            <text lang="pt_BR">Quais compromissos devem ser estabelecidos?</text>
+            <text lang="en">What commitments need to be made?</text>
+            <placeholder lang="pt_BR">Exemplo: Promover a inclusão digital. Respeitar a autoria.</placeholder>
+            <placeholder lang="en">Example: Promote digital inclusion. Respect authorship.</placeholder>
         </question>
-        <question id="q28">
+        <question id="q07">
             <tag class="social_world" />
             <text lang="pt_BR">Que outros aspectos devem ser considerados neste degrau, Mundo
                 Social?</text>
             <text lang="en">What other aspects should be considered at this level, Social World?</text>
         </question>
 
-        <!-- Pragmática -->
-        <question id="q07">
+        <!-- Pragmático -->
+        <question id="q08">
             <tag class="pragmatic" />
             <text lang="pt_BR">Quais as intenções das diferentes partes interessadas no software?</text>
             <text lang="en">What are the intentions of the different stakeholders regarding the
@@ -177,121 +183,128 @@
             <placeholder lang="pt_BR">Exemplo: Usuários desejam encontrar materiais de diferentes
                 áreas do conhecimento.</placeholder>
             <placeholder lang="en">Example: Users want to find materials from different areas of
-                knowledge..</placeholder>
+                knowledge.</placeholder>
         </question>
-        <question id="q08">
+        <question id="q09">
             <tag class="pragmatic" />
             <tag class="quality" />
             <text lang="pt_BR">De que modo a qualidade deve ser abordada no desenvolvimento do
                 software?</text>
             <text lang="en">How should quality be addressed in software development?</text>
-            <placeholder lang="pt_BR">Exemplo: Realizar testes automatizados e revisões de código.</placeholder>
-            <placeholder lang="en">Example: Perform automated testing and code reviews.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Verificar a acessibilidade e a usabilidade.</placeholder>
+            <placeholder lang="en">Example: Check accessibility and usability.</placeholder>
         </question>
-        <question id="q09">
+        <question id="q10">
             <tag class="pragmatic" />
             <text lang="pt_BR">Qual o propósito do software no domínio educacional? Quando for o
                 caso, qual a intencionalidade pedagógica subjacente?</text>
             <text lang="en">What is the purpose of the software in the educational domain? When
                 applicable, what is the underlying pedagogical intentionality?</text>
-            <placeholder lang="pt_BR">Exemplo: Facilitar o aprendizado colaborativo.</placeholder>
-            <placeholder lang="en">Example: Facilitate collaborative learning.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Ultrapassar o vazio intercultural nas relações
+                étnico-raciais.</placeholder>
+            <placeholder lang="en">Example: Bridging the intercultural gap in ethnic-racial
+                relations.</placeholder>
         </question>
-        <question id="q10">
+        <question id="q11">
             <tag class="pragmatic" />
-            <text lang="pt_BR">Qual o papel do Design Participativo no desenvolvimento do software?</text>
-            <text lang="en">What is the role of Participatory Design in the software development?</text>
-            <placeholder lang="pt_BR">Exemplo: Envolver usuários nas decisões de design.</placeholder>
-            <placeholder lang="en">Example: Involve users in design decisions.</placeholder>
+            <text lang="pt_BR">Qual papel o Design Participativo desempenha no desenvolvimento do
+                software?</text>
+            <text lang="en">What role does Participatory Design play in software development?</text>
+            <placeholder lang="pt_BR">Exemplo: Promover a autonomia participativa.</placeholder>
+            <placeholder lang="en">Example: Promoting participatory autonomy.</placeholder>
         </question>
-        <question id="q29">
+        <question id="q12">
             <tag class="pragmatic" />
             <text lang="pt_BR">Que outros aspectos devem ser considerados neste degrau, Pragmático?</text>
             <text lang="en">What other aspects should be considered at this level, Pragmatic?</text>
         </question>
 
-        <!-- Semântica -->
-        <question id="q11">
+        <!-- Semântico -->
+        <question id="q13">
             <tag class="semantic" />
             <text lang="pt_BR">Qual a compreensão sobre como as atividades e tarefas apoiadas pelo
                 software devem ser desenvolvidas?</text>
             <text lang="en">What is the understanding of how the activities and tasks supported by
                 the software should be carried out?</text>
-            <placeholder lang="pt_BR">Exemplo: Usuários devem conseguir utilizar a plataforma com
-                autonomia e indepedência.</placeholder>
-            <placeholder lang="en">Example: Users want to find materials from different areas of
-                knowledge.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Os usuários devem utilizar a plataforma com autonomia
+                e independência.</placeholder>
+            <placeholder lang="en">Example: Users should use the platform autonomously and
+                independently.</placeholder>
         </question>
-        <question id="q12">
+        <question id="q14">
             <tag class="semantic" />
             <text lang="pt_BR">Qual o vocabulário a ser adotado?</text>
             <text lang="en">What vocabulary should be adopted?</text>
-            <placeholder lang="pt_BR">Exemplo: Adotar linguagem simples, fácil de compreender por
-                pessoas de diferentes graus de instrução.</placeholder>
-            <placeholder lang="en">Example: Use simple language that is easy for people with
-                different levels of education to understand.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Priorizar termos na língua materna.</placeholder>
+            <placeholder lang="en">Example: Prioritize terms in the native language.</placeholder>
         </question>
-        <question id="q13">
+        <question id="q15">
             <tag class="semantic" />
             <tag class="quality" />
-            <text lang="pt_BR">Quais as características de qualidade a serem observadas?</text>
-            <text lang="en">What quality characteristics should be considered?</text>
-            <placeholder lang="pt_BR">Exemplo: usabilidade, compreendida como eficácia, eficiência e satisfação na realização de uma tarefa por um determinado usuário em um dado contexto de uso.</placeholder>
-            <placeholder lang="en">Example: usability, understood as effectiveness, efficiency, and satisfaction in performing a task by a specific user in a given context of use.</placeholder>
+            <text lang="pt_BR">Quais as características de qualidade a serem observadas no software?</text>
+            <text lang="en">What are the quality characteristics to be observed in software?</text>
+            <placeholder lang="pt_BR">Exemplo: Usabilidade, compreendida como a eficácia, a
+                eficiência e a satisfação na realização de uma tarefa por um determinado usuário em
+                um determinado contexto de uso.</placeholder>
+            <placeholder lang="en">Example: Usability, understood as the effectiveness, efficiency,
+                and satisfaction in performing a task by a given user in a given context of use.</placeholder>
         </question>
-        <question id="q30">
+        <question id="q16">
             <tag class="semantic" />
             <text lang="pt_BR">Que outros aspectos devem ser considerados neste degrau, Semântico?</text>
             <text lang="en">What other aspects should be considered at this level, Semantic?</text>
         </question>
 
-        <!-- Sintática -->
-        <question id="q22">
+        <!-- Sintático -->
+        <question id="q17">
             <tag class="syntactic" />
             <text lang="pt_BR">Qual a língua principal? Há outras línguas que precisam ser
                 consideradas?</text>
             <text lang="en">What is the main language? Are there other languages that need to be
                 considered?</text>
-            <placeholder lang="pt_BR">Exemplo: Português como principal, inglês como secundária.</placeholder>
-            <placeholder lang="en">Example: Portuguese as main, English as secondary.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Kaingang como primeira língua, português como segunda
+                língua.</placeholder>
+            <placeholder lang="en">Example: Kaingang as a first language, Portuguese as a second
+                language.</placeholder>
         </question>
-        <question id="q14">
+        <question id="q18">
             <tag class="syntactic" />
             <text lang="pt_BR">Que tipo de software poderia ser desenvolvido?</text>
             <text lang="en">What kind of software could be developed?</text>
-            <placeholder lang="pt_BR">Exemplo: mobile, site etc.</placeholder>
-            <placeholder lang="en">Example: mobile, website etc.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Jogo digital. Recurso educacional aberto.</placeholder>
+            <placeholder lang="en">Example: Digital game. Open educational resource.</placeholder>
         </question>
-        <question id="q15">
+        <question id="q19">
             <tag class="syntactic" />
             <text lang="pt_BR">Quais padrões seguir?</text>
             <text lang="en">What standards should be followed?</text>
-            <placeholder lang="pt_BR">Exemplo: Seguir padrões de desenvolvimento web.</placeholder>
-            <placeholder lang="en">Example: Follow web development standards.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Padrões de desenvolvimento web.</placeholder>
+            <placeholder lang="en">Example: Web development standards.</placeholder>
         </question>
-        <question id="q16">
+        <question id="q20">
             <tag class="syntactic" />
             <text lang="pt_BR">Quais abordagens serão adotadas?</text>
             <text lang="en">What approaches will be adopted?</text>
-            <placeholder lang="pt_BR">Exemplo: Adotar metodologia ágil.</placeholder>
-            <placeholder lang="en">Example: Adopt agile methodology.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Metodologia ágil.</placeholder>
+            <placeholder lang="en">Example: Agile methodology.</placeholder>
         </question>
-        <question id="q17">
+        <question id="q21">
             <tag class="syntactic" />
             <text lang="pt_BR">Quais frameworks serão adotados?</text>
             <text lang="en">What frameworks will be adopted?</text>
-            <placeholder lang="pt_BR">Exemplo: Utilizar React para frontend.</placeholder>
-            <placeholder lang="en">Example: Use React for frontend.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: React para frontend.</placeholder>
+            <placeholder lang="en">Example: React for frontend.</placeholder>
         </question>
-        <question id="q18">
+        <question id="q22">
             <tag class="syntactic" />
             <tag class="process" />
             <text lang="pt_BR">Quais processos de Engenharia de Software serão adotados?</text>
             <text lang="en">Which software engineering processes will be adopted?</text>
-            <placeholder lang="pt_BR">Exemplo: Engenharia de Requisitos e Desenvolvimento Incremental.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Engenharia de Requisitos e Desenvolvimento
+                Incremental.</placeholder>
             <placeholder lang="en">Example: Requirements Engineering and Incremental Development.</placeholder>
         </question>
-        <question id="q34">
+        <question id="q23">
             <tag class="syntactic" />
             <tag class="methods" />
             <text lang="pt_BR">Quais métodos de Engenharia de Software serão adotados?</text>
@@ -299,15 +312,15 @@
             <placeholder lang="pt_BR">Exemplo: Kanban, TDD, revisão por pares e integração contínua.</placeholder>
             <placeholder lang="en">Example: Kanban, TDD, peer review, and continuous integration.</placeholder>
         </question>
-        <question id="q35">
+        <question id="q24">
             <tag class="syntactic" />
             <tag class="tools" />
-            <text lang="pt_BR">Quais ferramentas de Engenharia de Software serão adotados?</text>
+            <text lang="pt_BR">Quais ferramentas de Engenharia de Software serão adotadas?</text>
             <text lang="en">Which software engineering tools will be adopted?</text>
             <placeholder lang="pt_BR">Exemplo: Git, GitHub e Jira.</placeholder>
             <placeholder lang="en">Example: Git, GitHub, and Jira.</placeholder>
         </question>
-        <question id="q19">
+        <question id="q25">
             <tag class="syntactic" />
             <tag class="process" />
             <text lang="pt_BR">Quais processos de Design Participativo serão adotados?</text>
@@ -315,114 +328,136 @@
             <placeholder lang="pt_BR">Exemplo: Design Participativo Radical.</placeholder>
             <placeholder lang="en">Example: Radical Participatory Design (RPD).</placeholder>
         </question>
-        <question id="q36">
+        <question id="q26">
             <tag class="syntactic" />
             <tag class="methods" />
             <text lang="pt_BR">Quais métodos de Design Participativo serão adotados?</text>
             <text lang="en">Which participatory design methods will be adopted?</text>
-            <placeholder lang="pt_BR">Exemplo: Investigação Contextual, BrainDraw e Avaliação Cooperativa.</placeholder>
-            <placeholder lang="en">Example: Contextual Inquiry, BrainDraw, and Cooperative Evaluation.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Investigação Contextual, Círculos de Culturas
+                Indígenas, Avaliação Cooperativa.</placeholder>
+            <placeholder lang="en">Example: Contextual Investigation, Indigenous Culture Circles,
+                Cooperative Evaluation.</placeholder>
         </question>
-        <question id="q37">
+        <question id="q27">
             <tag class="syntactic" />
             <tag class="tools" />
-            <text lang="pt_BR">Quais ferramentas de Design Participativo serão adotados?</text>
+            <text lang="pt_BR">Quais ferramentas de Design Participativo serão adotadas?</text>
             <text lang="en">Which participatory design tools will be adopted?</text>
-            <placeholder lang="pt_BR">Exemplo: Figma, Miro e formulários online.</placeholder>
-            <placeholder lang="en">Example: Figma, Miro, and online forms.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Blocos de anotações, notas adesivas, canetas etc.</placeholder>
+            <placeholder lang="en">Example: Notepad, sticky notes, pens etc.</placeholder>
         </question>
-        <question id="q20">
+        <question id="q28">
             <tag class="syntactic" />
             <text lang="pt_BR">Quais linguagens de programação serão adotadas?</text>
             <text lang="en">Which programming languages will be adopted?</text>
             <placeholder lang="pt_BR">Exemplo: JavaScript e Python.</placeholder>
             <placeholder lang="en">Example: JavaScript and Python.</placeholder>
         </question>
-        <question id="q31">
+        <question id="q29">
             <tag class="syntactic" />
             <text lang="pt_BR">Que outros aspectos devem ser considerados neste degrau, Sintático?</text>
             <text lang="en">What other aspects should be considered at this level, Syntactic?</text>
         </question>
 
-        <!-- Empírica -->
-        <question id="q42">
+        <!-- Empírico -->
+        <question id="q30">
             <tag class="empirical" />
-            <text lang="pt_BR">Quais as características do ambiente em que a solução será adotada?</text>
-            <text lang="en">What are the characteristics of the environment in which the solution will be adopted?</text>
-            <placeholder lang="pt_BR">Ex.: Estruturado, porém com estímulos de outros usuários.</placeholder>
-            <placeholder lang="en">Ex.: Structured, but with stimuli from other users.</placeholder>
+            <text lang="pt_BR">Quais são as características do ambiente em que a solução será
+                adotada?</text>
+            <text lang="en">What are the characteristics of the environment in which the solution
+                will be adopted?</text>
+            <placeholder lang="pt_BR">Ex.: Internos e externos, pouco estruturados, com estímulos
+                variados.</placeholder>
+            <placeholder lang="en">Ex.: Internal and external, poorly structured, with varied
+                stimuli.</placeholder>
         </question>
-        <question id="q38">
+        <question id="q31">
             <tag class="empirical" />
             <text lang="pt_BR">Qual o orçamento disponível?</text>
             <text lang="en">What is the available budget?</text>
-            <placeholder lang="pt_BR">Exemplo: Duas bolsas para estudantes de graduação.</placeholder>
-            <placeholder lang="en">Example: Two scholarships for undergraduate students.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Recurso de custeio, incluindo deslocamento e material
+                de consumo.</placeholder>
+            <placeholder lang="en">Example: Funding for expenses, including travel and consumable
+                materials.</placeholder>
         </question>
-        <question id="q39">
+        <question id="q32">
             <tag class="empirical" />
             <text lang="pt_BR">Qual o tempo estimado para entregar a solução?</text>
             <text lang="en">What is the estimated time to deliver the solution?</text>
-            <placeholder lang="pt_BR">Exemplo: 6 meses.</placeholder>
-            <placeholder lang="en">Example: 6 months.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: 1 ano.</placeholder>
+            <placeholder lang="en">Example: 1 year.</placeholder>
         </question>
-        <question id="q40">
+        <question id="q33">
             <tag class="empirical" />
             <text lang="pt_BR">Qual o tempo disponível para implementar a solução?</text>
             <text lang="en">What is the available time to implement the solution?</text>
             <placeholder lang="pt_BR">Exemplo: 20h/semana.</placeholder>
             <placeholder lang="en">Example: 20h/week.</placeholder>
         </question>
-        <question id="q41">
+        <question id="q34">
             <tag class="empirical" />
-            <text lang="pt_BR">Qual a disponibilidade das fontes de conhecimento para implementar a solução?</text>
+            <text lang="pt_BR">Qual a disponibilidade das fontes de conhecimento para implementar a
+                solução?</text>
             <text lang="en">What is the availability of knowledge sources to implement the solution?</text>
-            <placeholder lang="pt_BR">Exemplo: Professores estão disponíveis 1h/semana, no turno da manhã, em horário a combinar.</placeholder>
-            <placeholder lang="en">Example: Professors are available 1h/week, in the morning, at a time to be arranged.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Especialistas do domínio estão disponíveis 1h/semana,
+                no turno da manhã, em horário a ser combinado.</placeholder>
+            <placeholder lang="en">Example: Domain experts are available 1 hour/week, in the
+                morning, at a time to be arranged.</placeholder>
         </question>
-        <question id="q32">
+        <question id="q35">
             <tag class="empirical" />
             <text lang="pt_BR">Que outros aspectos devem ser considerados neste degrau, Empírico?</text>
             <text lang="en">What other aspects should be considered at this level, Empirical?</text>
         </question>
 
         <!-- Física / Material -->
-        <question id="q43">
+        <question id="q36">
             <tag class="physical" />
             <text lang="pt_BR">Quais os usuários da solução no domínio educacional?</text>
             <text lang="en">Who are the users of the solution in the educational domain?</text>
-            <placeholder lang="pt_BR">Ex.: Estudantes do ensino médio e professores de História.</placeholder>
-            <placeholder lang="en">Ex.: High school students and History teachers.</placeholder>
+            <placeholder lang="pt_BR">Ex.: Professores e profissionais da educação, pesquisadores e
+                estudantes.</placeholder>
+            <placeholder lang="en">Ex.: Teachers and education professionals, researchers and
+                students.</placeholder>
         </question>
-        <question id="q44">
+        <question id="q37">
+            <tag class="physical" />
+            <text lang="pt_BR">Quais as demais partes interessadas no domínio educacional?</text>
+            <text lang="en">Who are the other stakeholders in the educational domain?</text>
+            <placeholder lang="pt_BR">Ex.: Indígenas de etnias do Rio Grande do Sul, quilombolas,
+                pesquisadores e gestores educacionais.</placeholder>
+            <placeholder lang="en">Ex.: Indigenous people from ethnic groups in Rio Grande do Sul,
+                quilombola communities, researchers, and educational administrators.</placeholder>
+        </question>
+        <question id="q38">
             <tag class="physical" />
             <text lang="pt_BR">Em que ambiente(s) a solução será utilizada?</text>
             <text lang="en">In which environment(s) will the solution be used?</text>
-            <placeholder lang="pt_BR">Ex.: No laboratório de informática da escola.</placeholder>
-            <placeholder lang="en">Ex.: In the school's computer lab.</placeholder>
+            <placeholder lang="pt_BR">Ex.: Escolas e espaços não escolares.</placeholder>
+            <placeholder lang="en">Ex.: Schools and non-school spaces.</placeholder>
         </question>
-        <question id="q25">
+        <question id="q39">
             <tag class="physical" />
             <text lang="pt_BR">Qual a infraestrutura exigida dos usuários finais?</text>
             <text lang="en">What infrastructure is required from end users?</text>
-            <placeholder lang="pt_BR">Exemplo: Computadores, Celulares e Internet.</placeholder>
-            <placeholder lang="en">Example: Computers, Smartphones, Internet.</placeholder>
+            <placeholder lang="pt_BR">Exemplo: Computadores e Celulares, com e sem Internet.</placeholder>
+            <placeholder lang="en">Example: Computers and Smartphones, with and without Internet.</placeholder>
         </question>
-        <question id="q26">
+        <question id="q40">
             <tag class="physical" />
-            <text lang="pt_BR">Qual a infraestrutura necessária para desenvolvê-lo?</text>
-            <text lang="en">What infrastructure is needed to develop it?</text>
+            <text lang="pt_BR">Qual a infraestrutura necessária para desenvolver o software?</text>
+            <text lang="en">What infrastructure is needed to develop the software?</text>
             <placeholder lang="pt_BR">Exemplo: Computadores, Internet e servidores de teste.</placeholder>
             <placeholder lang="en">Example: Computers, Internet, and test servers.</placeholder>
         </question>
-        <question id="q27">
+        <question id="q41">
             <tag class="physical" />
             <text lang="pt_BR">Qual a infraestrutura necessária para mantê-lo em operação?</text>
             <text lang="en">What infrastructure is needed to keep it operational?</text>
             <placeholder lang="pt_BR">Exemplo: Servidores dedicados e equipe de suporte.</placeholder>
             <placeholder lang="en">Example: Dedicated servers and support team.</placeholder>
         </question>
-        <question id="q33">
+        <question id="q42">
             <tag class="physical" />
             <text lang="pt_BR">Que outros aspectos devem ser considerados neste degrau, Mundo
                 Físico?</text>
