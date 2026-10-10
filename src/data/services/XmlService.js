@@ -146,11 +146,30 @@ export class XmlService {
       // Extract definitions if they exist
       const definitionsNode = exportedFramework.querySelector('definitions');
       if (definitionsNode) {
-        // Store the definitions as XML string for later use
+        // Store the definitions as XML string for later use. Comments that
+        // precede <definitions> belong to the definitions document as well
+        // (for example, its version and authorship), so keep them when
+        // extracting the custom definitions.
         const serializer = new XMLSerializer();
-        result.definitions = `<?xml version="1.0" encoding="UTF-8"?>\n${serializer.serializeToString(
-          definitionsNode,
-        )}`;
+        const leadingDefinitionComments = [];
+
+        for (
+          let node = definitionsNode.previousSibling;
+          node;
+          node = node.previousSibling
+        ) {
+          if (node.nodeType === 8) {
+            leadingDefinitionComments.unshift(
+              serializer.serializeToString(node),
+            );
+          }
+        }
+
+        result.definitions =
+          `<?xml version="1.0" encoding="UTF-8"?>\n` +
+          `${leadingDefinitionComments.join('\n')}${
+            leadingDefinitionComments.length ? '\n' : ''
+          }${serializer.serializeToString(definitionsNode)}`;
       }
     }
 
